@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/3d/shape/collision_shape_ex.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
 [ext_resource path="res://tests/interaction/test_character.gd" type="Script" id=3]
+[ext_resource path="res://scenes/ui/components/progress_bar_3d.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -12,6 +13,7 @@ resource_local_to_scene = true
 albedo_color = Color( 0.0941176, 0.494118, 0.823529, 1 )
 
 [sub_resource type="CapsuleMesh" id=6]
+resource_local_to_scene = true
 material = SubResource( 5 )
 radius = 0.5
 
@@ -46,7 +48,48 @@ top_radius = 0.2
 bottom_radius = 0.1
 height = 0.2
 
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+
+render_mode unshaded, shadows_disabled;
+
+//uniform vec4 border_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 progress_color : hint_color = vec4(.0, 1., .0, 1.);
+uniform float progress_value : hint_range(0.0, 1.0, 0.02) = .5;
+
+void vertex()
+{
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+}
+
+void fragment()
+{
+	vec2 border = vec2(0.01, 0.1);
+
+	vec2 mask2 = step(border, UV) * step(UV, 1.0-border);
+    float mask = mask2.x*mask2.y;
+
+	//float progress = .5;
+    float blend = ((UV.x - progress_value) <= 0.0 ? 1.0 : 0.0) * mask;
+    vec4 fragColor = progress_color*blend + background_color*(1.0-blend);
+	ALBEDO = fragColor.rgb;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/progress_color = Color( 0, 1, 0, 1 )
+shader_param/progress_value = 0.5
+
+[sub_resource type="QuadMesh" id=11]
+resource_local_to_scene = true
+material = SubResource( 10 )
+size = Vector2( 1, 0.1 )
+
 [node name="TestCharacter" type="KinematicBody"]
+collision_layer = 9
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -76,6 +119,10 @@ mesh = SubResource( 4 )
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 2 )
 outline_mesh_instance = NodePath("../CollisionShape/MeshInstance/OutlineMeshInstance")
+
+[node name="ProgressBar3d" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22422, 0 )
+mesh = SubResource( 11 )
 
 [connection signal="deselected" from="OutlineHelper3D" to="." method="_on_OutlineHelper3D_deselected"]
 [connection signal="selected" from="OutlineHelper3D" to="." method="_on_OutlineHelper3D_selected"]

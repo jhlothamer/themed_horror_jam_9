@@ -8,11 +8,13 @@ signal deselected()
 # emitted when helper not is select_on_click mode and parent CollisionObject is clicked
 signal clicked(clicked_object)
 
+
 enum MouseButton {
 	BUTTON_LEFT = BUTTON_LEFT,
 	BUTTON_RIGHT = BUTTON_RIGHT,
 	BUTTON_MIDDLE = BUTTON_MIDDLE,
 }
+
 
 export var outline_mesh_instance: NodePath
 export var select_on_click := true
@@ -21,8 +23,10 @@ export (MouseButton) var button_index: int = BUTTON_LEFT
 
 onready var _parent:CollisionObject = get_parent()
 
+
 var _outline_mesh_instance: MeshInstance
 var _selected := false
+
 
 func _ready():
 	if !_parent:
@@ -35,12 +39,13 @@ func _ready():
 	_parent.connect("mouse_exited", self, "_on_parent_mouse_exit")
 	_parent.connect("input_event", self, "_on_parent_input_event")
 	SignalMgr.register_publisher(self, "selected")
-	SignalMgr.register_publisher(self, "clicked")
 	SignalMgr.register_subscriber(self, "selected")
 	SignalMgr.register_subscriber(self, "no_selectable_clicked")
 
+
 func _on_parent_mouse_enter():
 	_outline_mesh_instance.visible = true
+
 
 func _on_parent_mouse_exit():
 	if !_selected:
@@ -61,6 +66,7 @@ func _on_selected(helperref):
 		return
 	_selected = false
 	_outline_mesh_instance.visible = false
+	emit_signal("deselected")
 
 
 func _on_no_selectable_clicked():
@@ -68,4 +74,5 @@ func _on_no_selectable_clicked():
 		return
 	_selected = false
 	_outline_mesh_instance.visible = false
+	emit_signal("deselected")
 

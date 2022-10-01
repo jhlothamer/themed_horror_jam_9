@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/ui/components/progress_bar_3d.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+
+render_mode unshaded, shadows_disabled;
+
+//uniform vec4 border_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 progress_color : hint_color = vec4(.0, 1., .0, 1.);
+uniform float progress_value : hint_range(0.0, 1.0, 0.02) = .5;
+
+void vertex()
+{
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+}
+
+void fragment()
+{
+	vec2 border = vec2(0.01, 0.1);
+
+	vec2 mask2 = step(border, UV) * step(UV, 1.0-border);
+    float mask = mask2.x*mask2.y;
+
+	//float progress = .5;
+    float blend = ((UV.x - progress_value) <= 0.0 ? 1.0 : 0.0) * mask;
+    vec4 fragColor = progress_color*blend + background_color*(1.0-blend);
+	ALBEDO = fragColor.rgb;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/progress_color = Color( 0, 1, 0, 1 )
+shader_param/progress_value = 0.5
+
+[sub_resource type="QuadMesh" id=11]
+resource_local_to_scene = true
+material = SubResource( 10 )
+size = Vector2( 1, 0.1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="ProgressBar3d" parent="." instance=ExtResource( 2 )]
+cast_shadow = 0
+mesh = SubResource( 11 )
