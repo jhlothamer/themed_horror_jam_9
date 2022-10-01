@@ -61,6 +61,7 @@ func _on_selected(helperref):
 		return
 	_selected = false
 	_outline_mesh_instance.visible = false
+	emit_signal("deselected")
 
 
 func _on_no_selectable_clicked():
@@ -68,4 +69,5 @@ func _on_no_selectable_clicked():
 		return
 	_selected = false
 	_outline_mesh_instance.visible = false
+	emit_signal("deselected")
 

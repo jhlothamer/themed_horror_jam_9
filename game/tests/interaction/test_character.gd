@@ -2,7 +2,6 @@ extends KinematicBody
 
 export var horizontal_speed = 4.0
 export var color: Color = Color("#187ed2")
-export var debug := false
 
 onready var _mesh:CapsuleMesh = $CollisionShape/MeshInstance.mesh
 
@@ -14,7 +13,6 @@ var _selected := false
 func _ready():
 	SignalMgr.register_subscriber(self, "no_interactable_clicked")
 	SignalMgr.register_subscriber(self, "clicked")
-	_mesh.material = _mesh.material.duplicate(true)
 	_mesh.material.albedo_color = color
 
 

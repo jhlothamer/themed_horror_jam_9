@@ -263,6 +263,11 @@ _global_script_classes=[ {
 "class": "YieldUtil",
 "language": "GDScript",
 "path": "res://addons/godot_helper_pack/core/util/yield_util.gd"
+}, {
+"base": "Spatial",
+"class": "healthbar3D",
+"language": "GDScript",
+"path": "res://other/HealthBar3D/Healthbar3D.gd"
 } ]
 _global_script_class_icons={
 "AngleUtil": "",
@@ -315,12 +320,13 @@ _global_script_class_icons={
 "StringUtil": "",
 "TransitionButton": "",
 "Vector2Util": "",
-"YieldUtil": ""
+"YieldUtil": "",
+"healthbar3D": "res://other/HealthBar3D/class_icon.png"
 }
 
 [application]
 
-config/name="Pre-Jam Prep - Themed Horror Jam 9"
+config/name="Themed Horror Jam 9"
 run/main_scene="res://scenes/etc/title.tscn"
 config/icon="res://icon.png"
 
