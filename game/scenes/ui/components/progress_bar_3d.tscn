@@ -5,7 +5,7 @@
 [sub_resource type="Shader" id=9]
 code = "shader_type spatial;
 
-render_mode unshaded;
+render_mode unshaded, shadows_disabled;
 
 //uniform vec4 border_color : hint_color = vec4(.0, .0, .0, 1.);
 uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
@@ -33,9 +33,9 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=10]
 shader = SubResource( 9 )
-shader_param/background_color = Color( 0, 0, 0, 1 )
-shader_param/progress_color = Color( 0, 1, 0, 1 )
-shader_param/progress_value = 0.5
+shader_param/background_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+shader_param/progress_color = Color( 0.239216, 0.239216, 0.239216, 1 )
+shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=2]
 resource_local_to_scene = true
@@ -43,5 +43,6 @@ material = SubResource( 10 )
 size = Vector2( 1, 0.1 )
 
 [node name="ProgressBar3d" type="MeshInstance"]
+cast_shadow = 0
 mesh = SubResource( 2 )
 script = ExtResource( 1 )

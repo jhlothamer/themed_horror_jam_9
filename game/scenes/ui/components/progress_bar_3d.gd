@@ -1,4 +1,5 @@
 tool
+class_name ProgressBar3D
 extends MeshInstance
 
 export var value := 50.0 setget _set_value
@@ -36,6 +37,12 @@ func _set_progress_color(v: Color) -> void:
 	var mat: ShaderMaterial = mesh.material
 	mat.set_shader_param("progress_color", v)
 
+func _ready():
+	self.background_color = background_color
+	self.progress_color = progress_color
+	self.min_value = min_value
+	self.max_value = max_value
+	self.value = value
 
 func _update_shader():
 	var v:float = clamp(value, min_value, max_value)
