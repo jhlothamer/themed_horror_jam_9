@@ -8,10 +8,12 @@ signal completed()
 var _current_interaction_time := 0.0
 var _current_speed_bonus_percent := 0.0
 
+
 func _ready():
 	self.value = 0.0
 	set_physics_process(false)
 	visible = false
+
 
 func start() -> void:
 	visible = true

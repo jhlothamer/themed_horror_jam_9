@@ -1,9 +1,12 @@
 extends KinematicBody
 
+
 export var horizontal_speed = 4.0
 export var color: Color = Color("#187ed2")
 
+
 onready var _mesh:CapsuleMesh = $CollisionShape/MeshInstance.mesh
+
 
 var _target_pos
 var _interactable_target: CollisionObject
@@ -31,8 +34,6 @@ func _on_no_interactable_clicked(pos):
 func _on_interactable_clicked(helper: InteractionHelper, clicked_object: CollisionObject):
 	if !_selected:
 		return
-#	if clicked_object.collision_layer & GameConsts.PhysLayer.INTERACTABLE == 0:
-#		return
 	
 	_stop_current_interaction()
 	
@@ -42,11 +43,13 @@ func _on_interactable_clicked(helper: InteractionHelper, clicked_object: Collisi
 	_target_pos = Vector3(pos.x, global_transform.origin.y, pos.z)
 	look_at(_target_pos, Vector3.UP)
 
+
 func _on_interaction_completed(helper: InteractionHelper, clicked_object: CollisionObject):
 	if helper != _interaction_helper:
 		return
 	_interaction_helper = null
 	_interactable_target = null
+
 
 func _stop_current_interaction() -> void:
 	pass
@@ -66,12 +69,7 @@ func _physics_process(delta):
 	if v.length() <= frame_move_v.length():
 		_target_pos = null
 		return
-#	move_and_slide_with_snap(v, Vector3.DOWN, Vector3.UP)
-#	for i in get_slide_count():
-#		var c := get_slide_collision(i)
-#		if c.normal.dot(Vector3.UP) != 1.0:
-#			_target_pos = null
-#			break
+	
 	var c = move_and_collide(frame_move_v)
 	if c:
 		if c.collider == _interactable_target:
@@ -79,7 +77,6 @@ func _physics_process(delta):
 			_interaction_helper.start_interaction()
 		elif c.normal.dot(Vector3.UP) != 1.0:
 			_target_pos = null
-
 
 
 func _on_OutlineHelper3D_selected(_helperref):

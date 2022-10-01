@@ -1,15 +1,20 @@
 class_name InteractionHelper
 extends Node
 
+
 signal interactable_clicked(helperref ,obj)
 signal interaction_completed(heperref, obj)
+
 
 export var outline_helper: NodePath
 export var interaction_progress_bar: NodePath
 
+
 onready var _parent: CollisionObject = get_parent()
 
+
 var _interaction_progress_bar: InteractionProgressBar
+
 
 func _ready():
 	var helper: OutlineHelper3D = get_node(outline_helper)
@@ -31,6 +36,7 @@ func _ready():
 func _on_clicked(_clicked_object) -> void:
 	emit_signal("interactable_clicked", self, _parent)
 
+
 func start_interaction() -> void:
 	_interaction_progress_bar.start()
 	
@@ -38,8 +44,7 @@ func start_interaction() -> void:
 func stop_interaction() -> void:
 	_interaction_progress_bar.stop()
 
+
 func _on_interaction_completed() -> void:
 	emit_signal("interaction_completed", self, _parent)
 	_interaction_progress_bar.reset()
-
-
