@@ -45,5 +45,4 @@ size = Vector2( 1, 0.1 )
 [node name="Spatial" type="Spatial"]
 
 [node name="ProgressBar3d" parent="." instance=ExtResource( 2 )]
-cast_shadow = 0
 mesh = SubResource( 11 )

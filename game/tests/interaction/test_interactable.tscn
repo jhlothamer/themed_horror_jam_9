@@ -62,9 +62,9 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=10]
 shader = SubResource( 9 )
-shader_param/background_color = Color( 0, 0, 0, 1 )
-shader_param/progress_color = Color( 0, 1, 0, 1 )
-shader_param/progress_value = 0.5
+shader_param/background_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+shader_param/progress_color = Color( 0.239216, 0.239216, 0.239216, 1 )
+shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=21]
 resource_local_to_scene = true
@@ -83,13 +83,16 @@ script = ExtResource( 2 )
 mesh = SubResource( 18 )
 
 [node name="OutlineMeshInstance" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+visible = false
 mesh = SubResource( 20 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 1 )
-outline_mesh_instance = NodePath("../MeshInstance/OutlineMeshInstance")
+mesh_instance_to_outline = NodePath("../MeshInstance")
 select_on_click = false
 button_index = 2
+mouse_over_color = Color( 1, 0.72549, 0.2, 1 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19535, -0.00598884 )

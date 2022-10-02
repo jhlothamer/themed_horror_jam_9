@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/test_model.glb-533866c95f00238cdcd97d7685b93985.scn"
+path="res://.import/test_model.glb-14e71c9b0422e9553514c7476401c5ca.scn"
 
 [deps]
 
-source_file="res://assets/models/test_model.glb"
-dest_files=[ "res://.import/test_model.glb-533866c95f00238cdcd97d7685b93985.scn" ]
+source_file="res://assets/models/tests/test_model.glb"
+dest_files=[ "res://.import/test_model.glb-14e71c9b0422e9553514c7476401c5ca.scn" ]
 
 [params]
 
