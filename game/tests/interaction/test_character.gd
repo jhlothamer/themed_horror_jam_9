@@ -4,7 +4,6 @@ const MOVE_TO_INDICATOR_SCENE = preload("res://scenes/ui/components/move_to_indi
 
 export var horizontal_speed = 4.0
 export var color: Color = Color("#187ed2")
-export var debug := false
 
 
 onready var _mesh:CapsuleMesh = $MeshInstance.mesh
@@ -34,21 +33,18 @@ func _on_no_interactable_clicked(pos):
 	look_at(_target_pos, Vector3.UP)
 	_create_move_to_indicator(_target_pos)
 
-var _debug_phys_process := false
 func _on_interactable_clicked(helper: InteractionHelper, clicked_object: CollisionObject):
 	if !_selected:
 		return
-	if debug:
-		#breakpoint
-		_debug_phys_process = true
+	
 	_stop_current_interaction()
+	_destroy_move_to_indicator()
 	
 	_interactable_target = clicked_object
 	_interaction_helper = helper
 	var pos = clicked_object.global_transform.origin
 	_target_pos = Vector3(pos.x, global_transform.origin.y, pos.z)
 	look_at(_target_pos, Vector3.UP)
-	_destroy_move_to_indicator()
 
 
 func _on_interaction_completed(helper: InteractionHelper, clicked_object: CollisionObject):
@@ -68,8 +64,6 @@ func _stop_current_interaction() -> void:
 
 
 func _physics_process(delta):
-	if _debug_phys_process:
-		breakpoint
 	if _target_pos == null:
 		return
 	var v:Vector3 = _target_pos - global_transform.origin
