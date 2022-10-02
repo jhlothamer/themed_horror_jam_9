@@ -14,6 +14,7 @@ onready var _parent: CollisionObject = get_parent()
 
 
 var _interaction_progress_bar: InteractionProgressBar
+var _interactor_counter := 0
 
 
 func _ready():
@@ -39,10 +40,13 @@ func _on_clicked(_clicked_object) -> void:
 
 func start_interaction() -> void:
 	_interaction_progress_bar.start()
+	_interactor_counter += 1
 	
 
 func stop_interaction() -> void:
-	_interaction_progress_bar.stop()
+	_interactor_counter -= 1
+	if _interactor_counter <= 0:
+		_interaction_progress_bar.stop()
 
 
 func _on_interaction_completed() -> void:

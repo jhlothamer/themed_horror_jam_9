@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/models/test_model.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/models/tests/test_model.glb" type="PackedScene" id=1]
 
 [node name="test_model" instance=ExtResource( 1 )]

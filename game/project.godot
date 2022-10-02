@@ -80,6 +80,11 @@ _global_script_classes=[ {
 "path": "res://game_consts.gd"
 }, {
 "base": "Object",
+"class": "GameUtil",
+"language": "GDScript",
+"path": "res://utils/game_util.gd"
+}, {
+"base": "Object",
 "class": "GodotHelperPackSettings",
 "language": "GDScript",
 "path": "res://addons/godot_helper_pack/godot_helper_pack_settings.gd"
@@ -294,6 +299,7 @@ _global_script_class_icons={
 "EnumUtil": "",
 "FileUtil": "",
 "GameConsts": "",
+"GameUtil": "",
 "GodotHelperPackSettings": "",
 "InputEventDisplayNameUtil": "",
 "InputEventUtil": "",
@@ -339,7 +345,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Themed Horror Jam 9"
-run/main_scene="res://scenes/etc/title.tscn"
+run/main_scene="res://tests/interaction/right_click_move_or_interact.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -356,6 +362,12 @@ GlobalBlockingColorChangeMonitor="*res://addons/godot_helper_pack/core/2d/shape/
 [debug]
 
 gdscript/warnings/unused_class_variable=true
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/fullscreen=true
 
 [editor_plugins]
 
