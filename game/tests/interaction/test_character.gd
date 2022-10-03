@@ -10,7 +10,6 @@ export var debug_path := false
 onready var _mesh:CapsuleMesh = $MeshInstance.mesh
 onready var _outline_helper: OutlineHelper3D = $OutlineHelper3D
 
-
 var _target_pos
 var _interactable_target: CollisionObject
 var _interaction_helper: InteractionHelper
@@ -63,7 +62,7 @@ func _create_path() -> void:
 	
 	if _path.size() > 0 and _path[0] == global_transform.origin:
 		_path.pop_front()
-	if _path.back() != _target_pos:
+	if _path.size() == 0 or _path.back() != _target_pos:
 		_path.push_back(_target_pos)
 	_draw_path(_path)
 
@@ -121,6 +120,8 @@ func _physics_process(delta):
 			_destroy_move_to_indicator()
 			_target_pos = null
 			_path = []
+			if _path_debug_im:
+				_path_debug_im.visible = false
 	
 	var c = move_and_collide(frame_move_v)
 	if c:

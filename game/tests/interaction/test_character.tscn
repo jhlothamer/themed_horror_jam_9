@@ -6,23 +6,23 @@
 [ext_resource path="res://scenes/ui/components/progress_bar_3d.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/images/temp/temp_char_select_icon.png" type="Texture" id=5]
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=12]
 resource_local_to_scene = true
 albedo_color = Color( 0.0941176, 0.494118, 0.823529, 1 )
 
 [sub_resource type="CapsuleMesh" id=6]
 resource_local_to_scene = true
-material = SubResource( 5 )
+material = SubResource( 12 )
 radius = 0.5
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=13]
 albedo_color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
 
 [sub_resource type="SphereMesh" id=3]
-material = SubResource( 2 )
+material = SubResource( 13 )
 radius = 0.1
 height = 0.2
 
@@ -112,3 +112,6 @@ modulate = Color( 0, 1, 1, 1 )
 pixel_size = 0.005
 axis = 1
 texture = ExtResource( 5 )
+
+[node name="NavigationObstacle" type="NavigationObstacle" parent="."]
+estimate_radius = false
