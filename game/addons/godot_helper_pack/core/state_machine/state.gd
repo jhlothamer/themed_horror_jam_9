@@ -30,6 +30,24 @@ func exit() -> void:
 	pass
 
 
+func is_current_state() -> bool:
+	return state_machine.is_current_state(name)
+
+
+func get_blackboard_data(property: String):
+	if state_machine.blackboard_data.has(property):
+		return state_machine.blackboard_data[property]
+	return null
+
+
+func set_blackboard_data(property: String, value) -> void:
+	state_machine.blackboard_data[property] = value
+
+
+func clear_blackboard_data(property: String) -> void:
+	state_machine.blackboard_data.erase(property)
+
+
 func physics_process(delta: float) -> void:
 	pass
 

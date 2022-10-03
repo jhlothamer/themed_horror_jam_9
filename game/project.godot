@@ -49,6 +49,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot_helper_pack/core/2d/camera/behavior/camera_zoom.gd"
 }, {
+"base": "KinematicBody",
+"class": "Character",
+"language": "GDScript",
+"path": "res://scenes/characters/character_base.gd"
+}, {
+"base": "State",
+"class": "CharacterBaseState",
+"language": "GDScript",
+"path": "res://scenes/characters/states/character_base_state.gd"
+}, {
 "base": "Position2D",
 "class": "Circle2D",
 "language": "GDScript",
@@ -293,6 +303,8 @@ _global_script_class_icons={
 "CameraMove2D": "",
 "CameraShake2D": "",
 "CameraZoom2D": "",
+"Character": "",
+"CharacterBaseState": "",
 "Circle2D": "",
 "CollisionShapeEx": "",
 "DistributionEditorPlugin": "",
@@ -345,7 +357,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Themed Horror Jam 9"
-run/main_scene="res://tests/interaction/right_click_move_or_interact.tscn"
+run/main_scene="res://tests/level/test_level.tscn"
 config/icon="res://icon.png"
 
 [autoload]

@@ -2,18 +2,16 @@ extends Node
 class_name StateMachine, "state_machine.svg"
 
 
-
 export var debug : bool
 export var disabled : bool
 export var host_node: NodePath
 
+var blackboard_data := {}
 
 var _host: Node
 var _required_state_node_methods: Array = [
 	"init", "enter", "exit" , "physics_process", "unhandled_input", "change_state"]
 var _prohibited_state_node_methods: Array = ["_physics_process"]
-
-
 var _state_stack := []
 
 
@@ -116,3 +114,9 @@ func _print_dbg(msg):
 	if !debug:
 		return
 	print(str(OS.get_ticks_msec()) + ": " + msg)
+
+
+func is_current_state(name: String) -> bool:
+	if _state_stack.empty():
+		return false
+	return _state_stack[0].name == name
