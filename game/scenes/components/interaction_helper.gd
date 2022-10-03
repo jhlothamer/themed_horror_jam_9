@@ -20,15 +20,20 @@ var _interactor_counter := 0
 func _ready():
 	var helper: OutlineHelper3D = get_node(outline_helper)
 	if !helper:
-		printerr("bad outline helper node path")
+		printerr("InteractionHelper: bad outline helper node path")
 		return
-	helper.connect("clicked", self, "_on_clicked")
+	
+	if OK != helper.connect("clicked", self, "_on_clicked"):
+		printerr("InteractionHelper: could not connect to clicked signal")
+		return
 	
 	_interaction_progress_bar = get_node(interaction_progress_bar)
 	if !_interaction_progress_bar:
-		printerr("bad interaction progress bar node path")
+		printerr("InteractionHelper: bad interaction progress bar node path")
 		return
-	_interaction_progress_bar.connect("completed", self, "_on_interaction_completed")
+	if OK != _interaction_progress_bar.connect("completed", self, "_on_interaction_completed"):
+		printerr("InteractionHelper: could not connect to completed signal")
+		return
 	
 	SignalMgr.register_publisher(self, "interactable_clicked")
 	SignalMgr.register_publisher(self, "interaction_completed")

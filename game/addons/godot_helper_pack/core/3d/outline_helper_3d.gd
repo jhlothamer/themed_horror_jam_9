@@ -28,9 +28,11 @@ export var outline_mesh_instance: NodePath
 onready var _parent:CollisionObject = get_parent()
 
 
+var selected := false
+
+
 var _mesh_instance_outline_material: ShaderMaterial
 var _selected_indicator: Spatial
-var _selected := false
 var _outline_mesh_instance: MeshInstance
 
 func _ready():
@@ -80,8 +82,8 @@ func _on_parent_mouse_exit():
 func _on_parent_input_event(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == button_index:
 		if select_on_click:
-			if !_selected:
-				_selected = true
+			if !selected:
+				selected = true
 				_selected_indicator.visible = true
 				emit_signal("selected", self)
 		else:
@@ -89,18 +91,18 @@ func _on_parent_input_event(camera, event, position, normal, shape_idx):
 
 
 func _on_selected(helperref):
-	if helperref == self or !_selected:
+	if helperref == self or !selected:
 		return
-	_selected = false
+	selected = false
 	_selected_indicator.visible = false
 	_hide_outline()
 	emit_signal("deselected")
 
 
 func _on_no_selectable_clicked():
-	if !_selected:
+	if !selected:
 		return
-	_selected = false
+	selected = false
 	_selected_indicator.visible = false
 	_hide_outline()
 	emit_signal("deselected")

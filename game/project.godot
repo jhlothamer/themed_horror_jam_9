@@ -345,7 +345,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Themed Horror Jam 9"
-run/main_scene="res://tests/interaction/right_click_move_or_interact.tscn"
+run/main_scene="res://tests/level/test_level.tscn"
 config/icon="res://icon.png"
 
 [autoload]
