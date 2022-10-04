@@ -23,9 +23,6 @@ margin_left = -198.0
 margin_top = -111.5
 margin_right = 198.0
 margin_bottom = 111.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 396.0

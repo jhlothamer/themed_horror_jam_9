@@ -6,7 +6,9 @@ enum PhysLayer {
 	DEFAULT = 1,
 	INTERACTABLE = 1 << 1,
 	INTERACTOR = 1 << 2,
-	SELECTABLE = 1 << 3
+	SELECTABLE = 1 << 3,
+	CHARACTER = 1 << 4,
+	ENEMY = 1 << 5,
 }
 
 

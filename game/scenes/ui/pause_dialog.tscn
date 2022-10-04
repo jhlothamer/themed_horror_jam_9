@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/ui/settings_dialog.tscn" type="PackedScene" id=6]
 
 [node name="PauseDialog" type="Control"]
+pause_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 5 )

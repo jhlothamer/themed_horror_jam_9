@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/ui/pause_dialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ui/game_over_dialog.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ui/hud.gd" type="Script" id=3]
+[ext_resource path="res://scenes/ui/win_dialog.tscn" type="PackedScene" id=4]
 
 [node name="Hud" type="CanvasLayer"]
 pause_mode = 2
@@ -18,3 +19,5 @@ visible = false
 
 [node name="GameOverDialog" parent="Dialogs" instance=ExtResource( 2 )]
 visible = false
+
+[node name="WinDialog" parent="Dialogs" instance=ExtResource( 4 )]

@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+
 signal no_selectable_clicked()
 signal no_interactable_clicked(position)
 
@@ -7,7 +8,7 @@ signal no_interactable_clicked(position)
 func _ready():
 	SignalMgr.register_publisher(self, "no_selectable_clicked")
 	SignalMgr.register_publisher(self, "no_interactable_clicked")
-	
+
 
 func _input(event):
 	if event.is_echo() or !event is InputEventMouseButton or !event.is_pressed():
@@ -24,6 +25,8 @@ func _input(event):
 
 func _test_world_mouse_click_collision(mouse_position, collision_mask: int, ignore_mask: int) -> Vector3:
 	var camera = get_viewport().get_camera()
+	if !camera is Camera:
+		return Vector3.ZERO
 	var from = camera.project_ray_origin(mouse_position)
 	var to = camera.project_position(mouse_position, camera.far * 2.0)
 	var space_state = camera.get_world().direct_space_state
@@ -39,6 +42,4 @@ func _test_world_mouse_click_collision(mouse_position, collision_mask: int, igno
 			return Vector3.INF
 		
 	return result["position"]
-
-
 
