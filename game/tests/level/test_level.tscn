@@ -120,7 +120,6 @@ height = 4.0
 depth = 12.0
 
 [node name="Cauldron" parent="NavigationMeshInstance" instance=ExtResource( 4 )]
-time_to_complete_minutes = 0.2
 
 [node name="StaticBody" type="StaticBody" parent="NavigationMeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
