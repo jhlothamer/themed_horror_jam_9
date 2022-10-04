@@ -54,3 +54,4 @@ scene_to_load = "res://scenes/etc/title.tscn"
 
 [node name="WinSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+bus = "SoundFx"
