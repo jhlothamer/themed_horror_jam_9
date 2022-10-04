@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/images/prototyping/grey_box_256x256.png" type="Texture" id=1]
 [ext_resource path="res://scenes/characters/witch.tscn" type="PackedScene" id=2]
@@ -6,12 +6,15 @@
 [ext_resource path="res://scenes/interactables/cauldron.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/characters/minion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://tests/level/test_level.gd" type="Script" id=6]
+[ext_resource path="res://scenes/enemies/enemy_base.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=8]
+[ext_resource path="res://addons/godot_helper_pack/core/3d/camera/camera3d_move_pan.gd" type="Script" id=9]
+[ext_resource path="res://assets/sounds/sfx_atmospheric_noises_loop_jdymusic.mp3" type="AudioStream" id=10]
 
 [sub_resource type="NavigationMesh" id=3]
-vertices = PoolVector3Array( -1, 0.5, -2, 0, 0.5, -2, 0, 0.5, -9, -10, 0.5, 0, -2, 0.5, 0, -2, 0.5, -1, -2, 0.5, -1, -1, 0.5, -2, 0, 0.5, -9, -10, 0.5, -9, -10, 0.5, 0, 0, 0.5, -9, 0, 0.5, -2, 1, 0.5, -2, 1, 0.5, -2, 2.25, 0.5, 0, 10, 0.5, 0, 10, 0.5, -9, 0, 0.5, -9, -0.25, 0.5, -0.25, -0.25, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.5, -0.25, -0.25, 2.5, -0.25, -0.25, 2.5, 0.25, 0.25, 2.5, 0.25, 0.25, 2.5, -0.25, 0, 0.5, 9, 0, 0.5, 2, -1, 0.5, 2, -2, 0.5, 1, -2, 0.5, 0, -10, 0.5, 0, 0, 0.5, 9, -1, 0.5, 2, -2, 0.5, 1, -10, 0.5, 0, -10, 0.5, 9, 1, 0.5, 2, 0, 0.5, 2, 0, 0.5, 9, 10, 0.5, 0, 2.25, 0.5, 0, 1, 0.5, 2, 0, 0.5, 9, 10, 0.5, 9 )
-polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 7, 6, 8 ), PoolIntArray( 8, 6, 9 ), PoolIntArray( 9, 6, 10 ), PoolIntArray( 13, 12, 11 ), PoolIntArray( 14, 18, 15 ), PoolIntArray( 15, 18, 16 ), PoolIntArray( 16, 18, 17 ), PoolIntArray( 22, 21, 19 ), PoolIntArray( 19, 21, 20 ), PoolIntArray( 26, 25, 23 ), PoolIntArray( 23, 25, 24 ), PoolIntArray( 29, 28, 27 ), PoolIntArray( 32, 31, 30 ), PoolIntArray( 34, 33, 35 ), PoolIntArray( 35, 33, 37 ), PoolIntArray( 35, 37, 36 ), PoolIntArray( 40, 39, 38 ), PoolIntArray( 43, 42, 44 ), PoolIntArray( 44, 42, 41 ), PoolIntArray( 44, 41, 45 ) ]
+vertices = PoolVector3Array( -0.25, 0.5, -12.25, 0.5, 0.5, -12.25, 0.5, 0.5, -14, -0.25, 0.5, -14, 10.5, 0.5, -24, 10.5, 0.5, -33.25, 0, 0.5, -33.25, -10.25, 0.5, -24, -0.75, 0.5, -14.5, 1, 0.5, -14.5, -0.75, 0.5, -14.5, -0.25, 0.5, -14, 0.5, 0.5, -14, 1, 0.5, -14.5, 0, 0.5, -33.25, -10.25, 0.5, -33.25, -10.25, 0.5, -24, 1, 0.5, -14.5, 10.5, 0.5, -14.5, 10.5, 0.5, -24, -10.25, 0.5, -24, -10.25, 0.5, -14.5, -0.75, 0.5, -14.5, 0.5, 0.5, -12.25, -0.25, 0.5, -12.25, -0.25, 0.5, -10, 0.5, 0.5, -9.75, 2, 0.5, 0, 11.25, 0.5, -0.25, 10.5, 0.5, -0.75, 1, 0.5, -9.25, 0.5, 0.5, -9.75, -0.25, 0.5, -10, 0, 0.5, -1.75, 1, 0.5, -1.75, 1, 0.5, -9.25, 1, 0.5, -1.75, 2, 0.5, 0, 10.5, 0.5, -0.75, 10.5, 0.5, -9.25, 0, 0.5, -1.75, -0.25, 0.5, -10, -0.75, 0.5, -9.25, -1, 0.5, -1.75, -10.25, 0.5, -0.75, -11, 0.5, -0.25, -1.75, 0.5, 0, -1.75, 0.5, -1, -1.75, 0.5, -1, -1, 0.5, -1.75, -0.75, 0.5, -9.25, -10.25, 0.5, -9.25, -10.25, 0.5, -0.75, -13.5, 0.5, 0.5, -13.5, 0.5, -0.25, -15, 0.5, -0.25, -15.5, 0.5, 0.75, -36.25, 0.5, 0, -36.25, 0.5, 9.5, -26, 0.5, 9.5, -15.5, 0.5, 0.75, -15.5, 0.5, -0.75, -26, 0.5, -9.25, -15.5, 0.5, 0.75, -15, 0.5, -0.25, -15.5, 0.5, -0.75, -15.5, 0.5, -0.75, -15.5, 0.5, -9.25, -26, 0.5, -9.25, -26, 0.5, 9.5, -15.5, 0.5, 9.5, -15.5, 0.5, 0.75, -26, 0.5, -9.25, -36.25, 0.5, -9.25, -36.25, 0.5, 0, 13.5, 0.5, -0.25, 13.5, 0.5, 0.5, 15.25, 0.5, 0.5, 15.25, 0.5, -0.25, 26, 0.5, 9.5, 36.25, 0.5, 9.5, 36.25, 0.5, 0, 26, 0.5, -9.25, 15.75, 0.5, -0.75, 15.75, 0.5, 1, 15.75, 0.5, -0.75, 15.25, 0.5, -0.25, 15.25, 0.5, 0.5, 15.75, 0.5, 1, 36.25, 0.5, 0, 36.25, 0.5, -9.25, 26, 0.5, -9.25, 15.75, 0.5, 1, 15.75, 0.5, 9.5, 26, 0.5, 9.5, 26, 0.5, -9.25, 15.75, 0.5, -9.25, 15.75, 0.5, -0.75, -0.5, 2.5, -0.5, -0.5, 2.5, 0.5, 0.5, 2.5, 0.5, 0.5, 2.5, -0.5, -0.5, 0.5, -0.25, -0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, -0.5, -11, 0.5, -0.25, -13.5, 0.5, -0.25, -13.5, 0.5, 0.5, -10.75, 0.5, 0.5, -1.5, 0.5, 1.25, -1.75, 0.5, 0, -10.25, 0.5, 1, -10.25, 0.5, 9.5, -1.5, 0.5, 9.5, -11, 0.5, -0.25, -10.75, 0.5, 0.5, -10.25, 0.5, 1, -1.75, 0.5, 0, 10.5, 0.5, 0.75, 13.5, 0.5, 0.5, 13.5, 0.5, -0.25, 11.25, 0.5, -0.25, 2, 0.5, 0, 10.5, 0.5, 0.75, 2, 0.5, 0, 1.5, 0.5, 1.25, 1.5, 0.5, 9.5, 10.5, 0.5, 9.5, -0.25, 0.5, 10, -0.25, 0.5, 12.5, 0.5, 0.5, 12.5, 0.5, 0.5, 10, -1, 0.5, 1.75, -1.5, 0.5, 1.25, -1.5, 0.5, 9.5, -0.25, 0.5, 10, 0.5, 0.5, 10, 1.5, 0.5, 9.5, 1, 0.5, 1.75, -1, 0.5, 1.75, -1.5, 0.5, 9.5, 1.5, 0.5, 9.5, 1.5, 0.5, 1.25, 1, 0.5, 1.75, 0.5, 0.5, 12.5, -0.25, 0.5, 12.5, -0.25, 0.5, 14.25, 0.5, 0.5, 14.25, 0, 0.5, 33.25, 10.5, 0.5, 33.25, 10.5, 0.5, 24, 1, 0.5, 14.75, -0.75, 0.5, 14.75, -10.25, 0.5, 24, 1, 0.5, 14.75, 0.5, 0.5, 14.25, -0.25, 0.5, 14.25, -0.75, 0.5, 14.75, -10.25, 0.5, 24, -10.25, 0.5, 33.25, 0, 0.5, 33.25, -0.75, 0.5, 14.75, -10.25, 0.5, 14.75, -10.25, 0.5, 24, 10.5, 0.5, 24, 10.5, 0.5, 14.75, 1, 0.5, 14.75 )
+polygons = [ PoolIntArray( 3, 2, 0 ), PoolIntArray( 0, 2, 1 ), PoolIntArray( 9, 8, 4 ), PoolIntArray( 4, 8, 5 ), PoolIntArray( 5, 8, 6 ), PoolIntArray( 6, 8, 7 ), PoolIntArray( 11, 10, 12 ), PoolIntArray( 12, 10, 13 ), PoolIntArray( 16, 15, 14 ), PoolIntArray( 19, 18, 17 ), PoolIntArray( 22, 21, 20 ), PoolIntArray( 24, 23, 25 ), PoolIntArray( 25, 23, 26 ), PoolIntArray( 29, 28, 27 ), PoolIntArray( 31, 30, 32 ), PoolIntArray( 32, 30, 33 ), PoolIntArray( 33, 30, 34 ), PoolIntArray( 36, 35, 37 ), PoolIntArray( 37, 35, 38 ), PoolIntArray( 38, 35, 39 ), PoolIntArray( 43, 42, 40 ), PoolIntArray( 40, 42, 41 ), PoolIntArray( 47, 46, 44 ), PoolIntArray( 44, 46, 45 ), PoolIntArray( 49, 48, 50 ), PoolIntArray( 50, 48, 52 ), PoolIntArray( 50, 52, 51 ), PoolIntArray( 54, 53, 55 ), PoolIntArray( 55, 53, 56 ), PoolIntArray( 61, 60, 62 ), PoolIntArray( 62, 60, 59 ), PoolIntArray( 62, 59, 57 ), PoolIntArray( 57, 59, 58 ), PoolIntArray( 63, 65, 64 ), PoolIntArray( 68, 67, 66 ), PoolIntArray( 71, 70, 69 ), PoolIntArray( 74, 73, 72 ), PoolIntArray( 78, 77, 75 ), PoolIntArray( 75, 77, 76 ), PoolIntArray( 84, 83, 79 ), PoolIntArray( 79, 83, 82 ), PoolIntArray( 79, 82, 81 ), PoolIntArray( 79, 81, 80 ), PoolIntArray( 86, 85, 87 ), PoolIntArray( 87, 85, 88 ), PoolIntArray( 91, 90, 89 ), PoolIntArray( 94, 93, 92 ), PoolIntArray( 97, 96, 95 ), PoolIntArray( 101, 100, 98 ), PoolIntArray( 98, 100, 99 ), PoolIntArray( 105, 104, 102 ), PoolIntArray( 102, 104, 103 ), PoolIntArray( 107, 106, 108 ), PoolIntArray( 108, 106, 109 ), PoolIntArray( 111, 110, 112 ), PoolIntArray( 112, 110, 114 ), PoolIntArray( 112, 114, 113 ), PoolIntArray( 116, 115, 117 ), PoolIntArray( 117, 115, 118 ), PoolIntArray( 121, 120, 122 ), PoolIntArray( 122, 120, 119 ), PoolIntArray( 122, 119, 123 ), PoolIntArray( 125, 124, 126 ), PoolIntArray( 126, 124, 127 ), PoolIntArray( 127, 124, 128 ), PoolIntArray( 132, 131, 129 ), PoolIntArray( 129, 131, 130 ), PoolIntArray( 133, 135, 134 ), PoolIntArray( 137, 136, 138 ), PoolIntArray( 138, 136, 141 ), PoolIntArray( 138, 141, 140 ), PoolIntArray( 138, 140, 139 ), PoolIntArray( 144, 143, 142 ), PoolIntArray( 148, 147, 145 ), PoolIntArray( 145, 147, 146 ), PoolIntArray( 152, 151, 153 ), PoolIntArray( 153, 151, 150 ), PoolIntArray( 153, 150, 149 ), PoolIntArray( 153, 149, 154 ), PoolIntArray( 156, 155, 157 ), PoolIntArray( 157, 155, 158 ), PoolIntArray( 161, 160, 159 ), PoolIntArray( 164, 163, 162 ), PoolIntArray( 167, 166, 165 ) ]
 geometry_parsed_geometry_type = 1
-agent_radius = 0.7
 filter_ledge_spans = true
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -21,10 +24,12 @@ uv1_triplanar = true
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 11, 1, 10 )
 
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 3, 1, 1 )
+
 [sub_resource type="Environment" id=2]
 background_mode = 1
 ambient_light_color = Color( 0.329412, 0.329412, 0.329412, 1 )
-ambient_light_energy = 0.5
 fog_color = Color( 0.384314, 0.411765, 0.439216, 1 )
 fog_depth_curve = 1.6245
 fog_height_enabled = true
@@ -37,8 +42,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="CharacterMgr" type="Node" parent="."]
+script = ExtResource( 8 )
+
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="CSGCombiner" type="CSGCombiner" parent="NavigationMeshInstance"]
 material_override = SubResource( 1 )
@@ -50,9 +62,9 @@ __meta__ = {
 
 [node name="CSGBox" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-width = 24.0
+width = 80.0
 height = 8.0
-depth = 22.0
+depth = 74.0
 
 [node name="CSGBox2" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
@@ -61,42 +73,114 @@ width = 22.0
 height = 6.0
 depth = 20.0
 
-[node name="CSGBox3" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, 0 )
+[node name="CSGBox7" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 3, 0 )
 operation = 2
-width = 4.0
+width = 22.0
+height = 6.0
+depth = 20.0
+
+[node name="CSGBox8" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 24 )
+operation = 2
+width = 22.0
+height = 6.0
+depth = 20.0
+
+[node name="CSGBox9" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 3, 0 )
+operation = 2
+width = 22.0
+height = 6.0
+depth = 20.0
+
+[node name="CSGBox10" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -24 )
+operation = 2
+width = 22.0
+height = 6.0
+depth = 20.0
+
+[node name="CSGBox3" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2, 0 )
+operation = 2
+width = 16.0
 height = 4.0
 
 [node name="CSGBox4" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2, 0 )
 operation = 2
-width = 4.0
+width = 14.0
 height = 4.0
 
 [node name="CSGBox5" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -13 )
 operation = 2
 height = 4.0
-depth = 4.0
+depth = 10.0
 
 [node name="CSGBox6" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 11 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 14 )
 operation = 2
 height = 4.0
-depth = 4.0
+depth = 12.0
 
 [node name="Cauldron" parent="NavigationMeshInstance" instance=ExtResource( 4 )]
 
 [node name="StaticBody" type="StaticBody" parent="NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 shape = SubResource( 4 )
 
-[node name="GameCameraDontMove" type="Camera" parent="."]
-transform = Transform( -1, 3.55271e-15, -8.74228e-08, -7.57103e-08, 0.5, 0.866025, 4.37114e-08, 0.866025, -0.5, 0, 21, -12 )
+[node name="CollisionShape5" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -12 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 12 )
+shape = SubResource( 5 )
+
+[node name="Camera3DMovePan" type="Spatial" parent="."]
+transform = Transform( -1, 1.42109e-14, -8.74227e-08, -7.57103e-08, 0.5, 0.866025, 4.37114e-08, 0.866025, -0.5, 0, 21, -12 )
+script = ExtResource( 9 )
+north_action_name = "camera_pan_north"
+south_action_name = "camera_pan_south"
+west_action_name = "camera_pan_west"
+east_action_name = "camera_pan_east"
+
+[node name="GameCameraDontMove" type="Camera" parent="Camera3DMovePan"]
+transform = Transform( 1, 0, -5.32907e-15, -3.55271e-15, 1, 0, 1.24345e-14, 0, 1, 0, 0, 0 )
 current = true
 fov = 50.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="CloseupPreviewCamera" type="Camera" parent="."]
 transform = Transform( -1, 2.26267e-08, -8.44439e-08, 0, 0.965926, 0.258819, 8.74228e-08, 0.258819, -0.965926, 0, 3, -5 )
@@ -195,12 +279,31 @@ unique_name_in_owner = true
 
 [node name="Witch" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+collision_layer = 1
+collision_mask = 1
 
 [node name="Minion" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
+collision_layer = 1
+collision_mask = 1
 
 [node name="Minion2" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
+collision_layer = 1
+collision_mask = 1
 
 [node name="Minion3" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
+collision_layer = 1
+collision_mask = 1
+
+[node name="EnemyBase" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 5 )
+horizontal_speed = 2.0
+
+[node name="AtmosphericNoises" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 10 )
+volume_db = -24.0
+autoplay = true
+bus = "SoundFx"

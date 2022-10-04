@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/characters/states/character_base_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://scenes/ui/components/progress_bar_3d.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/characters/states/character_walk.gd" type="Script" id=7]
 [ext_resource path="res://scenes/characters/states/character_interact.gd" type="Script" id=8]
+[ext_resource path="res://scenes/characters/states/character_die.gd" type="Script" id=9]
+[ext_resource path="res://addons/godot_helper_pack/core/audio/random_audio_stream_player_3d.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -41,7 +43,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=18]
 shader = SubResource( 11 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 shader_param/progress_color = Color( 0, 1, 0, 1 )
@@ -49,7 +51,7 @@ shader_param/progress_value = 0.5
 
 [sub_resource type="QuadMesh" id=12]
 resource_local_to_scene = true
-material = SubResource( 10 )
+material = SubResource( 18 )
 size = Vector2( 1, 0.1 )
 
 [sub_resource type="SpatialMaterial" id=16]
@@ -75,6 +77,8 @@ bottom_radius = 0.1
 height = 0.2
 
 [node name="CharacterBase" type="KinematicBody"]
+collision_layer = 17
+collision_mask = 49
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -96,7 +100,7 @@ navigation_agent = NodePath("../../NavigationAgent")
 script = ExtResource( 8 )
 
 [node name="Die" type="Node" parent="StateMachine"]
-script = ExtResource( 1 )
+script = ExtResource( 9 )
 
 [node name="NavigationAgent" type="NavigationAgent" parent="."]
 target_desired_distance = 0.1
@@ -138,3 +142,6 @@ skeleton = NodePath("../..")
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.39661, -0.28777 )
 mesh = SubResource( 15 )
 skeleton = NodePath("../..")
+
+[node name="DamagedRandomAudioStreamPlayer3D" type="Spatial" parent="."]
+script = ExtResource( 10 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_goblin_death1_jdymusic.mp3-9c64f3e8b35e6af59a66b5e36443ea21.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_goblin_death1_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_goblin_death1_jdymusic.mp3-9c64f3e8b35e6af59a66b5e36443ea21.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

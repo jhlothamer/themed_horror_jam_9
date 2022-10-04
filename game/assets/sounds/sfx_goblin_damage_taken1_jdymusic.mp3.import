@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_goblin_damage_taken1_jdymusic.mp3-ebcd70b2fe84ee898f2f43b0a805e90a.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_goblin_damage_taken1_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_goblin_damage_taken1_jdymusic.mp3-ebcd70b2fe84ee898f2f43b0a805e90a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

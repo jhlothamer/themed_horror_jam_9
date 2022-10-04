@@ -39,6 +39,8 @@ func _set_progress_color(v: Color) -> void:
 
 
 func _ready():
+	var mat: ShaderMaterial = mesh.material.duplicate()
+	mesh.material = mat
 	self.background_color = background_color
 	self.progress_color = progress_color
 	self.min_value = min_value
