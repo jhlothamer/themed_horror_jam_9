@@ -23,6 +23,7 @@ func register_character(character: Spatial) -> void:
 func remove_character(character: Spatial) -> void:
 	_characters.erase(character)
 	if _characters.empty():
+		yield(character, "character_death_completed")
 		emit_signal("game_over")
 
 

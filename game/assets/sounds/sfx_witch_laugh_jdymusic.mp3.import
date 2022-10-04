@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_witch_laugh_jdymusic.mp3-df33c9d3ae0e108d13ce42820fbb5d7b.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_witch_laugh_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_witch_laugh_jdymusic.mp3-df33c9d3ae0e108d13ce42820fbb5d7b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_cursed_goblin_initial_attack_jdymusic.mp3-95c4a57451ef4e3d5073ae84f733eeb6.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_cursed_goblin_initial_attack_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_cursed_goblin_initial_attack_jdymusic.mp3-95c4a57451ef4e3d5073ae84f733eeb6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

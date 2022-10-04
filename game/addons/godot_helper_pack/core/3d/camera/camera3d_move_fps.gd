@@ -1,4 +1,4 @@
-class_name Camera3DMove
+class_name Camera3DMoveFPS
 extends Node
 
 export (float, .1, 5) var move_speed: float = .1

@@ -39,7 +39,7 @@ func _on_character_body_exited(body: CollisionObject) -> void:
 
 
 func enter() -> void:
-	_damage_timer = 0.0
+	_damage_timer = enemy.damage_interval
 
 
 func physics_process(delta) -> void:
@@ -47,5 +47,7 @@ func physics_process(delta) -> void:
 	if _damage_timer >= enemy.damage_interval:
 		_target_character.damage(enemy.damage_amount)
 		_damage_timer = 0.0
+		if _target_character.is_dead():
+			change_state("Walk")
 
 

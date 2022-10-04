@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/characters/states/character_base_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/characters/states/character_walk.gd" type="Script" id=7]
 [ext_resource path="res://scenes/characters/states/character_interact.gd" type="Script" id=8]
 [ext_resource path="res://scenes/characters/states/character_die.gd" type="Script" id=9]
+[ext_resource path="res://addons/godot_helper_pack/core/audio/random_audio_stream_player_3d.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -141,3 +142,6 @@ skeleton = NodePath("../..")
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.39661, -0.28777 )
 mesh = SubResource( 15 )
 skeleton = NodePath("../..")
+
+[node name="DamagedRandomAudioStreamPlayer3D" type="Spatial" parent="."]
+script = ExtResource( 10 )
