@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/themes/global.tres" type="Theme" id=1]
+[ext_resource path="res://tests/level/testing_hud.gd" type="Script" id=2]
+
+[node name="TestingHud" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -104.0
+margin_right = 406.0
+theme = ExtResource( 1 )
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="SpawnZombieBtn" type="Button" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 386.0
+margin_bottom = 84.0
+text = "Spawn Zombie"
+
+[connection signal="pressed" from="MarginContainer/SpawnZombieBtn" to="." method="_on_SpawnZombieBtn_pressed"]

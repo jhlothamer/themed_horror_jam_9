@@ -8,6 +8,7 @@ signal character_death_completed()
 export var horizontal_speed = 4.0
 export var starting_health := 100
 export var death_sound_node_path: NodePath
+export (Array, String) var allowed_interactable_types := []
 
 
 onready var death_sound:AudioStreamPlayer3D = get_node_or_null(death_sound_node_path)
@@ -17,7 +18,7 @@ onready var _outline_helper: OutlineHelper3D = $OutlineHelper3D
 onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _state_machine: StateMachine = $StateMachine
 onready var _collision_shape: CollisionShape = $CollisionShape
-
+onready var _selected_sound: AudioStreamPlayer3D = $SelectedSound
 
 var current_health := 100.0
 
@@ -58,3 +59,8 @@ func _update_heath_bar() -> void:
 	_health_bar.visible = current_health < starting_health
 
 
+
+
+func _on_OutlineHelper3D_selected(helperref):
+	if !_selected_sound.is_playing():
+		_selected_sound.play()

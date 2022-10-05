@@ -27,7 +27,7 @@ custom_constants/margin_left = 40
 [node name="TitleLbl" type="Label" parent="TitleMarginContainer"]
 margin_left = 40.0
 margin_top = 40.0
-margin_right = 1024.0
+margin_right = 1920.0
 margin_bottom = 127.0
 theme = ExtResource( 3 )
 text = "Game Title"
@@ -62,7 +62,7 @@ __meta__ = {
 margin_right = 271.0
 margin_bottom = 64.0
 text = "New Game"
-scene_to_load = "res://scenes/etc/how_to_play.tscn"
+scene_to_load = "res://tests/level/test_level.tscn"
 grab_focus_on_start = true
 
 [node name="SettingsBtn" parent="ButtonsMarginContainer/VBoxContainer" instance=ExtResource( 4 )]

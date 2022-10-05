@@ -15,5 +15,7 @@ func _ready():
 	_progress_bar.max_value = time_to_complete_minutes * 60.0
 
 
-func _on_InteractionProgressBar3d_completed():
+
+
+func _on_InteractionHelper_interaction_completed(heperref, obj):
 	emit_signal("game_won")

@@ -1,7 +1,7 @@
 class_name OutlineHelper3D
 extends Node
 
-const OUTLINE_SHADER_MATERIAL = preload("res://assets/materials_shaders/outline3D_smooth_normals_color.tres")
+const OUTLINE_SHADER_MATERIAL = preload("res://assets/materials_shaders/fresnel_outline_mat.tres")
 
 # emitted when helper goes to a selected state
 signal selected(helperref)
@@ -24,6 +24,7 @@ export var select_on_click := true
 export (MouseButton) var button_index: int = BUTTON_LEFT
 export var mouse_over_color := Color.aquamarine
 export var outline_mesh_instance: NodePath
+export var constant_outline := false
 
 onready var _parent:CollisionObject = get_parent()
 
@@ -53,7 +54,12 @@ func _ready():
 			return
 		
 		_mesh_instance_outline_material = OUTLINE_SHADER_MATERIAL.duplicate(true)
-		_mesh_instance_outline_material.set_shader_param("outline_color", mouse_over_color)
+		if constant_outline:
+			_mesh_instance_outline_material.set_shader_param("outline_color", Color.white)
+			_mesh_instance_outline_material.set_shader_param("outline_intensity", 0.5)
+		else:
+			_mesh_instance_outline_material.set_shader_param("outline_color", mouse_over_color)
+			_mesh_instance_outline_material.set_shader_param("outline_intensity", 0.0)
 		mi.material_overlay = _mesh_instance_outline_material
 
 	if select_on_click:
@@ -112,11 +118,19 @@ func _show_outline() -> void:
 	if _outline_mesh_instance:
 		_outline_mesh_instance.visible = true
 	else:
-		_mesh_instance_outline_material.set_shader_param("enabled", true)
+		_mesh_instance_outline_material.set_shader_param("outline_color", mouse_over_color)
+		_mesh_instance_outline_material.set_shader_param("outline_intensity", 4.5)
+		_mesh_instance_outline_material.set_shader_param("outline_amount", 35.0)
+		
 
 
 func _hide_outline() -> void:
 	if _outline_mesh_instance:
 		_outline_mesh_instance.visible = false
 	else:
-		_mesh_instance_outline_material.set_shader_param("enabled", false)
+		if constant_outline:
+			_mesh_instance_outline_material.set_shader_param("outline_color", Color.white)
+			_mesh_instance_outline_material.set_shader_param("outline_intensity", 0.5)
+		else:
+			_mesh_instance_outline_material.set_shader_param("outline_color", mouse_over_color)
+			_mesh_instance_outline_material.set_shader_param("outline_intensity", 0.0)
