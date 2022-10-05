@@ -90,6 +90,7 @@ death_sound_node_path = NodePath("DeathSound")
 
 [node name="OutlineHelper3D" parent="." index="3"]
 mesh_instance_to_outline = NodePath("../TempWitchMeshInstance")
+constant_outline = true
 
 [node name="HealthBar" parent="." index="4"]
 mesh = SubResource( 12 )

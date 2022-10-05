@@ -79,10 +79,10 @@ shape = SubResource( 1 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 3 )
+mesh_instance_to_outline = NodePath("../cauldron_matrix/Sphere")
 select_on_click = false
 button_index = 2
 mouse_over_color = Color( 1, 0.631373, 0, 1 )
-outline_mesh_instance = NodePath("../OutlineMeshInstance")
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24426, 0 )

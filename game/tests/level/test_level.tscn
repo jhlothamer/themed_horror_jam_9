@@ -29,7 +29,8 @@ extents = Vector3( 3, 1, 1 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 1
-ambient_light_color = Color( 0.329412, 0.329412, 0.329412, 1 )
+ambient_light_color = Color( 0.215686, 0.215686, 0.215686, 1 )
+ambient_light_energy = 0.0
 fog_color = Color( 0.384314, 0.411765, 0.439216, 1 )
 fog_depth_curve = 1.6245
 fog_height_enabled = true
@@ -283,7 +284,7 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="Minion" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 6 )
 collision_layer = 1
 collision_mask = 1
 
@@ -300,6 +301,7 @@ collision_mask = 1
 [node name="EnemyBase" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 5 )
 horizontal_speed = 2.0
+disabled = true
 
 [node name="AtmosphericNoises" type="AudioStreamPlayer" parent="."]
 pause_mode = 2

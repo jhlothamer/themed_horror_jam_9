@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/characters/states/character_base_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/characters/states/character_interact.gd" type="Script" id=8]
 [ext_resource path="res://scenes/characters/states/character_die.gd" type="Script" id=9]
 [ext_resource path="res://addons/godot_helper_pack/core/audio/random_audio_stream_player_3d.gd" type="Script" id=10]
+[ext_resource path="res://scenes/characters/characte_slection_matrix.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -109,7 +110,7 @@ neighbor_dist = 5.0
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 4 )
-selected_indicator = NodePath("../SelectedSprite3D")
+selected_indicator = NodePath("../characte_slection_matrix")
 
 [node name="HealthBar" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53445, 0 )
@@ -118,6 +119,7 @@ mesh = SubResource( 12 )
 
 [node name="SelectedSprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0 )
+visible = false
 modulate = Color( 0, 1, 1, 1 )
 pixel_size = 0.005
 axis = 1
@@ -145,3 +147,6 @@ skeleton = NodePath("../..")
 
 [node name="DamagedRandomAudioStreamPlayer3D" type="Spatial" parent="."]
 script = ExtResource( 10 )
+
+[node name="characte_slection_matrix" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
