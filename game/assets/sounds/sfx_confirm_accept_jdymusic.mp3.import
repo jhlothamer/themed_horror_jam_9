@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_confirm_accept_jdymusic.mp3-6851c26bfd5d84337be5c8a51a5526e2.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_confirm_accept_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_confirm_accept_jdymusic.mp3-6851c26bfd5d84337be5c8a51a5526e2.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

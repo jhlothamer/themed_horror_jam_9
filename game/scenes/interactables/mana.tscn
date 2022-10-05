@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=1]
+[ext_resource path="res://addons/godot_helper_pack/core/3d/shape/collision_shape_ex.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/components/interaction_progress_bar_3d.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/interactables/mana.gd" type="Script" id=4]
+[ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=5]
+[ext_resource path="res://assets/sounds/sfx_manapool_interaction_start_loop_jdymusic.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/sfx_manapool_interaction_complete_jdy.mp3" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/sfx_manapool_interaction_interrupt_jdymusic.mp3" type="AudioStream" id=8]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.75
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.607843, 0.211765, 0.835294, 1 )
+
+[sub_resource type="CylinderMesh" id=6]
+material = SubResource( 5 )
+top_radius = 0.75
+bottom_radius = 0.75
+
+[sub_resource type="Shader" id=2]
+code = "shader_type spatial;
+
+render_mode unshaded, shadows_disabled;
+
+//uniform vec4 border_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 progress_color : hint_color = vec4(.0, 1., .0, 1.);
+uniform float progress_value : hint_range(0.0, 1.0, 0.02) = .5;
+
+void vertex()
+{
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+}
+
+void fragment()
+{
+	vec2 border = vec2(0.01, 0.1);
+
+	vec2 mask2 = step(border, UV) * step(UV, 1.0-border);
+    float mask = mask2.x*mask2.y;
+
+	//float progress = .5;
+    float blend = ((UV.x - progress_value) <= 0.0 ? 1.0 : 0.0) * mask;
+    vec4 fragColor = progress_color*blend + background_color*(1.0-blend);
+	ALBEDO = fragColor.rgb;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/background_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+shader_param/progress_color = Color( 1, 0.752941, 0.0117647, 1 )
+shader_param/progress_value = 0.0
+
+[sub_resource type="QuadMesh" id=4]
+resource_local_to_scene = true
+material = SubResource( 3 )
+size = Vector2( 2, 0.2 )
+
+[node name="Mana" type="StaticBody"]
+collision_layer = 3
+script = ExtResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
+mesh = SubResource( 6 )
+
+[node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24426, 0 )
+mesh = SubResource( 4 )
+max_value = 30.0
+progress_color = Color( 1, 0.752941, 0.0117647, 1 )
+
+[node name="OutlineHelper3D" type="Node" parent="."]
+script = ExtResource( 1 )
+mesh_instance_to_outline = NodePath("../CollisionShape/MeshInstance")
+select_on_click = false
+button_index = 2
+mouse_over_color = Color( 1, 0.631373, 0, 1 )
+
+[node name="InteractionHelper" type="Node" parent="."]
+script = ExtResource( 5 )
+outline_helper = NodePath("../OutlineHelper3D")
+interaction_progress_bar = NodePath("../InteractionProgressBar3d")
+interactable_type = "mana"
+interaction_start_sound = NodePath("../StartInteractionSound")
+interaction_interupt_sound = NodePath("../InteruptInteractionSound")
+interaction_complete_sound = NodePath("../CompleteInteractionSound")
+
+[node name="StartInteractionSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+unit_db = 12.0
+bus = "SoundFx"
+
+[node name="InteruptInteractionSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 8 )
+unit_db = 12.0
+bus = "SoundFx"
+
+[node name="CompleteInteractionSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 7 )
+unit_db = 12.0
+bus = "SoundFx"
+
+[connection signal="interaction_completed" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_completed"]

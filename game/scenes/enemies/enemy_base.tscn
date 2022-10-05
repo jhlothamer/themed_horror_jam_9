@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=1]
-[ext_resource path="res://scenes/enemies/enemy_walk.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/states/enemy_walk.gd" type="Script" id=2]
 [ext_resource path="res://scenes/enemies/enemy_base.gd" type="Script" id=3]
 [ext_resource path="res://scenes/enemies/states/enemy_attack.gd" type="Script" id=4]
 

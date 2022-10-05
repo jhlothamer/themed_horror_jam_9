@@ -87,6 +87,7 @@ height = 0.5
 
 [node name="Witch" instance=ExtResource( 1 )]
 death_sound_node_path = NodePath("DeathSound")
+allowed_interactable_types = [ "mana" ]
 
 [node name="OutlineHelper3D" parent="." index="3"]
 mesh_instance_to_outline = NodePath("../TempWitchMeshInstance")

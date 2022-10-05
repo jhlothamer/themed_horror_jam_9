@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_cauldron_interaction_complete_jdymusic.mp3-3b41406b2d7bdf53adfb7898fc240890.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_cauldron_interaction_complete_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_cauldron_interaction_complete_jdymusic.mp3-3b41406b2d7bdf53adfb7898fc240890.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

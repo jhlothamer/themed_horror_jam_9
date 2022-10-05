@@ -1,6 +1,9 @@
 extends CharacterBaseState
 
 export var navigation_agent: NodePath
+export var deny_interaction_sound: NodePath
+
+onready var _deny_interaction_sound: AudioStreamPlayer3D = get_node_or_null(deny_interaction_sound)
 
 var _nav_agent:NavigationAgent
 
@@ -44,8 +47,13 @@ func _on_no_interactable_clicked(pos: Vector3) -> void:
 
 
 func _on_interactable_clicked(helper: InteractionHelper, clicked_object: CollisionObject):
-	if !host.is_selected():
+	if !character.is_selected():
 		return
+	if helper.interactable_type != "":
+		if !character.allowed_interactable_types.has(helper.interactable_type):
+			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
+				_deny_interaction_sound.play()
+			return
 	_calc_target_pos(clicked_object.global_transform.origin)
 	_target_interactable_object = clicked_object
 	_interaction_helper = helper
