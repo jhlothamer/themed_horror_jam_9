@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/3d/camera/camera3d_move_pan.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/cauldron_matrix/bronze pot.material" type="Material" id=2]
 [ext_resource path="res://assets/materials_shaders/fresnel_outline_mat.tres" type="Material" id=3]
+[ext_resource path="res://assets/materials_shaders/outline_mat.tres" type="Material" id=4]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.101961, 0.282353, 0.588235, 1 )
@@ -13,8 +14,10 @@ radius = 0.5
 
 [sub_resource type="Environment" id=5]
 background_mode = 1
+background_color = Color( 0.133333, 0.133333, 0.133333, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.01
+ambient_light_energy = 0.5
+glow_enabled = true
 
 [sub_resource type="Shader" id=6]
 code = "shader_type spatial;
@@ -72,35 +75,12 @@ surfaces/0 = {
 "vertex_count": 788
 }
 
-[sub_resource type="Shader" id=10]
-code = "shader_type spatial;
-render_mode cull_front, unshaded;
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.615686, 0, 0.67451, 1 )
 
-uniform vec4 outline_color : hint_color = vec4(1.0);
-uniform float outline_width = 1.0;
-
-void vertex() {
-	vec4 clip_position = PROJECTION_MATRIX * (MODELVIEW_MATRIX * vec4(VERTEX, 1.0));
-	vec3 clip_normal = mat3(PROJECTION_MATRIX) * (mat3(MODELVIEW_MATRIX) * NORMAL);
-	
-	vec2 offset = normalize(clip_normal.xy) / VIEWPORT_SIZE * clip_position.w * outline_width * 2.0;
-	
-	clip_position.xy += offset;
-	
-	POSITION = clip_position;
-}
-
-void fragment() {
-	ALBEDO = outline_color.rgb;
-	if (outline_color.a < 1.0) {
-		ALPHA = outline_color.a;
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 10 )
-shader_param/outline_color = Color( 0.447059, 0.447059, 0.447059, 1 )
-shader_param/outline_width = 1.0
+[sub_resource type="CapsuleMesh" id=11]
+material = SubResource( 10 )
+radius = 0.5
 
 [node name="Spatial" type="Spatial"]
 
@@ -144,7 +124,21 @@ transform = Transform( 1.14207, 0, 0, 0, 1.14207, 0, 0, 0, 1.14207, 3.00251, 1.1
 material_overlay = ExtResource( 3 )
 mesh = SubResource( 9 )
 
-[node name="Sphere3" type="MeshInstance" parent="."]
+[node name="RegularOutlineSphere3" type="MeshInstance" parent="."]
 transform = Transform( 1.14207, 0, 0, 0, 1.14207, 0, 0, 0, 1.14207, -2.99749, 1.11647, -3.27657 )
-material_overlay = SubResource( 11 )
+material_overlay = ExtResource( 4 )
 mesh = SubResource( 9 )
+
+[node name="SpotLight5" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, -3, 6, 1 )
+light_energy = 0.5
+shadow_enabled = true
+shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+shadow_contact = 0.667
+shadow_reverse_cull_face = true
+spot_range = 8.0
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1, 0, -3 )
+material_overlay = ExtResource( 4 )
+mesh = SubResource( 11 )
