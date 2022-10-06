@@ -1,5 +1,7 @@
 extends EnemeyBaseState
 
+signal attack_made()
+
 
 export var character_detect_area: NodePath
 
@@ -22,14 +24,13 @@ func _ready():
 
 
 func _on_character_body_entered(body: CollisionObject) -> void:
+	if enemy.is_dead():
+		return
 	if !body is Character:
 		return
 	if !_target_character:
 		_target_character = body
 		change_state(name)
-		if _target_character.is_dead():
-			_target_character = null
-			change_state("Walk")
 
 
 func _on_character_body_exited(body: CollisionObject) -> void:
@@ -46,6 +47,7 @@ func physics_process(delta) -> void:
 	_damage_timer += delta
 	if _damage_timer >= enemy.damage_interval:
 		_target_character.damage(enemy.damage_amount)
+		emit_signal("attack_made")
 		_damage_timer = 0.0
 		if _target_character.is_dead():
 			change_state("Walk")

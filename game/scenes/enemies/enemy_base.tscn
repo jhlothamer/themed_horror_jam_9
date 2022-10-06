@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/states/enemy_walk.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/enemies/states/enemy_attack.gd" type="Script" id=4]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=5]
 [ext_resource path="res://scenes/ui/components/progress_bar_3d.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/states/enemy_die.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -77,7 +78,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=25]
+[sub_resource type="ShaderMaterial" id=27]
 shader = SubResource( 24 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 shader_param/progress_color = Color( 0, 1, 0, 1 )
@@ -85,7 +86,7 @@ shader_param/progress_value = 0.5
 
 [sub_resource type="QuadMesh" id=26]
 resource_local_to_scene = true
-material = SubResource( 25 )
+material = SubResource( 27 )
 size = Vector2( 1, 0.1 )
 
 [node name="EnemyBase" type="KinematicBody"]
@@ -141,6 +142,9 @@ is_starting_state = true
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 character_detect_area = NodePath("../../CharacterDetectArea")
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
 
 [node name="CharacterDetectArea" type="Area" parent="."]
 collision_layer = 17

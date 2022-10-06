@@ -2,7 +2,7 @@ class_name EnemySpawnMgr
 extends Node
 
 
-const SCENE_ENEMY = preload("res://scenes/enemies/enemy_base.tscn")
+const SCENE_ENEMY = preload("res://scenes/enemies/zombie.tscn")
 
 export (Array, NodePath) var spawn_positions := []
 

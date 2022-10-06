@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/interactables/cauldron.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/characters/minion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://tests/level/test_level.gd" type="Script" id=6]
-[ext_resource path="res://scenes/enemies/enemy_base.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/zombie.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=8]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/camera/camera3d_move_pan.gd" type="Script" id=9]
 [ext_resource path="res://assets/sounds/sfx_atmospheric_noises_loop_jdymusic.mp3" type="AudioStream" id=10]
@@ -425,6 +425,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
 mesh = SubResource( 6 )
 
-[node name="EnemyBase" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -5 )
+[node name="Zombie" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -4 )
 disabled = true

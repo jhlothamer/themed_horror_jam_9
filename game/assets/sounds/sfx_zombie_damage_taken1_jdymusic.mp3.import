@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_zombie_damage_taken1_jdymusic.mp3-d02cfc819c2a8d5033ace11c72f0cce0.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_zombie_damage_taken1_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_zombie_damage_taken1_jdymusic.mp3-d02cfc819c2a8d5033ace11c72f0cce0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
