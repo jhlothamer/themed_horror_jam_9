@@ -61,6 +61,6 @@ func _update_heath_bar() -> void:
 
 
 
-func _on_OutlineHelper3D_selected(helperref):
+func _on_OutlineHelper3D_selected(_helperref):
 	if !_selected_sound.is_playing():
 		_selected_sound.play()

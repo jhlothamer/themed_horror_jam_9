@@ -49,7 +49,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=7]
 shader = SubResource( 2 )
 shader_param/background_color = Color( 0.584314, 0.584314, 0.584314, 1 )
 shader_param/progress_color = Color( 1, 0.752941, 0.0117647, 1 )
@@ -57,7 +57,7 @@ shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=4]
 resource_local_to_scene = true
-material = SubResource( 3 )
+material = SubResource( 7 )
 size = Vector2( 2, 0.2 )
 
 [node name="Mana" type="StaticBody"]
@@ -93,6 +93,7 @@ interactable_type = "mana"
 interaction_start_sound = NodePath("../StartInteractionSound")
 interaction_interupt_sound = NodePath("../InteruptInteractionSound")
 interaction_complete_sound = NodePath("../CompleteInteractionSound")
+complete_after_complete_sound_finished = false
 
 [node name="StartInteractionSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )

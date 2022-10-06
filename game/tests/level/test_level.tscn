@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/images/prototyping/grey_box_256x256.png" type="Texture" id=1]
 [ext_resource path="res://scenes/characters/witch.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://scenes/interactables/mana.tscn" type="PackedScene" id=11]
 [ext_resource path="res://tests/level/testing_hud.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/managers/enemy_spawn_mgr.gd" type="Script" id=13]
+[ext_resource path="res://assets/models/floor_matrix/floor_matrix.gltf" type="PackedScene" id=14]
+[ext_resource path="res://assets/models/broken_window_matrix/window_broken_matrix.gltf" type="PackedScene" id=15]
 
 [sub_resource type="NavigationMesh" id=3]
 vertices = PoolVector3Array( -0.25, 0.5, -12.25, 0.5, 0.5, -12.25, 0.5, 0.5, -14, -0.25, 0.5, -14, 10.5, 0.5, -24, 10.5, 0.5, -33.25, 0, 0.5, -33.25, -10.25, 0.5, -24, -0.75, 0.5, -14.5, 1, 0.5, -14.5, -0.75, 0.5, -14.5, -0.25, 0.5, -14, 0.5, 0.5, -14, 1, 0.5, -14.5, 0, 0.5, -33.25, -10.25, 0.5, -33.25, -10.25, 0.5, -24, 1, 0.5, -14.5, 10.5, 0.5, -14.5, 10.5, 0.5, -24, -10.25, 0.5, -24, -10.25, 0.5, -14.5, -0.75, 0.5, -14.5, 0.5, 0.5, -12.25, -0.25, 0.5, -12.25, -0.25, 0.5, -10, 0.5, 0.5, -9.75, 2, 0.5, 0, 11.25, 0.5, -0.25, 10.5, 0.5, -0.75, 1, 0.5, -9.25, 0.5, 0.5, -9.75, -0.25, 0.5, -10, 0, 0.5, -1.75, 1, 0.5, -1.75, 1, 0.5, -9.25, 1, 0.5, -1.75, 2, 0.5, 0, 10.5, 0.5, -0.75, 10.5, 0.5, -9.25, -13.5, 0.5, -0.25, -13.5, 0.5, 0.5, -10.75, 0.5, 0.5, -10.75, 0.5, -0.25, 0, 0.5, -1.75, -0.25, 0.5, -10, -0.75, 0.5, -9.25, -1, 0.5, -1.75, -10.25, 0.5, -0.75, -10.75, 0.5, -0.25, -10.75, 0.5, 0.5, -10.25, 0.5, 1, -7, 0.5, 2.75, -5, 0.5, 2.75, -1.75, 0.5, 0.75, -1.75, 0.5, -1, -10.25, 0.5, 4, -7.25, 0.5, 4, -7, 0.5, 2.75, -10.25, 0.5, 1, -1.75, 0.5, -1, -1, 0.5, -1.75, -0.75, 0.5, -9.25, -10.25, 0.5, -0.75, -7, 0.5, 2.75, -5, 0.5, 2.75, -1.75, 0.5, -1, -0.75, 0.5, -9.25, -10.25, 0.5, -9.25, -13.5, 0.5, 0.5, -13.5, 0.5, -0.25, -15, 0.5, -0.25, -15.5, 0.5, 0.75, -36.25, 0.5, 0, -36.25, 0.5, 9.5, -26, 0.5, 9.5, -15.5, 0.5, 0.75, -15.5, 0.5, -0.75, -26, 0.5, -9.25, -15.5, 0.5, 0.75, -15, 0.5, -0.25, -15.5, 0.5, -0.75, -15.5, 0.5, -0.75, -15.5, 0.5, -9.25, -26, 0.5, -9.25, -26, 0.5, 9.5, -15.5, 0.5, 9.5, -15.5, 0.5, 0.75, -26, 0.5, -9.25, -36.25, 0.5, -9.25, -36.25, 0.5, 0, 13.5, 0.5, -0.25, 13.5, 0.5, 0.5, 15.25, 0.5, 0.5, 15.25, 0.5, -0.25, 26, 0.5, 9.5, 36.25, 0.5, 9.5, 36.25, 0.5, 0, 26, 0.5, -9.25, 15.75, 0.5, -0.75, 15.75, 0.5, 1, 15.75, 0.5, -0.75, 15.25, 0.5, -0.25, 15.25, 0.5, 0.5, 15.75, 0.5, 1, 36.25, 0.5, 0, 36.25, 0.5, -9.25, 26, 0.5, -9.25, 15.75, 0.5, 1, 15.75, 0.5, 9.5, 26, 0.5, 9.5, 26, 0.5, -9.25, 15.75, 0.5, -9.25, 15.75, 0.5, -0.75, -0.5, 2.5, -0.5, -0.5, 2.5, 0.5, 0.5, 2.5, 0.5, 0.5, 2.5, -0.5, -0.5, 0.5, -0.25, -0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, -0.5, 10.5, 0.5, 0.75, 13.5, 0.5, 0.5, 13.5, 0.5, -0.25, 11.25, 0.5, -0.25, 2, 0.5, 0, 10.5, 0.5, 0.75, 2, 0.5, 0, 1.5, 0.5, 1.25, 1.5, 0.5, 9.5, 10.5, 0.5, 9.5, -0.25, 0.5, 10, -0.25, 0.5, 12.5, 0.5, 0.5, 12.5, 0.5, 0.5, 10, 1.5, 0.5, 9.5, 1.5, 0.5, 1.25, 1, 0.5, 1.75, -0.75, 0.5, 9.5, -0.25, 0.5, 10, 0.5, 0.5, 10, 1.5, 0.5, 9.5, -4.75, 0.5, 4.75, -4.5, 0.5, 9.5, -0.75, 0.5, 9.5, -1, 0.5, 1.75, -1.75, 0.5, 0.75, -5, 0.5, 2.75, -1, 0.5, 1.75, -5, 0.5, 2.75, -4.75, 0.5, 4.75, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1, 0.5, 1.75, -7, 0.5, 5.25, -7.25, 0.5, 4, -10.25, 0.5, 4, -4.5, 0.5, 9.5, -4.75, 0.5, 4.75, -5, 0.5, 5.25, -4.5, 0.5, 9.5, -5, 0.5, 5.25, -7, 0.5, 5.25, -7, 0.5, 5.25, -10.25, 0.5, 4, -10.25, 0.5, 9.5, -4.5, 0.5, 9.5, 0.5, 0.5, 12.5, -0.25, 0.5, 12.5, -0.25, 0.5, 14.25, 0.5, 0.5, 14.25, 0, 0.5, 33.25, 10.5, 0.5, 33.25, 10.5, 0.5, 24, 1, 0.5, 14.75, -0.75, 0.5, 14.75, -10.25, 0.5, 24, 1, 0.5, 14.75, 0.5, 0.5, 14.25, -0.25, 0.5, 14.25, -0.75, 0.5, 14.75, -10.25, 0.5, 24, -10.25, 0.5, 33.25, 0, 0.5, 33.25, -0.75, 0.5, 14.75, -10.25, 0.5, 14.75, -10.25, 0.5, 24, 10.5, 0.5, 24, 10.5, 0.5, 14.75, 1, 0.5, 14.75 )
@@ -31,13 +33,19 @@ extents = Vector3( 3, 1, 1 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 1
-ambient_light_color = Color( 0.215686, 0.215686, 0.215686, 1 )
+ambient_light_color = Color( 0.133333, 0.133333, 0.133333, 1 )
 ambient_light_energy = 0.5
 fog_color = Color( 0.384314, 0.411765, 0.439216, 1 )
 fog_depth_curve = 1.6245
 fog_height_enabled = true
 fog_height_max = -1.5
 fog_height_curve = 27.8576
+glow_enabled = true
+glow_bloom = 0.08
+glow_blend_mode = 0
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 4, 0.1, 4 )
 
 [node name="TestLevel" type="Spatial"]
 script = ExtResource( 6 )
@@ -76,10 +84,10 @@ height = 8.0
 depth = 74.0
 
 [node name="CSGBox2" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 operation = 2
 width = 22.0
-height = 6.0
+height = 10.0
 depth = 20.0
 
 [node name="CSGBox7" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
@@ -177,6 +185,7 @@ shape = SubResource( 5 )
 
 [node name="Mana" parent="NavigationMeshInstance" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4 )
+time_to_complete_seconds = 1.0
 
 [node name="Camera3DMovePan" type="Spatial" parent="."]
 transform = Transform( -1, 1.42109e-14, -8.74227e-08, -7.57103e-08, 0.5, 0.866025, 4.37114e-08, 0.866025, -0.5, 0, 21, -12 )
@@ -211,6 +220,7 @@ __meta__ = {
 
 [node name="SpotLight" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, -7, 6, -8 )
+light_energy = 0.5
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -220,6 +230,7 @@ spot_angle = 45.4376
 
 [node name="SpotLight2" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 6, -8 )
+light_energy = 0.5
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -229,6 +240,7 @@ spot_range = 8.0
 [node name="SpotLight3" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 7, 6, -8 )
 visible = false
+light_energy = 0.5
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -237,6 +249,7 @@ spot_range = 8.0
 
 [node name="SpotLight4" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, -7, 6, 0 )
+light_energy = 0.5
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -245,6 +258,7 @@ spot_range = 8.0
 
 [node name="SpotLight5" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 6, 0 )
+light_energy = 0.5
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -253,6 +267,7 @@ spot_range = 8.0
 
 [node name="SpotLight6" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 7, 6, 0 )
+light_energy = 0.5
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -262,6 +277,7 @@ spot_range = 8.0
 [node name="SpotLight7" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, -7, 6, 8 )
 visible = false
+light_energy = 0.5
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -270,6 +286,7 @@ spot_range = 8.0
 
 [node name="SpotLight8" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 6, 8 )
+light_energy = 0.5
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -279,6 +296,7 @@ spot_range = 8.0
 [node name="SpotLight9" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 7, 6, 8 )
 visible = false
+light_energy = 0.5
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -332,3 +350,76 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21 )
 
 [node name="Position3D4" type="Position3D" parent="SpawnPositions"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16 )
+
+[node name="FloorPanels" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+
+[node name="floor_matrix" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5769, 0, -7 )
+
+[node name="floor_matrix2" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09315, 0, -7 )
+
+[node name="floor_matrix3" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54482, 0, -7 )
+
+[node name="floor_matrix4" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000101089, 0, -7 )
+
+[node name="floor_matrix5" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.53294, 0, -7 )
+
+[node name="floor_matrix6" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09302, 0, -7 )
+
+[node name="floor_matrix7" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6244, 0, -7 )
+
+[node name="floor_matrix8" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5769, 0, 0 )
+
+[node name="floor_matrix9" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09315, 0, 0 )
+
+[node name="floor_matrix10" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54482, 0, 0 )
+
+[node name="floor_matrix11" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000101089, 0, 0 )
+
+[node name="floor_matrix12" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.53294, 0, 0 )
+
+[node name="floor_matrix13" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09302, 0, 0 )
+
+[node name="floor_matrix14" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6244, 0, 0 )
+
+[node name="floor_matrix15" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5769, 0, 7 )
+
+[node name="floor_matrix16" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09315, 0, 7 )
+
+[node name="floor_matrix17" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54482, 0, 7 )
+
+[node name="floor_matrix18" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000101089, 0, 7 )
+
+[node name="floor_matrix19" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.53294, 0, 7 )
+
+[node name="floor_matrix20" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09302, 0, 7 )
+
+[node name="floor_matrix21" parent="FloorPanels" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6244, 0, 7 )
+
+[node name="window_broken_matrix" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10 )
+
+[node name="StonePlatformStandin" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+mesh = SubResource( 6 )

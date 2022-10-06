@@ -40,3 +40,9 @@ func get_closest_character(global_pos: Vector3) -> Spatial:
 	
 	return closest_char
 
+
+func get_witch():
+	for i in _characters:
+		if i.name == "Witch":
+			return i
+	return null

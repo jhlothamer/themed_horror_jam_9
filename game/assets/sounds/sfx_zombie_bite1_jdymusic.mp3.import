@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_zombie_bite1_jdymusic.mp3-ee798f41dc69d525a7efc23d0c1085a4.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_zombie_bite1_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_zombie_bite1_jdymusic.mp3-ee798f41dc69d525a7efc23d0c1085a4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

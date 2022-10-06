@@ -1,9 +1,12 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/states/enemy_walk.gd" type="Script" id=2]
 [ext_resource path="res://scenes/enemies/enemy_base.gd" type="Script" id=3]
 [ext_resource path="res://scenes/enemies/states/enemy_attack.gd" type="Script" id=4]
+[ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=5]
+[ext_resource path="res://scenes/ui/components/progress_bar_3d.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/states/enemy_die.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -46,8 +49,49 @@ height = 1.0
 
 [sub_resource type="SphereShape" id=23]
 
+[sub_resource type="Shader" id=24]
+code = "shader_type spatial;
+
+render_mode unshaded, shadows_disabled;
+
+//uniform vec4 border_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 progress_color : hint_color = vec4(.0, 1., .0, 1.);
+uniform float progress_value : hint_range(0.0, 1.0, 0.02) = .5;
+
+void vertex()
+{
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+}
+
+void fragment()
+{
+	vec2 border = vec2(0.01, 0.1);
+
+	vec2 mask2 = step(border, UV) * step(UV, 1.0-border);
+    float mask = mask2.x*mask2.y;
+
+	//float progress = .5;
+    float blend = ((UV.x - progress_value) <= 0.0 ? 1.0 : 0.0) * mask;
+    vec4 fragColor = progress_color*blend + background_color*(1.0-blend);
+	ALBEDO = fragColor.rgb;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=27]
+shader = SubResource( 24 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/progress_color = Color( 0, 1, 0, 1 )
+shader_param/progress_value = 0.5
+
+[sub_resource type="QuadMesh" id=26]
+resource_local_to_scene = true
+material = SubResource( 27 )
+size = Vector2( 1, 0.1 )
+
 [node name="EnemyBase" type="KinematicBody"]
-collision_layer = 33
+collision_layer = 35
+collision_mask = 35
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -99,10 +143,28 @@ is_starting_state = true
 script = ExtResource( 4 )
 character_detect_area = NodePath("../../CharacterDetectArea")
 
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
 [node name="CharacterDetectArea" type="Area" parent="."]
 collision_layer = 17
 collision_mask = 16
+input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="CharacterDetectArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 23 )
+
+[node name="OutlineHelper3D" type="Node" parent="."]
+script = ExtResource( 5 )
+mesh_instance_to_outline = NodePath("../MeshInstance")
+select_on_click = false
+button_index = 2
+mouse_over_color = Color( 1, 0.631373, 0, 1 )
+
+[node name="HealthBar" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53445, 0 )
+visible = false
+mesh = SubResource( 26 )
+
+[connection signal="clicked" from="OutlineHelper3D" to="." method="_on_OutlineHelper3D_clicked"]

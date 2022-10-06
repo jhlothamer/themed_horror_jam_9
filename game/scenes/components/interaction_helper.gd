@@ -3,7 +3,7 @@ extends Node
 
 
 signal interactable_clicked(helperref ,obj)
-signal interaction_completed(heperref, obj)
+signal interaction_completed(helperref, obj)
 
 
 export var outline_helper: NodePath
@@ -12,7 +12,7 @@ export var interactable_type := ""
 export var interaction_start_sound: NodePath
 export var interaction_interupt_sound: NodePath
 export var interaction_complete_sound: NodePath
-
+export var complete_after_complete_sound_finished := true
 
 onready var _parent: CollisionObject = get_parent()
 onready var _interaction_start_sound: AudioStreamPlayer3D = get_node_or_null(interaction_start_sound)
@@ -73,6 +73,7 @@ func _on_interaction_completed() -> void:
 		_interaction_start_sound.stop()
 	if _interaction_complete_sound and !_interaction_complete_sound.is_playing():
 		_interaction_complete_sound.play()
-		yield(_interaction_complete_sound, "finished")
+		if complete_after_complete_sound_finished:
+			yield(_interaction_complete_sound, "finished")
 	emit_signal("interaction_completed", self, _parent)
 	_interaction_progress_bar.reset()

@@ -31,7 +31,7 @@ func _test_world_mouse_click_collision(mouse_position, collision_mask: int, igno
 	var to = camera.project_position(mouse_position, camera.far * 2.0)
 	var space_state = camera.get_world().direct_space_state
 	
-	var result = space_state.intersect_ray(from, to, [], collision_mask, true, true)
+	var result = space_state.intersect_ray(from, to, [], collision_mask)
 	
 	if !result:
 		return Vector3.INF

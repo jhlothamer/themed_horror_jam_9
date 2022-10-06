@@ -26,6 +26,6 @@ void fragment()
 [resource]
 resource_local_to_scene = true
 shader = SubResource( 1 )
-shader_param/outline_color = Color( 1, 1, 1, 1 )
-shader_param/outline_amount = 38.961
-shader_param/outline_intensity = 0.285
+shader_param/outline_color = Color( 1, 0.631373, 0, 1 )
+shader_param/outline_amount = 31.515
+shader_param/outline_intensity = 0.348

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_zombie_attack2_jdymusic.mp3-815783b7e8470cc1000358611bf71849.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_zombie_attack2_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_zombie_attack2_jdymusic.mp3-815783b7e8470cc1000358611bf71849.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

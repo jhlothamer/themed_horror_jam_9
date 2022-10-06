@@ -2,7 +2,7 @@ class_name EnemySpawnMgr
 extends Node
 
 
-const SCENE_ENEMY = preload("res://scenes/enemies/enemy_base.tscn")
+const SCENE_ENEMY = preload("res://scenes/enemies/zombie.tscn")
 
 export (Array, NodePath) var spawn_positions := []
 
@@ -26,7 +26,7 @@ func _ready():
 func spawn_enemy() -> void:
 	if _spawn_positions.empty():
 		return
-	print("Spawning enemy")
+	
 	var index: int = randi() % _spawn_positions.size()
 	var spawn_position: Vector3 = _spawn_positions[index].global_transform.origin
 	spawn_position.y = 0.0
