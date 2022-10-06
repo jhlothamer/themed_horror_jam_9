@@ -17,5 +17,5 @@ func _ready():
 
 
 
-func _on_InteractionHelper_interaction_completed(heperref, obj):
+func _on_InteractionHelper_interaction_completed(_helperref, _obj):
 	emit_signal("game_won")
