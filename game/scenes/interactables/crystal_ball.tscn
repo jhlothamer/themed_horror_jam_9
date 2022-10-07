@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=1]
+[ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=2]
+[ext_resource path="res://assets/sounds/sfx_crystal_ball_interaction_interrupt_jdymusic.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/sfx_crystal_ball_interaction_complete_jdymusic.mp3" type="AudioStream" id=4]
+[ext_resource path="res://scenes/interactables/crystal_ball.gd" type="Script" id=5]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.5
+
+[sub_resource type="CylinderMesh" id=2]
+top_radius = 0.1
+bottom_radius = 0.5
+
+[sub_resource type="SphereMesh" id=3]
+radius = 0.3
+height = 0.6
+
+[node name="CrystalBall" type="StaticBody"]
+collision_layer = 3
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 1 )
+
+[node name="PedistalMeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 2 )
+
+[node name="BallMeshInstance" type="MeshInstance" parent="PedistalMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 3 )
+
+[node name="InteractionHelper" type="Node" parent="."]
+script = ExtResource( 2 )
+outline_helper = NodePath("../OutlineHelper3D")
+interaction_start_sound = NodePath("../StartInteractionSound")
+interaction_interupt_sound = NodePath("../InteruptInteractionSound")
+
+[node name="OutlineHelper3D" type="Node" parent="."]
+script = ExtResource( 1 )
+mesh_instance_to_outline = NodePath("../PedistalMeshInstance/BallMeshInstance")
+select_on_click = false
+button_index = 2
+mouse_over_color = Color( 1, 0.631373, 0, 1 )
+
+[node name="StartInteractionSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_db = 12.0
+bus = "SoundFx"
+
+[node name="InteruptInteractionSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+unit_db = 12.0
+bus = "SoundFx"
+
+[connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
+[connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]

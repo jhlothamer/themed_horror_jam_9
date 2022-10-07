@@ -12,7 +12,7 @@ func _ready():
 	_progress_bar.max_value = time_to_complete_seconds
 
 
-func _on_InteractionHelper_interaction_completed(_helperref, obj):
+func _on_InteractionHelper_interaction_completed(_helperref, _obj):
 	var char_mgr: CharacterMgr = ServiceMgr.get_service(CharacterMgr)
 	if !char_mgr:
 		return

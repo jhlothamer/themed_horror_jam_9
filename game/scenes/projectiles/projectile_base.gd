@@ -4,7 +4,7 @@ extends KinematicBody
 const MANA_USED := 10
 
 export var speed := 1.0
-export var damage := 10.0
+export var damage := 10
 
 export var target_position: Vector3
 
