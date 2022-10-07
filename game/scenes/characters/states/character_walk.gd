@@ -29,6 +29,7 @@ func _create_move_to_indicator(pos: Vector3) -> void:
 		var parent: Spatial = GameUtil.get_dynamic_parent(character)
 		parent.add_child(_move_to_indicator)
 	_move_to_indicator.global_transform.origin = pos
+	_move_to_indicator.animate()
 
 
 func _destroy_move_to_indicator() -> void:
