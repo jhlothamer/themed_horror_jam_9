@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/images/prototyping/grey_box_256x256.png" type="Texture" id=1]
 [ext_resource path="res://scenes/characters/witch.tscn" type="PackedScene" id=2]
@@ -14,10 +14,12 @@
 [ext_resource path="res://scenes/managers/enemy_spawn_mgr.gd" type="Script" id=13]
 [ext_resource path="res://assets/models/floor_matrix/floor_matrix.gltf" type="PackedScene" id=14]
 [ext_resource path="res://assets/models/broken_window_matrix/window_broken_matrix.gltf" type="PackedScene" id=15]
+[ext_resource path="res://scenes/ui/camera_feed_hud.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/interactables/crystal_ball.tscn" type="PackedScene" id=17]
 
 [sub_resource type="NavigationMesh" id=3]
-vertices = PoolVector3Array( -0.25, 0.5, -12.25, 0.5, 0.5, -12.25, 0.5, 0.5, -14, -0.25, 0.5, -14, 10.5, 0.5, -24, 10.5, 0.5, -33.25, 0, 0.5, -33.25, -10.25, 0.5, -24, -0.75, 0.5, -14.5, 1, 0.5, -14.5, -0.75, 0.5, -14.5, -0.25, 0.5, -14, 0.5, 0.5, -14, 1, 0.5, -14.5, 0, 0.5, -33.25, -10.25, 0.5, -33.25, -10.25, 0.5, -24, 1, 0.5, -14.5, 10.5, 0.5, -14.5, 10.5, 0.5, -24, -10.25, 0.5, -24, -10.25, 0.5, -14.5, -0.75, 0.5, -14.5, 0.5, 0.5, -12.25, -0.25, 0.5, -12.25, -0.25, 0.5, -10, 0.5, 0.5, -9.75, 2, 0.5, 0, 11.25, 0.5, -0.25, 10.5, 0.5, -0.75, 1, 0.5, -9.25, 0.5, 0.5, -9.75, -0.25, 0.5, -10, 0, 0.5, -1.75, 1, 0.5, -1.75, 1, 0.5, -9.25, 1, 0.5, -1.75, 2, 0.5, 0, 10.5, 0.5, -0.75, 10.5, 0.5, -9.25, -13.5, 0.5, -0.25, -13.5, 0.5, 0.5, -10.75, 0.5, 0.5, -10.75, 0.5, -0.25, 0, 0.5, -1.75, -0.25, 0.5, -10, -0.75, 0.5, -9.25, -1, 0.5, -1.75, -10.25, 0.5, -0.75, -10.75, 0.5, -0.25, -10.75, 0.5, 0.5, -10.25, 0.5, 1, -7, 0.5, 2.75, -5, 0.5, 2.75, -1.75, 0.5, 0.75, -1.75, 0.5, -1, -10.25, 0.5, 4, -7.25, 0.5, 4, -7, 0.5, 2.75, -10.25, 0.5, 1, -1.75, 0.5, -1, -1, 0.5, -1.75, -0.75, 0.5, -9.25, -10.25, 0.5, -0.75, -7, 0.5, 2.75, -5, 0.5, 2.75, -1.75, 0.5, -1, -0.75, 0.5, -9.25, -10.25, 0.5, -9.25, -13.5, 0.5, 0.5, -13.5, 0.5, -0.25, -15, 0.5, -0.25, -15.5, 0.5, 0.75, -36.25, 0.5, 0, -36.25, 0.5, 9.5, -26, 0.5, 9.5, -15.5, 0.5, 0.75, -15.5, 0.5, -0.75, -26, 0.5, -9.25, -15.5, 0.5, 0.75, -15, 0.5, -0.25, -15.5, 0.5, -0.75, -15.5, 0.5, -0.75, -15.5, 0.5, -9.25, -26, 0.5, -9.25, -26, 0.5, 9.5, -15.5, 0.5, 9.5, -15.5, 0.5, 0.75, -26, 0.5, -9.25, -36.25, 0.5, -9.25, -36.25, 0.5, 0, 13.5, 0.5, -0.25, 13.5, 0.5, 0.5, 15.25, 0.5, 0.5, 15.25, 0.5, -0.25, 26, 0.5, 9.5, 36.25, 0.5, 9.5, 36.25, 0.5, 0, 26, 0.5, -9.25, 15.75, 0.5, -0.75, 15.75, 0.5, 1, 15.75, 0.5, -0.75, 15.25, 0.5, -0.25, 15.25, 0.5, 0.5, 15.75, 0.5, 1, 36.25, 0.5, 0, 36.25, 0.5, -9.25, 26, 0.5, -9.25, 15.75, 0.5, 1, 15.75, 0.5, 9.5, 26, 0.5, 9.5, 26, 0.5, -9.25, 15.75, 0.5, -9.25, 15.75, 0.5, -0.75, -0.5, 2.5, -0.5, -0.5, 2.5, 0.5, 0.5, 2.5, 0.5, 0.5, 2.5, -0.5, -0.5, 0.5, -0.25, -0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, -0.5, 10.5, 0.5, 0.75, 13.5, 0.5, 0.5, 13.5, 0.5, -0.25, 11.25, 0.5, -0.25, 2, 0.5, 0, 10.5, 0.5, 0.75, 2, 0.5, 0, 1.5, 0.5, 1.25, 1.5, 0.5, 9.5, 10.5, 0.5, 9.5, -0.25, 0.5, 10, -0.25, 0.5, 12.5, 0.5, 0.5, 12.5, 0.5, 0.5, 10, 1.5, 0.5, 9.5, 1.5, 0.5, 1.25, 1, 0.5, 1.75, -0.75, 0.5, 9.5, -0.25, 0.5, 10, 0.5, 0.5, 10, 1.5, 0.5, 9.5, -4.75, 0.5, 4.75, -4.5, 0.5, 9.5, -0.75, 0.5, 9.5, -1, 0.5, 1.75, -1.75, 0.5, 0.75, -5, 0.5, 2.75, -1, 0.5, 1.75, -5, 0.5, 2.75, -4.75, 0.5, 4.75, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1, 0.5, 1.75, -7, 0.5, 5.25, -7.25, 0.5, 4, -10.25, 0.5, 4, -4.5, 0.5, 9.5, -4.75, 0.5, 4.75, -5, 0.5, 5.25, -4.5, 0.5, 9.5, -5, 0.5, 5.25, -7, 0.5, 5.25, -7, 0.5, 5.25, -10.25, 0.5, 4, -10.25, 0.5, 9.5, -4.5, 0.5, 9.5, 0.5, 0.5, 12.5, -0.25, 0.5, 12.5, -0.25, 0.5, 14.25, 0.5, 0.5, 14.25, 0, 0.5, 33.25, 10.5, 0.5, 33.25, 10.5, 0.5, 24, 1, 0.5, 14.75, -0.75, 0.5, 14.75, -10.25, 0.5, 24, 1, 0.5, 14.75, 0.5, 0.5, 14.25, -0.25, 0.5, 14.25, -0.75, 0.5, 14.75, -10.25, 0.5, 24, -10.25, 0.5, 33.25, 0, 0.5, 33.25, -0.75, 0.5, 14.75, -10.25, 0.5, 14.75, -10.25, 0.5, 24, 10.5, 0.5, 24, 10.5, 0.5, 14.75, 1, 0.5, 14.75 )
-polygons = [ PoolIntArray( 3, 2, 0 ), PoolIntArray( 0, 2, 1 ), PoolIntArray( 9, 8, 4 ), PoolIntArray( 4, 8, 5 ), PoolIntArray( 5, 8, 6 ), PoolIntArray( 6, 8, 7 ), PoolIntArray( 11, 10, 12 ), PoolIntArray( 12, 10, 13 ), PoolIntArray( 16, 15, 14 ), PoolIntArray( 19, 18, 17 ), PoolIntArray( 22, 21, 20 ), PoolIntArray( 24, 23, 25 ), PoolIntArray( 25, 23, 26 ), PoolIntArray( 29, 28, 27 ), PoolIntArray( 31, 30, 32 ), PoolIntArray( 32, 30, 33 ), PoolIntArray( 33, 30, 34 ), PoolIntArray( 36, 35, 37 ), PoolIntArray( 37, 35, 38 ), PoolIntArray( 38, 35, 39 ), PoolIntArray( 43, 42, 40 ), PoolIntArray( 40, 42, 41 ), PoolIntArray( 47, 46, 44 ), PoolIntArray( 44, 46, 45 ), PoolIntArray( 49, 48, 50 ), PoolIntArray( 50, 48, 51 ), PoolIntArray( 51, 48, 52 ), PoolIntArray( 55, 54, 53 ), PoolIntArray( 57, 56, 58 ), PoolIntArray( 58, 56, 59 ), PoolIntArray( 62, 61, 60 ), PoolIntArray( 64, 63, 65 ), PoolIntArray( 65, 63, 66 ), PoolIntArray( 66, 63, 68 ), PoolIntArray( 66, 68, 67 ), PoolIntArray( 70, 69, 71 ), PoolIntArray( 71, 69, 72 ), PoolIntArray( 77, 76, 78 ), PoolIntArray( 78, 76, 75 ), PoolIntArray( 78, 75, 73 ), PoolIntArray( 73, 75, 74 ), PoolIntArray( 79, 81, 80 ), PoolIntArray( 84, 83, 82 ), PoolIntArray( 87, 86, 85 ), PoolIntArray( 90, 89, 88 ), PoolIntArray( 94, 93, 91 ), PoolIntArray( 91, 93, 92 ), PoolIntArray( 100, 99, 95 ), PoolIntArray( 95, 99, 98 ), PoolIntArray( 95, 98, 97 ), PoolIntArray( 95, 97, 96 ), PoolIntArray( 102, 101, 103 ), PoolIntArray( 103, 101, 104 ), PoolIntArray( 107, 106, 105 ), PoolIntArray( 110, 109, 108 ), PoolIntArray( 113, 112, 111 ), PoolIntArray( 117, 116, 114 ), PoolIntArray( 114, 116, 115 ), PoolIntArray( 121, 120, 118 ), PoolIntArray( 118, 120, 119 ), PoolIntArray( 124, 123, 125 ), PoolIntArray( 125, 123, 122 ), PoolIntArray( 125, 122, 126 ), PoolIntArray( 128, 127, 129 ), PoolIntArray( 129, 127, 130 ), PoolIntArray( 130, 127, 131 ), PoolIntArray( 135, 134, 132 ), PoolIntArray( 132, 134, 133 ), PoolIntArray( 138, 137, 136 ), PoolIntArray( 140, 139, 141 ), PoolIntArray( 141, 139, 142 ), PoolIntArray( 145, 144, 143 ), PoolIntArray( 148, 147, 146 ), PoolIntArray( 150, 149, 151 ), PoolIntArray( 151, 149, 154 ), PoolIntArray( 151, 154, 152 ), PoolIntArray( 152, 154, 153 ), PoolIntArray( 157, 156, 155 ), PoolIntArray( 160, 159, 158 ), PoolIntArray( 163, 162, 161 ), PoolIntArray( 165, 164, 166 ), PoolIntArray( 166, 164, 167 ), PoolIntArray( 171, 170, 168 ), PoolIntArray( 168, 170, 169 ), PoolIntArray( 175, 174, 176 ), PoolIntArray( 176, 174, 173 ), PoolIntArray( 176, 173, 172 ), PoolIntArray( 176, 172, 177 ), PoolIntArray( 179, 178, 180 ), PoolIntArray( 180, 178, 181 ), PoolIntArray( 184, 183, 182 ), PoolIntArray( 187, 186, 185 ), PoolIntArray( 190, 189, 188 ) ]
+vertices = PoolVector3Array( -0.25, 0.5, -12.25, 0.5, 0.5, -12.25, 0.5, 0.5, -14, -0.25, 0.5, -14, 10.5, 0.5, -24, 10.5, 0.5, -33.25, 0, 0.5, -33.25, -10.25, 0.5, -24, -0.75, 0.5, -14.5, 1, 0.5, -14.5, -0.75, 0.5, -14.5, -0.25, 0.5, -14, 0.5, 0.5, -14, 1, 0.5, -14.5, 0, 0.5, -33.25, -10.25, 0.5, -33.25, -10.25, 0.5, -24, 1, 0.5, -14.5, 10.5, 0.5, -14.5, 10.5, 0.5, -24, -10.25, 0.5, -24, -10.25, 0.5, -14.5, -0.75, 0.5, -14.5, 0.5, 0.5, -9.75, 0.5, 0.5, -12.25, -0.25, 0.5, -12.25, -0.25, 0.5, -9.75, 1, 0.5, -1.75, 1.75, 0.5, -0.75, 2, 0.5, -9.25, 0.5, 0.5, -9.75, -0.25, 0.5, -9.75, -0.75, 0.5, -9.25, 2, 0.5, -9.25, -10.25, 0.5, -9.25, -7.75, 0.5, -7, -6.25, 0.5, -7, -0.75, 0.5, -9.25, -10.25, 0.5, -4.75, -7.75, 0.5, -5, -7.75, 0.5, -7, -10.25, 0.5, -9.25, -0.75, 0.5, -9.25, -6.25, 0.5, -7, -6, 0.5, -5.25, -1.25, 0.5, -1.5, 1, 0.5, -1.75, 2, 0.5, -9.25, -13.5, 0.5, 0.5, -13.5, 0.5, -0.25, -15, 0.5, -0.25, -15.5, 0.5, 0.75, -36.25, 0.5, 0, -36.25, 0.5, 9.5, -26, 0.5, 9.5, -15.5, 0.5, 0.75, -15.5, 0.5, -0.75, -26, 0.5, -9.25, -15.5, 0.5, 0.75, -15, 0.5, -0.25, -15.5, 0.5, -0.75, -15.5, 0.5, -0.75, -15.5, 0.5, -9.25, -26, 0.5, -9.25, -26, 0.5, 9.5, -15.5, 0.5, 9.5, -15.5, 0.5, 0.75, -26, 0.5, -9.25, -36.25, 0.5, -9.25, -36.25, 0.5, 0, 2, 0.5, 0, 11.25, 0.5, -0.25, 10.5, 0.5, -0.75, 1.75, 0.5, -0.75, 2, 0.5, 0, 10.5, 0.5, -0.75, 10.5, 0.5, -9.25, 2, 0.5, -9.25, 13.5, 0.5, -0.25, 13.5, 0.5, 0.5, 15.25, 0.5, 0.5, 15.25, 0.5, -0.25, 26, 0.5, 9.5, 36.25, 0.5, 9.5, 36.25, 0.5, 0, 26, 0.5, -9.25, 15.75, 0.5, -0.75, 15.75, 0.5, 1, 15.75, 0.5, -0.75, 15.25, 0.5, -0.25, 15.25, 0.5, 0.5, 15.75, 0.5, 1, 36.25, 0.5, 0, 36.25, 0.5, -9.25, 26, 0.5, -9.25, 15.75, 0.5, 1, 15.75, 0.5, 9.5, 26, 0.5, 9.5, 26, 0.5, -9.25, 15.75, 0.5, -9.25, 15.75, 0.5, -0.75, -10.75, 0.5, -0.25, -13.5, 0.5, -0.25, -13.5, 0.5, 0.5, -10.75, 0.5, 0.5, -6, 0.5, -5.25, -7.75, 0.5, -5, -10.25, 0.5, -0.75, -7, 0.5, 2.75, -5, 0.5, 2.75, -1.75, 0.5, -1, -10.25, 0.5, -0.75, -10.75, 0.5, -0.25, -10.75, 0.5, 0.5, -10.25, 0.5, 1, -7, 0.5, 2.75, -7.75, 0.5, -5, -10.25, 0.5, -4.75, -10.25, 0.5, -0.75, -10.25, 0.5, 4, -7.25, 0.5, 4, -7, 0.5, 2.75, -10.25, 0.5, 1, -1.75, 0.5, -1, -1.25, 0.5, -1.5, -6, 0.5, -5.25, -5, 0.5, 2.75, -4.75, 0.5, 3.25, -1.75, 0.5, 0.75, -1.75, 0.5, -1, -0.5, 2.5, -0.5, -0.5, 2.5, 0.5, 0.5, 2.5, 0.5, 0.5, 2.5, -0.5, -0.5, 0.5, -0.25, -0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, -0.5, 10.5, 0.5, 0.75, 13.5, 0.5, 0.5, 13.5, 0.5, -0.25, 11.25, 0.5, -0.25, 2, 0.5, 0, 10.5, 0.5, 0.75, 2, 0.5, 0, 1.5, 0.5, 1.25, 1.5, 0.5, 9.5, 10.5, 0.5, 9.5, -0.25, 0.5, 10, -0.25, 0.5, 12.5, 0.5, 0.5, 12.5, 0.5, 0.5, 10, 1.5, 0.5, 9.5, 1.5, 0.5, 1.25, 1, 0.5, 1.75, -0.75, 0.5, 9.5, -0.25, 0.5, 10, 0.5, 0.5, 10, 1.5, 0.5, 9.5, -4.75, 0.5, 4.75, -4.5, 0.5, 9.5, -0.75, 0.5, 9.5, -1, 0.5, 1.75, -1.75, 0.5, 0.75, -4.75, 0.5, 3.25, -1, 0.5, 1.75, -4.75, 0.5, 3.25, -4.75, 0.5, 4.75, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1, 0.5, 1.75, -7, 0.5, 5.25, -7.25, 0.5, 4, -10.25, 0.5, 4, -4.5, 0.5, 9.5, -4.75, 0.5, 4.75, -5, 0.5, 5.25, -4.5, 0.5, 9.5, -5, 0.5, 5.25, -7, 0.5, 5.25, -7, 0.5, 5.25, -10.25, 0.5, 4, -10.25, 0.5, 9.5, -4.5, 0.5, 9.5, 0.5, 0.5, 12.5, -0.25, 0.5, 12.5, -0.25, 0.5, 14.25, 0.5, 0.5, 14.25, 0, 0.5, 33.25, 10.5, 0.5, 33.25, 10.5, 0.5, 24, 1, 0.5, 14.75, -0.75, 0.5, 14.75, -10.25, 0.5, 24, 1, 0.5, 14.75, 0.5, 0.5, 14.25, -0.25, 0.5, 14.25, -0.75, 0.5, 14.75, -10.25, 0.5, 24, -10.25, 0.5, 33.25, 0, 0.5, 33.25, -0.75, 0.5, 14.75, -10.25, 0.5, 14.75, -10.25, 0.5, 24, 10.5, 0.5, 24, 10.5, 0.5, 14.75, 1, 0.5, 14.75 )
+polygons = [ PoolIntArray( 3, 2, 0 ), PoolIntArray( 0, 2, 1 ), PoolIntArray( 9, 8, 4 ), PoolIntArray( 4, 8, 5 ), PoolIntArray( 5, 8, 6 ), PoolIntArray( 6, 8, 7 ), PoolIntArray( 11, 10, 12 ), PoolIntArray( 12, 10, 13 ), PoolIntArray( 16, 15, 14 ), PoolIntArray( 19, 18, 17 ), PoolIntArray( 22, 21, 20 ), PoolIntArray( 26, 25, 23 ), PoolIntArray( 23, 25, 24 ), PoolIntArray( 29, 28, 27 ), PoolIntArray( 31, 30, 32 ), PoolIntArray( 32, 30, 33 ), PoolIntArray( 35, 34, 36 ), PoolIntArray( 36, 34, 37 ), PoolIntArray( 39, 38, 40 ), PoolIntArray( 40, 38, 41 ), PoolIntArray( 43, 42, 44 ), PoolIntArray( 44, 42, 47 ), PoolIntArray( 44, 47, 45 ), PoolIntArray( 45, 47, 46 ), PoolIntArray( 49, 48, 50 ), PoolIntArray( 50, 48, 51 ), PoolIntArray( 56, 55, 57 ), PoolIntArray( 57, 55, 54 ), PoolIntArray( 57, 54, 52 ), PoolIntArray( 52, 54, 53 ), PoolIntArray( 58, 60, 59 ), PoolIntArray( 63, 62, 61 ), PoolIntArray( 66, 65, 64 ), PoolIntArray( 69, 68, 67 ), PoolIntArray( 72, 71, 70 ), PoolIntArray( 74, 73, 75 ), PoolIntArray( 75, 73, 77 ), PoolIntArray( 75, 77, 76 ), PoolIntArray( 81, 80, 78 ), PoolIntArray( 78, 80, 79 ), PoolIntArray( 87, 86, 82 ), PoolIntArray( 82, 86, 85 ), PoolIntArray( 82, 85, 84 ), PoolIntArray( 82, 84, 83 ), PoolIntArray( 89, 88, 90 ), PoolIntArray( 90, 88, 91 ), PoolIntArray( 94, 93, 92 ), PoolIntArray( 97, 96, 95 ), PoolIntArray( 100, 99, 98 ), PoolIntArray( 104, 103, 101 ), PoolIntArray( 101, 103, 102 ), PoolIntArray( 106, 105, 107 ), PoolIntArray( 107, 105, 108 ), PoolIntArray( 108, 105, 109 ), PoolIntArray( 109, 105, 110 ), PoolIntArray( 112, 111, 113 ), PoolIntArray( 113, 111, 114 ), PoolIntArray( 114, 111, 115 ), PoolIntArray( 118, 117, 116 ), PoolIntArray( 120, 119, 121 ), PoolIntArray( 121, 119, 122 ), PoolIntArray( 123, 125, 124 ), PoolIntArray( 127, 126, 128 ), PoolIntArray( 128, 126, 129 ), PoolIntArray( 133, 132, 130 ), PoolIntArray( 130, 132, 131 ), PoolIntArray( 137, 136, 134 ), PoolIntArray( 134, 136, 135 ), PoolIntArray( 140, 139, 141 ), PoolIntArray( 141, 139, 138 ), PoolIntArray( 141, 138, 142 ), PoolIntArray( 144, 143, 145 ), PoolIntArray( 145, 143, 146 ), PoolIntArray( 146, 143, 147 ), PoolIntArray( 151, 150, 148 ), PoolIntArray( 148, 150, 149 ), PoolIntArray( 154, 153, 152 ), PoolIntArray( 156, 155, 157 ), PoolIntArray( 157, 155, 158 ), PoolIntArray( 161, 160, 159 ), PoolIntArray( 164, 163, 162 ), PoolIntArray( 166, 165, 167 ), PoolIntArray( 167, 165, 170 ), PoolIntArray( 167, 170, 168 ), PoolIntArray( 168, 170, 169 ), PoolIntArray( 173, 172, 171 ), PoolIntArray( 176, 175, 174 ), PoolIntArray( 179, 178, 177 ), PoolIntArray( 181, 180, 182 ), PoolIntArray( 182, 180, 183 ), PoolIntArray( 187, 186, 184 ), PoolIntArray( 184, 186, 185 ), PoolIntArray( 191, 190, 192 ), PoolIntArray( 192, 190, 189 ), PoolIntArray( 192, 189, 188 ), PoolIntArray( 192, 188, 193 ), PoolIntArray( 195, 194, 196 ), PoolIntArray( 196, 194, 197 ), PoolIntArray( 200, 199, 198 ), PoolIntArray( 203, 202, 201 ), PoolIntArray( 206, 205, 204 ) ]
 geometry_parsed_geometry_type = 1
 filter_ledge_spans = true
 
@@ -184,6 +186,9 @@ shape = SubResource( 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4 )
 time_to_complete_seconds = 1.0
 
+[node name="CrystalBall" parent="NavigationMeshInstance" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -6 )
+
 [node name="Camera3DMovePan" type="Spatial" parent="."]
 transform = Transform( -1, 1.42109e-14, -8.74227e-08, -7.57103e-08, 0.5, 0.866025, 4.37114e-08, 0.866025, -0.5, 0, 21, -12 )
 script = ExtResource( 9 )
@@ -194,6 +199,7 @@ east_action_name = "camera_pan_east"
 
 [node name="GameCameraDontMove" type="Camera" parent="Camera3DMovePan"]
 transform = Transform( 1, 0, -5.32907e-15, -3.55271e-15, 1, 0, 1.24345e-14, 0, 1, 0, 0, 0 )
+cull_mask = 524287
 current = true
 fov = 50.0
 __meta__ = {
@@ -300,8 +306,39 @@ shadow_contact = 0.667
 shadow_reverse_cull_face = true
 spot_range = 8.0
 
+[node name="OmniLight" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -12 )
+layers = 524288
+light_energy = 0.2
+omni_range = 7.775
+omni_attenuation = 2.92817
+
+[node name="OmniLight2" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3, 0 )
+layers = 524288
+light_energy = 0.2
+omni_range = 7.775
+omni_attenuation = 2.92817
+
+[node name="OmniLight3" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 12 )
+layers = 524288
+light_energy = 0.2
+omni_range = 7.775
+omni_attenuation = 2.92817
+
+[node name="OmniLight4" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 3, 0 )
+layers = 524288
+light_energy = 0.2
+omni_range = 7.775
+omni_attenuation = 2.92817
+
 [node name="DynamicParent" type="Spatial" parent="."]
 unique_name_in_owner = true
+
+[node name="CameraFeedHud" parent="." instance=ExtResource( 16 )]
+camera_feed_viewports_parent = NodePath("../CrystalBallCameras")
 
 [node name="Hud" parent="." instance=ExtResource( 3 )]
 
@@ -416,3 +453,49 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6244, 0, 7 )
 
 [node name="window_broken_matrix" parent="." instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10 )
+
+[node name="CrystalBallCameras" type="Spatial" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Viewport1" type="Viewport" parent="CrystalBallCameras"]
+size = Vector2( 320, 240 )
+handle_input_locally = false
+keep_3d_linear = true
+render_target_v_flip = true
+
+[node name="Camera1" type="Camera" parent="CrystalBallCameras/Viewport1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -10 )
+fov = 50.0
+
+[node name="Viewport2" type="Viewport" parent="CrystalBallCameras"]
+size = Vector2( 320, 240 )
+handle_input_locally = false
+keep_3d_linear = true
+render_target_v_flip = true
+
+[node name="Camera2" type="Camera" parent="CrystalBallCameras/Viewport2"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 1.5, 0 )
+fov = 50.0
+
+[node name="Viewport3" type="Viewport" parent="CrystalBallCameras"]
+size = Vector2( 320, 240 )
+handle_input_locally = false
+keep_3d_linear = true
+render_target_v_flip = true
+
+[node name="Camera3" type="Camera" parent="CrystalBallCameras/Viewport3"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.5, 10 )
+fov = 50.0
+
+[node name="Viewport4" type="Viewport" parent="CrystalBallCameras"]
+size = Vector2( 320, 240 )
+handle_input_locally = false
+keep_3d_linear = true
+render_target_v_flip = true
+
+[node name="Camera4" type="Camera" parent="CrystalBallCameras/Viewport4"]
+transform = Transform( 8.9407e-08, 0, 1, 0, 1, 0, -1, 0, 8.9407e-08, -11, 1.5, 0 )
+fov = 50.0

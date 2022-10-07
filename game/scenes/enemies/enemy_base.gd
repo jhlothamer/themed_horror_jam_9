@@ -6,7 +6,7 @@ signal enemy_clicked(enemy)
 
 export var horizontal_speed = 2.0
 export var disabled := false
-export var damage_amount := 5.0
+export var damage_amount := 5
 export var damage_interval := 2.0
 export var starting_health := 30
 
@@ -35,7 +35,7 @@ func collide(projectile: Projectile) -> void:
 	if current_health <= 0:
 		return
 	
-	current_health = max(0, current_health - projectile.damage)
+	current_health = int(max(0, current_health - projectile.damage))
 	_update_heath_bar()
 	if current_health <= 0:
 		_state_machine.change_state("Die")

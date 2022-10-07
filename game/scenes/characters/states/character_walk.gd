@@ -42,6 +42,8 @@ func _destroy_move_to_indicator() -> void:
 func _on_no_interactable_clicked(pos: Vector3) -> void:
 	if !host.is_selected():
 		return
+	_target_interactable_object = null
+	_interaction_helper = null
 	_calc_target_pos(pos)
 	_create_move_to_indicator(pos)
 	change_state(name)

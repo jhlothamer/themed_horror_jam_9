@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_crystal_ball_interaction_interrupt_jdymusic.mp3-f51c2a08a0d665e3415ffacab1bd14a4.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_crystal_ball_interaction_interrupt_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_crystal_ball_interaction_interrupt_jdymusic.mp3-f51c2a08a0d665e3415ffacab1bd14a4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
