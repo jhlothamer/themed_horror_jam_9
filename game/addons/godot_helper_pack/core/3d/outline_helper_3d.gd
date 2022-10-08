@@ -28,6 +28,7 @@ export (MouseButton) var button_index: int = BUTTON_LEFT
 export var mouse_over_color := Color.aquamarine
 export var outline_mesh_instance: NodePath
 export var constant_outline := false
+export var keep_selected_on_no_selectable_clicked := false
 
 onready var _parent:CollisionObject = get_parent()
 
@@ -77,7 +78,8 @@ func _ready():
 	_parent.connect("input_event", self, "_on_parent_input_event")
 	SignalMgr.register_publisher(self, "selected")
 	SignalMgr.register_subscriber(self, "selected")
-	SignalMgr.register_subscriber(self, "no_selectable_clicked")
+	if !keep_selected_on_no_selectable_clicked:
+		SignalMgr.register_subscriber(self, "no_selectable_clicked")
 
 
 func _on_parent_mouse_enter():

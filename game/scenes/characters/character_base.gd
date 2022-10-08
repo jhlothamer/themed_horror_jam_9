@@ -19,6 +19,7 @@ onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _state_machine: StateMachine = $StateMachine
 onready var _collision_shape: CollisionShape = $CollisionShape
 onready var _selected_sound: AudioStreamPlayer3D = $SelectedSound
+onready var _state_debug_label: Label3D = $StateDebugLabel3D
 
 var current_health := 100.0
 
@@ -64,3 +65,7 @@ func _update_heath_bar() -> void:
 func _on_OutlineHelper3D_selected(_helperref):
 	if !_selected_sound.is_playing():
 		_selected_sound.play()
+
+
+func _on_StateMachine_state_changed(_old_state, new_state):
+	_state_debug_label.text = new_state

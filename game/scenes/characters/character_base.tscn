@@ -10,7 +10,7 @@
 [ext_resource path="res://scenes/characters/states/character_interact.gd" type="Script" id=8]
 [ext_resource path="res://scenes/characters/states/character_die.gd" type="Script" id=9]
 [ext_resource path="res://addons/godot_helper_pack/core/audio/random_audio_stream_player_3d.gd" type="Script" id=10]
-[ext_resource path="res://scenes/characters/characte_slection_matrix.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/characters/character_selection_matrix.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/sounds/sfx_deny_go_back_jdymusic.mp3" type="AudioStream" id=12]
 [ext_resource path="res://assets/sounds/sfx_confirm_accept_jdymusic.mp3" type="AudioStream" id=13]
 
@@ -113,7 +113,9 @@ neighbor_dist = 5.0
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 4 )
-selected_indicator = NodePath("../characte_slection_matrix")
+selected_indicator = NodePath("../character_selection_matrix")
+constant_outline = true
+keep_selected_on_no_selectable_clicked = true
 
 [node name="HealthBar" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53445, 0 )
@@ -151,7 +153,7 @@ skeleton = NodePath("../..")
 [node name="DamagedRandomAudioStreamPlayer3D" type="Spatial" parent="."]
 script = ExtResource( 10 )
 
-[node name="characte_slection_matrix" parent="." instance=ExtResource( 11 )]
+[node name="character_selection_matrix" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 
 [node name="SelectedSound" type="AudioStreamPlayer3D" parent="."]
@@ -164,4 +166,19 @@ stream = ExtResource( 12 )
 unit_db = 24.0
 bus = "SoundFx"
 
+[node name="SelectionMarkerRemoteTransform" type="RemoteTransform" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+remote_path = NodePath("../character_selection_matrix")
+update_rotation = false
+
+[node name="StateDebugLabel3D" type="Label3D" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.13131, -0.656599 )
+visible = false
+cast_shadow = 0
+pixel_size = 0.04
+billboard = 1
+no_depth_test = true
+modulate = Color( 1, 0, 0, 1 )
+
+[connection signal="state_changed" from="StateMachine" to="." method="_on_StateMachine_state_changed"]
 [connection signal="selected" from="OutlineHelper3D" to="." method="_on_OutlineHelper3D_selected"]

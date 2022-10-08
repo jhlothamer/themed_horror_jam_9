@@ -2,11 +2,16 @@ extends Node
 class_name StateMachine, "state_machine.svg"
 
 
+signal state_changed(old_state, new_state)
+
+
 export var debug : bool
 export var disabled : bool
 export var host_node: NodePath
 
+
 var blackboard_data := {}
+
 
 var _host: Node
 var _required_state_node_methods: Array = [
@@ -42,6 +47,7 @@ func _ready():
 	else:
 		_print_dbg("starting state is %s" % _state_stack[0].name)
 		_state_stack[0].enter()
+		emit_signal("state_changed", "", _state_stack[0].name)
 
 	if found_problems:
 		assert(false)
@@ -73,29 +79,41 @@ func change_state(state_name) -> void:
 		
 	assert(has_node(state_name))
 	var new_state = get_node(state_name)
+	var old_state_name := ""
 	if !_state_stack.empty():
 		_state_stack[0] = new_state
 	else:
+		old_state_name = _state_stack[0].name
 		_state_stack.push_front(new_state)
 	_print_dbg("entering state " + new_state.name)
 	new_state.enter()
+	emit_signal("state_changed", old_state_name, state_name)
 
 
 func push_state(state_name) -> void:
 	assert(has_node(state_name))
+	var old_state_name := ""
+	if !_state_stack.empty():
+		old_state_name = _state_stack[0].name
 	var new_state = get_node(state_name)
 	_state_stack.push_front(new_state)
 	_print_dbg("entering state " + new_state.name)
 	new_state.enter()
+	emit_signal("state_changed", old_state_name, state_name)
+
 
 func pop_state() -> void:
 	assert(!_state_stack.empty())
+	var old_state_name:String = _state_stack[0].name
 	var state = _state_stack.pop_front()
 	state.exit()
+	var new_state_name := ""
 	if !_state_stack.empty():
 		_state_stack[0].reenter(state.name)
+		old_state_name = _state_stack[0].name
 	else:
 		_print_dbg("StateMachine: no states after pop: %s" % get_path())
+	emit_signal("state_changed", old_state_name, new_state_name)
 
 
 func _physics_process(delta) -> void:
