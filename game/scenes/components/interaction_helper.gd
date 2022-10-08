@@ -25,6 +25,7 @@ onready var _interaction_complete_sound: AudioStreamPlayer3D = get_node_or_null(
 
 var _interaction_progress_bar: InteractionProgressBar
 var _interactor_counter := 0
+var _interaction_in_progress := false
 
 
 func _ready():
@@ -52,6 +53,7 @@ func _on_clicked(_clicked_object) -> void:
 
 
 func start_interaction() -> void:
+	_interaction_in_progress = true
 	if _interaction_progress_bar:
 		_interaction_progress_bar.start()
 	_interactor_counter += 1
@@ -61,24 +63,37 @@ func start_interaction() -> void:
 	
 
 func stop_interaction() -> void:
-	_interactor_counter -= 1
-	if _interactor_counter <= 0:
-		if _interaction_progress_bar:
-			_interaction_progress_bar.stop()
+	_interactor_counter = int(max(0, _interactor_counter - 1))
+	
+	if _interactor_counter > 0 or !_interaction_in_progress:
+		return
+	
+	_interaction_in_progress = false
+	
+	if _interaction_progress_bar:
+		_interaction_progress_bar.stop()
+	
 	if _interaction_start_sound and _interaction_start_sound.is_playing():
 		_interaction_start_sound.stop()
-		if _interaction_interupt_sound and !_interaction_interupt_sound.is_playing():
-			_interaction_interupt_sound.play()
-			emit_signal("interaction_interrupted")
+	
+	if _interaction_interupt_sound and !_interaction_interupt_sound.is_playing():
+		_interaction_interupt_sound.play()
+	
+	emit_signal("interaction_interrupted")
 
 
 func _on_interaction_completed() -> void:
+	_interaction_in_progress = false
+	
 	if _interaction_start_sound and _interaction_start_sound.is_playing():
 		_interaction_start_sound.stop()
+	
 	if _interaction_complete_sound and !_interaction_complete_sound.is_playing():
 		_interaction_complete_sound.play()
 		if complete_after_complete_sound_finished:
 			yield(_interaction_complete_sound, "finished")
+	
 	emit_signal("interaction_completed", self, _parent)
+	
 	if _interaction_progress_bar:
 		_interaction_progress_bar.reset()
