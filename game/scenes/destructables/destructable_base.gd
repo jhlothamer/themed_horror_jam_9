@@ -29,12 +29,12 @@ func damage(amount: float) -> void:
 	_health_bar.value = max(0.0, _health_bar.value - amount)
 	_update_heath_bar()
 	if _health_bar.value <= 0.0:
-		_collision_shape.disabled = true
+		set_collision_layer_bit(GameConsts.PhysLayerBitIndex.DEFAULT, false)
+		set_collision_mask_bit(GameConsts.PhysLayerBitIndex.DEFAULT, false)
 		_on_destroid()
 		return
 	_on_damaged()
 	damaged_sound.play()
-
 
 
 func _update_heath_bar() -> void:
@@ -49,3 +49,12 @@ func _on_damaged() -> void:
 func _on_destroid() -> void:
 	pass
 
+
+
+func _on_HealthBar_completed():
+	_health_bar.visible = false
+
+
+func _on_HealthBar_progress_made(_new_value, _max_value):
+	set_collision_layer_bit(GameConsts.PhysLayerBitIndex.DEFAULT, true)
+	set_collision_mask_bit(GameConsts.PhysLayerBitIndex.DEFAULT, true)

@@ -49,6 +49,7 @@ size = Vector2( 1, 0.1 )
 
 [node name="DestructableBase" type="StaticBody"]
 collision_layer = 67
+collision_mask = 0
 script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -76,3 +77,6 @@ value = 100.0
 background_color = Color( 0, 0, 0, 1 )
 progress_color = Color( 0, 1, 0, 1 )
 reset_on_complete = false
+
+[connection signal="completed" from="HealthBar" to="." method="_on_HealthBar_completed"]
+[connection signal="progress_made" from="HealthBar" to="." method="_on_HealthBar_progress_made"]

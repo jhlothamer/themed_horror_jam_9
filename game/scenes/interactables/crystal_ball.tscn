@@ -1,16 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=1]
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/sfx_crystal_ball_interaction_interrupt_jdymusic.mp3" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/sfx_crystal_ball_interaction_complete_jdymusic.mp3" type="AudioStream" id=4]
 [ext_resource path="res://scenes/interactables/crystal_ball.gd" type="Script" id=5]
+[ext_resource path="res://assets/models/crystal_ball_matrix/crystal_ball_matrix.gltf" type="PackedScene" id=6]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 0.5
 
 [sub_resource type="CylinderMesh" id=2]
-top_radius = 0.1
+top_radius = 0.4
 bottom_radius = 0.5
 
 [sub_resource type="SphereMesh" id=3]
@@ -31,6 +32,7 @@ mesh = SubResource( 2 )
 
 [node name="BallMeshInstance" type="MeshInstance" parent="PedistalMeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+visible = false
 mesh = SubResource( 3 )
 
 [node name="InteractionHelper" type="Node" parent="."]
@@ -41,7 +43,7 @@ interaction_interupt_sound = NodePath("../InteruptInteractionSound")
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 1 )
-mesh_instance_to_outline = NodePath("../PedistalMeshInstance/BallMeshInstance")
+mesh_instances_to_outline = [ NodePath("../PedistalMeshInstance/BallMeshInstance"), NodePath("../PedistalMeshInstance"), NodePath("../crystal_ball_matrix/Sphere") ]
 select_on_click = false
 button_index = 2
 mouse_over_color = Color( 1, 0.631373, 0, 1 )
@@ -56,5 +58,10 @@ stream = ExtResource( 3 )
 unit_db = 12.0
 bus = "SoundFx"
 
+[node name="crystal_ball_matrix" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35894, 0 )
+
 [connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
 [connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
+
+[editable path="crystal_ball_matrix"]

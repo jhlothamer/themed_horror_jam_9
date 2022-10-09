@@ -80,7 +80,7 @@ progress_color = Color( 1, 0.752941, 0.0117647, 1 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 1 )
-mesh_instance_to_outline = NodePath("../CollisionShape/MeshInstance")
+mesh_instances_to_outline = [ NodePath("../CollisionShape/MeshInstance") ]
 select_on_click = false
 button_index = 2
 mouse_over_color = Color( 1, 0.631373, 0, 1 )

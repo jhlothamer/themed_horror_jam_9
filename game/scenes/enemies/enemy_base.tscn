@@ -91,7 +91,7 @@ size = Vector2( 1, 0.1 )
 
 [node name="EnemyBase" type="KinematicBody"]
 collision_layer = 35
-collision_mask = 35
+collision_mask = 49
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -157,7 +157,6 @@ shape = SubResource( 23 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 5 )
-mesh_instance_to_outline = NodePath("../MeshInstance")
 select_on_click = false
 button_index = 2
 mouse_over_color = Color( 1, 0.631373, 0, 1 )

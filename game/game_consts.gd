@@ -2,14 +2,24 @@ class_name GameConsts
 extends Object
 
 
-enum PhysLayer {
-	DEFAULT = 1,
+enum PhysLayerMask {
+	DEFAULT = 1 << 0,
 	INTERACTABLE = 1 << 1,
 	INTERACTOR = 1 << 2,
 	SELECTABLE = 1 << 3,
 	CHARACTER = 1 << 4,
 	ENEMY = 1 << 5,
 	DESTRUCTABLE = 1 << 6,
+}
+
+enum PhysLayerBitIndex {
+	DEFAULT = 0,
+	INTERACTABLE = 1,
+	INTERACTOR = 2,
+	SELECTABLE = 3,
+	CHARACTER = 4,
+	ENEMY = 5,
+	DESTRUCTABLE = 6,
 }
 
 

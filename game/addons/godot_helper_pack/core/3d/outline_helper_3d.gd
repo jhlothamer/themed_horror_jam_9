@@ -21,7 +21,7 @@ enum MouseButton {
 }
 
 
-export var mesh_instance_to_outline: NodePath
+export (Array, NodePath) var mesh_instances_to_outline := []
 export var selected_indicator: NodePath
 export var select_on_click := true
 export (MouseButton) var button_index: int = BUTTON_LEFT
@@ -52,11 +52,7 @@ func _ready():
 			return
 	
 	if !_outline_mesh_instance:
-		var mi: MeshInstance = get_node(mesh_instance_to_outline)
-		if !mi:
-			printerr("bad mesh_instance_to_outline node path")
-			return
-		
+
 		_mesh_instance_outline_material = OUTLINE_SHADER_MATERIAL.duplicate(true)
 		if constant_outline:
 			_mesh_instance_outline_material.set_shader_param("outline_color", Color.white)
@@ -64,7 +60,14 @@ func _ready():
 		else:
 			_mesh_instance_outline_material.set_shader_param("outline_color", mouse_over_color)
 			_mesh_instance_outline_material.set_shader_param("outline_width", .0)
-		mi.material_overlay = _mesh_instance_outline_material
+
+		for i in mesh_instances_to_outline:
+			var mi: MeshInstance = get_node(i)
+			if !mi:
+				printerr("bad mesh_instance_to_outline node path")
+				return
+			
+			mi.material_overlay = _mesh_instance_outline_material
 
 	if select_on_click:
 		_selected_indicator = get_node(selected_indicator)

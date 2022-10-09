@@ -56,7 +56,7 @@ __meta__ = {
 
 [node name="EnemySpawnMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 13 )
-spawn_positions = [ NodePath("../../SpawnPositions/Position3D3"), NodePath("../../SpawnPositions/Position3D"), NodePath("../../SpawnPositions/Position3D2"), NodePath("../../SpawnPositions/Position3D4") ]
+spawn_positions = [ NodePath("../../SpawnPositions/Position3D3"), NodePath("../../SpawnPositions/Position3D"), NodePath("../../SpawnPositions/Position3D2") ]
 
 [node name="CharacterMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 8 )
@@ -496,12 +496,16 @@ fov = 50.0
 
 [node name="Door" parent="Destructables" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+collision_mask = 1
 
 [node name="Door2" parent="Destructables" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+collision_mask = 1
 
 [node name="Door3" parent="Destructables" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 0, 0 )
+collision_mask = 1
 
 [node name="Door4" parent="Destructables" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, 0 )
+collision_mask = 1

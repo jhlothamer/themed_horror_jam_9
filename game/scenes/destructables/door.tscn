@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/destructables/destructable_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/destructables/door.gd" type="Script" id=2]
+[ext_resource path="res://assets/models/tests/test_broken_door.gltf" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 2, 0.2 )
@@ -62,13 +63,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 shape = SubResource( 1 )
 
 [node name="OutlineHelper3D" parent="." index="1"]
-mesh_instance_to_outline = NodePath("../MeshInstance")
+mesh_instances_to_outline = [ NodePath("../WholeMeshInstance"), NodePath("../test_broken_door/BrokenDoor") ]
 
 [node name="HealthBar" parent="." index="4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.18648, 0 )
 mesh = SubResource( 5 )
 value_per_second_regain = 4.0
 
-[node name="MeshInstance" type="MeshInstance" parent="." index="5"]
+[node name="test_broken_door" parent="." index="5" instance=ExtResource( 3 )]
+visible = false
+
+[node name="WholeMeshInstance" type="MeshInstance" parent="." index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 mesh = SubResource( 3 )
+
+[editable path="test_broken_door"]

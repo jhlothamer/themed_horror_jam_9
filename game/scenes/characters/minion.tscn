@@ -80,7 +80,7 @@ death_sound_node_path = NodePath("DeathSound")
 allowed_interactable_types = [ "destructable" ]
 
 [node name="OutlineHelper3D" parent="." index="3"]
-mesh_instance_to_outline = NodePath("../TempMinionMeshInstance")
+mesh_instances_to_outline = [ NodePath("../TempMinionMeshInstance") ]
 
 [node name="HealthBar" parent="." index="4"]
 mesh = SubResource( 19 )

@@ -48,7 +48,6 @@ func _on_character_body_exited(body: CollisionObject) -> void:
 		_target_destructable = null
 		target_exited = true
 	if target_exited and !_target_character and !_target_destructable and state_machine.is_current_state(name):
-		print("Switch to walk - body exited")
 		change_state("Walk")
 
 
@@ -60,7 +59,6 @@ func _do_damage(target) -> void:
 	target.damage(enemy.damage_amount)
 	emit_signal("attack_made")
 	if target.is_dead():
-		print("Switch to walk - target dead")
 		target.is_dead()
 		change_state("Walk")
 
