@@ -9,6 +9,7 @@ enum PhysLayer {
 	SELECTABLE = 1 << 3,
 	CHARACTER = 1 << 4,
 	ENEMY = 1 << 5,
+	DESTRUCTABLE = 1 << 6,
 }
 
 

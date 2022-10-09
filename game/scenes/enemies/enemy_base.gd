@@ -9,11 +9,12 @@ export var disabled := false
 export var damage_amount := 5
 export var damage_interval := 2.0
 export var starting_health := 30
+export var debug_state := false
 
 onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _state_machine: StateMachine = $StateMachine
 onready var _collision_shape:CollisionShape = $CollisionShape
-
+onready var _state_debug_label: Label3D = $StateDebugLabel3D
 
 var current_health := 100
 
@@ -23,6 +24,7 @@ func _ready():
 	_health_bar.max_value = starting_health
 	_health_bar.value = starting_health
 	current_health = starting_health
+	_state_debug_label.visible = debug_state
 
 
 
@@ -51,13 +53,19 @@ func _update_heath_bar() -> void:
 	_health_bar.value = current_health
 	_health_bar.visible = current_health < starting_health
 
+
 func _disable_collisions() -> void:
 	_collision_shape.disabled = true
 
+
 func _on_damage():
 	pass
+
 
 func _death():
 	pass
 
 
+func _on_StateMachine_state_changed(_old_state, new_state):
+	_state_debug_label.modulate = Color.from_hsv(randf(), 1.0 ,1.0, 1.0)
+	_state_debug_label.text = new_state

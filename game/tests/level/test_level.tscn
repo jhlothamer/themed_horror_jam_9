@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/interactables/cauldron.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/characters/minion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://tests/level/test_level.gd" type="Script" id=6]
+[ext_resource path="res://scenes/destructables/door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=8]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/camera/camera3d_move_pan.gd" type="Script" id=9]
 [ext_resource path="res://assets/sounds/sfx_atmospheric_noises_loop_jdymusic.mp3" type="AudioStream" id=10]
@@ -13,7 +14,6 @@
 [ext_resource path="res://tests/level/testing_hud.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/managers/enemy_spawn_mgr.gd" type="Script" id=13]
 [ext_resource path="res://assets/models/floor_matrix/floor_matrix.gltf" type="PackedScene" id=14]
-[ext_resource path="res://assets/models/broken_window_matrix/window_broken_matrix.gltf" type="PackedScene" id=15]
 [ext_resource path="res://scenes/ui/camera_feed_hud.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/interactables/crystal_ball.tscn" type="PackedScene" id=17]
 
@@ -36,7 +36,7 @@ extents = Vector3( 3, 1, 1 )
 [sub_resource type="Environment" id=2]
 background_mode = 1
 ambient_light_color = Color( 0.133333, 0.133333, 0.133333, 1 )
-ambient_light_energy = 0.5
+ambient_light_energy = 3.7
 fog_color = Color( 0.384314, 0.411765, 0.439216, 1 )
 fog_depth_curve = 1.6245
 fog_height_enabled = true
@@ -56,7 +56,7 @@ __meta__ = {
 
 [node name="EnemySpawnMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 13 )
-spawn_positions = [ NodePath("../../SpawnPositions/Position3D"), NodePath("../../SpawnPositions/Position3D2"), NodePath("../../SpawnPositions/Position3D3"), NodePath("../../SpawnPositions/Position3D4") ]
+spawn_positions = [ NodePath("../../SpawnPositions/Position3D3"), NodePath("../../SpawnPositions/Position3D"), NodePath("../../SpawnPositions/Position3D2"), NodePath("../../SpawnPositions/Position3D4") ]
 
 [node name="CharacterMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 8 )
@@ -446,9 +446,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09302, 0, 7 )
 [node name="floor_matrix21" parent="FloorPanels" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6244, 0, 7 )
 
-[node name="window_broken_matrix" parent="." instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10 )
-
 [node name="CrystalBallCameras" type="Spatial" parent="."]
 __meta__ = {
 "_edit_group_": true,
@@ -494,3 +491,17 @@ render_target_v_flip = true
 [node name="Camera4" type="Camera" parent="CrystalBallCameras/Viewport4"]
 transform = Transform( 8.9407e-08, 0, 1, 0, 1, 0, -1, 0, 8.9407e-08, -11, 1.5, 0 )
 fov = 50.0
+
+[node name="Destructables" type="Spatial" parent="."]
+
+[node name="Door" parent="Destructables" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+
+[node name="Door2" parent="Destructables" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+
+[node name="Door3" parent="Destructables" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 0, 0 )
+
+[node name="Door4" parent="Destructables" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, 0 )

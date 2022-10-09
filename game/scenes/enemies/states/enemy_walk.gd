@@ -49,7 +49,6 @@ func enter() -> void:
 
 
 func physics_process(delta):
-	
 	_refresh_timer += delta
 	if _refresh_timer > character_position_refresh_time and !enemy.disabled:
 		_recalc_char_target()

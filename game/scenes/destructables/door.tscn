@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/destructables/destructable_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/destructables/door.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 2, 0.2 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type spatial;
+
+render_mode unshaded, shadows_disabled;
+
+//uniform vec4 border_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 progress_color : hint_color = vec4(.0, 1., .0, 1.);
+uniform float progress_value : hint_range(0.0, 1.0, 0.02) = .5;
+
+void vertex()
+{
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+}
+
+void fragment()
+{
+	vec2 border = vec2(0.01, 0.1);
+
+	vec2 mask2 = step(border, UV) * step(UV, 1.0-border);
+    float mask = mask2.x*mask2.y;
+
+	//float progress = .5;
+    float blend = ((UV.x - progress_value) <= 0.0 ? 1.0 : 0.0) * mask;
+    vec4 fragColor = progress_color*blend + background_color*(1.0-blend);
+	ALBEDO = fragColor.rgb;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 2 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/progress_color = Color( 0, 1, 0, 1 )
+shader_param/progress_value = 1.0
+
+[sub_resource type="QuadMesh" id=5]
+resource_local_to_scene = true
+material = SubResource( 7 )
+size = Vector2( 1, 0.1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.639216, 0.301961, 0, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 6 )
+size = Vector3( 2, 4, 0.4 )
+
+[node name="Door" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+starting_health = 20
+
+[node name="CollisionShape" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+shape = SubResource( 1 )
+
+[node name="OutlineHelper3D" parent="." index="1"]
+mesh_instance_to_outline = NodePath("../MeshInstance")
+
+[node name="HealthBar" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.18648, 0 )
+mesh = SubResource( 5 )
+value_per_second_regain = 4.0
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+mesh = SubResource( 3 )
