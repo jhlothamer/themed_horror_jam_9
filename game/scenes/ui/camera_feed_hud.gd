@@ -7,7 +7,7 @@ export var camera_feed_viewports_parent: NodePath
 onready var _camera_feed_viewport_texture: ViewportTexture = $MarginContainer/CameraFeedTextureRect.texture
 onready var _ui_container: Control = $MarginContainer
 onready var _number_label: Label = $MarginContainer/CameraFeedTextureRect/NumberLabel
-
+onready var _feed_change_sound: AudioStreamPlayer = $FeedChangeSound
 
 var _camera_feed_viewports := []
 var _camera_feed_index := 0
@@ -36,6 +36,7 @@ func _change_camera(delta: int) -> void:
 	_camera_feed_index = wrapi(_camera_feed_index + delta, 0, _camera_feed_viewports.size())
 	_camera_feed_viewport_texture.viewport_path = _camera_feed_viewports[_camera_feed_index]
 	_number_label.text = str(_camera_feed_index + 1)
+	_feed_change_sound.play()
 
 
 func _on_crystal_ball_status_changed(active: bool) -> void:

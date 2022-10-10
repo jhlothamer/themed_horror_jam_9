@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_crystal_ball_camera_view_change_jdymusic.mp3-8bc06da1649c8794121d4997375a7043.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_crystal_ball_camera_view_change_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_crystal_ball_camera_view_change_jdymusic.mp3-8bc06da1649c8794121d4997375a7043.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
