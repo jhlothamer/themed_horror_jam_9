@@ -104,6 +104,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/managers/enemy_spawn_mgr.gd"
 }, {
+"base": "Node",
+"class": "EnemyWaveMgr",
+"language": "GDScript",
+"path": "res://scenes/managers/enemy_wave_mgr.gd"
+}, {
 "base": "Object",
 "class": "EnumUtil",
 "language": "GDScript",
@@ -359,6 +364,7 @@ _global_script_class_icons={
 "EnemeyBaseState": "",
 "Enemy": "",
 "EnemySpawnMgr": "",
+"EnemyWaveMgr": "",
 "EnumUtil": "",
 "FileUtil": "",
 "GameConsts": "",
