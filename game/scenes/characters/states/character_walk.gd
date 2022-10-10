@@ -52,11 +52,19 @@ func _on_no_interactable_clicked(pos: Vector3) -> void:
 func _on_interactable_clicked(helper: InteractionHelper, clicked_object: CollisionObject):
 	if !character.is_selected():
 		return
+
 	if helper.interactable_type != "":
 		if !character.allowed_interactable_types.has(helper.interactable_type):
 			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
 				_deny_interaction_sound.play()
 			return
+
+	if helper.required_resource_type != "":
+		if !character.has_required_resource_amount(helper.required_resource_type, helper.required_resource_amount):
+			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
+				_deny_interaction_sound.play()
+			return
+
 	_calc_target_pos(clicked_object.global_transform.origin)
 	_target_interactable_object = clicked_object
 	_interaction_helper = helper

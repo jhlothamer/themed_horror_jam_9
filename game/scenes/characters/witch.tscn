@@ -90,7 +90,6 @@ height = 0.5
 [node name="Witch" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
 allowed_interactable_types = [ "mana" ]
-mana = 0
 
 [node name="Shoot" type="Node" parent="StateMachine" index="4"]
 script = ExtResource( 6 )

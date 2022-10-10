@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/shape/collision_shape_ex.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/components/interaction_progress_bar_3d.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/interactables/mana.gd" type="Script" id=4]
+[ext_resource path="res://scenes/interactables/mana_pool.gd" type="Script" id=4]
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=5]
 [ext_resource path="res://assets/sounds/sfx_manapool_interaction_start_loop_jdymusic.mp3" type="AudioStream" id=6]
 [ext_resource path="res://assets/sounds/sfx_manapool_interaction_complete_jdy.mp3" type="AudioStream" id=7]
@@ -74,7 +74,9 @@ mesh = SubResource( 6 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24426, 0 )
+visible = false
 mesh = SubResource( 4 )
+value = 0.0
 max_value = 30.0
 progress_color = Color( 1, 0.752941, 0.0117647, 1 )
 

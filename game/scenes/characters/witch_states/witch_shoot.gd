@@ -20,11 +20,11 @@ func _on_enemy_clicked(enemy: CollisionObject) -> void:
 	if !character.is_selected():
 		return
 	var witch: Witch = character
-	if witch.mana < Projectile.MANA_USED:
+	if !witch.has_required_resource_amount(GameConsts.RESOURCE_MANA, Projectile.MANA_USED):
 		if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
 			_deny_interaction_sound.play()
 		return
-	witch.mana -= Projectile.MANA_USED
+	witch.decrease_resource_amount(GameConsts.RESOURCE_MANA, Projectile.MANA_USED)
 	_target_enemy = enemy
 	change_state(name)
 

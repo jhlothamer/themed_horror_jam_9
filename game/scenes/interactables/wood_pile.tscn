@@ -1,12 +1,19 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
-[ext_resource path="res://scenes/destructables/destructable_base.gd" type="Script" id=4]
-[ext_resource path="res://addons/godot_helper_pack/core/audio/random_audio_stream_player_3d.gd" type="Script" id=5]
-[ext_resource path="res://scenes/ui/components/interaction_progress_bar_3d.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/ui/components/interaction_progress_bar_3d.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/interactables/wood_pile.gd" type="Script" id=4]
 
 [sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.528853, 0.196899, 1.50369 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.851562, 0.49983, 0, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+size = Vector3( 0.5, 0.2, 3 )
 
 [sub_resource type="Shader" id=9]
 code = "shader_type spatial;
@@ -36,28 +43,50 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id=10]
 render_priority = 5
 shader = SubResource( 9 )
-shader_param/background_color = Color( 0, 0, 0, 1 )
-shader_param/progress_color = Color( 0, 1, 0, 1 )
-shader_param/progress_value = 1.0
+shader_param/background_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+shader_param/progress_color = Color( 1, 0.752941, 0.0117647, 1 )
+shader_param/progress_value = 0.0
 
-[sub_resource type="QuadMesh" id=11]
+[sub_resource type="QuadMesh" id=6]
 resource_local_to_scene = true
-material = SubResource( 12 )
-size = Vector2( 1, 0.1 )
+material = SubResource( 10 )
+size = Vector2( 2, 0.2 )
 
-[node name="DestructableBase" type="StaticBody"]
-collision_layer = 67
-collision_mask = 0
+[node name="WoodPile" type="StaticBody"]
+collision_layer = 3
 script = ExtResource( 4 )
+time_to_complete_seconds = 5.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.201699, 0 )
 shape = SubResource( 1 )
+
+[node name="Plank1" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.263061, 0.100733, 0 )
+mesh = SubResource( 3 )
+
+[node name="Plank2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.269239, 0.100733, 0 )
+mesh = SubResource( 3 )
+
+[node name="Plank3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.307424, 0 )
+mesh = SubResource( 3 )
+
+[node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401977, 0 )
+visible = false
+mesh = SubResource( 6 )
+value = 0.0
+max_value = 30.0
+progress_color = Color( 1, 0.752941, 0.0117647, 1 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 2 )
+mesh_instances_to_outline = [ NodePath("../Plank1"), NodePath("../Plank2"), NodePath("../Plank3") ]
 select_on_click = false
 button_index = 2
 mouse_over_color = Color( 1, 0.631373, 0, 1 )
@@ -65,25 +94,10 @@ mouse_over_color = Color( 1, 0.631373, 0, 1 )
 [node name="InteractionHelper" type="Node" parent="."]
 script = ExtResource( 1 )
 outline_helper = NodePath("../OutlineHelper3D")
-interaction_progress_bar = NodePath("../HealthBar")
-interactable_type = "destructable"
+interaction_progress_bar = NodePath("../InteractionProgressBar3d")
+interactable_type = "wood_pile"
 complete_after_complete_sound_finished = false
-required_resource_type = "wood"
-required_resource_amount = 100
-
-[node name="DamagedRandomAudioStreamPlayer3D" type="Spatial" parent="."]
-script = ExtResource( 5 )
-
-[node name="HealthBar" parent="." instance=ExtResource( 6 )]
-visible = false
-mesh = SubResource( 11 )
-value = 100.0
-background_color = Color( 0, 0, 0, 1 )
-progress_color = Color( 0, 1, 0, 1 )
-reset_on_complete = false
 
 [connection signal="interaction_completed" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_completed"]
 [connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
 [connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
-[connection signal="completed" from="HealthBar" to="." method="_on_HealthBar_completed"]
-[connection signal="progress_made" from="HealthBar" to="." method="_on_HealthBar_progress_made"]
