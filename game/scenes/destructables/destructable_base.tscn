@@ -11,9 +11,8 @@
 [sub_resource type="Shader" id=9]
 code = "shader_type spatial;
 
-render_mode unshaded, shadows_disabled;
+render_mode unshaded, shadows_disabled, depth_test_disable;
 
-//uniform vec4 border_color : hint_color = vec4(.0, .0, .0, 1.);
 uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
 uniform vec4 progress_color : hint_color = vec4(.0, 1., .0, 1.);
 uniform float progress_value : hint_range(0.0, 1.0, 0.02) = .5;
@@ -30,6 +29,7 @@ void fragment()
 	vec2 mask2 = step(border, UV) * step(UV, 1.0-border);
     float mask = mask2.x*mask2.y;
 
+	//float progress = .5;
     float blend = ((UV.x - progress_value) <= 0.0 ? 1.0 : 0.0) * mask;
     vec4 fragColor = progress_color*blend + background_color*(1.0-blend);
 	ALBEDO = fragColor.rgb;
@@ -37,6 +37,7 @@ void fragment()
 }"
 
 [sub_resource type="ShaderMaterial" id=12]
+render_priority = 5
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 shader_param/progress_color = Color( 0, 1, 0, 1 )
@@ -72,6 +73,7 @@ complete_after_complete_sound_finished = false
 script = ExtResource( 5 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 6 )]
+visible = false
 mesh = SubResource( 11 )
 value = 100.0
 background_color = Color( 0, 0, 0, 1 )

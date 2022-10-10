@@ -38,8 +38,7 @@ func damage(amount: float) -> void:
 
 
 func _update_heath_bar() -> void:
-	var vis = _health_bar.value < starting_health
-	_health_bar.visible = vis
+	_health_bar.visible = _health_bar.value < starting_health
 
 
 func _on_damaged() -> void:
