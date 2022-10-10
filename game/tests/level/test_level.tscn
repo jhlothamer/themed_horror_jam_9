@@ -92,7 +92,7 @@ height = 10.0
 depth = 20.0
 
 [node name="CSGBox7" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 3, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1, 0 )
 operation = 2
 width = 22.0
 height = 6.0
@@ -106,7 +106,7 @@ height = 6.0
 depth = 20.0
 
 [node name="CSGBox9" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 3, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1, 0 )
 operation = 2
 width = 22.0
 height = 6.0
@@ -184,7 +184,7 @@ shape = SubResource( 5 )
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 12 )
 shape = SubResource( 5 )
 
-[node name="Mana" parent="NavigationMeshInstance" instance=ExtResource( 11 )]
+[node name="ManaPool" parent="NavigationMeshInstance" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4 )
 time_to_complete_seconds = 1.0
 
@@ -462,7 +462,7 @@ keep_3d_linear = true
 render_target_v_flip = true
 
 [node name="Camera1" type="Camera" parent="CrystalBallCameras/Viewport1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -10.4903 )
 fov = 50.0
 
 [node name="Viewport2" type="Viewport" parent="CrystalBallCameras"]
@@ -472,7 +472,7 @@ keep_3d_linear = true
 render_target_v_flip = true
 
 [node name="Camera2" type="Camera" parent="CrystalBallCameras/Viewport2"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 1.5, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.5373, 1.5, 0 )
 fov = 50.0
 
 [node name="Viewport3" type="Viewport" parent="CrystalBallCameras"]
@@ -482,7 +482,7 @@ keep_3d_linear = true
 render_target_v_flip = true
 
 [node name="Camera3" type="Camera" parent="CrystalBallCameras/Viewport3"]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.5, 10 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.5, 10.3829 )
 fov = 50.0
 
 [node name="Viewport4" type="Viewport" parent="CrystalBallCameras"]
@@ -492,7 +492,7 @@ keep_3d_linear = true
 render_target_v_flip = true
 
 [node name="Camera4" type="Camera" parent="CrystalBallCameras/Viewport4"]
-transform = Transform( 8.9407e-08, 0, 1, 0, 1, 0, -1, 0, 8.9407e-08, -11, 1.5, 0 )
+transform = Transform( 8.9407e-08, 0, 1, 0, 1, 0, -1, 0, 8.9407e-08, -11.5373, 1.5, 0 )
 fov = 50.0
 
 [node name="Destructables" type="Spatial" parent="."]

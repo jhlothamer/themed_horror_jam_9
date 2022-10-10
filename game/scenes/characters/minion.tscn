@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/characters/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sounds/sfx_goblin_damage_taken1_jdymusic.mp3" type="AudioStream" id=2]
@@ -46,15 +46,6 @@ resource_local_to_scene = true
 material = SubResource( 25 )
 size = Vector2( 1, 0.1 )
 
-[sub_resource type="SpatialMaterial" id=20]
-resource_local_to_scene = true
-albedo_color = Color( 0.623529, 0.054902, 0.854902, 1 )
-
-[sub_resource type="CapsuleMesh" id=21]
-resource_local_to_scene = true
-material = SubResource( 20 )
-radius = 0.5
-
 [sub_resource type="SpatialMaterial" id=5]
 resource_local_to_scene = true
 albedo_color = Color( 0, 0.231373, 0.388235, 1 )
@@ -86,8 +77,15 @@ mesh_instances_to_outline = [ NodePath("../TempMinionMeshInstance") ]
 [node name="HealthBar" parent="." index="4"]
 mesh = SubResource( 19 )
 
-[node name="MeshInstance" parent="." index="6"]
-mesh = SubResource( 21 )
+[node name="Damaged1" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="0"]
+stream = ExtResource( 2 )
+unit_db = 12.0
+bus = "SoundFx"
+
+[node name="Damaged2" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="1"]
+stream = ExtResource( 3 )
+unit_db = 12.0
+bus = "SoundFx"
 
 [node name="TempMinionMeshInstance" type="MeshInstance" parent="." index="7"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
@@ -113,12 +111,8 @@ stream = ExtResource( 4 )
 unit_db = 12.0
 bus = "SoundFx"
 
-[node name="Damaged1" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="0"]
-stream = ExtResource( 2 )
-unit_db = 12.0
-bus = "SoundFx"
+[node name="character_selection_matrix" parent="." index="12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
-[node name="Damaged2" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="1"]
-stream = ExtResource( 3 )
-unit_db = 12.0
-bus = "SoundFx"
+[node name="SelectionMarkerRemoteTransform" parent="." index="13"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
