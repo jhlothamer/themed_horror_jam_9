@@ -11,6 +11,10 @@ onready var damaged_sound:RandomAudioStreamPlayer3D = $DamagedRandomAudioStreamP
 
 onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _collision_shape: CollisionShape = $CollisionShape
+onready var _interaction_helper: InteractionHelper = $InteractionHelper
+
+
+var _current_interactor: Character
 
 
 func _ready():
@@ -57,3 +61,22 @@ func _on_HealthBar_completed():
 func _on_HealthBar_progress_made(_new_value, _max_value):
 	set_collision_layer_bit(GameConsts.PhysLayerBitIndex.DEFAULT, true)
 	set_collision_mask_bit(GameConsts.PhysLayerBitIndex.DEFAULT, true)
+
+
+func _on_InteractionHelper_interaction_completed(_helperref, _obj):
+	if _current_interactor and _interaction_helper.required_resource_type != "":
+		_current_interactor.decrease_resource_amount(_interaction_helper.required_resource_type, _interaction_helper.required_resource_amount)
+		_current_interactor = null
+
+
+func _on_InteractionHelper_interaction_started(interactor):
+	if !_current_interactor:
+		_current_interactor = interactor
+
+
+func _on_InteractionHelper_interaction_interrupted(interactor):
+	if _current_interactor == interactor:
+		_current_interactor = null
+
+
+

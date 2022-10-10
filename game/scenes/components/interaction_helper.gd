@@ -4,8 +4,8 @@ extends Node
 
 signal interactable_clicked(helperref ,obj)
 signal interaction_completed(helperref, obj)
-signal interaction_started()
-signal interaction_interrupted()
+signal interaction_started(interactor)
+signal interaction_interrupted(interactor)
 
 
 export var outline_helper: NodePath
@@ -15,6 +15,8 @@ export var interaction_start_sound: NodePath
 export var interaction_interupt_sound: NodePath
 export var interaction_complete_sound: NodePath
 export var complete_after_complete_sound_finished := true
+export var required_resource_type := ""
+export (int, 1, 10000) var required_resource_amount := 1
 
 
 onready var _parent: CollisionObject = get_parent()
@@ -52,17 +54,17 @@ func _on_clicked(_clicked_object) -> void:
 	emit_signal("interactable_clicked", self, _parent)
 
 
-func start_interaction() -> void:
+func start_interaction(interactor) -> void:
 	_interaction_in_progress = true
 	if _interaction_progress_bar:
 		_interaction_progress_bar.start()
 	_interactor_counter += 1
 	if _interactor_counter == 1 and _interaction_start_sound and !_interaction_start_sound.is_playing():
 		_interaction_start_sound.play()
-		emit_signal("interaction_started")
+	emit_signal("interaction_started", interactor)
 	
 
-func stop_interaction() -> void:
+func stop_interaction(interactor) -> void:
 	_interactor_counter = int(max(0, _interactor_counter - 1))
 	
 	if _interactor_counter > 0 or !_interaction_in_progress:
@@ -79,7 +81,7 @@ func stop_interaction() -> void:
 	if _interaction_interupt_sound and !_interaction_interupt_sound.is_playing():
 		_interaction_interupt_sound.play()
 	
-	emit_signal("interaction_interrupted")
+	emit_signal("interaction_interrupted", interactor)
 
 
 func _on_interaction_completed() -> void:

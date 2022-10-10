@@ -24,6 +24,7 @@ onready var _state_debug_label: Label3D = $StateDebugLabel3D
 
 var current_health := 100.0
 
+var resources := {}
 
 func _ready():
 	var char_mgr: CharacterMgr = ServiceMgr.get_service(CharacterMgr)
@@ -71,3 +72,21 @@ func _on_OutlineHelper3D_selected(_helperref):
 
 func _on_StateMachine_state_changed(_old_state, new_state):
 	_state_debug_label.text = new_state
+
+
+func set_resource_amount(resource_name: String, resource_amount: int) -> void:
+	resources[resource_name] = resource_amount
+
+
+func has_required_resource_amount(resource_name: String, resource_amount: int) -> bool:
+	if resources.has(resource_name):
+		return resources[resource_name] >= resource_amount
+	return false
+
+
+func decrease_resource_amount(resource_name: String, resource_amount: int) -> void:
+	if !resources.has(resource_name):
+		return
+	resources[resource_name] = max(0, resources[resource_name] - resource_amount)
+
+

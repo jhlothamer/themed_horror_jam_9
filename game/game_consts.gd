@@ -25,3 +25,5 @@ enum PhysLayerBitIndex {
 
 const SCENE_MOVE_TO_INDICATOR = preload("res://scenes/ui/components/move_to_indicator.tscn")
 
+const RESOURCE_MANA = "mana"
+const RESOURCE_WOOD = "wood"

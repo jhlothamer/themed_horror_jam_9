@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/images/prototyping/grey_box_256x256.png" type="Texture" id=1]
 [ext_resource path="res://scenes/characters/witch.tscn" type="PackedScene" id=2]
@@ -10,10 +10,11 @@
 [ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=8]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/camera/camera3d_move_pan.gd" type="Script" id=9]
 [ext_resource path="res://assets/sounds/sfx_atmospheric_noises_loop_jdymusic.mp3" type="AudioStream" id=10]
-[ext_resource path="res://scenes/interactables/mana.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/interactables/mana_pool.tscn" type="PackedScene" id=11]
 [ext_resource path="res://tests/level/testing_hud.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/managers/enemy_spawn_mgr.gd" type="Script" id=13]
 [ext_resource path="res://assets/models/floor_matrix/floor_matrix.gltf" type="PackedScene" id=14]
+[ext_resource path="res://scenes/interactables/wood_pile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/ui/camera_feed_hud.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/interactables/crystal_ball.tscn" type="PackedScene" id=17]
 
@@ -36,7 +37,6 @@ extents = Vector3( 3, 1, 1 )
 [sub_resource type="Environment" id=2]
 background_mode = 1
 ambient_light_color = Color( 0.133333, 0.133333, 0.133333, 1 )
-ambient_light_energy = 3.7
 fog_color = Color( 0.384314, 0.411765, 0.439216, 1 )
 fog_depth_curve = 1.6245
 fog_height_enabled = true
@@ -188,6 +188,9 @@ time_to_complete_seconds = 1.0
 
 [node name="CrystalBall" parent="NavigationMeshInstance" instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -6 )
+
+[node name="WoodPile" parent="NavigationMeshInstance" instance=ExtResource( 15 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 6, 0, -6 )
 
 [node name="Camera3DMovePan" type="Spatial" parent="."]
 transform = Transform( -1, 1.42109e-14, -8.74227e-08, -7.57103e-08, 0.5, 0.866025, 4.37114e-08, 0.866025, -0.5, 0, 21, -12 )

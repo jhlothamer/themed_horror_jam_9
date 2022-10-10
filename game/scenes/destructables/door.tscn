@@ -1,16 +1,50 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/destructables/destructable_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/destructables/door.gd" type="Script" id=2]
 [ext_resource path="res://assets/models/tests/test_broken_door.gltf" type="PackedScene" id=3]
-[ext_resource path="res://assets/materials_shaders/progress_bar_mat.tres" type="Material" id=4]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 2, 0.2 )
 
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+
+render_mode unshaded, shadows_disabled, depth_test_disable;
+
+uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 progress_color : hint_color = vec4(.0, 1., .0, 1.);
+uniform float progress_value : hint_range(0.0, 1.0, 0.02) = .5;
+
+void vertex()
+{
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+}
+
+void fragment()
+{
+	vec2 border = vec2(0.01, 0.1);
+
+	vec2 mask2 = step(border, UV) * step(UV, 1.0-border);
+    float mask = mask2.x*mask2.y;
+
+	//float progress = .5;
+    float blend = ((UV.x - progress_value) <= 0.0 ? 1.0 : 0.0) * mask;
+    vec4 fragColor = progress_color*blend + background_color*(1.0-blend);
+	ALBEDO = fragColor.rgb;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+render_priority = 5
+shader = SubResource( 9 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/progress_color = Color( 0, 1, 0, 1 )
+shader_param/progress_value = 1.0
+
 [sub_resource type="QuadMesh" id=5]
 resource_local_to_scene = true
-material = ExtResource( 4 )
+material = SubResource( 10 )
 size = Vector2( 1, 0.1 )
 
 [sub_resource type="SpatialMaterial" id=6]
