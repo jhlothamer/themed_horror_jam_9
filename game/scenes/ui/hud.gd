@@ -15,10 +15,10 @@ func _input(event):
 		return
 	var em := event as InputEventMouseButton
 	if em.button_index == BUTTON_LEFT:
-		if Vector3.INF == _test_world_mouse_click_collision(em.position, GameConsts.PhysLayer.SELECTABLE, 0):
+		if Vector3.INF == _test_world_mouse_click_collision(em.position, GameConsts.PhysLayerMask.SELECTABLE, 0):
 			emit_signal("no_selectable_clicked")
 	elif em.button_index == BUTTON_RIGHT:
-		var position = _test_world_mouse_click_collision(em.position, GameConsts.PhysLayer.DEFAULT, GameConsts.PhysLayer.INTERACTABLE | GameConsts.PhysLayer.SELECTABLE)
+		var position = _test_world_mouse_click_collision(em.position, GameConsts.PhysLayerMask.DEFAULT, GameConsts.PhysLayerMask.INTERACTABLE | GameConsts.PhysLayerMask.SELECTABLE)
 		if position != Vector3.INF:
 			emit_signal("no_interactable_clicked", position)
 

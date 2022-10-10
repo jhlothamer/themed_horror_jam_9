@@ -9,6 +9,7 @@ export var horizontal_speed = 4.0
 export var starting_health := 100
 export var death_sound_node_path: NodePath
 export (Array, String) var allowed_interactable_types := []
+export var debug_state := false
 
 
 onready var death_sound:AudioStreamPlayer3D = get_node_or_null(death_sound_node_path)
@@ -32,6 +33,7 @@ func _ready():
 	_health_bar.max_value = starting_health
 	_health_bar.value = starting_health
 	current_health = starting_health
+	_state_debug_label.visible = debug_state
 
 
 func is_selected() -> bool:

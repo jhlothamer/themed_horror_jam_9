@@ -173,7 +173,6 @@ update_rotation = false
 
 [node name="StateDebugLabel3D" type="Label3D" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.13131, -0.656599 )
-visible = false
 cast_shadow = 0
 pixel_size = 0.04
 billboard = 1

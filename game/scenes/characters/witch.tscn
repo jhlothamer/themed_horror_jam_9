@@ -97,8 +97,7 @@ script = ExtResource( 6 )
 deny_interaction_sound = NodePath("../../DenyInteractionSound")
 
 [node name="OutlineHelper3D" parent="." index="3"]
-mesh_instance_to_outline = NodePath("../TempWitchMeshInstance")
-constant_outline = true
+mesh_instances_to_outline = [ NodePath("../TempWitchMeshInstance"), NodePath("../TempWitchMeshInstance/MeshInstance") ]
 
 [node name="HealthBar" parent="." index="4"]
 mesh = SubResource( 12 )

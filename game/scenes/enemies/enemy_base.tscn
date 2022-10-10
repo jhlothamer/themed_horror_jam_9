@@ -91,7 +91,7 @@ size = Vector2( 1, 0.1 )
 
 [node name="EnemyBase" type="KinematicBody"]
 collision_layer = 35
-collision_mask = 35
+collision_mask = 49
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -141,23 +141,22 @@ is_starting_state = true
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
-character_detect_area = NodePath("../../CharacterDetectArea")
+character_detect_area = NodePath("../../CharacterAndDestructableDetectArea")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 
-[node name="CharacterDetectArea" type="Area" parent="."]
-collision_layer = 17
-collision_mask = 16
+[node name="CharacterAndDestructableDetectArea" type="Area" parent="."]
+collision_layer = 81
+collision_mask = 80
 input_ray_pickable = false
 
-[node name="CollisionShape" type="CollisionShape" parent="CharacterDetectArea"]
+[node name="CollisionShape" type="CollisionShape" parent="CharacterAndDestructableDetectArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 23 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 5 )
-mesh_instance_to_outline = NodePath("../MeshInstance")
 select_on_click = false
 button_index = 2
 mouse_over_color = Color( 1, 0.631373, 0, 1 )
@@ -167,4 +166,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53445, 0 )
 visible = false
 mesh = SubResource( 26 )
 
+[node name="StateDebugLabel3D" type="Label3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30091, 0 )
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color( 1, 0, 0, 1 )
+text = "Attack"
+
+[connection signal="state_changed" from="StateMachine" to="." method="_on_StateMachine_state_changed"]
 [connection signal="clicked" from="OutlineHelper3D" to="." method="_on_OutlineHelper3D_clicked"]
