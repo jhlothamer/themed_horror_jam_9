@@ -1,7 +1,7 @@
 class_name Character
 extends KinematicBody
 
-
+# warning-ignore:UNUSED_SIGNAL
 signal character_death_completed()
 
 

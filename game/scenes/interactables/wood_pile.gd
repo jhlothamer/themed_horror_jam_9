@@ -26,5 +26,6 @@ func _on_InteractionHelper_interaction_interrupted(interactor):
 func _on_InteractionHelper_interaction_completed(_helperref, _obj):
 	if !_current_interactor:
 		return
-	_current_interactor.set_resource_amount(GameConsts.RESOURCE_WOOD, resource_given)
+	if is_instance_valid(_current_interactor):
+		_current_interactor.set_resource_amount(GameConsts.RESOURCE_WOOD, resource_given)
 	_current_interactor = null

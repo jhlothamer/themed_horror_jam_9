@@ -89,7 +89,9 @@ mouse_over_color = Color( 1, 0.631373, 0, 1 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.50224, 0 )
+visible = false
 mesh = SubResource( 11 )
+value = 0.0
 max_value = 30.0
 progress_color = Color( 1, 0.752941, 0.0117647, 1 )
 
