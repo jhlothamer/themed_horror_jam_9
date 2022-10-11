@@ -36,7 +36,8 @@ extents = Vector3( 3, 1, 1 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 1
-ambient_light_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+ambient_light_color = Color( 0.164706, 0.164706, 0.164706, 1 )
+ambient_light_energy = 0.5
 fog_color = Color( 0.384314, 0.411765, 0.439216, 1 )
 fog_depth_curve = 1.6245
 fog_height_enabled = true
@@ -186,7 +187,6 @@ shape = SubResource( 5 )
 
 [node name="ManaPool" parent="NavigationMeshInstance" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4 )
-time_to_complete_seconds = 1.0
 
 [node name="CrystalBall" parent="NavigationMeshInstance" instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -6 )

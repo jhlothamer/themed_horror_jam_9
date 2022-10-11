@@ -1,7 +1,7 @@
 extends StaticBody
 
 
-export var time_to_complete_seconds := 10.0
+export var time_to_complete_seconds := 2.2
 export var mana_given := 100
 
 

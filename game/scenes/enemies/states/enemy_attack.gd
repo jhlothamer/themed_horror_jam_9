@@ -9,7 +9,6 @@ export var character_detect_area: NodePath
 
 var _target_character: Character
 var _target_destructable: Destructable
-var _damage_timer := 0.0
 
 
 func _ready():
@@ -51,10 +50,6 @@ func _on_character_body_exited(body: CollisionObject) -> void:
 		change_state("Walk")
 
 
-func enter() -> void:
-	_damage_timer = enemy.damage_interval
-
-
 func _do_damage(target) -> void:
 	target.damage(enemy.damage_amount)
 	emit_signal("attack_made")
@@ -63,13 +58,9 @@ func _do_damage(target) -> void:
 		change_state("Walk")
 
 
-func physics_process(delta) -> void:
-	_damage_timer += delta
-	if _damage_timer >= enemy.damage_interval:
-		_damage_timer = 0.0
-		if _target_character:
-			_do_damage(_target_character)
-		if _target_destructable:
-			_do_damage(_target_destructable)
-
-
+func do_attack_damage() -> void:
+	if _target_character:
+		_do_damage(_target_character)
+	if _target_destructable:
+		_do_damage(_target_destructable)
+	
