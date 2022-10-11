@@ -89,20 +89,24 @@ bus = "SoundFx"
 
 [node name="TempMinionMeshInstance" type="MeshInstance" parent="." index="7"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
+layers = 3
 mesh = SubResource( 22 )
 
 [node name="Eye1" type="MeshInstance" parent="TempMinionMeshInstance" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.165072, -0.479389, -0.518634 )
+layers = 3
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
 [node name="Eye2" type="MeshInstance" parent="TempMinionMeshInstance" index="1"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.165, -0.479389, -0.518804 )
+layers = 3
 mesh = SubResource( 23 )
 skeleton = NodePath("../..")
 
 [node name="Mouth" type="MeshInstance" parent="TempMinionMeshInstance" index="2"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.47127, -0.279737 )
+layers = 3
 mesh = SubResource( 24 )
 skeleton = NodePath("../..")
 

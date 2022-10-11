@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/sounds/sfx_witch_death_jdymusic.mp3" type="AudioStream" id=4]
 [ext_resource path="res://scenes/characters/witch.gd" type="Script" id=5]
 [ext_resource path="res://scenes/characters/witch_states/witch_shoot.gd" type="Script" id=6]
-[ext_resource path="res://assets/models/WitchAnimations_Frank_ilikethepixies/WitchAnimations_Frank_Ilikethepixies.gltf" type="PackedScene" id=7]
+[ext_resource path="res://assets/models/witch_animations_frank_ilikethepixies/witch_animations_Frank_Ilikethepixies.gltf" type="PackedScene" id=7]
 
 [sub_resource type="Shader" id=11]
 code = "shader_type spatial;
@@ -137,6 +137,9 @@ bus = "SoundFx"
 [node name="WitchAnimations_Frank_Ilikethepixies" parent="." index="12" instance=ExtResource( 7 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
+[node name="witch" parent="WitchAnimations_Frank_Ilikethepixies/Armature/Skeleton" index="0"]
+layers = 3
+
 [node name="AnimationPlayer" parent="WitchAnimations_Frank_Ilikethepixies" index="1"]
 autoplay = "Idle"
 
@@ -145,6 +148,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4789, 2.22868, -2.5161 )
 
 [node name="SpotLight" type="SpotLight" parent="." index="14"]
 transform = Transform( 1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 4, -2 )
+visible = false
 light_energy = 0.5
 spot_range = 3.0
 spot_angle = 33.4782

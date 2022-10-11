@@ -3,7 +3,7 @@ extends StaticBody
 
 export var starting_health := 100
 export var death_sound_node_path: NodePath
-
+export var disable_collision_on_destroy := true
 
 onready var death_sound:AudioStreamPlayer3D = get_node_or_null(death_sound_node_path)
 onready var damaged_sound:RandomAudioStreamPlayer3D = $DamagedRandomAudioStreamPlayer3D
@@ -33,8 +33,9 @@ func damage(amount: float) -> void:
 	_health_bar.value = max(0.0, _health_bar.value - amount)
 	_update_heath_bar()
 	if _health_bar.value <= 0.0:
-		set_collision_layer_bit(GameConsts.PhysLayerBitIndex.DEFAULT, false)
-		set_collision_mask_bit(GameConsts.PhysLayerBitIndex.DEFAULT, false)
+		if disable_collision_on_destroy:
+			set_collision_layer_bit(GameConsts.PhysLayerBitIndex.DEFAULT, false)
+			set_collision_mask_bit(GameConsts.PhysLayerBitIndex.DEFAULT, false)
 		_on_destroid()
 		return
 	_on_damaged()

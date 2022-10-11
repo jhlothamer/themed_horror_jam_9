@@ -15,6 +15,8 @@ onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _state_machine: StateMachine = $StateMachine
 onready var _collision_shape:CollisionShape = $CollisionShape
 onready var _state_debug_label: Label3D = $StateDebugLabel3D
+onready var _attack_state = $StateMachine/Attack
+
 
 var current_health := 100
 
@@ -69,3 +71,20 @@ func _death():
 func _on_StateMachine_state_changed(_old_state, new_state):
 	_state_debug_label.modulate = Color.from_hsv(randf(), 1.0 ,1.0, 1.0)
 	_state_debug_label.text = new_state
+
+
+func _do_attack_damage() -> void:
+	if !_state_machine.is_current_state("Attack"):
+		return
+	_attack_state.do_attack_damage()
+
+
+func window_climb_started() -> void:
+	visible = false
+
+
+func window_climb_finished(new_global_position: Vector3) -> void:
+	visible = true
+	global_transform.origin = new_global_position
+	_state_machine.change_state("PostWindowClimb")
+

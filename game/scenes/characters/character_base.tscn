@@ -47,7 +47,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=18]
+[sub_resource type="ShaderMaterial" id=13]
 shader = SubResource( 11 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 shader_param/progress_color = Color( 0, 1, 0, 1 )
@@ -55,7 +55,7 @@ shader_param/progress_value = 0.5
 
 [sub_resource type="QuadMesh" id=12]
 resource_local_to_scene = true
-material = SubResource( 18 )
+material = SubResource( 13 )
 size = Vector2( 1, 0.1 )
 
 [node name="CharacterBase" type="KinematicBody"]
@@ -93,7 +93,6 @@ neighbor_dist = 5.0
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 4 )
 selected_indicator = NodePath("../character_selection_matrix")
-constant_outline = true
 keep_selected_on_no_selectable_clicked = true
 
 [node name="HealthBar" parent="." instance=ExtResource( 6 )]
