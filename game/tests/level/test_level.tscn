@@ -37,7 +37,7 @@ extents = Vector3( 3, 1, 1 )
 [sub_resource type="Environment" id=2]
 background_mode = 1
 ambient_light_color = Color( 0.164706, 0.164706, 0.164706, 1 )
-ambient_light_energy = 0.5
+ambient_light_energy = 0.3
 fog_color = Color( 0.384314, 0.411765, 0.439216, 1 )
 fog_depth_curve = 1.6245
 fog_height_enabled = true
@@ -63,6 +63,7 @@ spawn_positions = [ NodePath("../../SpawnPositions/Position3D3"), NodePath("../.
 script = ExtResource( 8 )
 
 [node name="EnemyWaveMgr" parent="Mgrs" instance=ExtResource( 18 )]
+disabled = true
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 3 )
@@ -512,3 +513,8 @@ collision_mask = 1
 [node name="Door4" parent="Destructables" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, 0 )
 collision_mask = 1
+
+[node name="CharacterHighlightLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 6, 0 )
+layers = 0
+light_cull_mask = 4293918722
