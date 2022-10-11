@@ -10,6 +10,7 @@ var _state_animations := {
 	"Walk": "Run",
 	"Attack": ["1H Attack", "2H Attack"],
 	"Die": "Die",
+	"PostWindowClimb": "FlipThroughWindowStandup"
 }
 
 var _animation_speeds := {
@@ -52,6 +53,10 @@ func _on_StateMachine_state_changed(old_state, new_state):
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "FlipThroughWindowStandup":
+		_state_machine.change_state("Walk")
+		return
+	
 	if _looping_animations.has(anim_name):
 		_play_animation(anim_name)
 		return

@@ -34,6 +34,10 @@ func _on_character_body_entered(body: CollisionObject) -> void:
 		_target_character = body
 		change_state(name)
 	elif body is Destructable:
+		if body is Window and body.is_dead():
+			body.queue_window_climber(enemy)
+			change_state("Idle")
+			return
 		_target_destructable = body
 		change_state(name)
 
@@ -55,6 +59,10 @@ func _do_damage(target) -> void:
 	emit_signal("attack_made")
 	if target.is_dead():
 		target.is_dead()
+		if target is Window:
+			target.queue_window_climber(enemy)
+			change_state("Idle")
+			return
 		change_state("Walk")
 
 

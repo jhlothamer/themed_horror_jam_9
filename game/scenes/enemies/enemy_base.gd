@@ -79,3 +79,12 @@ func _do_attack_damage() -> void:
 	_attack_state.do_attack_damage()
 
 
+func window_climb_started() -> void:
+	visible = false
+
+
+func window_climb_finished(new_global_position: Vector3) -> void:
+	visible = true
+	global_transform.origin = new_global_position
+	_state_machine.change_state("PostWindowClimb")
+

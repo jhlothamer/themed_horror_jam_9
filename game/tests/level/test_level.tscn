@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/images/prototyping/grey_box_256x256.png" type="Texture" id=1]
 [ext_resource path="res://scenes/characters/witch.tscn" type="PackedScene" id=2]
@@ -11,12 +11,14 @@
 [ext_resource path="res://addons/godot_helper_pack/core/3d/camera/camera3d_move_pan.gd" type="Script" id=9]
 [ext_resource path="res://assets/sounds/sfx_atmospheric_noises_loop_jdymusic.mp3" type="AudioStream" id=10]
 [ext_resource path="res://scenes/interactables/mana_pool.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/destructables/window.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/managers/enemy_spawn_mgr.gd" type="Script" id=13]
 [ext_resource path="res://assets/models/floor_matrix/floor_matrix.gltf" type="PackedScene" id=14]
 [ext_resource path="res://scenes/interactables/wood_pile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/ui/camera_feed_hud.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/interactables/crystal_ball.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/managers/enemy_wave_mgr.tscn" type="PackedScene" id=18]
+[ext_resource path="res://tests/level/testing_hud.tscn" type="PackedScene" id=19]
 
 [sub_resource type="NavigationMesh" id=3]
 vertices = PoolVector3Array( -0.25, 0.5, -12.25, 0.5, 0.5, -12.25, 0.5, 0.5, -14, -0.25, 0.5, -14, 10.5, 0.5, -24, 10.5, 0.5, -33.25, 0, 0.5, -33.25, -10.25, 0.5, -24, -0.75, 0.5, -14.5, 1, 0.5, -14.5, -0.75, 0.5, -14.5, -0.25, 0.5, -14, 0.5, 0.5, -14, 1, 0.5, -14.5, 0, 0.5, -33.25, -10.25, 0.5, -33.25, -10.25, 0.5, -24, 1, 0.5, -14.5, 10.5, 0.5, -14.5, 10.5, 0.5, -24, -10.25, 0.5, -24, -10.25, 0.5, -14.5, -0.75, 0.5, -14.5, 0.5, 0.5, -9.75, 0.5, 0.5, -12.25, -0.25, 0.5, -12.25, -0.25, 0.5, -9.75, -0.75, 0.5, -9.25, 4, 0.5, -6.25, 4, 0.5, -7.25, 1, 0.5, -9.25, -0.25, 0.5, -9.75, 1, 0.5, -9.25, 0.5, 0.5, -9.75, -0.25, 0.5, -9.75, 4, 0.5, -7.25, 4.75, 0.5, -8, 1, 0.5, -9.25, -5.75, 0.5, -9.25, -6, 0.5, -6.75, -6, 0.5, -5.25, 8, 0.5, -5.25, 10.5, 0.5, -5.25, 10.5, 0.5, -9.25, 5.75, 0.5, -8, 1, 0.5, -1.75, 1.75, 0.5, -0.75, 6.5, 0.5, -4, 4, 0.5, -6.25, 5.75, 0.5, -8, 10.5, 0.5, -9.25, 1, 0.5, -9.25, 4.75, 0.5, -8, -0.75, 0.5, -9.25, -5.75, 0.5, -9.25, -6, 0.5, -5.25, -1.25, 0.5, -1.5, 1, 0.5, -1.75, 4, 0.5, -6.25, -13.5, 0.5, 0.5, -13.5, 0.5, -0.25, -15, 0.5, -0.25, -15.5, 0.5, 0.75, -36.25, 0.5, 0, -36.25, 0.5, 9.5, -26, 0.5, 9.5, -15.5, 0.5, 0.75, -15.5, 0.5, -0.75, -26, 0.5, -9.25, -15.5, 0.5, 0.75, -15, 0.5, -0.25, -15.5, 0.5, -0.75, -15.5, 0.5, -0.75, -15.5, 0.5, -9.25, -26, 0.5, -9.25, -26, 0.5, 9.5, -15.5, 0.5, 9.5, -15.5, 0.5, 0.75, -26, 0.5, -9.25, -36.25, 0.5, -9.25, -36.25, 0.5, 0, -13.5, 0.5, -0.25, -13.5, 0.5, 0.5, -10.75, 0.5, 0.5, -10.75, 0.5, -0.25, -7.75, 0.5, -5, -8, 0.5, -6.75, -10.25, 0.5, -9.25, -10.25, 0.5, -0.75, -10.25, 0.5, -0.75, -10.75, 0.5, -0.25, -10.75, 0.5, 0.5, -10.25, 0.5, 1, -7, 0.5, 2.75, -5, 0.5, 2.75, -4.75, 0.5, 3.25, -1.75, 0.5, 0.75, -1.75, 0.5, -1, -8, 0.5, -6.75, -6, 0.5, -6.75, -5.75, 0.5, -9.25, -10.25, 0.5, -9.25, -6, 0.5, -5.25, -7.75, 0.5, -5, -10.25, 0.5, -0.75, -7, 0.5, 2.75, -5, 0.5, 2.75, -1.75, 0.5, -1, -10.25, 0.5, 4, -7.25, 0.5, 4, -7, 0.5, 2.75, -10.25, 0.5, 1, -1.75, 0.5, -1, -1.25, 0.5, -1.5, -6, 0.5, -5.25, 13.5, 0.5, -0.25, 13.5, 0.5, 0.5, 15.25, 0.5, 0.5, 15.25, 0.5, -0.25, 26, 0.5, 9.5, 36.25, 0.5, 9.5, 36.25, 0.5, 0, 26, 0.5, -9.25, 15.75, 0.5, -0.75, 15.75, 0.5, 1, 15.75, 0.5, -0.75, 15.25, 0.5, -0.25, 15.25, 0.5, 0.5, 15.75, 0.5, 1, 36.25, 0.5, 0, 36.25, 0.5, -9.25, 26, 0.5, -9.25, 15.75, 0.5, 1, 15.75, 0.5, 9.5, 26, 0.5, 9.5, 26, 0.5, -9.25, 15.75, 0.5, -9.25, 15.75, 0.5, -0.75, 13.5, 0.5, 0.5, 13.5, 0.5, -0.25, 11, 0.5, -0.25, 10.5, 0.5, 0.75, 6.5, 0.5, -4, 2, 0.5, 0.5, 1.5, 0.5, 1.25, 1.5, 0.5, 9.5, 10.5, 0.5, 9.5, 10.5, 0.5, 0.75, 10.5, 0.5, 0.75, 11, 0.5, -0.25, 10.5, 0.5, -0.75, 10.5, 0.5, -5.25, 8, 0.5, -5.25, 7.25, 0.5, -4, 10.5, 0.5, -0.75, 6.5, 0.5, -4, 1.75, 0.5, -0.75, 2, 0.5, 0.5, 10.5, 0.5, -0.75, 7.25, 0.5, -4, 6.5, 0.5, -4, 10.5, 0.5, 0.75, -0.5, 2.5, -0.5, -0.5, 2.5, 0.5, 0.5, 2.5, 0.5, 0.5, 2.5, -0.5, -0.5, 0.5, -0.25, -0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, -0.5, -0.25, 0.5, 10, -0.25, 0.5, 12.5, 0.5, 0.5, 12.5, 0.5, 0.5, 10, 1.5, 0.5, 9.5, 1.5, 0.5, 1.25, 1, 0.5, 1.75, -0.75, 0.5, 9.5, -0.25, 0.5, 10, 0.5, 0.5, 10, 1.5, 0.5, 9.5, -4.75, 0.5, 4.75, -4.5, 0.5, 9.5, -0.75, 0.5, 9.5, -1, 0.5, 1.75, -1.75, 0.5, 0.75, -4.75, 0.5, 3.25, -1, 0.5, 1.75, -4.75, 0.5, 3.25, -4.75, 0.5, 4.75, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1, 0.5, 1.75, -7, 0.5, 5.25, -7.25, 0.5, 4, -10.25, 0.5, 4, -4.5, 0.5, 9.5, -4.75, 0.5, 4.75, -5, 0.5, 5.25, -4.5, 0.5, 9.5, -5, 0.5, 5.25, -7, 0.5, 5.25, -7, 0.5, 5.25, -10.25, 0.5, 4, -10.25, 0.5, 9.5, -4.5, 0.5, 9.5, 0.5, 0.5, 12.5, -0.25, 0.5, 12.5, -0.25, 0.5, 14.25, 0.5, 0.5, 14.25, 0, 0.5, 33.25, 10.5, 0.5, 33.25, 10.5, 0.5, 24, 1, 0.5, 14.75, -0.75, 0.5, 14.75, -10.25, 0.5, 24, 1, 0.5, 14.75, 0.5, 0.5, 14.25, -0.25, 0.5, 14.25, -0.75, 0.5, 14.75, -10.25, 0.5, 24, -10.25, 0.5, 33.25, 0, 0.5, 33.25, -0.75, 0.5, 14.75, -10.25, 0.5, 14.75, -10.25, 0.5, 24, 10.5, 0.5, 24, 10.5, 0.5, 14.75, 1, 0.5, 14.75 )
@@ -36,8 +38,8 @@ extents = Vector3( 3, 1, 1 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 1
-ambient_light_color = Color( 0.164706, 0.164706, 0.164706, 1 )
-ambient_light_energy = 0.3
+ambient_light_color = Color( 0.223529, 0.223529, 0.223529, 1 )
+ambient_light_energy = 0.2
 fog_color = Color( 0.384314, 0.411765, 0.439216, 1 )
 fog_depth_curve = 1.6245
 fog_height_enabled = true
@@ -57,13 +59,12 @@ __meta__ = {
 
 [node name="EnemySpawnMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 13 )
-spawn_positions = [ NodePath("../../SpawnPositions/Position3D3"), NodePath("../../SpawnPositions/Position3D"), NodePath("../../SpawnPositions/Position3D2"), NodePath("../../SpawnPositions/Position3D4") ]
+spawn_positions = [ NodePath("../../SpawnPositions/NorthPosition3D"), NodePath("../../SpawnPositions/SouthPosition3D"), NodePath("../../SpawnPositions/WestPosition3D"), NodePath("../../SpawnPositions/EastPosition3D") ]
 
 [node name="CharacterMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 8 )
 
 [node name="EnemyWaveMgr" parent="Mgrs" instance=ExtResource( 18 )]
-disabled = true
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 3 )
@@ -75,10 +76,6 @@ __meta__ = {
 [node name="CSGCombiner" type="CSGCombiner" parent="NavigationMeshInstance"]
 material_override = SubResource( 1 )
 use_collision = true
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="CSGBox" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
@@ -86,64 +83,69 @@ width = 80.0
 height = 8.0
 depth = 74.0
 
-[node name="CSGBox2" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+[node name="MiddleRoomCutout" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 operation = 2
 width = 22.0
 height = 10.0
 depth = 20.0
 
-[node name="CSGBox7" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+[node name="WestRoomCutout" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1, 0 )
 operation = 2
 width = 22.0
 height = 6.0
 depth = 20.0
 
-[node name="CSGBox8" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+[node name="NorthRoomCutout" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 24 )
 operation = 2
 width = 22.0
 height = 6.0
 depth = 20.0
 
-[node name="CSGBox9" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+[node name="EastRoomCutout" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1, 0 )
 operation = 2
 width = 22.0
 height = 6.0
 depth = 20.0
 
-[node name="CSGBox10" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+[node name="SouthRoomCutout" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -24 )
 operation = 2
 width = 22.0
 height = 6.0
 depth = 20.0
 
-[node name="CSGBox3" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+[node name="WestCorridorCutout" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2, 0 )
 operation = 2
 width = 16.0
 height = 4.0
 
-[node name="CSGBox4" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+[node name="EastCorridorCutout" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2, 0 )
 operation = 2
 width = 14.0
 height = 4.0
 
-[node name="CSGBox5" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+[node name="SouthCorridorCutout" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -13 )
 operation = 2
 height = 4.0
 depth = 10.0
 
-[node name="CSGBox6" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 14 )
+[node name="NorthCorridorCutout" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 14.0806 )
 operation = 2
 height = 4.0
-depth = 12.0
+depth = 8.0
+
+[node name="NorthCorridorCutout2" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68662, 10 )
+operation = 2
+height = 1.92038
 
 [node name="Cauldron" parent="NavigationMeshInstance" instance=ExtResource( 4 )]
 time_to_complete_minutes = 5.0
@@ -372,17 +374,17 @@ bus = "SoundFx"
 
 [node name="SpawnPositions" type="Spatial" parent="."]
 
-[node name="Position3D" type="Position3D" parent="SpawnPositions"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0 )
-
-[node name="Position3D2" type="Position3D" parent="SpawnPositions"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 0 )
-
-[node name="Position3D3" type="Position3D" parent="SpawnPositions"]
+[node name="NorthPosition3D" type="Position3D" parent="SpawnPositions"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21 )
 
-[node name="Position3D4" type="Position3D" parent="SpawnPositions"]
+[node name="SouthPosition3D" type="Position3D" parent="SpawnPositions"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16 )
+
+[node name="WestPosition3D" type="Position3D" parent="SpawnPositions"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 0 )
+
+[node name="EastPosition3D" type="Position3D" parent="SpawnPositions"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0 )
 
 [node name="FloorPanels" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
@@ -498,19 +500,22 @@ fov = 50.0
 
 [node name="Destructables" type="Spatial" parent="."]
 
-[node name="Door" parent="Destructables" instance=ExtResource( 7 )]
+[node name="Window" parent="Destructables" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+
+[node name="DoorNorth" parent="Destructables" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24 )
 collision_mask = 1
 
-[node name="Door2" parent="Destructables" instance=ExtResource( 7 )]
+[node name="DoorSouth" parent="Destructables" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
 collision_mask = 1
 
-[node name="Door3" parent="Destructables" instance=ExtResource( 7 )]
+[node name="DoorWest" parent="Destructables" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, 0, 0 )
 collision_mask = 1
 
-[node name="Door4" parent="Destructables" instance=ExtResource( 7 )]
+[node name="DoorEast" parent="Destructables" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, 0 )
 collision_mask = 1
 
@@ -518,3 +523,5 @@ collision_mask = 1
 transform = Transform( 1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 6, 0 )
 layers = 0
 light_cull_mask = 4293918722
+
+[node name="TestingHud" parent="." instance=ExtResource( 19 )]
