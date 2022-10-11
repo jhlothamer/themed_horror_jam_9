@@ -1,5 +1,7 @@
 extends CharacterBaseState
 
+signal interaction_about_to_start(interactable_object)
+
 export var navigation_agent: NodePath
 export var deny_interaction_sound: NodePath
 
@@ -86,9 +88,14 @@ func _on_navigation_finished():
 		return
 	_destroy_move_to_indicator()
 	if _interaction_helper:
+		var lookat_v = _target_interactable_object.global_transform.origin
+		lookat_v.y = character.global_transform.origin.y
+		character.look_at(lookat_v, Vector3.UP)
 		set_blackboard_data(CharacterBaseState.BBDATA_TARGET_INTERACTION_HELPER, _interaction_helper)
+		emit_signal("interaction_about_to_start", _target_interactable_object)
 		change_state("Interact")
 		_interaction_helper = null
+		_target_interactable_object = null
 		return
 	change_state("Idle")
 
@@ -107,7 +114,7 @@ func _on_target_reached():
 
 func physics_process(_delta: float) -> void:
 	var next_location := _v_to_char_y(_nav_agent.get_next_location())
-	if next_location == character.global_transform.origin:
+	if next_location == character.global_transform.origin or !is_current_state():
 		return
 	
 	var direction:Vector3 = character.global_transform.origin.direction_to(next_location)

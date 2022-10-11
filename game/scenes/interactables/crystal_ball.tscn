@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=1]
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/sfx_crystal_ball_interaction_interrupt_jdymusic.mp3" type="AudioStream" id=3]
-[ext_resource path="res://assets/sounds/sfx_crystal_ball_interaction_complete_jdymusic.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/sfx_crystal_ball_interaction_start_loop_jdymusic.mp3" type="AudioStream" id=4]
 [ext_resource path="res://scenes/interactables/crystal_ball.gd" type="Script" id=5]
 [ext_resource path="res://assets/models/crystal_ball_matrix/crystal_ball_matrix.gltf" type="PackedScene" id=6]
 
@@ -50,7 +50,6 @@ mouse_over_color = Color( 1, 0.631373, 0, 1 )
 
 [node name="StartInteractionSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 4 )
-unit_db = 12.0
 bus = "SoundFx"
 
 [node name="InteruptInteractionSound" type="AudioStreamPlayer3D" parent="."]
