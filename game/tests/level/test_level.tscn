@@ -70,7 +70,6 @@ script = ExtResource( 8 )
 delay_between_spawns_min = 3.0
 delay_between_spawns_max = 10.0
 initial_delay_seconds = 20.0
-disabled = true
 
 [node name="NavigationPointMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 20 )
