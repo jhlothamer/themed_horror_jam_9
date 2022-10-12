@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_window_break_hi_jdymusic.mp3-5588fc75d3dbb563faba6cdaf1c855e1.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_window_break_hi_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_window_break_hi_jdymusic.mp3-5588fc75d3dbb563faba6cdaf1c855e1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

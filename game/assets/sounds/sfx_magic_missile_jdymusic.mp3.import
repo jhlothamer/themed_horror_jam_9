@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_magic_missile_jdymusic.mp3-53f1ba22cf87c267897678d4669f1d87.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_magic_missile_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_magic_missile_jdymusic.mp3-53f1ba22cf87c267897678d4669f1d87.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
