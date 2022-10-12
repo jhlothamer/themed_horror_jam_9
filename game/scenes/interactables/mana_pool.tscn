@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/shape/collision_shape_ex.gd" type="Script" id=2]
@@ -8,17 +8,10 @@
 [ext_resource path="res://assets/sounds/sfx_manapool_interaction_start_loop_jdymusic.mp3" type="AudioStream" id=6]
 [ext_resource path="res://assets/sounds/sfx_manapool_interaction_complete_jdy.mp3" type="AudioStream" id=7]
 [ext_resource path="res://assets/sounds/sfx_manapool_interaction_interrupt_jdymusic.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/models/manapool_ilikethepixies/manapool_ilikethepixies.gltf" type="PackedScene" id=9]
 
 [sub_resource type="CylinderShape" id=1]
-radius = 0.75
-
-[sub_resource type="SpatialMaterial" id=5]
-albedo_color = Color( 0.607843, 0.211765, 0.835294, 1 )
-
-[sub_resource type="CylinderMesh" id=6]
-material = SubResource( 5 )
-top_radius = 0.75
-bottom_radius = 0.75
+radius = 1.6004
 
 [sub_resource type="Shader" id=2]
 code = "shader_type spatial;
@@ -49,7 +42,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=5]
 shader = SubResource( 2 )
 shader_param/background_color = Color( 0.584314, 0.584314, 0.584314, 1 )
 shader_param/progress_color = Color( 1, 0.752941, 0.0117647, 1 )
@@ -57,7 +50,7 @@ shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=4]
 resource_local_to_scene = true
-material = SubResource( 7 )
+material = SubResource( 5 )
 size = Vector2( 2, 0.2 )
 
 [node name="Mana" type="StaticBody"]
@@ -69,9 +62,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 1 )
 script = ExtResource( 2 )
 
-[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
-mesh = SubResource( 6 )
-
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24426, 0 )
 visible = false
@@ -82,7 +72,7 @@ progress_color = Color( 1, 0.752941, 0.0117647, 1 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 1 )
-mesh_instances_to_outline = [ NodePath("../CollisionShape/MeshInstance") ]
+mesh_instances_to_outline = [ NodePath("../manapool_ilikethepixies/manapool_ilikethepixies") ]
 select_on_click = false
 button_index = 2
 mouse_over_color = Color( 1, 0.631373, 0, 1 )
@@ -112,4 +102,9 @@ stream = ExtResource( 7 )
 unit_db = 12.0
 bus = "SoundFx"
 
+[node name="manapool_ilikethepixies" parent="." instance=ExtResource( 9 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0 )
+
 [connection signal="interaction_completed" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_completed"]
+
+[editable path="manapool_ilikethepixies"]
