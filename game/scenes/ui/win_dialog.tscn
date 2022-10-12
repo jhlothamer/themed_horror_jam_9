@@ -42,7 +42,7 @@ margin_right = 396.0
 margin_bottom = 155.0
 text = "Play Again"
 align = 1
-scene_to_load = "res://tests/level/test_level.tscn"
+scene_to_load = "res://scenes/levels/level1.tscn"
 
 [node name="MainMenuBtn" parent="VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 159.0
