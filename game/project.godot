@@ -429,7 +429,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Themed Horror Jam 9"
-run/main_scene="res://tests/level/test_level.tscn"
+run/main_scene="res://scenes/levels/level1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
