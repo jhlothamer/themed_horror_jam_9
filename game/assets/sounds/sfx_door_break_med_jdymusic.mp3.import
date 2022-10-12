@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_door_break_med_jdymusic.mp3-e337a1a05739dfa6772ec92d1ffdd3bc.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_door_break_med_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_door_break_med_jdymusic.mp3-e337a1a05739dfa6772ec92d1ffdd3bc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

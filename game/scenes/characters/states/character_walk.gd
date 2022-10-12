@@ -67,7 +67,7 @@ func _on_interactable_clicked(helper: InteractionHelper, clicked_object: Collisi
 				_deny_interaction_sound.play()
 			return
 
-	_calc_target_pos(clicked_object.global_transform.origin)
+	_calc_target_pos_object(clicked_object)
 	_target_interactable_object = clicked_object
 	_interaction_helper = helper
 	_destroy_move_to_indicator()
@@ -77,6 +77,16 @@ func _on_interactable_clicked(helper: InteractionHelper, clicked_object: Collisi
 func _calc_target_pos(pos: Vector3) -> void:
 	_target_pos = _v_to_char_y(pos)
 	_nav_agent.set_target_location(pos)
+
+
+func _calc_target_pos_object(clicked_object: CollisionObject) -> void:
+	_target_pos = _v_to_char_y(clicked_object.global_transform.origin)
+	var nav_pt_mgr: NavigationPointMgr = ServiceMgr.get_service(NavigationPointMgr)
+	if nav_pt_mgr:
+		var closest_pt = nav_pt_mgr.get_closest_navigation_point(character, clicked_object)
+		if closest_pt != Vector3.INF:
+			_target_pos = _v_to_char_y(closest_pt)
+	_nav_agent.set_target_location(_target_pos)
 
 
 func _v_to_char_y(v: Vector3) -> Vector3:

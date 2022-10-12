@@ -6,17 +6,14 @@
 [ext_resource path="res://assets/sounds/sfx_crystal_ball_interaction_start_loop_jdymusic.mp3" type="AudioStream" id=4]
 [ext_resource path="res://scenes/interactables/crystal_ball.gd" type="Script" id=5]
 [ext_resource path="res://assets/models/crystal_ball_matrix/crystal_ball_matrix.gltf" type="PackedScene" id=6]
+[ext_resource path="res://assets/models/crystal_ball_matrix/desk/desk_crystal_ball_matrix.gltf" type="PackedScene" id=7]
 
-[sub_resource type="CylinderShape" id=1]
-radius = 0.5
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.76718, 1, 0.930293 )
 
 [sub_resource type="CylinderMesh" id=2]
 top_radius = 0.4
 bottom_radius = 0.5
-
-[sub_resource type="SphereMesh" id=3]
-radius = 0.3
-height = 0.6
 
 [node name="CrystalBall" type="StaticBody"]
 collision_layer = 3
@@ -24,16 +21,12 @@ script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="PedistalMeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-mesh = SubResource( 2 )
-
-[node name="BallMeshInstance" type="MeshInstance" parent="PedistalMeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 visible = false
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 
 [node name="InteractionHelper" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -43,7 +36,7 @@ interaction_interupt_sound = NodePath("../InteruptInteractionSound")
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 1 )
-mesh_instances_to_outline = [ NodePath("../PedistalMeshInstance/BallMeshInstance"), NodePath("../PedistalMeshInstance"), NodePath("../crystal_ball_matrix/Sphere") ]
+mesh_instances_to_outline = [ NodePath("../crystal_ball_matrix/Sphere"), NodePath("../desk_crystal_ball_matrix/Cube") ]
 select_on_click = false
 button_index = 2
 mouse_over_color = Color( 1, 0.631373, 0, 1 )
@@ -58,9 +51,12 @@ unit_db = 12.0
 bus = "SoundFx"
 
 [node name="crystal_ball_matrix" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35894, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0299, 0 )
+
+[node name="desk_crystal_ball_matrix" parent="." instance=ExtResource( 7 )]
 
 [connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
 [connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
 
 [editable path="crystal_ball_matrix"]
+[editable path="desk_crystal_ball_matrix"]

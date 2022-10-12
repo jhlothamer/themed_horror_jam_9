@@ -11,6 +11,7 @@ export var death_sound_node_path: NodePath
 export (Array, String) var allowed_interactable_types := []
 export var debug_state := false
 export var starting_resources := {}
+export var invulnerable := false
 
 
 onready var death_sound:AudioStreamPlayer3D = get_node_or_null(death_sound_node_path)
@@ -48,7 +49,7 @@ func is_dead() -> bool:
 
 
 func damage(amount: float) -> void:
-	if current_health <= 0.0:
+	if invulnerable or current_health <= 0.0:
 		return
 	
 	current_health = max(0.0, current_health - amount)
