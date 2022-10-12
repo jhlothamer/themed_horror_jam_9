@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/images/prototyping/grey_box_256x256.png" type="Texture" id=1]
 [ext_resource path="res://scenes/characters/witch.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://scenes/interactables/crystal_ball.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/managers/enemy_wave_mgr.tscn" type="PackedScene" id=18]
 [ext_resource path="res://tests/level/testing_hud.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/managers/navigation_point_mgr.gd" type="Script" id=20]
 
 [sub_resource type="NavigationMesh" id=3]
 vertices = PoolVector3Array( -0.25, 0.5, -12.25, 0.5, 0.5, -12.25, 0.5, 0.5, -14, -0.25, 0.5, -14, 10.5, 0.5, -24, 10.5, 0.5, -33.25, 0, 0.5, -33.25, -10.25, 0.5, -24, -0.75, 0.5, -14.5, 1, 0.5, -14.5, -0.75, 0.5, -14.5, -0.25, 0.5, -14, 0.5, 0.5, -14, 1, 0.5, -14.5, 0, 0.5, -33.25, -10.25, 0.5, -33.25, -10.25, 0.5, -24, 1, 0.5, -14.5, 10.5, 0.5, -14.5, 10.5, 0.5, -24, -10.25, 0.5, -24, -10.25, 0.5, -14.5, -0.75, 0.5, -14.5, 0.5, 0.5, -9.75, 0.5, 0.5, -12.25, -0.25, 0.5, -12.25, -0.25, 0.5, -9.75, -0.75, 0.5, -9.25, -4.5, 0.5, -7, -4.5, 0.5, -6, 1, 0.5, -9.25, 0.5, 0.5, -9.75, -0.25, 0.5, -9.75, -0.75, 0.5, -9.25, 4, 0.5, -6.25, 4, 0.5, -7.25, 1, 0.5, -9.25, -6.5, 0.5, -9.25, -6.5, 0.5, -8.5, -4.5, 0.5, -7, -0.75, 0.5, -9.25, -4.5, 0.5, -6, -5.5, 0.5, -5, -1, 0.5, -1.75, 8, 0.5, -5.25, 10.5, 0.5, -5.25, 10.5, 0.5, -9.25, 5.75, 0.5, -8, 4, 0.5, -6.25, 1, 0.5, -9.25, -0.75, 0.5, -9.25, -4.5, 0.5, -6, -1, 0.5, -1.75, 1, 0.5, -1.75, 5.75, 0.5, -8, 10.5, 0.5, -9.25, 1, 0.5, -9.25, 4.75, 0.5, -8, 1, 0.5, -1.75, 1.75, 0.5, -0.75, 6.5, 0.5, -4, 4, 0.5, -6.25, 4, 0.5, -7.25, 4.75, 0.5, -8, 1, 0.5, -9.25, -13.5, 0.5, 0.5, -13.5, 0.5, -0.25, -15, 0.5, -0.25, -15.5, 0.5, 0.75, -36.25, 0.5, 0, -36.25, 0.5, 9.5, -26, 0.5, 9.5, -15.5, 0.5, 0.75, -15.5, 0.5, -0.75, -26, 0.5, -9.25, -15.5, 0.5, 0.75, -15, 0.5, -0.25, -15.5, 0.5, -0.75, -15.5, 0.5, -0.75, -15.5, 0.5, -9.25, -26, 0.5, -9.25, -26, 0.5, 9.5, -15.5, 0.5, 9.5, -15.5, 0.5, 0.75, -26, 0.5, -9.25, -36.25, 0.5, -9.25, -36.25, 0.5, 0, -13.5, 0.5, -0.25, -13.5, 0.5, 0.5, -10.75, 0.5, 0.5, -10.75, 0.5, -0.25, -7, 0.5, -3.5, -8, 0.5, -3.5, -10.25, 0.5, -0.75, -10.25, 0.5, -0.75, -10.75, 0.5, -0.25, -10.75, 0.5, 0.5, -10.25, 0.5, 1, -7, 0.5, 2.75, -1.75, 0.5, -1, -1, 0.5, -1.75, -5.5, 0.5, -5, -7, 0.5, -3.5, -10.25, 0.5, 4, -7.25, 0.5, 4, -7, 0.5, 2.75, -10.25, 0.5, 1, -8, 0.5, -3.5, -9.5, 0.5, -5, -10.25, 0.5, -0.75, -5, 0.5, 2.75, -4.75, 0.5, 3.25, -1.75, 0.5, 1, -6.5, 0.5, -8.5, -6.5, 0.5, -9.25, -10.25, 0.5, -9.25, -9.5, 0.5, -6, -5, 0.5, 2.75, -1.75, 0.5, 1, -1.75, 0.5, -1, -7, 0.5, -3.5, -10.25, 0.5, -0.75, -7, 0.5, 2.75, -9.5, 0.5, -5, -9.5, 0.5, -6, -10.25, 0.5, -9.25, -10.25, 0.5, -0.75, 13.5, 0.5, -0.25, 13.5, 0.5, 0.5, 15.25, 0.5, 0.5, 15.25, 0.5, -0.25, 26, 0.5, 9.5, 36.25, 0.5, 9.5, 36.25, 0.5, 0, 26, 0.5, -9.25, 15.75, 0.5, -0.75, 15.75, 0.5, 1, 15.75, 0.5, -0.75, 15.25, 0.5, -0.25, 15.25, 0.5, 0.5, 15.75, 0.5, 1, 36.25, 0.5, 0, 36.25, 0.5, -9.25, 26, 0.5, -9.25, 15.75, 0.5, 1, 15.75, 0.5, 9.5, 26, 0.5, 9.5, 26, 0.5, -9.25, 15.75, 0.5, -9.25, 15.75, 0.5, -0.75, -6.75, 2.5, -7, -8, 2.5, -5.75, -8, 2.5, -5.25, -7.25, 2.5, -5, -6, 2.5, -6.25, -6.25, 2.5, -7, -6.75, 0.5, -6.75, -7.75, 0.5, -5.75, -7.75, 0.5, -5.25, -7.25, 0.5, -5.25, -6.25, 0.5, -6.25, -6.25, 0.5, -6.75, 13.5, 0.5, 0.5, 13.5, 0.5, -0.25, 11, 0.5, -0.25, 10.5, 0.5, 0.75, 6.5, 0.5, -4, 2, 0.5, 0.5, 1.5, 0.5, 1.25, 1.5, 0.5, 9.5, 10.5, 0.5, 9.5, 10.5, 0.5, 0.75, 10.5, 0.5, 0.75, 11, 0.5, -0.25, 10.5, 0.5, -0.75, 10.5, 0.5, -5.25, 8, 0.5, -5.25, 7.25, 0.5, -4, 10.5, 0.5, -0.75, 6.5, 0.5, -4, 1.75, 0.5, -0.75, 2, 0.5, 0.5, 10.5, 0.5, -0.75, 7.25, 0.5, -4, 6.5, 0.5, -4, 10.5, 0.5, 0.75, -0.5, 2.5, -0.5, -0.5, 2.5, 0.5, 0.5, 2.5, 0.5, 0.5, 2.5, -0.5, -0.5, 0.5, -0.25, -0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, -0.5, -0.25, 0.5, 10, -0.25, 0.5, 12.5, 0.5, 0.5, 12.5, 0.5, 0.5, 10, 1.5, 0.5, 9.5, 1.5, 0.5, 1.25, 1, 0.5, 1.75, -0.75, 0.5, 9.5, -0.25, 0.5, 10, 0.5, 0.5, 10, 1.5, 0.5, 9.5, -4.75, 0.5, 4.75, -4.5, 0.5, 9.5, -0.75, 0.5, 9.5, -1, 0.5, 1.75, -1.75, 0.5, 1, -4.75, 0.5, 3.25, -1, 0.5, 1.75, -4.75, 0.5, 3.25, -4.75, 0.5, 4.75, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1, 0.5, 1.75, -7, 0.5, 5.25, -7.25, 0.5, 4, -10.25, 0.5, 4, -4.5, 0.5, 9.5, -4.75, 0.5, 4.75, -5, 0.5, 5.25, -4.5, 0.5, 9.5, -5, 0.5, 5.25, -7, 0.5, 5.25, -7, 0.5, 5.25, -10.25, 0.5, 4, -10.25, 0.5, 9.5, -4.5, 0.5, 9.5, 0.5, 0.5, 12.5, -0.25, 0.5, 12.5, -0.25, 0.5, 14.25, 0.5, 0.5, 14.25, 0, 0.5, 33.25, 10.5, 0.5, 33.25, 10.5, 0.5, 24, 1, 0.5, 14.75, -0.75, 0.5, 14.75, -10.25, 0.5, 24, 1, 0.5, 14.75, 0.5, 0.5, 14.25, -0.25, 0.5, 14.25, -0.75, 0.5, 14.75, -10.25, 0.5, 24, -10.25, 0.5, 33.25, 0, 0.5, 33.25, -0.75, 0.5, 14.75, -10.25, 0.5, 14.75, -10.25, 0.5, 24, 10.5, 0.5, 24, 10.5, 0.5, 14.75, 1, 0.5, 14.75 )
@@ -68,6 +69,14 @@ script = ExtResource( 8 )
 delay_between_spawns_min = 3.0
 delay_between_spawns_max = 10.0
 initial_delay_seconds = 20.0
+disabled = true
+
+[node name="NavigationPointMgr" type="Node" parent="Mgrs"]
+script = ExtResource( 20 )
+object_to_navigation_points = {
+NodePath("../../NavigationMeshInstance/Cauldron"): [ NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D1"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D2"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D3"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D4") ],
+NodePath("../../NavigationMeshInstance/CrystalBall"): [ NodePath("../../NavigationMeshInstance/CrystalBall/CrystalBallNavPosition3D1"), NodePath("../../NavigationMeshInstance/CrystalBall/CrystalBallNavPosition3D2") ]
+}
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 3 )
@@ -153,6 +162,18 @@ height = 1.92038
 [node name="Cauldron" parent="NavigationMeshInstance" instance=ExtResource( 4 )]
 time_to_complete_minutes = 5.0
 
+[node name="CauldronNavPosition3D1" type="Position3D" parent="NavigationMeshInstance/Cauldron"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+
+[node name="CauldronNavPosition3D2" type="Position3D" parent="NavigationMeshInstance/Cauldron"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
+
+[node name="CauldronNavPosition3D3" type="Position3D" parent="NavigationMeshInstance/Cauldron"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+
+[node name="CauldronNavPosition3D4" type="Position3D" parent="NavigationMeshInstance/Cauldron"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+
 [node name="StaticBody" type="StaticBody" parent="NavigationMeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
@@ -196,6 +217,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4 )
 
 [node name="CrystalBall" parent="NavigationMeshInstance" instance=ExtResource( 17 )]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -7, 0, -6 )
+
+[node name="CrystalBallNavPosition3D1" type="Position3D" parent="NavigationMeshInstance/CrystalBall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.170853, 0, 1.8488 )
+
+[node name="CrystalBallNavPosition3D2" type="Position3D" parent="NavigationMeshInstance/CrystalBall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0389876, 0, -1.7819 )
 
 [node name="WoodPile" parent="NavigationMeshInstance" instance=ExtResource( 15 )]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 6, 0.230077, -6 )
