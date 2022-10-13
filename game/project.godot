@@ -605,6 +605,7 @@ previous_camera={
 3d_physics/layer_5="character"
 3d_physics/layer_6="enemy"
 3d_physics/layer_7="destructable"
+3d_physics/layer_8="projectiles"
 
 [logging]
 

@@ -10,6 +10,7 @@ enum PhysLayerMask {
 	CHARACTER = 1 << 4,
 	ENEMY = 1 << 5,
 	DESTRUCTABLE = 1 << 6,
+	PROJECTILES = 1 << 7,
 }
 
 enum PhysLayerBitIndex {
@@ -20,6 +21,7 @@ enum PhysLayerBitIndex {
 	CHARACTER = 4,
 	ENEMY = 5,
 	DESTRUCTABLE = 6,
+	PROJECTILES = 7,
 }
 
 

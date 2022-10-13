@@ -348,11 +348,13 @@ unique_name_in_owner = true
 [node name="CameraTestZombie" parent="DynamicParent" instance=ExtResource( 20 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5, 0, -26.9218 )
 visible = false
+collision_mask = 49
 disabled = true
 
 [node name="CameraTestZombie2" parent="DynamicParent" instance=ExtResource( 20 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17, 0, 4.07817 )
 visible = false
+collision_mask = 49
 disabled = true
 
 [node name="CameraFeedHud" parent="." instance=ExtResource( 9 )]
