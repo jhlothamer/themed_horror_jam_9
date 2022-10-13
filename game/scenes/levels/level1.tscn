@@ -108,7 +108,7 @@ script = ExtResource( 1 )
 delay_between_spawns_min = 3.0
 delay_between_spawns_max = 10.0
 initial_delay_seconds = 20.0
-per_wave_increase_amount = 0.2
+per_wave_increase_amount = 0.1
 
 [node name="NavigationPointMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 2 )
