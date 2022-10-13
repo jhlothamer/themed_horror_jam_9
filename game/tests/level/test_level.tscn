@@ -60,7 +60,6 @@ __meta__ = {
 
 [node name="EnemySpawnMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 13 )
-spawn_positions = [ NodePath("../../SpawnPositions/NorthPosition3D"), NodePath("../../SpawnPositions/SouthPosition3D"), NodePath("../../SpawnPositions/WestPosition3D"), NodePath("../../SpawnPositions/EastPosition3D") ]
 
 [node name="CharacterMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 8 )

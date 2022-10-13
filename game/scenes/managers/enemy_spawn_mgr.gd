@@ -4,7 +4,7 @@ extends Node
 
 const SCENE_ENEMY = preload("res://scenes/enemies/zombie.tscn")
 
-export (Array, NodePath) var spawn_positions := []
+export var spawn_position_parent: NodePath
 
 
 var _spawn_positions := []
@@ -14,8 +14,13 @@ func _enter_tree():
 	ServiceMgr.register_service(get_script(), self)
 
 func _ready():
-	for i in spawn_positions:
-		var spawn_position: Spatial = get_node(i)
+	var position_parent = get_node(spawn_position_parent)
+	if !position_parent:
+		printerr("EnemySpawnMgr: Bas spawn position parent node path!  Can't spawn enemies.")
+		return
+	
+	for i in position_parent.get_children():
+		var spawn_position: Spatial = i
 		if spawn_position:
 			_spawn_positions.append(spawn_position)
 	

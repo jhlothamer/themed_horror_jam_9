@@ -6,10 +6,11 @@ export var camera_feed_viewports_parent: NodePath
 
 onready var _camera_feed_viewport_texture: ViewportTexture = $MarginContainer/CameraFeedTextureRect.texture
 onready var _ui_container: Control = $MarginContainer
-onready var _number_label: Label = $MarginContainer/CameraFeedTextureRect/NumberLabel
+onready var _feed_name_label: Label = $MarginContainer/CameraFeedTextureRect/FeedNameLabel
 onready var _feed_change_sound: AudioStreamPlayer = $FeedChangeSound
 
 var _camera_feed_viewports := []
+var _camera_feed_names := []
 var _camera_feed_index := 0
 
 
@@ -22,11 +23,13 @@ func _ready():
 	for c in parent.get_children():
 		if c is Viewport:
 			_camera_feed_viewports.append(c.get_path())
+			_camera_feed_names.append(c.name)
 	if !_camera_feed_viewports:
 		printerr("CameraFeedHud: no viewports found in parent %s" % camera_feed_viewports_parent)
 		return
 	
 	_camera_feed_viewport_texture.viewport_path = _camera_feed_viewports[_camera_feed_index]
+	_feed_name_label.text = _camera_feed_names[_camera_feed_index]
 	SignalMgr.register_subscriber(self, "crystal_ball_status_changed")
 
 
@@ -35,7 +38,7 @@ func _change_camera(delta: int) -> void:
 		return
 	_camera_feed_index = wrapi(_camera_feed_index + delta, 0, _camera_feed_viewports.size())
 	_camera_feed_viewport_texture.viewport_path = _camera_feed_viewports[_camera_feed_index]
-	_number_label.text = str(_camera_feed_index + 1)
+	_feed_name_label.text = _camera_feed_names[_camera_feed_index]
 	_feed_change_sound.play()
 
 
