@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=1]
 [ext_resource path="res://scenes/managers/navigation_point_mgr.gd" type="Script" id=2]
@@ -22,6 +22,9 @@
 [ext_resource path="res://scenes/enemies/zombie.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/worlds_environments/camera_feed_env.tres" type="Environment" id=21]
 [ext_resource path="res://scenes/levels/level1.gd" type="Script" id=22]
+[ext_resource path="res://assets/models/trees_ilikethepixies/tree_002_ilikethepixies.gltf" type="PackedScene" id=23]
+[ext_resource path="res://assets/models/trees_ilikethepixies/tree_003_ilikethepixies.gltf" type="PackedScene" id=24]
+[ext_resource path="res://assets/models/trees_ilikethepixies/tree_001_ilikethepixies.gltf" type="PackedScene" id=25]
 
 [sub_resource type="NavigationMesh" id=4]
 vertices = PoolVector3Array( -0.5, 0.5, -11.25, 0.75, 0.5, -11.25, 9.5, 0.5, -11.5, -9.5, 0.5, -21, -9.5, 0.5, -11.5, -0.5, 0.5, -11.25, 9.5, 0.5, -21, 9.5, 0.5, -30.5, 0, 0.5, -30.5, 0, 0.5, -30.5, -9.5, 0.5, -30.5, -9.5, 0.5, -21, -0.5, 0.5, -11.25, 9.5, 0.5, -11.5, 9.5, 0.5, -21, 1, 0.5, -9.5, 0.75, 0.5, -11.25, -0.5, 0.5, -11.25, -0.75, 0.5, -9.5, -1.25, 0.5, -6, -1, 0.5, -8.25, -4.5, 0.5, -7, -4.5, 0.5, -6, -9.5, 0.5, -9.5, -9.5, 0.5, -6, -7, 0.5, -8.5, 3.25, 0.5, -8, 3.25, 0.5, -9.5, 1, 0.5, -9.5, -1, 0.5, -8.25, -0.75, 0.5, -9.5, -6, 0.5, -8.5, -4.5, 0.5, -7, -1, 0.5, -8.25, 1, 0.5, -9.5, -1.25, 0.5, -1.5, 0, 0.5, -1.75, 0, 0.5, -5.75, -1.25, 0.5, -6, -4.5, 0.5, -6, -7.25, 0.5, -3.5, -9.5, 0.5, -9.5, -7, 0.5, -8.5, -6, 0.5, -8.5, -0.75, 0.5, -9.5, -10.5, 0.5, 0.5, -10.5, 0.5, -0.5, -11.5, 0.5, -0.75, -11.5, 0.5, 0.75, -30.5, 0.5, 0, -30.5, 0.5, 9.5, -21, 0.5, 9.5, -11.5, 0.5, -0.75, -11.5, 0.5, -9.5, -21, 0.5, -9.5, -21, 0.5, 9.5, -11.5, 0.5, 9.5, -11.5, 0.5, 0.75, -21, 0.5, -9.5, -30.5, 0.5, -9.5, -30.5, 0.5, 0, -21, 0.5, 9.5, -11.5, 0.5, 0.75, -11.5, 0.5, -0.75, 10.5, 0.5, 0, 10.5, 0.5, -0.5, 9.5, 0.5, -0.75, 2, 0.5, 0, 9.5, 0.5, -4.25, 10.5, 0.5, -4.5, 10.5, 0.5, -5.5, 9.5, 0.5, -5.75, 3, 0.5, -5.75, 9.5, 0.5, -9.5, 3.25, 0.5, -9.5, 3.25, 0.5, -8, 0, 0.5, -5.75, 0, 0.5, -1.75, 1, 0.5, -1.75, 3, 0.5, -5.75, 0, 0.5, -5.75, 1, 0.5, -1.75, 2, 0.5, 0, 9.5, 0.5, -0.75, 9.5, 0.5, -4.25, 9.5, 0.5, -5.75, 9.5, 0.5, -9.5, 3.25, 0.5, -8, 3, 0.5, -5.75, 11.5, 0.5, -0.75, 10.5, 0.5, -0.5, 10.5, 0.5, 0, 11.5, 0.5, 0.75, 10.5, 0.5, 0, 10.5, 0.5, 0.5, 11.5, 0.5, 0.75, 21, 0.5, 9.5, 30.5, 0.5, 9.5, 30.5, 0.5, 0, 21, 0.5, -9.5, 11.5, 0.5, -0.75, 11.5, 0.5, 0.75, 10.5, 0.5, -5.5, 10.5, 0.5, -4.5, 11.5, 0.5, -4.25, 11.5, 0.5, -5.75, 30.5, 0.5, 0, 30.5, 0.5, -9.5, 21, 0.5, -9.5, 21, 0.5, -9.5, 11.5, 0.5, -9.5, 11.5, 0.5, -5.75, 21, 0.5, -9.5, 11.5, 0.5, -5.75, 11.5, 0.5, -4.25, 11.5, 0.5, 0.75, 11.5, 0.5, 9.5, 21, 0.5, 9.5, 21, 0.5, -9.5, 11.5, 0.5, -4.25, 11.5, 0.5, -0.75, -6.75, 2.5, -7.25, -8.25, 2.5, -5.75, -8.25, 2.5, -5.25, -7.25, 2.5, -4.75, -5.75, 2.5, -6.25, -6.25, 2.5, -7.25, -0.25, 1, -7.25, -0.25, 1, -6.75, 2.25, 1, -6.75, 2.25, 1, -7.25, -6.75, 0.5, -6.75, -7.75, 0.5, -5.75, -7.75, 0.5, -5.25, -7.25, 0.5, -5.25, -6.25, 0.5, -6.25, -6.25, 0.5, -6.75, -10.5, 0.5, -0.5, -10.5, 0.5, 0.5, -9.5, 0.5, 0.75, -9.5, 0.5, -0.75, -9.5, 0.5, -0.75, -9.5, 0.5, 0.75, -7, 0.5, 2.75, -9.5, 0.5, 5, -8.25, 0.5, 5, -8.25, 0.5, 4, -8, 0.5, -3.5, -9.5, 0.5, -5, -9.5, 0.5, -0.75, -9.5, 0.5, 5, -8.25, 0.5, 4, -7, 0.5, 2.75, -9.5, 0.5, 0.75, -5, 0.5, 2.75, -1.75, 0.5, 1, -1.75, 0.5, -1, -7.25, 0.5, -3.5, -9.5, 0.5, -0.75, -7, 0.5, 2.75, -4, 0.5, 3.75, -1.25, 0.5, 1.5, -1.75, 0.5, 1, -5, 0.5, 2.75, -7.25, 0.5, -3.5, -8, 0.5, -3.5, -9.5, 0.5, -0.75, -1.75, 0.5, -1, -1.25, 0.5, -1.5, -7.25, 0.5, -3.5, -0.75, 2.5, -0.5, -0.5, 2.5, 0.75, 0.75, 2.5, 0.5, 0.5, 2.5, -0.75, -0.5, 0.5, -0.25, -0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, -0.5, 9.5, 0.5, 0.75, 10.5, 0.5, 0.5, 10.5, 0.5, 0, 2, 0.5, 0, 4.25, 0.5, 9.5, 4.5, 0.5, 10.5, 5.5, 0.5, 10.5, 5.75, 0.5, 9.5, 1.5, 0.5, 1.25, 4.25, 0.5, 9.5, 5.75, 0.5, 9.5, 1.5, 0.5, 1.25, 1.5, 0.5, 9.5, 4.25, 0.5, 9.5, 9.5, 0.5, 0.75, 2, 0.5, 0, 1.5, 0.5, 1.25, 5.75, 0.5, 9.5, 9.5, 0.5, 9.5, -0.5, 0.5, 10.5, 0.75, 0.5, 10.5, 0.75, 0.5, 9.75, -0.75, 0.5, 9.5, -3.75, 0.5, 6, -5, 0.5, 7.25, -0.75, 0.5, 9.5, -8.25, 0.5, 6, -8.25, 0.5, 5, -9.5, 0.5, 5, -0.75, 0.5, 9.5, 0.75, 0.5, 9.75, 1.5, 0.5, 9.5, -7, 0.5, 7.25, -8.25, 0.5, 6, -9.5, 0.5, 5, -9.5, 0.5, 9.5, -1.25, 0.5, 1.5, -4, 0.5, 3.75, -3.75, 0.5, 6, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1, 0.5, 1.75, -5, 0.5, 7.25, -7, 0.5, 7.25, -9.5, 0.5, 9.5, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1.5, 0.5, 1.25, 1, 0.5, 1.75, -4.75, 2.5, 5.5, -5.5, 2.5, 3.75, -7.25, 2.5, 4.5, -7.25, 2.5, 5.5, -6.5, 2.5, 6.25, -5.5, 2.5, 6.25, -5.5, 2.5, 3.75, -6.5, 2.5, 3.75, -7.25, 2.5, 4.5, -4.75, 2.5, 5.5, -4.75, 2.5, 4.5, -5.5, 2.5, 3.75, -7, 0.5, 4.75, -6.25, 0.5, 6, -5, 0.5, 5.25, -5.75, 0.5, 4, 5.5, 0.5, 10.5, 4.5, 0.5, 10.5, 4.25, 0.5, 11.5, 5.75, 0.5, 11.5, -9.5, 0.5, 21, -9.5, 0.5, 30.5, 0, 0.5, 30.5, 9.5, 0.5, 21, 1, 0.5, 11.5, -0.75, 0.5, 11.5, 1, 0.5, 11.5, 0.75, 0.5, 10.5, -0.5, 0.5, 10.5, -0.75, 0.5, 11.5, 0, 0.5, 30.5, 9.5, 0.5, 30.5, 9.5, 0.5, 21, 9.5, 0.5, 21, 9.5, 0.5, 11.5, 5.75, 0.5, 11.5, 9.5, 0.5, 21, 5.75, 0.5, 11.5, 4.25, 0.5, 11.5, 9.5, 0.5, 21, 4.25, 0.5, 11.5, 1, 0.5, 11.5, -0.75, 0.5, 11.5, -9.5, 0.5, 11.5, -9.5, 0.5, 21 )
@@ -589,19 +592,50 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
 [node name="GroundMeshInstance1" type="MeshInstance" parent="Exterior/Ground"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 0 )
+layers = 3
 mesh = SubResource( 10 )
 
 [node name="GroundMeshInstance2" type="MeshInstance" parent="Exterior/Ground"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60 )
+layers = 3
 mesh = SubResource( 10 )
 
 [node name="GroundMeshInstance3" type="MeshInstance" parent="Exterior/Ground"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0 )
+layers = 3
 mesh = SubResource( 10 )
 
 [node name="GroundMeshInstance4" type="MeshInstance" parent="Exterior/Ground"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60 )
+layers = 3
 mesh = SubResource( 10 )
+
+[node name="North" type="Spatial" parent="Exterior"]
+
+[node name="tree_003_ilikethepixies" parent="Exterior/North" instance=ExtResource( 24 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14, 0, 21 )
+
+[node name="tree_001_ilikethepixies" parent="Exterior/North" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 19 )
+
+[node name="tree_002_ilikethepixies" parent="Exterior/North" instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 28 )
+
+[node name="West" type="Spatial" parent="Exterior"]
+
+[node name="tree_001_ilikethepixies" parent="Exterior/West" instance=ExtResource( 25 )]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 23, 0, -9.53674e-07 )
+
+[node name="tree_003_ilikethepixies2" parent="Exterior/West" instance=ExtResource( 24 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16, 0, 13 )
+
+[node name="tree_002_ilikethepixies" parent="Exterior/West" instance=ExtResource( 23 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 23, 0, 13 )
+
+[node name="tree_002_ilikethepixies2" parent="Exterior/West" instance=ExtResource( 23 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 24, 0, -14 )
+
+[node name="East" type="Spatial" parent="Exterior"]
 
 [node name="MainCameraFlags" type="Spatial" parent="."]
 visible = false
@@ -625,3 +659,21 @@ mesh = SubResource( 12 )
 transform = Transform( -5.96046e-08, -0.707107, -0.707107, 0, 0.707107, -0.707107, 1, -2.98023e-08, -2.98023e-08, -17, 12, 0.999999 )
 cast_shadow = 0
 mesh = SubResource( 12 )
+
+[node name="tree_001_ilikethepixies" parent="." instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, 3 )
+
+[node name="tree_001_ilikethepixies3" parent="." instance=ExtResource( 25 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -23, 0, 9 )
+
+[node name="tree_001_ilikethepixies2" parent="." instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18, 0, -13 )
+
+[node name="tree_003_ilikethepixies" parent="." instance=ExtResource( 24 )]
+transform = Transform( -0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -20, 0, 16 )
+
+[node name="tree_002_ilikethepixies" parent="." instance=ExtResource( 23 )]
+transform = Transform( 0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -25, 0, -12 )
+
+[node name="tree_002_ilikethepixies2" parent="." instance=ExtResource( 23 )]
+transform = Transform( 0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -16, 0, -16 )
