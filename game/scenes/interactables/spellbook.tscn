@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/interactables/spellbook.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=3]
+[ext_resource path="res://assets/sounds/sfx_book_interaction_interrupt_jdymusic.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/sfx_book_interaction_start_loop_jdymusic.mp3" type="AudioStream" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.6, 1.2, 0.6 )
@@ -40,6 +42,18 @@ mouse_over_color = Color( 1, 0.631373, 0, 1 )
 script = ExtResource( 3 )
 outline_helper = NodePath("../OutlineHelper3D")
 interactable_type = "spellbook"
+interaction_start_sound = NodePath("../StartLoopSound")
+interaction_interupt_sound = NodePath("../InterruptSound")
+
+[node name="InterruptSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_db = 12.0
+bus = "SoundFx"
+
+[node name="StartLoopSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
+unit_db = 12.0
+bus = "SoundFx"
 
 [connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
 [connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
