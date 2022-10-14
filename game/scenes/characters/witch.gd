@@ -15,7 +15,8 @@ var _looping_animations := [
 	"Walking",
 	"Cauldron",
 	"Crystal Ball",
-	"Manapool"
+	"Manapool",
+	"Spellbook",
 ]
 
 var _interactable_object_name := ""
@@ -24,8 +25,8 @@ var _interact_state_animations_for_object := {
 	"Cauldron": "Cauldron",
 	"ManaPool": "Manapool",
 	"CrystalBall": "Crystal Ball",
+	"Spellbook": "Spellbook",
 }
-
 
 func _on_StateMachine_state_changed(old_state, new_state):
 	._on_StateMachine_state_changed(old_state, new_state)

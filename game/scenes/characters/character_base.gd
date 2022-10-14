@@ -12,6 +12,8 @@ export (Array, String) var allowed_interactable_types := []
 export var debug_state := false
 export var starting_resources := {}
 export var invulnerable := false
+export var debug_movement := false
+export var can_shoot := false
 
 
 onready var death_sound:AudioStreamPlayer3D = get_node_or_null(death_sound_node_path)
@@ -37,7 +39,7 @@ func _ready():
 	_health_bar.value = starting_health
 	current_health = starting_health
 	_state_debug_label.visible = debug_state
-	resources = starting_resources
+	resources = starting_resources.duplicate(true)
 
 
 func is_selected() -> bool:

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_book_interaction_interrupt_jdymusic.mp3-7951a90316cc84b5af7414fd67fe98ce.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_book_interaction_interrupt_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_book_interaction_interrupt_jdymusic.mp3-7951a90316cc84b5af7414fd67fe98ce.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

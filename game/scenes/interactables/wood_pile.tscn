@@ -78,7 +78,6 @@ mesh = SubResource( 3 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401977, 0 )
-visible = false
 mesh = SubResource( 6 )
 value = 0.0
 max_value = 30.0

@@ -16,7 +16,7 @@ func _enter_tree():
 func _ready():
 	var position_parent = get_node(spawn_position_parent)
 	if !position_parent:
-		printerr("EnemySpawnMgr: Bas spawn position parent node path!  Can't spawn enemies.")
+		printerr("EnemySpawnMgr: Bad spawn position parent node path!  Can't spawn enemies.")
 		return
 	
 	for i in position_parent.get_children():

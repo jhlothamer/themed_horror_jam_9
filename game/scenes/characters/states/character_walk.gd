@@ -96,6 +96,8 @@ func _v_to_char_y(v: Vector3) -> Vector3:
 func _on_navigation_finished():
 	if !is_current_state():
 		return
+	if character.debug_movement:
+		print("%s: navigation finished" % character.name)
 	_destroy_move_to_indicator()
 	if _interaction_helper:
 		var lookat_v = _target_interactable_object.global_transform.origin
@@ -125,6 +127,12 @@ func _on_target_reached():
 func physics_process(_delta: float) -> void:
 	var next_location := _v_to_char_y(_nav_agent.get_next_location())
 	if next_location == character.global_transform.origin or !is_current_state():
+		if character.debug_movement:
+			if next_location == character.global_transform.origin:
+				print("%s: not moving - next location is character's position" % character.name)
+			if !is_current_state():
+				print("%s: not moving - %s state no longer current" % [character.name, name])
+
 		return
 	
 	var direction:Vector3 = character.global_transform.origin.direction_to(next_location)

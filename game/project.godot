@@ -114,6 +114,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot_helper_pack/core/util/enum_util.gd"
 }, {
+"base": "Label",
+"class": "FPSLabel",
+"language": "GDScript",
+"path": "res://scenes/ui/debug_perf/fps_label.gd"
+}, {
 "base": "Object",
 "class": "FileUtil",
 "language": "GDScript",
@@ -376,6 +381,7 @@ _global_script_class_icons={
 "EnemySpawnMgr": "",
 "EnemyWaveMgr": "",
 "EnumUtil": "",
+"FPSLabel": "",
 "FileUtil": "",
 "GameConsts": "",
 "GameUtil": "",
@@ -442,6 +448,10 @@ Globals="*res://addons/godot_helper_pack/core/globals.gd"
 SignalMgr="*res://addons/godot_helper_pack/core/signal_mgr.gd"
 ServiceMgr="*res://addons/godot_helper_pack/core/service_mgr.gd"
 GlobalBlockingColorChangeMonitor="*res://addons/godot_helper_pack/core/2d/shape/global_blocking_color_monitor.tscn"
+
+[debug]
+
+gdscript/warnings/treat_warnings_as_errors=true
 
 [display]
 

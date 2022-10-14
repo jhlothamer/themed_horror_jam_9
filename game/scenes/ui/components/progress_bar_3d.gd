@@ -3,6 +3,9 @@ class_name ProgressBar3D
 extends MeshInstance
 
 
+signal value_changed(new_value)
+
+
 export var value := 50.0 setget _set_value
 export var min_value := 0.0 setget _set_min_value
 export var max_value := 100.0 setget _set_max_value
@@ -14,6 +17,7 @@ export var progress_color := Color.green setget _set_progress_color
 func _set_value(v: float) -> void:
 	value = v
 	_update_shader()
+	emit_signal("value_changed", value)
 
 
 func _set_min_value(v: float) -> void:
@@ -45,7 +49,7 @@ func _ready():
 	self.progress_color = progress_color
 	self.min_value = min_value
 	self.max_value = max_value
-	self.value = value
+	_update_shader()
 
 
 func _update_shader():

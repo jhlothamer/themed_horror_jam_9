@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ui/pause_dialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ui/game_over_dialog.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ui/hud.gd" type="Script" id=3]
 [ext_resource path="res://scenes/ui/win_dialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ui/debug_perf/fps_label.gd" type="Script" id=5]
+[ext_resource path="res://assets/themes/global.tres" type="Theme" id=6]
 
 [node name="Hud" type="CanvasLayer"]
 pause_mode = 2
@@ -21,3 +23,84 @@ visible = false
 visible = false
 
 [node name="WinDialog" parent="Dialogs" instance=ExtResource( 4 )]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -247.0
+margin_bottom = 152.0
+theme = ExtResource( 6 )
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 227.0
+margin_bottom = 132.0
+custom_constants/hseparation = 20
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/GridContainer"]
+margin_right = 104.0
+margin_bottom = 25.0
+text = "FPS:"
+align = 2
+
+[node name="FPSLabel" type="Label" parent="MarginContainer/GridContainer"]
+margin_left = 124.0
+margin_right = 207.0
+margin_bottom = 25.0
+text = "244.444"
+script = ExtResource( 5 )
+
+[node name="Label2" type="Label" parent="MarginContainer/GridContainer"]
+margin_top = 29.0
+margin_right = 104.0
+margin_bottom = 54.0
+text = "FPS (min):"
+align = 2
+
+[node name="FPSLabel2" type="Label" parent="MarginContainer/GridContainer"]
+margin_left = 124.0
+margin_top = 29.0
+margin_right = 207.0
+margin_bottom = 54.0
+text = "244.444"
+script = ExtResource( 5 )
+monitor_type = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/GridContainer"]
+margin_top = 58.0
+margin_right = 104.0
+margin_bottom = 83.0
+text = "FPS (max):"
+align = 2
+
+[node name="FPSLabel3" type="Label" parent="MarginContainer/GridContainer"]
+margin_left = 124.0
+margin_top = 58.0
+margin_right = 207.0
+margin_bottom = 83.0
+text = "244.444"
+script = ExtResource( 5 )
+monitor_type = 1
+
+[node name="Label4" type="Label" parent="MarginContainer/GridContainer"]
+margin_top = 87.0
+margin_right = 104.0
+margin_bottom = 112.0
+text = "FPS (avg):"
+align = 2
+
+[node name="FPSLabel4" type="Label" parent="MarginContainer/GridContainer"]
+margin_left = 124.0
+margin_top = 87.0
+margin_right = 207.0
+margin_bottom = 112.0
+text = "244.444"
+script = ExtResource( 5 )
+monitor_type = 3

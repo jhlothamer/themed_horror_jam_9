@@ -30,7 +30,7 @@ func _ready():
 func _on_enemy_clicked(enemy: CollisionObject) -> void:
 	if !character.is_selected() or _firing:
 		return
-	if !character.has_required_resource_amount(GameConsts.RESOURCE_MANA, Projectile.MANA_USED):
+	if !character.can_shoot or !character.has_required_resource_amount(GameConsts.RESOURCE_MANA, Projectile.MANA_USED):
 		if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
 			_deny_interaction_sound.play()
 		return
