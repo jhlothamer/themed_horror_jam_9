@@ -24,8 +24,10 @@ func _change_fire_state(on: bool) -> void:
 	var end = 0.4 if on else 1.0
 	if _tween.is_active():
 		yield(_tween, "tween_all_completed")
-	_tween.interpolate_property(_fire_shader, "shader_param/fire_aperture", start, end, fire_change_time_seconds)
-	_tween.start()
+	if !_tween.interpolate_property(_fire_shader, "shader_param/fire_aperture", start, end, fire_change_time_seconds):
+		printerr("%n: Unable to interpolate shader parameter" % name)
+	if !_tween.start():
+		printerr("%n: Unable to start tween" % name)
 	_bubble_particles.emitting = on
 
 
@@ -33,9 +35,9 @@ func _on_InteractionHelper_interaction_completed(_helperref, _obj):
 	emit_signal("game_won")
 
 
-func _on_InteractionHelper_interaction_started(interactor):
+func _on_InteractionHelper_interaction_started(_interactor):
 	_change_fire_state(true)
 
 
-func _on_InteractionHelper_interaction_interrupted(interactor):
+func _on_InteractionHelper_interaction_interrupted(_interactor):
 	_change_fire_state(false)

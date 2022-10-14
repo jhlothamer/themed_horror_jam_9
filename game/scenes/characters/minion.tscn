@@ -71,6 +71,9 @@ height = 0.3
 script = ExtResource( 5 )
 allowed_interactable_types = [ "destructable", "wood_pile" ]
 
+[node name="Shoot" parent="StateMachine" index="4"]
+fire_from_position = NodePath("../../FireFromPosition3D")
+
 [node name="OutlineHelper3D" parent="." index="3"]
 mesh_instances_to_outline = [ NodePath("../TempMinionMeshInstance") ]
 
@@ -120,3 +123,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
 [node name="SelectionMarkerRemoteTransform" parent="." index="13"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
+
+[node name="FireFromPosition3D" type="Position3D" parent="." index="15"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36783, -1.01215 )

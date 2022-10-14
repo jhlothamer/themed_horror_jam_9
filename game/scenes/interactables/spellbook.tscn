@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/interactables/spellbook.gd" type="Script" id=1]
+[ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
+[ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.6, 1.2, 0.6 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.5, 2, 0.5 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 1, 0.1, 1 )
+
+[node name="Spellbook" type="StaticBody"]
+collision_layer = 3
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0 )
+shape = SubResource( 1 )
+
+[node name="PedistalMeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 2 )
+
+[node name="PedistalTopMeshInstance" type="MeshInstance" parent="PedistalMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.1065, 0 )
+mesh = SubResource( 3 )
+
+[node name="OutlineHelper3D" type="Node" parent="."]
+script = ExtResource( 2 )
+mesh_instances_to_outline = [ NodePath("../PedistalMeshInstance"), NodePath("../PedistalMeshInstance/PedistalTopMeshInstance") ]
+select_on_click = false
+button_index = 2
+mouse_over_color = Color( 1, 0.631373, 0, 1 )
+
+[node name="InteractionHelper" type="Node" parent="."]
+script = ExtResource( 3 )
+outline_helper = NodePath("../OutlineHelper3D")
+interactable_type = "spellbook"
+
+[connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
+[connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
