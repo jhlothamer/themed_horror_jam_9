@@ -7,6 +7,12 @@ export var north_action_name := "ui_up"
 export var south_action_name := "ui_down"
 export var west_action_name := "ui_left"
 export var east_action_name := "ui_right"
+export var disabled := false
+
+
+func _ready():
+	if disabled:
+		set_physics_process(false)
 
 
 func _physics_process(delta):

@@ -42,7 +42,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=11]
 shader = SubResource( 2 )
 shader_param/background_color = Color( 0.584314, 0.584314, 0.584314, 1 )
 shader_param/progress_color = Color( 1, 0.752941, 0.0117647, 1 )
@@ -50,7 +50,7 @@ shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=4]
 resource_local_to_scene = true
-material = SubResource( 5 )
+material = SubResource( 11 )
 size = Vector2( 2, 0.2 )
 
 [sub_resource type="Shader" id=6]
