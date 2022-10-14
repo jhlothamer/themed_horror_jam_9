@@ -93,7 +93,7 @@ size = Vector2( 1, 0.1 )
 
 [node name="EnemyBase" type="KinematicBody"]
 collision_layer = 35
-collision_mask = 49
+collision_mask = 177
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

@@ -41,7 +41,6 @@ extents = Vector3( 3, 1, 1 )
 [sub_resource type="Environment" id=2]
 background_mode = 1
 ambient_light_color = Color( 0.223529, 0.223529, 0.223529, 1 )
-ambient_light_energy = 0.2
 fog_color = Color( 0.384314, 0.411765, 0.439216, 1 )
 fog_depth_curve = 1.6245
 fog_height_enabled = true
@@ -61,7 +60,6 @@ __meta__ = {
 
 [node name="EnemySpawnMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 13 )
-spawn_positions = [ NodePath("../../SpawnPositions/NorthPosition3D"), NodePath("../../SpawnPositions/SouthPosition3D"), NodePath("../../SpawnPositions/WestPosition3D"), NodePath("../../SpawnPositions/EastPosition3D") ]
 
 [node name="CharacterMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 8 )

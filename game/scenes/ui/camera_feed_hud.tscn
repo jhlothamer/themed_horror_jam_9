@@ -45,7 +45,7 @@ custom_constants/shadow_offset_y = 4
 text = "Crystal Ball Feed"
 align = 1
 
-[node name="NumberLabel" type="Label" parent="MarginContainer/CameraFeedTextureRect"]
+[node name="FeedNameLabel" type="Label" parent="MarginContainer/CameraFeedTextureRect"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
