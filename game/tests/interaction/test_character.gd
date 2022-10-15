@@ -101,7 +101,7 @@ func _stop_current_interaction() -> void:
 	pass
 	if !_interaction_helper:
 		return
-	_interaction_helper.stop_interaction()
+	_interaction_helper.stop_interaction(self)
 	_interaction_helper = null
 	_interactable_target = null
 
@@ -130,7 +130,7 @@ func _physics_process(delta):
 			_path = []
 			if _path_debug_im:
 				_path_debug_im.visible = false
-			_interaction_helper.start_interaction()
+			_interaction_helper.start_interaction(self)
 			_destroy_move_to_indicator()
 		elif c.normal.dot(Vector3.UP) != 1.0:
 			_target_pos = null

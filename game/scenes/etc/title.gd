@@ -1,10 +1,11 @@
-extends Control
+extends Spatial
 
-onready var _exit_btn:Button = $ButtonsMarginContainer/VBoxContainer/ExitBtn
-onready var _title_lbl: Label = $TitleMarginContainer/TitleLbl
+
+onready var _exit_btn:Button = $CanvasLayer/Title/ButtonsMarginContainer/VBoxContainer/ExitBtn
+
 
 func _ready():
-	_title_lbl.text = ProjectSettings.get_setting("application/config/name")
+	randomize()
 	if OS.get_name() == "HTML5":
 		_exit_btn.visible = false
 

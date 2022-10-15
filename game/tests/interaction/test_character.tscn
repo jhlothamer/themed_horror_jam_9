@@ -98,7 +98,6 @@ mesh = SubResource( 4 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 2 )
-mesh_instance_to_outline = NodePath("../MeshInstance")
 selected_indicator = NodePath("../SelectedSprite3D")
 
 [node name="HealthBar" parent="." instance=ExtResource( 4 )]

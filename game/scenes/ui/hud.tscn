@@ -28,8 +28,8 @@ visible = false
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -247.0
-margin_bottom = 152.0
+margin_left = -400.0
+margin_bottom = 260.0
 theme = ExtResource( 6 )
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
@@ -39,68 +39,68 @@ custom_constants/margin_bottom = 20
 [node name="GridContainer" type="GridContainer" parent="MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 227.0
-margin_bottom = 132.0
+margin_right = 380.0
+margin_bottom = 240.0
 custom_constants/hseparation = 20
 columns = 2
 
 [node name="Label" type="Label" parent="MarginContainer/GridContainer"]
-margin_right = 104.0
-margin_bottom = 25.0
+margin_right = 169.0
+margin_bottom = 52.0
 text = "FPS:"
 align = 2
 
 [node name="FPSLabel" type="Label" parent="MarginContainer/GridContainer"]
-margin_left = 124.0
-margin_right = 207.0
-margin_bottom = 25.0
+margin_left = 189.0
+margin_right = 360.0
+margin_bottom = 52.0
 text = "244.444"
 script = ExtResource( 5 )
 
 [node name="Label2" type="Label" parent="MarginContainer/GridContainer"]
-margin_top = 29.0
-margin_right = 104.0
-margin_bottom = 54.0
+margin_top = 56.0
+margin_right = 169.0
+margin_bottom = 108.0
 text = "FPS (min):"
 align = 2
 
 [node name="FPSLabel2" type="Label" parent="MarginContainer/GridContainer"]
-margin_left = 124.0
-margin_top = 29.0
-margin_right = 207.0
-margin_bottom = 54.0
+margin_left = 189.0
+margin_top = 56.0
+margin_right = 360.0
+margin_bottom = 108.0
 text = "244.444"
 script = ExtResource( 5 )
 monitor_type = 2
 
 [node name="Label3" type="Label" parent="MarginContainer/GridContainer"]
-margin_top = 58.0
-margin_right = 104.0
-margin_bottom = 83.0
+margin_top = 112.0
+margin_right = 169.0
+margin_bottom = 164.0
 text = "FPS (max):"
 align = 2
 
 [node name="FPSLabel3" type="Label" parent="MarginContainer/GridContainer"]
-margin_left = 124.0
-margin_top = 58.0
-margin_right = 207.0
-margin_bottom = 83.0
+margin_left = 189.0
+margin_top = 112.0
+margin_right = 360.0
+margin_bottom = 164.0
 text = "244.444"
 script = ExtResource( 5 )
 monitor_type = 1
 
 [node name="Label4" type="Label" parent="MarginContainer/GridContainer"]
-margin_top = 87.0
-margin_right = 104.0
-margin_bottom = 112.0
+margin_top = 168.0
+margin_right = 169.0
+margin_bottom = 220.0
 text = "FPS (avg):"
 align = 2
 
 [node name="FPSLabel4" type="Label" parent="MarginContainer/GridContainer"]
-margin_left = 124.0
-margin_top = 87.0
-margin_right = 207.0
-margin_bottom = 112.0
+margin_left = 189.0
+margin_top = 168.0
+margin_right = 360.0
+margin_bottom = 220.0
 text = "244.444"
 script = ExtResource( 5 )
 monitor_type = 3
