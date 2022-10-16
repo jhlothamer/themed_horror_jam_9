@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=1]
+[ext_resource path="res://scenes/wanderers/states/wanderer_walk.gd" type="Script" id=2]
+[ext_resource path="res://scenes/wanderers/wanderer_base.gd" type="Script" id=3]
+[ext_resource path="res://scenes/wanderers/states/wander_idle.gd" type="Script" id=4]
+
+[node name="Wanderer" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+is_starting_state = true
+idle_time_seconds_min = 2.0
+idle_time_seconds_max = 5.0
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )

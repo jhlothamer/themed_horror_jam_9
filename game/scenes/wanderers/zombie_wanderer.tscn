@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/wanderers/wanderer_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/models/zombie_animations_frank_ilikethepixies/zombie_animations_frank_ilikethepixies.gltf" type="PackedScene" id=2]
+[ext_resource path="res://scenes/wanderers/zombie_wanderer.gd" type="Script" id=3]
+
+[node name="ZombieWanderer" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+horizontal_speed = 0.5
+
+[node name="zombie_animations_frank_ilikethepixies" parent="." index="1" instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[connection signal="state_changed" from="StateMachine" to="." method="_on_StateMachine_state_changed"]
+[connection signal="animation_finished" from="zombie_animations_frank_ilikethepixies/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="zombie_animations_frank_ilikethepixies"]
