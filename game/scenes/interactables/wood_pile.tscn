@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/components/interaction_progress_bar_3d.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/interactables/wood_pile.gd" type="Script" id=4]
+[ext_resource path="res://assets/models/wood_pile_ilikethepixies/wood_pile_ilikethepixies.gltf" type="PackedScene" id=5]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.5, 0.2, 1.5 )
+extents = Vector3( 1.05942, 0.2, 1.5 )
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.851562, 0.49983, 0, 1 )
@@ -66,14 +67,17 @@ shape = SubResource( 1 )
 
 [node name="Plank1" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.263061, 0.100733, 0 )
+visible = false
 mesh = SubResource( 3 )
 
 [node name="Plank2" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.269239, 0.100733, 0 )
+visible = false
 mesh = SubResource( 3 )
 
 [node name="Plank3" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.307424, 0 )
+visible = false
 mesh = SubResource( 3 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
@@ -85,7 +89,7 @@ progress_color = Color( 1, 0.752941, 0.0117647, 1 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 2 )
-mesh_instances_to_outline = [ NodePath("../Plank1"), NodePath("../Plank2"), NodePath("../Plank3") ]
+mesh_instances_to_outline = [ NodePath("../wood_pile_ilikethepixies/wood_pile_ilikethepixies") ]
 select_on_click = false
 button_index = 2
 mouse_over_color = Color( 1, 0.631373, 0, 1 )
@@ -97,6 +101,10 @@ interaction_progress_bar = NodePath("../InteractionProgressBar3d")
 interactable_type = "wood_pile"
 complete_after_complete_sound_finished = false
 
+[node name="wood_pile_ilikethepixies" parent="." instance=ExtResource( 5 )]
+
 [connection signal="interaction_completed" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_completed"]
 [connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
 [connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
+
+[editable path="wood_pile_ilikethepixies"]
