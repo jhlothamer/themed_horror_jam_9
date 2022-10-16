@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/characters/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sounds/sfx_goblin_damage_taken1_jdymusic.mp3" type="AudioStream" id=2]
 [ext_resource path="res://assets/sounds/sfx_goblin_damage_taken2_jdymusic.mp3" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/sfx_goblin_death1_jdymusic.mp3" type="AudioStream" id=4]
 [ext_resource path="res://scenes/characters/minion.gd" type="Script" id=5]
+[ext_resource path="res://assets/models/goblin_animations_frank_ilikethepixies/goblinanimations_frank_ilikethepixes.gltf" type="PackedScene" id=6]
 
 [sub_resource type="Shader" id=11]
 code = "shader_type spatial;
@@ -92,6 +93,7 @@ bus = "SoundFx"
 
 [node name="TempMinionMeshInstance" type="MeshInstance" parent="." index="7"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
+visible = false
 layers = 3
 mesh = SubResource( 22 )
 
@@ -125,4 +127,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
 [node name="FireFromPosition3D" type="Position3D" parent="." index="15"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36783, -1.01215 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12374, -1.90052 )
+
+[node name="goblinanimations_frank_ilikethepixes" parent="." index="16" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="goblin_ilikethepixies" parent="goblinanimations_frank_ilikethepixes/Armature/Skeleton" index="0"]
+layers = 3
+
+[connection signal="interaction_about_to_start" from="StateMachine/Walk" to="." method="_on_Walk_interaction_about_to_start"]
+[connection signal="animation_finished" from="goblinanimations_frank_ilikethepixes/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="goblinanimations_frank_ilikethepixes"]

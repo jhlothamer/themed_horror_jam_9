@@ -131,7 +131,12 @@ object_to_navigation_points = {
 NodePath("../../NavigationMeshInstance/Cauldron"): [ NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D1"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D2"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D3"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D4") ],
 NodePath("../../NavigationMeshInstance/CrystalBall"): [ NodePath("../../NavigationMeshInstance/CrystalBall/CrystalBallNavPosition3D1"), NodePath("../../NavigationMeshInstance/CrystalBall/CrystalBallNavPosition3D2") ],
 NodePath("../../NavigationMeshInstance/ManaPool"): [ NodePath("../../NavigationMeshInstance/ManaPool/ManaPoolNavPosition3D1"), NodePath("../../NavigationMeshInstance/ManaPool/ManaPoolNavPosition3D2"), NodePath("../../NavigationMeshInstance/ManaPool/ManaPoolNavPosition3D3") ],
-NodePath("../../NavigationMeshInstance/Spellbook"): [ NodePath("../../NavigationMeshInstance/Spellbook/SpellbookNavPosition3D") ]
+NodePath("../../NavigationMeshInstance/Spellbook"): [ NodePath("../../NavigationMeshInstance/Spellbook/SpellbookNavPosition3D") ],
+NodePath("../../Destructables/Window1"): [ NodePath("../../Destructables/Window1/WindowNavPosition3D") ],
+NodePath("../../Destructables/DoorNorth"): [ NodePath("../../Destructables/DoorNorth/DoorNorthNavPosition3D") ],
+NodePath("../../Destructables/DoorSouth"): [ NodePath("../../Destructables/DoorSouth/DoorSouthNavPosition3D") ],
+NodePath("../../Destructables/DoorWest"): [ NodePath("../../Destructables/DoorWest/DoorWestNavPosition3D") ],
+NodePath("../../Destructables/DoorEast"): [ NodePath("../../Destructables/DoorEast/DoorEastNavPosition3D") ]
 }
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
@@ -554,6 +559,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.693024, 0 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../../../WallPanels")
 
+[node name="WindowNavPosition3D" type="Position3D" parent="Destructables/Window1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+
 [node name="Window2" parent="Destructables" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, -5 )
 
@@ -567,6 +575,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.693024, 0 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../../../WallPanels")
 
+[node name="WindowNavPosition3D" type="Position3D" parent="Destructables/Window2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+
 [node name="DoorNorth" parent="Destructables" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
 collision_mask = 1
@@ -575,6 +586,9 @@ collision_mask = 1
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.37114e-07, 4.5, 0 )
 mesh = SubResource( 9 )
 skeleton = NodePath("../../../WallPanels")
+
+[node name="DoorNorthNavPosition3D" type="Position3D" parent="Destructables/DoorNorth"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
 
 [node name="DoorSouth" parent="Destructables" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
@@ -585,14 +599,20 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.37114
 mesh = SubResource( 9 )
 skeleton = NodePath("../../../WallPanels")
 
+[node name="DoorSouthNavPosition3D" type="Position3D" parent="Destructables/DoorSouth"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
+
 [node name="DoorWest" parent="Destructables" instance=ExtResource( 12 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10, 0, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 0 )
 collision_mask = 1
 
 [node name="DoorTransom2" type="MeshInstance" parent="Destructables/DoorWest"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.5, 0 )
 mesh = SubResource( 9 )
 skeleton = NodePath("../../../WallPanels")
+
+[node name="DoorWestNavPosition3D" type="Position3D" parent="Destructables/DoorWest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.37114e-08, 0, 1 )
 
 [node name="DoorEast" parent="Destructables" instance=ExtResource( 12 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 0, 0 )
@@ -602,6 +622,9 @@ collision_mask = 1
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.5, 0 )
 mesh = SubResource( 9 )
 skeleton = NodePath("../../../WallPanels")
+
+[node name="DoorEastNavPosition3D" type="Position3D" parent="Destructables/DoorEast"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.37114e-08, 0, -1 )
 
 [node name="CharacterHighlightLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 6, 0 )
