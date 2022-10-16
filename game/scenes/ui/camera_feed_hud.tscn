@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/themes/global.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/ui/camera_feed_hud.gd" type="Script" id=2]
-[ext_resource path="res://assets/themes/title_labels.tres" type="Theme" id=3]
+[ext_resource path="res://assets/images/camera_ui_matrix/cameraUI_arrow_right_matrix.png" type="Texture" id=3]
 [ext_resource path="res://assets/sounds/sfx_crystal_ball_camera_view_change_jdymusic.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/images/camera_ui_matrix/cameraUI_arrow_left_matrix.png" type="Texture" id=5]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -36,6 +37,7 @@ rect_min_size = Vector2( 320, 240 )
 texture = SubResource( 1 )
 
 [node name="Label" type="Label" parent="MarginContainer/CameraFeedTextureRect"]
+visible = false
 anchor_right = 1.0
 margin_bottom = 25.0
 custom_colors/font_color = Color( 0.854902, 0.854902, 0.054902, 1 )
@@ -58,29 +60,38 @@ custom_constants/shadow_offset_y = 4
 text = "1"
 align = 1
 
-[node name="PrevLabel" type="Label" parent="MarginContainer/CameraFeedTextureRect"]
+[node name="LeftArrowMarginContainer" type="MarginContainer" parent="MarginContainer/CameraFeedTextureRect"]
 anchor_bottom = 1.0
-margin_right = 69.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.854902, 0.854902, 0.054902, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 4
-custom_constants/shadow_offset_y = 4
-text = "<"
-valign = 1
+margin_right = 32.0
+custom_constants/margin_left = 10
 
-[node name="Nextlabel" type="Label" parent="MarginContainer/CameraFeedTextureRect"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CameraFeedTextureRect/LeftArrowMarginContainer"]
+margin_left = 10.0
+margin_right = 42.0
+margin_bottom = 240.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CameraFeedTextureRect/LeftArrowMarginContainer/CenterContainer"]
+margin_top = 104.0
+margin_right = 32.0
+margin_bottom = 136.0
+texture = ExtResource( 5 )
+
+[node name="RightArrowMarginContainer" type="MarginContainer" parent="MarginContainer/CameraFeedTextureRect"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -69.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.854902, 0.854902, 0.054902, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 4
-custom_constants/shadow_offset_y = 4
-text = ">"
-valign = 1
+margin_left = -42.0
+custom_constants/margin_right = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CameraFeedTextureRect/RightArrowMarginContainer"]
+margin_right = 32.0
+margin_bottom = 240.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CameraFeedTextureRect/RightArrowMarginContainer/CenterContainer"]
+margin_top = 104.0
+margin_right = 32.0
+margin_bottom = 136.0
+texture = ExtResource( 3 )
 
 [node name="FeedChangeSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
