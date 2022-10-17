@@ -14,6 +14,7 @@ export var starting_resources := {}
 export var invulnerable := false
 export var debug_movement := false
 export var can_shoot := false
+export var max_mana := 100.0
 
 
 onready var death_sound:AudioStreamPlayer3D = get_node_or_null(death_sound_node_path)
@@ -21,6 +22,7 @@ onready var damaged_sound:RandomAudioStreamPlayer3D = $DamagedRandomAudioStreamP
 
 onready var _outline_helper: OutlineHelper3D = $OutlineHelper3D
 onready var _health_bar: ProgressBar3D = $HealthBar
+onready var _mana_bar: ProgressBar3D = $ManaBar
 onready var _state_machine: StateMachine = $StateMachine
 onready var _collision_shape: CollisionShape = $CollisionShape
 onready var _selected_sound: AudioStreamPlayer3D = $SelectedSound
@@ -40,6 +42,8 @@ func _ready():
 	current_health = starting_health
 	_state_debug_label.visible = debug_state
 	resources = starting_resources.duplicate(true)
+	_mana_bar.max_value = max_mana
+	_mana_bar.value = 0.0
 
 
 func is_selected() -> bool:
@@ -67,7 +71,11 @@ func _update_heath_bar() -> void:
 	_health_bar.value = current_health
 	_health_bar.visible = current_health < starting_health
 
-
+func _update_mana_bar() -> void:
+	if !resources.has(GameConsts.RESOURCE_MANA):
+		return
+	_mana_bar.visible = true
+	_mana_bar.value = resources[GameConsts.RESOURCE_MANA]
 
 
 func _on_OutlineHelper3D_selected(_helperref):
@@ -81,6 +89,8 @@ func _on_StateMachine_state_changed(_old_state, new_state):
 
 func set_resource_amount(resource_name: String, resource_amount: int) -> void:
 	resources[resource_name] = resource_amount
+	if resource_name == GameConsts.RESOURCE_MANA:
+		_update_mana_bar()
 
 
 func has_required_resource_amount(resource_name: String, resource_amount: int) -> bool:
@@ -93,5 +103,7 @@ func decrease_resource_amount(resource_name: String, resource_amount: int) -> vo
 	if !resources.has(resource_name):
 		return
 	resources[resource_name] = max(0, resources[resource_name] - resource_amount)
+	if resource_name == GameConsts.RESOURCE_MANA:
+		_update_mana_bar()
 
 

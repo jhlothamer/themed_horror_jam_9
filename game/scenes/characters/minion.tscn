@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/characters/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sounds/sfx_goblin_damage_taken1_jdymusic.mp3" type="AudioStream" id=2]
@@ -36,7 +36,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=25]
+[sub_resource type="ShaderMaterial" id=28]
 shader = SubResource( 11 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 shader_param/progress_color = Color( 0, 1, 0, 1 )
@@ -44,29 +44,48 @@ shader_param/progress_value = 0.5
 
 [sub_resource type="QuadMesh" id=19]
 resource_local_to_scene = true
-material = SubResource( 25 )
+material = SubResource( 28 )
 size = Vector2( 1, 0.1 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+
+render_mode unshaded, shadows_disabled, depth_test_disable;
+
+uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 progress_color : hint_color = vec4(.0, 1., .0, 1.);
+uniform float progress_value : hint_range(0.0, 1.0, 0.02) = .5;
+
+void vertex()
+{
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+}
+
+void fragment()
+{
+	vec2 border = vec2(0.01, 0.1);
+
+	vec2 mask2 = step(border, UV) * step(UV, 1.0-border);
+    float mask = mask2.x*mask2.y;
+
+	//float progress = .5;
+    float blend = ((UV.x - progress_value) <= 0.0 ? 1.0 : 0.0) * mask;
+    vec4 fragColor = progress_color*blend + background_color*(1.0-blend);
+	ALBEDO = fragColor.rgb;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=29]
+render_priority = 5
+shader = SubResource( 9 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/progress_color = Color( 0.603922, 0, 1, 1 )
+shader_param/progress_value = 0.0
+
+[sub_resource type="QuadMesh" id=27]
 resource_local_to_scene = true
-albedo_color = Color( 0, 0.231373, 0.388235, 1 )
-
-[sub_resource type="CapsuleMesh" id=22]
-resource_local_to_scene = true
-material = SubResource( 5 )
-radius = 0.5
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.764706, 0.180392, 0.180392, 1 )
-
-[sub_resource type="SphereMesh" id=23]
-material = SubResource( 2 )
-radius = 0.1
-height = 0.2
-
-[sub_resource type="SphereMesh" id=24]
-radius = 0.1
-height = 0.3
+material = SubResource( 29 )
+size = Vector2( 1, 0.1 )
 
 [node name="Minion" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
@@ -76,10 +95,19 @@ allowed_interactable_types = [ "destructable", "wood_pile" ]
 fire_from_position = NodePath("../../FireFromPosition3D")
 
 [node name="OutlineHelper3D" parent="." index="3"]
-mesh_instances_to_outline = [ NodePath("../TempMinionMeshInstance") ]
+mesh_instances_to_outline = [ NodePath("../goblinanimations_frank_ilikethepixes/Armature/Skeleton/goblin_ilikethepixies") ]
 
 [node name="HealthBar" parent="." index="4"]
 mesh = SubResource( 19 )
+
+[node name="ManaBar" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05348, 0 )
+mesh = SubResource( 27 )
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="." index="7"]
+stream = ExtResource( 4 )
+unit_db = 12.0
+bus = "SoundFx"
 
 [node name="Damaged1" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="0"]
 stream = ExtResource( 2 )
@@ -91,45 +119,16 @@ stream = ExtResource( 3 )
 unit_db = 12.0
 bus = "SoundFx"
 
-[node name="TempMinionMeshInstance" type="MeshInstance" parent="." index="7"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
-visible = false
-layers = 3
-mesh = SubResource( 22 )
-
-[node name="Eye1" type="MeshInstance" parent="TempMinionMeshInstance" index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.165072, -0.479389, -0.518634 )
-layers = 3
-mesh = SubResource( 23 )
-skeleton = NodePath("../..")
-
-[node name="Eye2" type="MeshInstance" parent="TempMinionMeshInstance" index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.165, -0.479389, -0.518804 )
-layers = 3
-mesh = SubResource( 23 )
-skeleton = NodePath("../..")
-
-[node name="Mouth" type="MeshInstance" parent="TempMinionMeshInstance" index="2"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.47127, -0.279737 )
-layers = 3
-mesh = SubResource( 24 )
-skeleton = NodePath("../..")
-
-[node name="DeathSound" type="AudioStreamPlayer3D" parent="." index="8"]
-stream = ExtResource( 4 )
-unit_db = 12.0
-bus = "SoundFx"
-
 [node name="character_selection_matrix" parent="." index="12"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
 [node name="SelectionMarkerRemoteTransform" parent="." index="13"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
-[node name="FireFromPosition3D" type="Position3D" parent="." index="15"]
+[node name="FireFromPosition3D" type="Position3D" parent="." index="14"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12374, -1.90052 )
 
-[node name="goblinanimations_frank_ilikethepixes" parent="." index="16" instance=ExtResource( 6 )]
+[node name="goblinanimations_frank_ilikethepixes" parent="." index="15" instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="goblin_ilikethepixies" parent="goblinanimations_frank_ilikethepixes/Armature/Skeleton" index="0"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/etc/scene_background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/themes/title_labels.tres" type="Theme" id=2]
+[ext_resource path="res://assets/sounds/sfx_ui_game_start_jdymusic.mp3" type="AudioStream" id=3]
 [ext_resource path="res://scenes/components/transition_button/transition_button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/components/file_content_display/file_content_display.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/themes/global.tres" type="Theme" id=6]
@@ -72,3 +73,8 @@ margin_bottom = 115.0
 text = "Play"
 scene_to_load = "res://scenes/levels/level1.tscn"
 grab_focus_on_start = true
+alt_click_sound = NodePath("PlayClickSound")
+
+[node name="PlayClickSound" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/HBoxContainer/PlayBtn"]
+stream = ExtResource( 3 )
+bus = "SoundFx"

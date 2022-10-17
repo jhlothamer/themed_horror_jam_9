@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/floor_matrix.gltf-89515482583076695e8925215ed5d7f7.scn"
+path="res://.import/complete_floor_matrix.gltf-11209439577e0a5f76d920953523e9a4.scn"
 
 [deps]
 
-source_file="res://assets/models/floor_matrix/floor_matrix.gltf"
-dest_files=[ "res://.import/floor_matrix.gltf-89515482583076695e8925215ed5d7f7.scn" ]
+source_file="res://assets/models/floor_matrix/entire_floor/complete_floor_matrix.gltf"
+dest_files=[ "res://.import/complete_floor_matrix.gltf-11209439577e0a5f76d920953523e9a4.scn" ]
 
 [params]
 

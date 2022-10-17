@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=1]
 [ext_resource path="res://scenes/managers/navigation_point_mgr.gd" type="Script" id=2]
@@ -28,6 +28,10 @@
 [ext_resource path="res://scenes/interactables/spellbook.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scenes/wanderers/zombie_wanderer.tscn" type="PackedScene" id=27]
 [ext_resource path="res://scenes/wanderers/rand_point_plane.tscn" type="PackedScene" id=28]
+[ext_resource path="res://scenes/components/ward_area.tscn" type="PackedScene" id=29]
+[ext_resource path="res://scenes/managers/ward_mgr.gd" type="Script" id=30]
+[ext_resource path="res://scenes/managers/retreat_area_mgr.gd" type="Script" id=31]
+[ext_resource path="res://assets/models/floor_matrix/entire_floor/complete_floor_matrix.gltf" type="PackedScene" id=32]
 
 [sub_resource type="NavigationMesh" id=4]
 vertices = PoolVector3Array( -0.5, 0.5, -11.25, 0.75, 0.5, -11.25, 9.5, 0.5, -11.5, -9.5, 0.5, -21, -9.5, 0.5, -11.5, -0.5, 0.5, -11.25, 9.5, 0.5, -21, 9.5, 0.5, -30.5, 0, 0.5, -30.5, 0, 0.5, -30.5, -9.5, 0.5, -30.5, -9.5, 0.5, -21, -0.5, 0.5, -11.25, 9.5, 0.5, -11.5, 9.5, 0.5, -21, -1.5, 0.5, -9.5, -1, 0.5, -8.25, -0.75, 0.5, -8.75, -0.5, 0.5, -9.75, 1, 0.5, -9.5, -0.75, 0.5, -8.75, 3, 0.5, -8.75, 9.5, 0.5, -9.5, 9.75, 0.5, 0.5, 10.5, 0.5, 0.5, 10.5, 0.5, -0.5, 9.5, 0.5, -0.75, 3.25, 0.5, -5.75, 5.5, 0.5, -0.5, 9.5, 0.5, -4.25, 9.5, 0.5, -5.75, 9.5, 0.5, -4.25, 10.5, 0.5, -4.5, 10.5, 0.5, -5.5, 9.5, 0.5, -5.75, 3, 0.5, -8.75, 3.25, 0.5, -5.75, 9.5, 0.5, -5.75, 9.5, 0.5, -9.5, 0.75, 0.5, -11.25, -0.5, 0.5, -11.25, -0.5, 0.5, -9.75, 1, 0.5, -9.5, 5.5, 0.5, -0.5, 6.5, 0.5, -0.5, 9.5, 0.5, -0.75, 9.5, 0.5, -4.25, 1, 0.5, -9.5, -0.5, 0.5, -9.75, -0.75, 0.5, -8.75, 9.5, 0.5, 1.25, 9.75, 0.5, 0.5, 9.5, 0.5, -0.75, 6.5, 0.5, -0.5, 7.5, 0.5, 0.5, 7.5, 0.5, 0.5, 7.5, 0.5, 1.25, 9.5, 0.5, 1.25, -10.5, 0.5, 0.5, -10.5, 0.5, -0.5, -11.5, 0.5, -0.75, -11.5, 0.5, 0.75, -30.5, 0.5, 0, -30.5, 0.5, 9.5, -21, 0.5, 9.5, -11.5, 0.5, -0.75, -11.5, 0.5, -9.5, -21, 0.5, -9.5, -21, 0.5, 9.5, -11.5, 0.5, 9.5, -11.5, 0.5, 0.75, -21, 0.5, -9.5, -30.5, 0.5, -9.5, -30.5, 0.5, 0, -21, 0.5, 9.5, -11.5, 0.5, 0.75, -11.5, 0.5, -0.75, -9.5, 0.5, -9.5, -9.5, 0.5, -6, -7, 0.5, -8.5, 1.75, 0.5, -1, 2, 0.5, 0.5, 4.5, 0.5, 0.75, -9.5, 0.5, -9.5, -7, 0.5, -8.5, -6, 0.5, -8.5, -1.5, 0.5, -9.5, 1.75, 0.5, -1, 4.5, 0.5, 0.75, 5.5, 0.5, -0.5, 3, 0.5, -5.25, -0.75, 0.5, -5.25, 1, 0.5, -1.75, -0.75, 0.5, -5.25, -1, 0.5, -8.25, -1.5, 0.5, -9.5, -4.5, 0.5, -7, -4.5, 0.5, -6, 5.5, 0.5, -0.5, 3.25, 0.5, -5.75, 3, 0.5, -5.25, -1.5, 0.5, -9.5, -6, 0.5, -8.5, -4.5, 0.5, -7, -1.25, 0.5, -1.5, 1, 0.5, -1.75, -0.75, 0.5, -5.25, -4.5, 0.5, -6, -7.25, 0.5, -3.5, 10.5, 0.5, -5.5, 10.5, 0.5, -4.5, 11.5, 0.5, -4.25, 11.5, 0.5, -5.75, 30.5, 0.5, 0, 30.5, 0.5, -9.5, 21, 0.5, -9.5, 11.5, 0.5, -0.75, 10.5, 0.5, -0.5, 10.5, 0.5, 0.5, 11.5, 0.5, 0.75, 21, 0.5, 9.5, 30.5, 0.5, 9.5, 30.5, 0.5, 0, 21, 0.5, -9.5, 11.5, 0.5, -0.75, 11.5, 0.5, 0.75, 21, 0.5, -9.5, 11.5, 0.5, -9.5, 11.5, 0.5, -5.75, 21, 0.5, -9.5, 11.5, 0.5, -5.75, 11.5, 0.5, -4.25, 11.5, 0.5, 0.75, 11.5, 0.5, 9.5, 21, 0.5, 9.5, 21, 0.5, -9.5, 11.5, 0.5, -4.25, 11.5, 0.5, -0.75, 0, 1, -7.75, 0, 1, -6.25, 2, 1, -6.25, 2, 1, -7.75, -6.75, 2.5, -7.25, -8.25, 2.5, -5.75, -8.25, 2.5, -5.25, -7.25, 2.5, -4.75, -5.75, 2.5, -6.25, -6.25, 2.5, -7.25, -6.75, 0.5, -6.75, -7.75, 0.5, -5.75, -7.75, 0.5, -5.25, -7.25, 0.5, -5.25, -6.25, 0.5, -6.25, -6.25, 0.5, -6.75, -10.5, 0.5, -0.5, -10.5, 0.5, 0.5, -9.5, 0.5, 0.75, -9.5, 0.5, -0.75, -9.5, 0.5, -0.75, -9.5, 0.5, 0.75, -7, 0.5, 2.75, -9.5, 0.5, 5, -8.25, 0.5, 5, -8.25, 0.5, 4, -8, 0.5, -3.5, -9.5, 0.5, -5, -9.5, 0.5, -0.75, -9.5, 0.5, 5, -8.25, 0.5, 4, -7, 0.5, 2.75, -9.5, 0.5, 0.75, -5, 0.5, 2.75, -1.75, 0.5, 1, -1.75, 0.5, -1, -7.25, 0.5, -3.5, -9.5, 0.5, -0.75, -7, 0.5, 2.75, -4, 0.5, 3.75, -1.25, 0.5, 1.5, -1.75, 0.5, 1, -5, 0.5, 2.75, -7.25, 0.5, -3.5, -8, 0.5, -3.5, -9.5, 0.5, -0.75, -1.75, 0.5, -1, -1.25, 0.5, -1.5, -7.25, 0.5, -3.5, -0.75, 2.5, -0.5, -0.5, 2.5, 0.75, 0.75, 2.5, 0.5, 0.5, 2.5, -0.75, -0.5, 0.5, -0.25, -0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, -0.5, 4.25, 0.5, 9.5, 4.5, 0.5, 10.5, 5.5, 0.5, 10.5, 5.75, 0.5, 9.5, 6.5, 0.5, 2.5, 5.5, 0.5, 2.5, 9.5, 0.5, 1.25, 7.5, 0.5, 1.25, 6.5, 0.5, 2.5, 5.75, 0.5, 9.5, 9.5, 0.5, 9.5, 4.5, 0.5, 1.5, 4.5, 0.5, 0.75, 2, 0.5, 0.5, 4.5, 0.5, 1.5, 2, 0.5, 0.5, 1.5, 0.5, 1.25, 1.5, 0.5, 9.5, 4.25, 0.5, 9.5, 5.5, 0.5, 2.5, 5.75, 2.75, 0.75, 5.75, 2.75, 1.25, 6.25, 2.75, 1.25, 6.25, 2.75, 0.75, -0.5, 0.5, 10.5, 0.75, 0.5, 10.5, 0.75, 0.5, 9.75, -0.75, 0.5, 9.5, -3.75, 0.5, 6, -5, 0.5, 7.25, -0.75, 0.5, 9.5, -8.25, 0.5, 6, -8.25, 0.5, 5, -9.5, 0.5, 5, -0.75, 0.5, 9.5, 0.75, 0.5, 9.75, 1.5, 0.5, 9.5, -7, 0.5, 7.25, -8.25, 0.5, 6, -9.5, 0.5, 5, -9.5, 0.5, 9.5, -1.25, 0.5, 1.5, -4, 0.5, 3.75, -3.75, 0.5, 6, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1, 0.5, 1.75, -5, 0.5, 7.25, -7, 0.5, 7.25, -9.5, 0.5, 9.5, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1.5, 0.5, 1.25, 1, 0.5, 1.75, -4.75, 2.5, 5.5, -5.5, 2.5, 3.75, -7.25, 2.5, 4.5, -7.25, 2.5, 5.5, -6.5, 2.5, 6.25, -5.5, 2.5, 6.25, -5.5, 2.5, 3.75, -6.5, 2.5, 3.75, -7.25, 2.5, 4.5, -4.75, 2.5, 5.5, -4.75, 2.5, 4.5, -5.5, 2.5, 3.75, -7, 0.5, 4.75, -6.25, 0.5, 6, -5, 0.5, 5.25, -5.75, 0.5, 4, 5.5, 0.5, 10.5, 4.5, 0.5, 10.5, 4.25, 0.5, 11.5, 5.75, 0.5, 11.5, -9.5, 0.5, 21, -9.5, 0.5, 30.5, 0, 0.5, 30.5, 9.5, 0.5, 21, 1, 0.5, 11.5, -0.75, 0.5, 11.5, 1, 0.5, 11.5, 0.75, 0.5, 10.5, -0.5, 0.5, 10.5, -0.75, 0.5, 11.5, 0, 0.5, 30.5, 9.5, 0.5, 30.5, 9.5, 0.5, 21, 9.5, 0.5, 21, 9.5, 0.5, 11.5, 5.75, 0.5, 11.5, 9.5, 0.5, 21, 5.75, 0.5, 11.5, 4.25, 0.5, 11.5, 9.5, 0.5, 21, 4.25, 0.5, 11.5, 1, 0.5, 11.5, -0.75, 0.5, 11.5, -9.5, 0.5, 11.5, -9.5, 0.5, 21 )
@@ -55,9 +59,13 @@ glow_enabled = true
 glow_bloom = 0.08
 glow_blend_mode = 0
 
+[sub_resource type="SpatialMaterial" id=23]
+flags_unshaded = true
+albedo_color = Color( 0, 0, 0, 1 )
+
 [sub_resource type="CubeMesh" id=6]
-material = ExtResource( 7 )
-size = Vector3( 20.5, 0.1, 20.5 )
+material = SubResource( 23 )
+size = Vector3( 20.5, 0.02, 20.5 )
 
 [sub_resource type="CubeMesh" id=7]
 material = ExtResource( 7 )
@@ -91,6 +99,15 @@ size = Vector3( 0.1, 1, 2 )
 material = ExtResource( 8 )
 size = Vector3( 100, 2, 100 )
 
+[sub_resource type="BoxShape" id=20]
+extents = Vector3( 10, 2, 1.5 )
+
+[sub_resource type="BoxShape" id=21]
+extents = Vector3( 10, 2, 1.5 )
+
+[sub_resource type="BoxShape" id=22]
+extents = Vector3( 10, 2, 1.5 )
+
 [sub_resource type="CubeMesh" id=12]
 material = ExtResource( 19 )
 size = Vector3( 30, 20, 0.2 )
@@ -123,7 +140,7 @@ script = ExtResource( 1 )
 delay_between_spawns_min = 3.0
 delay_between_spawns_max = 10.0
 initial_delay_seconds = 20.0
-per_wave_increase_amount = 0.1
+per_wave_increase_amount = 0.2
 
 [node name="NavigationPointMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 2 )
@@ -139,6 +156,21 @@ NodePath("../../Destructables/DoorWest"): [ NodePath("../../Destructables/DoorWe
 NodePath("../../Destructables/DoorEast"): [ NodePath("../../Destructables/DoorEast/DoorEastNavPosition3D") ],
 NodePath("../../NavigationMeshInstance/WoodPile"): [ NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D1"), NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D2"), NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D3"), NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D4") ]
 }
+
+[node name="WardMgr" type="Node" parent="Mgrs"]
+script = ExtResource( 30 )
+north_camera = NodePath("../../CrystalBallCameras/North/North")
+west_camera = NodePath("../../CrystalBallCameras/West/West")
+east_camera = NodePath("../../CrystalBallCameras/East/East")
+north_ward_area = NodePath("../../Exterior/North/NorthWardArea")
+west_ward_area = NodePath("../../Exterior/West/WestWardArea")
+east_ward_area = NodePath("../../Exterior/East/EastWardArea")
+
+[node name="RetreatAreaMgr" type="Node" parent="Mgrs"]
+script = ExtResource( 31 )
+north_retreat_area = NodePath("../../Exterior/North/NorthRetreatRandomPointPlain")
+west_retreat_area = NodePath("../../Exterior/West/WestRetreatRandomPointPlain")
+east_retreat_area = NodePath("../../Exterior/East/EastRetreatRandomPointPlain")
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 4 )
@@ -458,6 +490,8 @@ collision_mask = 1
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0 )
 mesh = SubResource( 6 )
 
+[node name="complete_floor_matrix" parent="FloorPanels" instance=ExtResource( 32 )]
+
 [node name="WallPanels" type="Spatial" parent="."]
 
 [node name="WallSection1" type="MeshInstance" parent="WallPanels"]
@@ -516,7 +550,7 @@ handle_input_locally = false
 keep_3d_linear = true
 render_target_v_flip = true
 
-[node name="Camera3" type="Camera" parent="CrystalBallCameras/North"]
+[node name="North" type="Camera" parent="CrystalBallCameras/North"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.5, 10.5 )
 environment = ExtResource( 21 )
 fov = 90.0
@@ -527,7 +561,7 @@ handle_input_locally = false
 keep_3d_linear = true
 render_target_v_flip = true
 
-[node name="Camera2" type="Camera" parent="CrystalBallCameras/West"]
+[node name="West" type="Camera" parent="CrystalBallCameras/West"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.5, 2.5, 0 )
 environment = ExtResource( 21 )
 fov = 90.0
@@ -538,7 +572,7 @@ handle_input_locally = false
 keep_3d_linear = true
 render_target_v_flip = true
 
-[node name="Camera4" type="Camera" parent="CrystalBallCameras/East"]
+[node name="East" type="Camera" parent="CrystalBallCameras/East"]
 transform = Transform( 8.9407e-08, 0, 1, 0, 1, 0, -1, 0, 8.9407e-08, -10.5, 2.5, 0 )
 environment = ExtResource( 21 )
 fov = 90.0
@@ -680,6 +714,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 19 )
 [node name="tree_002_ilikethepixies" parent="Exterior/North" instance=ExtResource( 23 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 28 )
 
+[node name="NorthWardArea" parent="Exterior/North" instance=ExtResource( 29 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Exterior/North/NorthWardArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.75 )
+shape = SubResource( 20 )
+
+[node name="NorthRetreatRandomPointPlain" parent="Exterior/North" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 31 )
+polygon = PoolVector2Array( -10, 0, -10, 2, 10, 2, 10, 0 )
+
 [node name="West" type="Spatial" parent="Exterior"]
 
 [node name="tree_001_ilikethepixies" parent="Exterior/West" instance=ExtResource( 25 )]
@@ -693,6 +738,17 @@ transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2
 
 [node name="tree_002_ilikethepixies2" parent="Exterior/West" instance=ExtResource( 23 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 24, 0, -14 )
+
+[node name="WestWardArea" parent="Exterior/West" instance=ExtResource( 29 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Exterior/West/WestWardArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.75 )
+shape = SubResource( 21 )
+
+[node name="WestRetreatRandomPointPlain" parent="Exterior/West" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 30, 0, 0 )
+polygon = PoolVector2Array( -1, -10, -1, 10, 1, 10, 1, -10 )
 
 [node name="East" type="Spatial" parent="Exterior"]
 
@@ -713,6 +769,17 @@ transform = Transform( 0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -
 
 [node name="tree_002_ilikethepixies2" parent="Exterior/East" instance=ExtResource( 23 )]
 transform = Transform( 0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -16, 0, -16 )
+
+[node name="EastWardArea" parent="Exterior/East" instance=ExtResource( 29 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Exterior/East/EastWardArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.75 )
+shape = SubResource( 22 )
+
+[node name="EastRetreatRandomPointPlain" parent="Exterior/East" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -31, 0, 0 )
+polygon = PoolVector2Array( 0, -10, 0, 10, 2, 10, 2, -10 )
 
 [node name="MainCameraFlags" type="Spatial" parent="."]
 visible = false

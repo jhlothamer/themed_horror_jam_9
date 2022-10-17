@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/models/zombie_animations_frank_ilikethepixies/zombie_animations_frank_ilikethepixies.gltf" type="PackedScene" id=1]
 [ext_resource path="res://scenes/etc/title.gd" type="Script" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://scenes/wanderers/rand_point_plane.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/wanderers/zombie_wanderer.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/etc/title_world_environment.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/images/title_matrix/title_matrix.jpg" type="Texture" id=12]
+
+[sub_resource type="CanvasItemMaterial" id=7]
+blend_mode = 1
 
 [sub_resource type="SpatialMaterial" id=2]
 flags_world_triplanar = true
@@ -52,16 +56,25 @@ custom_constants/margin_top = 40
 custom_constants/margin_left = 40
 
 [node name="TitleLbl" type="Label" parent="CanvasLayer/Title/TitleMarginContainer"]
+visible = false
 margin_left = 40.0
-margin_top = 40.0
+margin_top = 194.0
 margin_right = 1920.0
-margin_bottom = 272.0
+margin_bottom = 426.0
 theme = ExtResource( 3 )
 text = "Witching Hour"
 autowrap = true
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Title/TitleMarginContainer"]
+material = SubResource( 7 )
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 1920.0
+margin_bottom = 580.0
+texture = ExtResource( 12 )
 
 [node name="ButtonsMarginContainer" type="MarginContainer" parent="CanvasLayer/Title"]
 anchor_left = 1.0

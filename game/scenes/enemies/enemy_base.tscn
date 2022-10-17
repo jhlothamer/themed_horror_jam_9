@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/states/enemy_walk.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/ui/components/progress_bar_3d.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/states/enemy_die.gd" type="Script" id=7]
 [ext_resource path="res://scenes/enemies/states/enemy_base_state.gd" type="Script" id=8]
+[ext_resource path="res://scenes/enemies/states/enemy_retreat.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.7
@@ -154,6 +155,9 @@ script = ExtResource( 8 )
 
 [node name="PostWindowClimb" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
+
+[node name="Retreat" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
 
 [node name="CharacterAndDestructableDetectArea" type="Area" parent="."]
 collision_layer = 81

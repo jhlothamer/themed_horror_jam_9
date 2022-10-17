@@ -31,6 +31,7 @@ mesh = SubResource( 2 )
 [node name="InteractionHelper" type="Node" parent="."]
 script = ExtResource( 2 )
 outline_helper = NodePath("../OutlineHelper3D")
+interactable_type = "crystal_ball"
 interaction_start_sound = NodePath("../StartInteractionSound")
 interaction_interupt_sound = NodePath("../InteruptInteractionSound")
 
