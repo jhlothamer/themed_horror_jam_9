@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/characters/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sounds/sfx_goblin_damage_taken1_jdymusic.mp3" type="AudioStream" id=2]
@@ -87,27 +87,6 @@ resource_local_to_scene = true
 material = SubResource( 29 )
 size = Vector2( 1, 0.1 )
 
-[sub_resource type="SpatialMaterial" id=5]
-resource_local_to_scene = true
-albedo_color = Color( 0, 0.231373, 0.388235, 1 )
-
-[sub_resource type="CapsuleMesh" id=22]
-resource_local_to_scene = true
-material = SubResource( 5 )
-radius = 0.5
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.764706, 0.180392, 0.180392, 1 )
-
-[sub_resource type="SphereMesh" id=23]
-material = SubResource( 2 )
-radius = 0.1
-height = 0.2
-
-[sub_resource type="SphereMesh" id=24]
-radius = 0.1
-height = 0.3
-
 [node name="Minion" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
 allowed_interactable_types = [ "destructable", "wood_pile" ]
@@ -116,7 +95,7 @@ allowed_interactable_types = [ "destructable", "wood_pile" ]
 fire_from_position = NodePath("../../FireFromPosition3D")
 
 [node name="OutlineHelper3D" parent="." index="3"]
-mesh_instances_to_outline = [ NodePath("../TempMinionMeshInstance") ]
+mesh_instances_to_outline = [ NodePath("../goblinanimations_frank_ilikethepixes/Armature/Skeleton/goblin_ilikethepixies") ]
 
 [node name="HealthBar" parent="." index="4"]
 mesh = SubResource( 19 )
@@ -125,31 +104,7 @@ mesh = SubResource( 19 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05348, 0 )
 mesh = SubResource( 27 )
 
-[node name="TempMinionMeshInstance" type="MeshInstance" parent="." index="7"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
-visible = false
-layers = 3
-mesh = SubResource( 22 )
-
-[node name="Eye1" type="MeshInstance" parent="TempMinionMeshInstance" index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.165072, -0.479389, -0.518634 )
-layers = 3
-mesh = SubResource( 23 )
-skeleton = NodePath("../..")
-
-[node name="Eye2" type="MeshInstance" parent="TempMinionMeshInstance" index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.165, -0.479389, -0.518804 )
-layers = 3
-mesh = SubResource( 23 )
-skeleton = NodePath("../..")
-
-[node name="Mouth" type="MeshInstance" parent="TempMinionMeshInstance" index="2"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.47127, -0.279737 )
-layers = 3
-mesh = SubResource( 24 )
-skeleton = NodePath("../..")
-
-[node name="DeathSound" type="AudioStreamPlayer3D" parent="." index="8"]
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="." index="7"]
 stream = ExtResource( 4 )
 unit_db = 12.0
 bus = "SoundFx"
@@ -164,16 +119,16 @@ stream = ExtResource( 3 )
 unit_db = 12.0
 bus = "SoundFx"
 
-[node name="character_selection_matrix" parent="." index="13"]
+[node name="character_selection_matrix" parent="." index="12"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
-[node name="SelectionMarkerRemoteTransform" parent="." index="14"]
+[node name="SelectionMarkerRemoteTransform" parent="." index="13"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
-[node name="FireFromPosition3D" type="Position3D" parent="." index="15"]
+[node name="FireFromPosition3D" type="Position3D" parent="." index="14"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12374, -1.90052 )
 
-[node name="goblinanimations_frank_ilikethepixes" parent="." index="16" instance=ExtResource( 6 )]
+[node name="goblinanimations_frank_ilikethepixes" parent="." index="15" instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="goblin_ilikethepixies" parent="goblinanimations_frank_ilikethepixes/Armature/Skeleton" index="0"]

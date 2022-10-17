@@ -393,7 +393,6 @@ camera_feed_viewports_parent = NodePath("../CrystalBallCameras")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
 collision_layer = 1
 collision_mask = 1
-crystal_ball_ward_mana_cost = 50
 
 [node name="Minion" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
