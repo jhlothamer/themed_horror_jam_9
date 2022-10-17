@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/managers/enemy_wave_mgr_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/managers/scheduled_enemy_wave_mgr.gd" type="Script" id=2]
+
+[node name="ScheduledEnemyWaveMgr" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+delay_between_spawns_min = 2.0
+delay_between_spawns_max = 5.0
+schedule_file_csv = "res://assets/data/enemy_wave_schedule.txt"
+
+[node name="Timer" type="Timer" parent="." index="0"]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

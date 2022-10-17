@@ -112,7 +112,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "EnemyWaveMgr",
 "language": "GDScript",
-"path": "res://scenes/managers/enemy_wave_mgr.gd"
+"path": "res://scenes/managers/enemy_wave_mgr_base.gd"
 }, {
 "base": "Object",
 "class": "EnumUtil",

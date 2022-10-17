@@ -13,10 +13,10 @@
 [ext_resource path="res://scenes/interactables/mana_pool.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/destructables/window.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/managers/enemy_spawn_mgr.gd" type="Script" id=13]
+[ext_resource path="res://scenes/managers/scheduled_enemy_wave_mgr.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/interactables/wood_pile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/ui/camera_feed_hud.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/interactables/crystal_ball.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/managers/enemy_wave_mgr.tscn" type="PackedScene" id=18]
 [ext_resource path="res://tests/level/testing_hud.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/managers/navigation_point_mgr.gd" type="Script" id=20]
 [ext_resource path="res://assets/models/wall_matrix/wall_planks_matrix.gltf" type="PackedScene" id=21]
@@ -73,18 +73,15 @@ spawn_position_parent = NodePath("../../SpawnPositions")
 [node name="CharacterMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 8 )
 
-[node name="EnemyWaveMgr" parent="Mgrs" instance=ExtResource( 18 )]
-delay_between_spawns_min = 3.0
-delay_between_spawns_max = 10.0
-initial_delay_seconds = 20.0
-disabled = true
-
 [node name="NavigationPointMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 20 )
 object_to_navigation_points = {
 NodePath("../../NavigationMeshInstance/Cauldron"): [ NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D1"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D2"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D3"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D4") ],
 NodePath("../../NavigationMeshInstance/CrystalBall"): [ NodePath("../../NavigationMeshInstance/CrystalBall/CrystalBallNavPosition3D1"), NodePath("../../NavigationMeshInstance/CrystalBall/CrystalBallNavPosition3D2") ]
 }
+
+[node name="ScheduledEnemyWaveMgr" parent="Mgrs" instance=ExtResource( 14 )]
+disabled = true
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 3 )

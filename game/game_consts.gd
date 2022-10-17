@@ -33,6 +33,13 @@ enum EnemySpawnDirection {
 	EAST,
 }
 
+enum EnemyAgressionLevel {
+	UNKNOWN,
+	LOW,
+	MEDIUM,
+	HIGH,
+}
+
 
 const SCENE_MOVE_TO_INDICATOR = preload("res://scenes/ui/components/move_to_indicator.tscn")
 
