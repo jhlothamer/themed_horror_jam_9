@@ -4,6 +4,7 @@ extends KinematicBody
 signal enemy_clicked(enemy)
 
 
+
 export var horizontal_speed = 2.0
 export var disabled := false
 export var damage_amount := 5
@@ -19,6 +20,7 @@ onready var _attack_state = $StateMachine/Attack
 
 
 var current_health := 100
+var spawn_direction:int
 
 
 func _ready():
@@ -90,6 +92,10 @@ func window_climb_finished(new_global_position: Vector3) -> void:
 
 
 func ward() -> void:
-	_state_machine.change_state("Die")
+	if spawn_direction == GameConsts.EnemySpawnDirection.UNKNOWN:
+		printerr("Enemy: spawn direction is unknown at time of warding.  Changing state to Die.")
+		_state_machine.change_state("Die")
+		return
+	_state_machine.change_state("Retreat")
 
 

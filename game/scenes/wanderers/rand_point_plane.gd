@@ -34,7 +34,8 @@ func get_random_point(y: float = 0.0) -> Vector3:
 	var index:int = _rnd.randi() % _polygon_triangles.size() # _polygon_triangle_count
 	var v: Vector2 = PolygonUtil.rand_vector2_in_triangle(_polygon_triangles[index], 0, _rnd)
 
-	return Vector3(v.x, y, -v.y)
+	var offset := Vector3(global_transform.origin.x, y, global_transform.origin.z)
+	return Vector3(v.x, y, -v.y) + offset
 
 
 func get_random_point_from(from: Vector3, min_distance: float = 1.0, attempts: int = 10) -> Vector3:

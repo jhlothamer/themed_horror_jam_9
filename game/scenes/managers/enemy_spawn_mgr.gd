@@ -28,6 +28,15 @@ func _ready():
 		printerr("EnemySpawnMgr: no spawn positions!  Can't spawn enemies.")
 
 
+func _get_spawn_direction(spawn_position: Spatial) -> int:
+	for key in GameConsts.EnemySpawnDirection.keys():
+		if spawn_position.name.to_upper().begins_with(key):
+			return GameConsts.EnemySpawnDirection[key]
+	
+	printerr("EnemySpawnMgr: coult not determine spawn direction from %s" % spawn_position.get_path())
+	return GameConsts.EnemySpawnDirection.UNKNOWN
+
+
 func spawn_enemy() -> void:
 	if _spawn_positions.empty():
 		return
@@ -40,5 +49,6 @@ func spawn_enemy() -> void:
 		print("EnemySpawnMgr: couldn't get dynamic parent - using scene")
 		parent = get_tree().current_scene
 	var enemy = SCENE_ENEMY.instance()
+	enemy.spawn_direction = _get_spawn_direction(_spawn_positions[index])
 	parent.add_child(enemy)
 	enemy.global_transform.origin = spawn_position
