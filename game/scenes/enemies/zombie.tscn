@@ -4894,6 +4894,7 @@ tracks/40/keys = PoolRealArray( 0, 1, -4.30654, 1.15432, -0.0788549, 0.00680221,
 
 [node name="Zombie" instance=ExtResource( 1 )]
 script = ExtResource( 7 )
+walk_speed = 0.5
 
 [node name="MeshInstance" parent="." index="1"]
 mesh = SubResource( 26 )
