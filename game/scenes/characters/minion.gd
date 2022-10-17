@@ -47,6 +47,8 @@ func _on_spell_deactivated():
 	can_shoot = false
 	allowed_interactable_types.erase(GameConsts.INTERACTABLE_TYPE_MANA_POOL)
 	var _discard = resources.erase(GameConsts.RESOURCE_MANA)
+	_mana_bar.visible = false
+	_mana_bar.value = 0.0
 
 
 func _on_StateMachine_state_changed(old_state, new_state):

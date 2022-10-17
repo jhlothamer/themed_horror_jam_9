@@ -16,6 +16,8 @@ func _ready():
 
 
 func _recalc_char_target() -> void:
+	if !_character_mgr:
+		return
 	_target_character = _character_mgr.get_closest_character(enemy.global_transform.origin)
 	if !_target_character:
 		_path = []

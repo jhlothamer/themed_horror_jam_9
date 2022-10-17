@@ -88,3 +88,8 @@ func window_climb_finished(new_global_position: Vector3) -> void:
 	global_transform.origin = new_global_position
 	_state_machine.change_state("PostWindowClimb")
 
+
+func ward() -> void:
+	_state_machine.change_state("Die")
+
+

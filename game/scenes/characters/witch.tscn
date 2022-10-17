@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/characters/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sounds/sfx_witch_damage_taken1_jdymusic.mp3" type="AudioStream" id=2]
@@ -36,7 +36,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=23]
+[sub_resource type="ShaderMaterial" id=26]
 shader = SubResource( 11 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 shader_param/progress_color = Color( 0, 1, 0, 1 )
@@ -44,7 +44,47 @@ shader_param/progress_value = 0.5
 
 [sub_resource type="QuadMesh" id=12]
 resource_local_to_scene = true
-material = SubResource( 23 )
+material = SubResource( 26 )
+size = Vector2( 1, 0.1 )
+
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+
+render_mode unshaded, shadows_disabled, depth_test_disable;
+
+uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 progress_color : hint_color = vec4(.0, 1., .0, 1.);
+uniform float progress_value : hint_range(0.0, 1.0, 0.02) = .5;
+
+void vertex()
+{
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+}
+
+void fragment()
+{
+	vec2 border = vec2(0.01, 0.1);
+
+	vec2 mask2 = step(border, UV) * step(UV, 1.0-border);
+    float mask = mask2.x*mask2.y;
+
+	//float progress = .5;
+    float blend = ((UV.x - progress_value) <= 0.0 ? 1.0 : 0.0) * mask;
+    vec4 fragColor = progress_color*blend + background_color*(1.0-blend);
+	ALBEDO = fragColor.rgb;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=27]
+render_priority = 5
+shader = SubResource( 9 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/progress_color = Color( 0.603922, 0, 1, 1 )
+shader_param/progress_value = 0.0
+
+[sub_resource type="QuadMesh" id=25]
+resource_local_to_scene = true
+material = SubResource( 27 )
 size = Vector2( 1, 0.1 )
 
 [sub_resource type="SpatialMaterial" id=20]
@@ -80,8 +120,9 @@ height = 0.5
 
 [node name="Witch" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
-allowed_interactable_types = [ "mana", "spellbook" ]
+allowed_interactable_types = [ "mana", "spellbook", "crystal_ball" ]
 can_shoot = true
+crystal_ball_ward_mana_cost = 50
 
 [node name="Shoot" parent="StateMachine" index="4"]
 fire_from_position = NodePath("../../Position3D")
@@ -93,15 +134,9 @@ mesh_instances_to_outline = [ NodePath("../WitchAnimations_Frank_Ilikethepixies/
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29247, 0 )
 mesh = SubResource( 12 )
 
-[node name="Damaged1" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="0"]
-stream = ExtResource( 2 )
-unit_db = 12.0
-bus = "SoundFx"
-
-[node name="Damaged2" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="1"]
-stream = ExtResource( 3 )
-unit_db = 12.0
-bus = "SoundFx"
+[node name="ManaBar" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.78781, 0 )
+mesh = SubResource( 25 )
 
 [node name="TempWitchMeshInstance" type="MeshInstance" parent="." index="7"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
@@ -127,6 +162,16 @@ skeleton = NodePath("../..")
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -5.16802e-08, -1.1823 )
 mesh = SubResource( 19 )
 
+[node name="Damaged1" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="0"]
+stream = ExtResource( 2 )
+unit_db = 12.0
+bus = "SoundFx"
+
+[node name="Damaged2" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="1"]
+stream = ExtResource( 3 )
+unit_db = 12.0
+bus = "SoundFx"
+
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="." index="9"]
 stream = ExtResource( 4 )
 unit_db = 12.0
@@ -151,10 +196,10 @@ light_energy = 0.5
 spot_range = 3.0
 spot_angle = 33.4782
 
-[node name="character_selection_matrix" parent="." index="15"]
+[node name="character_selection_matrix" parent="." index="16"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.32902, 0 )
 
-[node name="SelectionMarkerRemoteTransform" parent="." index="16"]
+[node name="SelectionMarkerRemoteTransform" parent="." index="17"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.32902, 0 )
 
 [connection signal="interaction_about_to_start" from="StateMachine/Walk" to="." method="_on_Walk_interaction_about_to_start"]

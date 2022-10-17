@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/characters/states/character_base_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=2]
@@ -60,6 +60,46 @@ resource_local_to_scene = true
 material = SubResource( 13 )
 size = Vector2( 1, 0.1 )
 
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+
+render_mode unshaded, shadows_disabled, depth_test_disable;
+
+uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
+uniform vec4 progress_color : hint_color = vec4(.0, 1., .0, 1.);
+uniform float progress_value : hint_range(0.0, 1.0, 0.02) = .5;
+
+void vertex()
+{
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+}
+
+void fragment()
+{
+	vec2 border = vec2(0.01, 0.1);
+
+	vec2 mask2 = step(border, UV) * step(UV, 1.0-border);
+    float mask = mask2.x*mask2.y;
+
+	//float progress = .5;
+    float blend = ((UV.x - progress_value) <= 0.0 ? 1.0 : 0.0) * mask;
+    vec4 fragColor = progress_color*blend + background_color*(1.0-blend);
+	ALBEDO = fragColor.rgb;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=14]
+render_priority = 5
+shader = SubResource( 9 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/progress_color = Color( 0.603922, 0, 1, 1 )
+shader_param/progress_value = 0.0
+
+[sub_resource type="QuadMesh" id=15]
+resource_local_to_scene = true
+material = SubResource( 14 )
+size = Vector2( 1, 0.1 )
+
 [node name="CharacterBase" type="KinematicBody"]
 collision_layer = 17
 collision_mask = 49
@@ -106,6 +146,13 @@ keep_selected_on_no_selectable_clicked = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53445, 0 )
 visible = false
 mesh = SubResource( 12 )
+
+[node name="ManaBar" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37714, 0 )
+visible = false
+mesh = SubResource( 15 )
+value = 0.0
+progress_color = Color( 0.603922, 0, 1, 1 )
 
 [node name="SelectedSprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0 )
