@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://assets/sounds/sfx_ui_menu_select_jdymusic.mp3" type="AudioStream" id=1]
 [ext_resource path="res://scenes/components/transition_button/transition_button.gd" type="Script" id=2]
 
 [node name="Button" type="Button"]
@@ -9,5 +10,9 @@ text = "Button"
 flat = true
 align = 0
 script = ExtResource( 2 )
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "SoundFx"
 
 [connection signal="pressed" from="." to="." method="_on_Button_pressed"]

@@ -8,7 +8,10 @@ export (String, FILE, "*.tscn,*.scn,*.res") var scene_to_load := ""
 export var transition_speed_seconds := -1.0
 export var fade_sound := false
 export var grab_focus_on_start := false
+export var alt_click_sound: NodePath
 
+onready var _alt_click_sound:AudioStreamPlayer = get_node_or_null(alt_click_sound)
+onready var _click_sound:AudioStreamPlayer = $ClickSound
 
 func _ready():
 	if grab_focus_on_start and focus_mode != FOCUS_NONE:
@@ -22,6 +25,13 @@ func _on_Button_pressed():
 	
 	if !_can_transition():
 		return
+	
+	if _alt_click_sound:
+		_alt_click_sound.play()
+		yield(_alt_click_sound, "finished")
+	else:
+		_click_sound.play()
+		yield(_click_sound, "finished")
 	
 	emit_signal("about_to_transition")
 	
