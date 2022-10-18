@@ -48,3 +48,10 @@ const RESOURCE_WOOD = "wood"
 
 const INTERACTABLE_TYPE_MANA_POOL = "mana"
 const INTERACTABLE_TYPE_CRYSTAL_BALL = "crystal_ball"
+
+
+const SERVICE_NAME_RETREAT_AREA_MGR = "RetreatAreaMgr"
+const SERVICE_NAME_WANDER_AREA_MGR = "WanderAreaMgr"
+
+
+

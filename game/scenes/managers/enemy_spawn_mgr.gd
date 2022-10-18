@@ -37,9 +37,13 @@ func _get_spawn_direction(spawn_position: Spatial) -> int:
 	return GameConsts.EnemySpawnDirection.UNKNOWN
 
 
-func spawn_enemy() -> void:
+func spawn_enemy(agression_level: int = -1) -> void:
 	if _spawn_positions.empty():
 		return
+	
+	if agression_level < GameConsts.EnemyAgressionLevel.LOW:
+		print("EnemySpawnMgr: no agression level on spawn enemy - using high")
+		agression_level = GameConsts.EnemyAgressionLevel.HIGH
 	
 	var index: int = randi() % _spawn_positions.size()
 	var spawn_position: Vector3 = _spawn_positions[index].global_transform.origin
@@ -50,5 +54,6 @@ func spawn_enemy() -> void:
 		parent = get_tree().current_scene
 	var enemy = SCENE_ENEMY.instance()
 	enemy.spawn_direction = _get_spawn_direction(_spawn_positions[index])
+	enemy.agression_level = agression_level
 	parent.add_child(enemy)
 	enemy.global_transform.origin = spawn_position

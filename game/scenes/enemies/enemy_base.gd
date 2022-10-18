@@ -21,6 +21,7 @@ onready var _attack_state = $StateMachine/Attack
 
 var current_health := 100
 var spawn_direction:int
+var agression_level:int setget _set_agression_level
 
 
 func _ready():
@@ -30,6 +31,15 @@ func _ready():
 	current_health = starting_health
 	_state_debug_label.visible = debug_state
 
+
+func _set_agression_level(value: int) -> void:
+	if agression_level == value:
+		return
+	agression_level = value
+	if !_state_machine:
+		return
+	if agression_level == GameConsts.EnemyAgressionLevel.HIGH:
+		_state_machine.change_state("Walk")
 
 
 func _on_OutlineHelper3D_clicked(_clicked_object):
@@ -59,7 +69,13 @@ func _update_heath_bar() -> void:
 
 
 func _disable_collisions() -> void:
-	_collision_shape.disabled = true
+	set_collision_layer_bit(GameConsts.PhysLayerBitIndex.DEFAULT, false)
+	set_collision_mask_bit(GameConsts.PhysLayerBitIndex.ENEMY, false)
+
+
+func _enable_collisions() -> void:
+	set_collision_layer_bit(GameConsts.PhysLayerBitIndex.DEFAULT, true)
+	set_collision_mask_bit(GameConsts.PhysLayerBitIndex.ENEMY, true)
 
 
 func _on_damage():

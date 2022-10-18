@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/wall_planks_matrix.gltf-a00e368918459f317183f50ad2d29b71.scn"
+path="res://.import/remodeled_walls _without_window_matrix.gltf-819fe554266e13b92aa5585e5c206fa1.scn"
 
 [deps]
 
-source_file="res://assets/models/wall_matrix/wall_planks_matrix.gltf"
-dest_files=[ "res://.import/wall_planks_matrix.gltf-a00e368918459f317183f50ad2d29b71.scn" ]
+source_file="res://assets/models/wall_matrix/re_built_walls/wall_without_window/remodeled_walls _without_window_matrix.gltf"
+dest_files=[ "res://.import/remodeled_walls _without_window_matrix.gltf-819fe554266e13b92aa5585e5c206fa1.scn" ]
 
 [params]
 

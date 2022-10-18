@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/destructables/enemy_agression_change_trigger.gd" type="Script" id=1]
+
+[node name="EnemyAgressionChangeArea" type="Area"]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_EnemyAgressionChangeArea_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_EnemyAgressionChangeArea_body_exited"]

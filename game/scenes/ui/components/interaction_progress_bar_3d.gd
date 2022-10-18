@@ -15,8 +15,9 @@ var _spell_active := false
 func _ready():
 	set_physics_process(false)
 	visible = false
-	SignalMgr.register_subscriber(self, "spell_activated")
-	SignalMgr.register_subscriber(self, "spell_deactivated")
+	if !Engine.editor_hint:
+		SignalMgr.register_subscriber(self, "spell_activated")
+		SignalMgr.register_subscriber(self, "spell_deactivated")
 
 
 func start() -> void:

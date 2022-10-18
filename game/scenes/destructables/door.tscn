@@ -94,8 +94,6 @@ visible = false
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.1 )
 visible = false
 
-[connection signal="value_changed" from="HealthBar" to="." method="_on_HealthBar_value_changed"]
-
 [editable path="door_matrix"]
 [editable path="broken_door_matrix"]
 [editable path="completely_broken_door_matrix"]

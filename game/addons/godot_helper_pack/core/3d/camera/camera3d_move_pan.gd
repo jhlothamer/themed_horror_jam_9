@@ -2,17 +2,20 @@ class_name Camera3DMovePan
 extends Spatial
 
 export (float, .1, 25) var move_speed: float = 10
-
 export var north_action_name := "ui_up"
 export var south_action_name := "ui_down"
 export var west_action_name := "ui_left"
 export var east_action_name := "ui_right"
-export var disabled := false
+export var disabled := false setget _set_disabled
+
+
+func _set_disabled(value: bool) -> void:
+	disabled = value
+	set_physics_process(!disabled)
 
 
 func _ready():
-	if disabled:
-		set_physics_process(false)
+	self.disabled = disabled
 
 
 func _physics_process(delta):

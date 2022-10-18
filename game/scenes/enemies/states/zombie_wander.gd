@@ -1,24 +1,39 @@
 extends EnemeyBaseState
 
 
+
+
 var _path := []
 var _path_index := 0
 
 
 func enter():
 	enemy._disable_collisions()
-	
-	var retreat_area_mgr: NavigationAreaMgr = ServiceMgr.get_service(NavigationAreaMgr, GameConsts.SERVICE_NAME_RETREAT_AREA_MGR)
-	if !retreat_area_mgr:
-		printerr("Enemey:Retreat: could not get %s service." % GameConsts.SERVICE_NAME_RETREAT_AREA_MGR)
+	_generate_next_wander_path()
+
+
+func _equal_nav_points(v1: Vector3, v2: Vector3) -> bool:
+	return is_equal_approx(v1.x, v2.x) and is_equal_approx(v1.z, v2.z)
+
+
+func _generate_next_wander_path() -> void:
+	var area_mgr: NavigationAreaMgr = ServiceMgr.get_service(NavigationAreaMgr, GameConsts.SERVICE_NAME_WANDER_AREA_MGR)
+	if !area_mgr:
+		printerr("Enemey:%s: could not get %s service." % [name, GameConsts.SERVICE_NAME_RETREAT_AREA_MGR])
 		change_state("Die")
 		return
 	
-	var target_pos = retreat_area_mgr.get_position_in_area(enemy.spawn_direction)
+	var target_pos = area_mgr.get_position_in_area(enemy.spawn_direction)
 	
 	var map_id = host.get_world().get_navigation_map()
-
+	
 	_path = NavigationServer.map_get_path(map_id, enemy.global_transform.origin, target_pos, true)
+	# when path obtained too soon after startup it can be invalid.  Loop/wait till we have a good path.
+	while _path.size() == 0 or !_equal_nav_points(target_pos, _path.back()):
+		_path = []
+		yield(get_tree().create_timer(1.0), "timeout")
+		_path = NavigationServer.map_get_path(map_id, enemy.global_transform.origin, target_pos, true)
+	
 	_path_index = 0
 	
 	# ensure path is on the same plain as character
@@ -49,8 +64,7 @@ func physics_process(delta):
 	if v.length() <= frame_move_v.length():
 		_path_index += 1
 		if _path_index >= _path.size():
-			enemy.queue_free()
-			_path = []
-			_path_index = 0
+			_generate_next_wander_path()
+			return
 	
 	var _c = enemy.move_and_collide(frame_move_v)

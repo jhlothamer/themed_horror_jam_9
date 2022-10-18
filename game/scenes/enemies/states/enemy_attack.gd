@@ -26,7 +26,7 @@ func _ready():
 
 
 func _on_character_body_entered(body: CollisionObject) -> void:
-	if enemy.is_dead():
+	if enemy.is_dead() or enemy.agression_level == GameConsts.EnemyAgressionLevel.LOW:
 		return
 	if _target_character or _target_destructable:
 		return

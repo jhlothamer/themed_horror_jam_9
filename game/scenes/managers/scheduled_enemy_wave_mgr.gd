@@ -13,8 +13,8 @@ class ScheduleItem:
 			mode = GameConsts.EnemyAgressionLevel[temp]
 
 
-export var schedule_file_csv: String = "res://assets/data/enemy_wave_schedule.txt"
-
+export (String, FILE, "*.txt") var schedule_file_csv: String = "res://assets/data/enemy_wave_schedule.txt"
+export var alt_schedule_file_csv: String ="user://enemy_wave_schedule.csv"
 
 onready var _timer: Timer = $Timer
 
@@ -31,21 +31,31 @@ func _ready():
 
 func _read_schedule() -> void:
 	var file = File.new()
-	if !file.file_exists(schedule_file_csv):
+	
+	var file_path := ""
+	if file.file_exists(alt_schedule_file_csv):
+		file_path = alt_schedule_file_csv
+		print("*** using %s schedule file ***" % alt_schedule_file_csv)
+	if file_path == "" and !file.file_exists(schedule_file_csv):
 		printerr("ScheduledEnemyWaveMgr: schedule file does not exist: %s" % schedule_file_csv)
 		return
-	if OK != file.open(schedule_file_csv,File.READ):
+	else:
+		file_path = schedule_file_csv
+	
+	if OK != file.open(file_path,File.READ):
 		printerr("ScheduledEnemyWaveMgr: could not open schedule file: %s" % schedule_file_csv)
 		return
 	var _headers = file.get_csv_line()
 	while !file.eof_reached():
 		var csv = file.get_csv_line()
+		if !csv or csv.size() < 3:
+			continue
 		_schedule.append(ScheduleItem.new(csv))
 	file.close()
 
 
 func _schedule_next_wave() -> void:
-	if disabled:
+	if disabled or _schedule_index >= _schedule.size():
 		return
 	
 	var schedule_item: ScheduleItem = _schedule[_schedule_index]
@@ -56,7 +66,7 @@ func _schedule_next_wave() -> void:
 func _on_Timer_timeout():
 	var schedule_item: ScheduleItem = _schedule[_schedule_index]
 	print("ScheduledEnemeyMgr: spawning wave of %d enemeies" % schedule_item.enemy_count)
-	_spawn_wave(schedule_item.enemy_count)
+	_spawn_wave(schedule_item.enemy_count, schedule_item.mode)
 	_schedule_index += 1
 	_schedule_next_wave()
 
