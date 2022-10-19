@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=1]
 [ext_resource path="res://scenes/managers/navigation_point_mgr.gd" type="Script" id=2]
@@ -124,9 +124,6 @@ polygons = [ PoolIntArray( 0, 2, 1 ), PoolIntArray( 3, 8, 4 ), PoolIntArray( 4, 
 [sub_resource type="NavigationMesh" id=19]
 vertices = PoolVector3Array( -25.4888, 0.399999, -15.6426, -27.2388, 0.399999, -15.6426, -27.7388, 0.399999, -15.1426, -24.2388, 0.399999, -7.39261, -20.4888, 0.399999, -12.1426, -21.9888, 0.399999, -15.1426, -33.4888, 0.399999, -4.64261, -25.2388, 0.399999, -4.39261, -24.2388, 0.399999, -7.39261, -27.7388, 0.399999, -15.1426, -25.7388, 0.399999, -1.64261, -25.2388, 0.399999, -4.39261, -33.4888, 0.399999, -4.64261, -25.9888, 0.399999, 15.6074, -19.2388, 0.399999, 13.1074, -19.9888, 0.399999, 8.85739, -35.9888, 0.399999, 9.85739, -34.2388, 0.399999, 15.6074, -25.9888, 0.399999, 15.6074, -24.4888, 0.399999, 2.85739, -25.7388, 0.399999, -1.64261, -33.4888, 0.399999, -4.64261, -24.4888, 0.399999, 2.85739, -33.4888, 0.399999, -4.64261, -37.2388, 0.399999, 3.85739, -35.9888, 0.399999, 9.85739, -25.9888, 0.399999, 15.6074, -19.9888, 0.399999, 8.85739 )
 polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 5 ), PoolIntArray( 2, 5, 4 ), PoolIntArray( 2, 4, 3 ), PoolIntArray( 7, 6, 8 ), PoolIntArray( 8, 6, 9 ), PoolIntArray( 12, 11, 10 ), PoolIntArray( 15, 14, 13 ), PoolIntArray( 18, 17, 16 ), PoolIntArray( 20, 19, 21 ), PoolIntArray( 27, 26, 22 ), PoolIntArray( 22, 26, 25 ), PoolIntArray( 22, 25, 24 ), PoolIntArray( 22, 24, 23 ) ]
-
-[sub_resource type="SphereMesh" id=24]
-radius = 0.5
 
 [node name="Level1" type="Spatial"]
 script = ExtResource( 22 )
@@ -902,11 +899,3 @@ rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlane")
 [node name="ZombieWanderer5" parent="Wanderers/East" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2439, 0, -3.38994 )
 rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlane")
-
-[node name="DebugFromMeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9, 0, -6.3 )
-mesh = SubResource( 24 )
-
-[node name="DebugToMeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1, 0, 7.8 )
-mesh = SubResource( 24 )
