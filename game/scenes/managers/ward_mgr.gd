@@ -56,6 +56,13 @@ func _get_ward_area(camera_name: String) -> WardArea:
 	return ward_area
 
 
+func _are_any_ward_areas_active() -> bool:
+	for ward_area in _camera_name_to_ward_area.values():
+		if ward_area.active:
+			return true
+	return false
+
+
 func _set_camera_feed_ward(camera_name: String, warded: bool) -> void:
 	var camera_feed_hud:CameraFeedHud = ServiceMgr.get_service(CameraFeedHud)
 	if !camera_feed_hud:
@@ -65,6 +72,9 @@ func _set_camera_feed_ward(camera_name: String, warded: bool) -> void:
 
 
 func place_ward() -> bool:
+	if _are_any_ward_areas_active():
+		return false
+	
 	var curr_camera_name = _get_current_camera_feed_name()
 	var ward_area = _get_ward_area(curr_camera_name)
 	if !ward_area:
