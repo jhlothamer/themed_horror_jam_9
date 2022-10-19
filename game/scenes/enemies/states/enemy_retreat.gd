@@ -8,13 +8,13 @@ var _path_index := 0
 func enter():
 	enemy._disable_collisions()
 	
-	var retreat_area_mgr: RetreatAreaMgr = ServiceMgr.get_service(RetreatAreaMgr)
+	var retreat_area_mgr: NavigationAreaMgr = ServiceMgr.get_service(NavigationAreaMgr, GameConsts.SERVICE_NAME_RETREAT_AREA_MGR)
 	if !retreat_area_mgr:
-		printerr("Enemey:Retreat: could not get RetreatAreaMgr service.")
+		printerr("Enemey:Retreat: could not get %s service." % GameConsts.SERVICE_NAME_RETREAT_AREA_MGR)
 		change_state("Die")
 		return
 	
-	var target_pos = retreat_area_mgr.get_retreat_to_position(enemy.spawn_direction)
+	var target_pos = retreat_area_mgr.get_position_in_area(enemy.spawn_direction)
 	
 	var map_id = host.get_world().get_navigation_map()
 

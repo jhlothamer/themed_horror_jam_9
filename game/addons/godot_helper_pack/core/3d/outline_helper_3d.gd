@@ -61,13 +61,14 @@ func _ready():
 			_mesh_instance_outline_material.set_shader_param("outline_color", mouse_over_color)
 			_mesh_instance_outline_material.set_shader_param("outline_width", .0)
 
-		for i in mesh_instances_to_outline:
-			var mi: MeshInstance = get_node(i)
-			if !mi:
-				printerr("bad mesh_instance_to_outline node path")
-				return
-			
-			mi.material_overlay = _mesh_instance_outline_material
+		if constant_outline:
+			for i in mesh_instances_to_outline:
+				var mi: MeshInstance = get_node(i)
+				if !mi:
+					printerr("bad mesh_instance_to_outline node path")
+					return
+				
+				mi.material_overlay = _mesh_instance_outline_material
 
 	if select_on_click:
 		_selected_indicator = get_node(selected_indicator)
@@ -128,7 +129,15 @@ func _show_outline() -> void:
 	else:
 		_mesh_instance_outline_material.set_shader_param("outline_color", mouse_over_color)
 		_mesh_instance_outline_material.set_shader_param("outline_width", OUTLINE_ON_WIDTH)
-		
+		if !constant_outline:
+			for i in mesh_instances_to_outline:
+				var mi: MeshInstance = get_node(i)
+				if !mi:
+					printerr("bad mesh_instance_to_outline node path")
+					return
+				
+				mi.material_overlay = _mesh_instance_outline_material
+
 
 
 func _hide_outline() -> void:
@@ -141,3 +150,10 @@ func _hide_outline() -> void:
 		else:
 			_mesh_instance_outline_material.set_shader_param("outline_color", mouse_over_color)
 			_mesh_instance_outline_material.set_shader_param("outline_width", .0)
+			for i in mesh_instances_to_outline:
+				var mi: MeshInstance = get_node(i)
+				if !mi:
+					printerr("bad mesh_instance_to_outline node path")
+					return
+				
+				mi.material_overlay = null

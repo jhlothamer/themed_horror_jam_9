@@ -11,16 +11,20 @@ export var damage_amount := 5
 export var damage_interval := 2.0
 export var starting_health := 30
 export var debug_state := false
+export var debug_node_name := false
 
 onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _state_machine: StateMachine = $StateMachine
 onready var _collision_shape:CollisionShape = $CollisionShape
 onready var _state_debug_label: Label3D = $StateDebugLabel3D
+onready var _node_name_debug_label: Label3D = $NodeNameDebugLabel3D
 onready var _attack_state = $StateMachine/Attack
 
 
 var current_health := 100
 var spawn_direction:int
+var agression_level:int setget _set_agression_level
+var target_destructable: Destructable
 
 
 func _ready():
@@ -29,7 +33,18 @@ func _ready():
 	_health_bar.value = starting_health
 	current_health = starting_health
 	_state_debug_label.visible = debug_state
+	_node_name_debug_label.visible = debug_node_name
+	_node_name_debug_label.text = name
 
+
+func _set_agression_level(value: int) -> void:
+	if agression_level == value:
+		return
+	agression_level = value
+	if !_state_machine:
+		return
+	if agression_level == GameConsts.EnemyAgressionLevel.HIGH:
+		_state_machine.change_state("Walk")
 
 
 func _on_OutlineHelper3D_clicked(_clicked_object):
@@ -59,7 +74,13 @@ func _update_heath_bar() -> void:
 
 
 func _disable_collisions() -> void:
-	_collision_shape.disabled = true
+	set_collision_layer_bit(GameConsts.PhysLayerBitIndex.DEFAULT, false)
+	set_collision_mask_bit(GameConsts.PhysLayerBitIndex.DEFAULT, false)
+
+
+func _enable_collisions() -> void:
+	set_collision_layer_bit(GameConsts.PhysLayerBitIndex.DEFAULT, true)
+	set_collision_mask_bit(GameConsts.PhysLayerBitIndex.DEFAULT, true)
 
 
 func _on_damage():
@@ -73,6 +94,7 @@ func _death():
 func _on_StateMachine_state_changed(_old_state, new_state):
 	_state_debug_label.modulate = Color.from_hsv(randf(), 1.0 ,1.0, 1.0)
 	_state_debug_label.text = new_state
+	_node_name_debug_label.modulate =  _state_debug_label.modulate
 
 
 func _do_attack_damage() -> void:

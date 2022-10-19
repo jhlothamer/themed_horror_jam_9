@@ -1,6 +1,6 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://assets/models/zombie_animations_frank_ilikethepixies/zombie_animations_frank_ilikethepixies.gltf" type="PackedScene" id=1]
+[ext_resource path="res://assets/models/bushes_matrix/bush1_matrix.gltf" type="PackedScene" id=1]
 [ext_resource path="res://scenes/etc/title.gd" type="Script" id=2]
 [ext_resource path="res://assets/themes/title_labels.tres" type="Theme" id=3]
 [ext_resource path="res://scenes/components/transition_button/transition_button.tscn" type="PackedScene" id=4]
@@ -12,6 +12,11 @@
 [ext_resource path="res://scenes/wanderers/zombie_wanderer.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/etc/title_world_environment.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/images/title_matrix/title_matrix.jpg" type="Texture" id=12]
+[ext_resource path="res://assets/models/bushes_matrix/bush3_matrix.gltf" type="PackedScene" id=13]
+[ext_resource path="res://assets/models/bushes_matrix/bush2_matrix.gltf" type="PackedScene" id=14]
+[ext_resource path="res://assets/models/rocks_ilikethepixies/rock_002_ilikethepixies.gltf" type="PackedScene" id=15]
+[ext_resource path="res://assets/models/rocks_ilikethepixies/rock_003_ilikethepixies.gltf" type="PackedScene" id=16]
+[ext_resource path="res://assets/models/rocks_ilikethepixies/rock_001_ilikethepixies.gltf" type="PackedScene" id=17]
 
 [sub_resource type="CanvasItemMaterial" id=7]
 blend_mode = 1
@@ -27,13 +32,9 @@ size = Vector3( 100, 1, 50 )
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 50, 0.5, 25 )
 
-[sub_resource type="SpatialMaterial" id=5]
-flags_unshaded = true
-albedo_color = Color( 0.14902, 0, 0.145098, 1 )
-
 [sub_resource type="NavigationMesh" id=6]
-vertices = PoolVector3Array( -16.1356, 0.309938, -24.6803, -15.6356, 0.559938, -23.4303, -14.8856, 0.309938, -22.9303, -13.3856, 0.309938, -23.4303, -11.8856, 0.309938, -26.4303, -14.3856, 0.309938, -20.4303, -15.8856, 0.309938, -20.4303, -16.6356, 0.309938, -19.9303, -16.6356, 0.309938, -15.4303, -11.8856, 0.309938, -26.4303, -13.3856, 0.309938, -23.4303, -13.1356, 0.309938, -22.4303, -8.1356, 0.309938, -17.4303, -1.3856, 0.309938, -22.9303, -1.6356, 0.309938, -26.4303, -14.3856, 0.309938, -20.4303, -16.6356, 0.309938, -15.4303, -11.3856, 0.309938, -15.1803, -8.1356, 0.309938, -17.4303, -13.1356, 0.309938, -22.4303, -1.3856, 0.309938, -22.9303, -0.635599, 0.309938, -24.6803, -1.6356, 0.309938, -26.4303, -0.385599, 0.309938, -19.1803, -0.385599, 0.309938, -22.6803, -1.3856, 0.309938, -22.9303, -8.1356, 0.309938, -17.4303, 16.3644, 0.309938, -24.1803, 17.1144, 0.309938, -24.4303, 17.3644, 0.309938, -24.6803, 12.6144, 0.309938, -26.4303, 16.6144, 0.309938, -19.4303, 16.6144, 0.309938, -20.6803, 15.8644, 0.309938, -21.1803, 3.1144, 0.309938, -24.9303, 1.8644, 0.309938, -24.1803, 1.8644, 0.309938, -23.4303, 6.3644, 0.309938, -26.4303, 15.8644, 0.309938, -22.1803, 16.3644, 0.309938, -22.4303, 16.3644, 0.309938, -24.1803, 12.6144, 0.309938, -26.4303, 0.364401, 0.309938, -26.4303, 1.1144, 0.309938, -25.4303, 2.8644, 0.309938, -25.9303, 6.3644, 0.309938, -26.4303, 0.364401, 0.309938, -26.4303, 2.8644, 0.309938, -25.9303, 6.3644, 0.309938, -26.4303, 2.8644, 0.309938, -25.9303, 3.1144, 0.309938, -24.9303, 15.8644, 0.309938, -21.1803, 15.8644, 0.309938, -22.1803, 12.6144, 0.309938, -26.4303, 1.8644, 0.309938, -23.4303, -0.385599, 0.309938, -22.6803, -0.385599, 0.309938, -19.1803, 7.8644, 0.309938, -17.6803, 17.1144, 0.309938, -14.1803, 17.1144, 0.309938, -19.1803, 16.6144, 0.309938, -19.4303, 7.8644, 0.309938, -17.6803, 12.6144, 0.309938, -14.1803, 15.8644, 0.309938, -21.1803, 12.6144, 0.309938, -26.4303, 6.3644, 0.309938, -26.4303, 1.8644, 0.309938, -23.4303, 12.6144, 0.309938, -14.1803, 17.1144, 0.309938, -14.1803, 16.6144, 0.309938, -19.4303, 15.8644, 0.309938, -21.1803, 17.3644, 0.309938, -24.6803, 17.1144, 0.309938, -24.4303, 17.8644, 0.309938, -23.9303, 20.6144, 0.309938, -22.4303, 21.3644, 0.309938, -23.4303, 20.3644, 0.309938, -20.9303, 17.8644, 0.309938, -20.9303, 17.8644, 0.309938, -19.4303, 21.3644, 0.309938, -15.9303, 17.8644, 0.309938, -23.9303, 17.8644, 0.309938, -22.6803, 20.6144, 0.309938, -22.4303, 17.1144, 0.309938, -14.1803, 21.1144, 0.309938, -14.1803, 21.3644, 0.309938, -15.9303, 17.8644, 0.309938, -19.4303, 17.1144, 0.309938, -19.1803, 20.3644, 0.309938, -20.9303, 21.3644, 0.309938, -15.9303, 21.3644, 0.309938, -23.4303, 20.6144, 0.309938, -22.4303, -17.6356, 0.309938, -20.9303, -16.6356, 0.309938, -21.9303, -17.6356, 0.309938, -23.1803, -20.3856, 0.309938, -22.9303, -17.6356, 0.309938, -23.1803, -17.6356, 0.309938, -23.9303, -20.3856, 0.309938, -22.9303, -17.6356, 0.309938, -20.1803, -20.3856, 0.309938, -22.9303, -20.3856, 0.309938, -15.4303, -16.6356, 0.309938, -15.4303, -17.6356, 0.309938, -20.1803, -17.6356, 0.309938, -20.9303, -20.3856, 0.309938, -22.9303, -16.6356, 0.309938, -15.4303, -16.6356, 0.309938, -19.9303, -17.6356, 0.309938, -20.1803 )
-polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 3 ), PoolIntArray( 3, 0, 4 ), PoolIntArray( 6, 5, 7 ), PoolIntArray( 7, 5, 8 ), PoolIntArray( 10, 9, 11 ), PoolIntArray( 11, 9, 12 ), PoolIntArray( 12, 9, 13 ), PoolIntArray( 13, 9, 14 ), PoolIntArray( 15, 19, 16 ), PoolIntArray( 16, 19, 17 ), PoolIntArray( 17, 19, 18 ), PoolIntArray( 22, 21, 20 ), PoolIntArray( 24, 23, 25 ), PoolIntArray( 25, 23, 26 ), PoolIntArray( 28, 27, 29 ), PoolIntArray( 29, 27, 30 ), PoolIntArray( 33, 32, 31 ), PoolIntArray( 35, 34, 36 ), PoolIntArray( 36, 34, 37 ), PoolIntArray( 39, 38, 40 ), PoolIntArray( 40, 38, 41 ), PoolIntArray( 44, 43, 42 ), PoolIntArray( 47, 46, 45 ), PoolIntArray( 50, 49, 48 ), PoolIntArray( 53, 52, 51 ), PoolIntArray( 55, 54, 56 ), PoolIntArray( 56, 54, 57 ), PoolIntArray( 60, 59, 58 ), PoolIntArray( 62, 61, 63 ), PoolIntArray( 63, 61, 64 ), PoolIntArray( 64, 61, 65 ), PoolIntArray( 65, 61, 66 ), PoolIntArray( 69, 68, 70 ), PoolIntArray( 70, 68, 67 ), PoolIntArray( 72, 71, 73 ), PoolIntArray( 73, 71, 74 ), PoolIntArray( 74, 71, 75 ), PoolIntArray( 77, 76, 78 ), PoolIntArray( 78, 76, 79 ), PoolIntArray( 82, 81, 80 ), PoolIntArray( 84, 83, 85 ), PoolIntArray( 85, 83, 86 ), PoolIntArray( 86, 83, 87 ), PoolIntArray( 91, 90, 88 ), PoolIntArray( 88, 90, 89 ), PoolIntArray( 93, 92, 94 ), PoolIntArray( 94, 92, 95 ), PoolIntArray( 98, 97, 96 ), PoolIntArray( 102, 101, 99 ), PoolIntArray( 99, 101, 100 ), PoolIntArray( 105, 104, 103 ), PoolIntArray( 106, 108, 107 ) ]
+vertices = PoolVector3Array( -8.1356, 0.399999, -17.4303, -2.1356, 0.399999, -18.6803, -2.6356, 0.399999, -26.4303, -11.8856, 0.399999, -26.4303, -11.3856, 0.399999, -15.1803, -8.1356, 0.399999, -17.4303, -11.8856, 0.399999, -26.4303, -20.1356, 0.399999, -23.1803, -20.3856, 0.399999, -15.4303, -2.6356, 0.399999, -26.4303, -2.1356, 0.399999, -18.6803, 0.864401, 0.399999, -19.1803, 0.864401, 0.399999, -19.1803, 4.6144, 0.399999, -18.1803, 4.8644, 0.399999, -26.4303, -2.6356, 0.399999, -26.4303, 4.8644, 0.399999, -26.4303, 4.6144, 0.399999, -18.1803, 7.8644, 0.399999, -17.6803, 12.6144, 0.399999, -26.4303, 4.8644, 0.399999, -26.4303, 7.8644, 0.399999, -17.6803, 12.6144, 0.399999, -14.1803, 21.1144, 0.399999, -14.1803, 21.1144, 0.399999, -23.6803 )
+polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 3 ), PoolIntArray( 5, 4, 6 ), PoolIntArray( 6, 4, 7 ), PoolIntArray( 7, 4, 8 ), PoolIntArray( 9, 11, 10 ), PoolIntArray( 13, 12, 14 ), PoolIntArray( 14, 12, 15 ), PoolIntArray( 18, 17, 16 ), PoolIntArray( 20, 19, 21 ), PoolIntArray( 21, 19, 22 ), PoolIntArray( 22, 19, 24 ), PoolIntArray( 22, 24, 23 ) ]
 
 [node name="Title" type="Spatial"]
 script = ExtResource( 2 )
@@ -140,50 +141,54 @@ mesh = SubResource( 3 )
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
 shape = SubResource( 4 )
 
-[node name="zombie_animations_frank_ilikethepixies" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -17 )
-visible = false
+[node name="Props" type="Spatial" parent="."]
 
-[node name="zombie_animations_frank_ilikethepixies2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -23 )
-visible = false
-
-[node name="zombie_animations_frank_ilikethepixies3" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 2, -8 )
-visible = false
-
-[node name="tree_003_ilikethepixies" parent="." instance=ExtResource( 7 )]
+[node name="tree_003_ilikethepixies" parent="Props" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, -16 )
 
-[node name="tree_001_ilikethepixies" parent="." instance=ExtResource( 8 )]
+[node name="tree_001_ilikethepixies" parent="Props" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1, -14 )
 
-[node name="CSGCylinder" type="CSGCylinder" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0 )
-visible = false
-radius = 17.0
-height = 2.0
-sides = 32
-material = SubResource( 5 )
+[node name="bush1_matrix" parent="Props" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -10 )
+
+[node name="bush2_matrix" parent="Props" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -14 )
+
+[node name="bush3_matrix" parent="Props" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -17 )
+
+[node name="rock_001_ilikethepixies" parent="Props" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -13 )
+
+[node name="rock_003_ilikethepixies" parent="Props" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -15 )
+
+[node name="rock_002_ilikethepixies" parent="Props" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -16 )
+
+[node name="Zombies" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.90735e-06 )
+
+[node name="ZombieWanderer" parent="Zombies" instance=ExtResource( 10 )]
+transform = Transform( -0.838395, 0, -0.545063, 0, 1, 0, 0.545063, 0, -0.838395, -16.0885, 1.90735e-06, -22.8537 )
+rand_point_plane = NodePath("../../NavigationMeshInstance/RandomPointPlain")
+
+[node name="ZombieWanderer2" parent="Zombies" instance=ExtResource( 10 )]
+transform = Transform( -0.838395, 0, -0.545063, 0, 1, 0, 0.545063, 0, -0.838395, 0.0110655, 5.72205e-06, -19.754 )
+rand_point_plane = NodePath("../../NavigationMeshInstance/RandomPointPlain")
+
+[node name="ZombieWanderer3" parent="Zombies" instance=ExtResource( 10 )]
+transform = Transform( -0.0545145, 0, 0.998513, 0, 1, 0, -0.998513, 0, -0.0545145, 18.6164, 3.8147e-06, -21.8277 )
+rand_point_plane = NodePath("../../NavigationMeshInstance/RandomPointPlain")
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 6 )
 navigation_layers = 2
 
 [node name="RandomPointPlain" parent="NavigationMeshInstance" instance=ExtResource( 9 )]
+visible = false
 polygon = PoolVector2Array( -11.5473, 14.7958, -7.60847, 17.0967, -0.0157847, 18.8293, 7.98479, 17.1074, 12.4046, 13.9201, 21.5596, 13.7199, 21.8381, 23.7508, 12.0514, 26.9303, -11.7447, 26.7812, -20.8856, 23.2044, -20.709, 15.0458 )
-
-[node name="ZombieWanderer" parent="NavigationMeshInstance" instance=ExtResource( 10 )]
-transform = Transform( -0.838395, 0, -0.545063, 0, 1, 0, 0.545063, 0, -0.838395, -16.0885, 1.90735e-06, -22.8537 )
-rand_point_plane = NodePath("../RandomPointPlain")
-
-[node name="ZombieWanderer2" parent="NavigationMeshInstance" instance=ExtResource( 10 )]
-transform = Transform( -0.838395, 0, -0.545063, 0, 1, 0, 0.545063, 0, -0.838395, 0.0110655, 5.72205e-06, -25.5053 )
-rand_point_plane = NodePath("../RandomPointPlain")
-
-[node name="ZombieWanderer3" parent="NavigationMeshInstance" instance=ExtResource( 10 )]
-transform = Transform( -0.0545145, 0, 0.998513, 0, 1, 0, -0.998513, 0, -0.0545145, 18.6164, 3.8147e-06, -21.8277 )
-rand_point_plane = NodePath("../RandomPointPlain")
 
 [node name="TitleWorldEnvironment" parent="." instance=ExtResource( 11 )]
 

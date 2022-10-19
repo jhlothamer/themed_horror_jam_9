@@ -1,3 +1,4 @@
+class_name Zombie
 extends Enemy
 
 
@@ -17,6 +18,8 @@ var _state_animations := {
 	"Die": "Die",
 	"PostWindowClimb": "FlipThroughWindowStandup",
 	"Retreat": "Walk",
+	"Wander": "Walk",
+	"TestDefense": "Run",
 }
 var _animation_speeds := {
 	"Run": .5,

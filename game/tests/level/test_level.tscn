@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://assets/images/prototyping/grey_box_256x256.png" type="Texture" id=1]
 [ext_resource path="res://scenes/characters/witch.tscn" type="PackedScene" id=2]
@@ -13,13 +13,12 @@
 [ext_resource path="res://scenes/interactables/mana_pool.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/destructables/window.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/managers/enemy_spawn_mgr.gd" type="Script" id=13]
+[ext_resource path="res://scenes/managers/scheduled_enemy_wave_mgr.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/interactables/wood_pile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/ui/camera_feed_hud.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/interactables/crystal_ball.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/managers/enemy_wave_mgr.tscn" type="PackedScene" id=18]
 [ext_resource path="res://tests/level/testing_hud.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/managers/navigation_point_mgr.gd" type="Script" id=20]
-[ext_resource path="res://assets/models/wall_matrix/wall_planks_matrix.gltf" type="PackedScene" id=21]
 [ext_resource path="res://scenes/interactables/spellbook.tscn" type="PackedScene" id=22]
 
 [sub_resource type="NavigationMesh" id=3]
@@ -73,18 +72,15 @@ spawn_position_parent = NodePath("../../SpawnPositions")
 [node name="CharacterMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 8 )
 
-[node name="EnemyWaveMgr" parent="Mgrs" instance=ExtResource( 18 )]
-delay_between_spawns_min = 3.0
-delay_between_spawns_max = 10.0
-initial_delay_seconds = 20.0
-disabled = true
-
 [node name="NavigationPointMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 20 )
 object_to_navigation_points = {
 NodePath("../../NavigationMeshInstance/Cauldron"): [ NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D1"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D2"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D3"), NodePath("../../NavigationMeshInstance/Cauldron/CauldronNavPosition3D4") ],
 NodePath("../../NavigationMeshInstance/CrystalBall"): [ NodePath("../../NavigationMeshInstance/CrystalBall/CrystalBallNavPosition3D1"), NodePath("../../NavigationMeshInstance/CrystalBall/CrystalBallNavPosition3D2") ]
 }
+
+[node name="ScheduledEnemyWaveMgr" parent="Mgrs" instance=ExtResource( 14 )]
+disabled = true
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 3 )
@@ -440,21 +436,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0 )
 mesh = SubResource( 24 )
 
 [node name="WallPanels" type="Spatial" parent="."]
-
-[node name="wall_planks_matrix" parent="WallPanels" instance=ExtResource( 21 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9, 3, 9.56365 )
-
-[node name="wall_planks_matrix2" parent="WallPanels" instance=ExtResource( 21 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.32137, 3, 9.56365 )
-
-[node name="wall_planks_matrix3" parent="WallPanels" instance=ExtResource( 21 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.71286, 3, 9.56365 )
-
-[node name="wall_planks_matrix4" parent="WallPanels" instance=ExtResource( 21 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.36631, 3, 9.56365 )
-
-[node name="wall_planks_matrix5" parent="WallPanels" instance=ExtResource( 21 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -10.0367, 3, 9.56365 )
 
 [node name="CrystalBallCameras" type="Spatial" parent="."]
 __meta__ = {

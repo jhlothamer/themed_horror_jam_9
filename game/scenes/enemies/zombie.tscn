@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://scenes/enemies/enemy_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/audio/random_audio_stream_player_3d.gd" type="Script" id=2]
@@ -13,7 +13,10 @@
 [ext_resource path="res://assets/sounds/sfx_zombie_bite1_jdymusic.mp3" type="AudioStream" id=11]
 [ext_resource path="res://assets/sounds/sfx_zombie_attack1_jdymusic.mp3" type="AudioStream" id=12]
 [ext_resource path="res://assets/sounds/sfx_zombie_bite2_jdymusic.mp3" type="AudioStream" id=13]
+[ext_resource path="res://scenes/enemies/states/zombie_wander.gd" type="Script" id=14]
 [ext_resource path="res://assets/models/zombie_animations_frank_ilikethepixies/Material_001.material" type="Material" id=15]
+[ext_resource path="res://scenes/enemies/states/zombie_start.gd" type="Script" id=16]
+[ext_resource path="res://scenes/enemies/states/zombie_test_defense.gd" type="Script" id=17]
 
 [sub_resource type="SpatialMaterial" id=25]
 resource_local_to_scene = true
@@ -4899,8 +4902,21 @@ walk_speed = 0.5
 [node name="MeshInstance" parent="." index="1"]
 mesh = SubResource( 26 )
 
+[node name="Walk" parent="StateMachine" index="0"]
+is_starting_state = false
+
 [node name="Die" parent="StateMachine" index="2"]
 rand_death_sounds = NodePath("../../DeathSounds")
+
+[node name="Start" type="Node" parent="StateMachine" index="6"]
+script = ExtResource( 16 )
+is_starting_state = true
+
+[node name="Wander" type="Node" parent="StateMachine" index="7"]
+script = ExtResource( 14 )
+
+[node name="TestDefense" type="Node" parent="StateMachine" index="8"]
+script = ExtResource( 17 )
 
 [node name="OutlineHelper3D" parent="." index="4"]
 mesh_instances_to_outline = [ NodePath("../Armature/Skeleton/guy") ]

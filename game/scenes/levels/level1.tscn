@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=1]
 [ext_resource path="res://scenes/managers/navigation_point_mgr.gd" type="Script" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/materials_shaders/cabin_floor_wall_back_mat.tres" type="Material" id=7]
 [ext_resource path="res://assets/materials_shaders/exterior_ground_mat.tres" type="Material" id=8]
 [ext_resource path="res://scenes/ui/camera_feed_hud.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/managers/enemy_wave_mgr.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/managers/scheduled_enemy_wave_mgr.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/destructables/window.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/destructables/door.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/characters/witch.tscn" type="PackedScene" id=13]
@@ -19,7 +19,6 @@
 [ext_resource path="res://scenes/interactables/wood_pile.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/interactables/cauldron.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/materials_shaders/main_camera_flag_mat.tres" type="Material" id=19]
-[ext_resource path="res://scenes/enemies/zombie.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/worlds_environments/camera_feed_env.tres" type="Environment" id=21]
 [ext_resource path="res://scenes/levels/level1.gd" type="Script" id=22]
 [ext_resource path="res://assets/models/trees_ilikethepixies/tree_002_ilikethepixies.gltf" type="PackedScene" id=23]
@@ -30,8 +29,10 @@
 [ext_resource path="res://scenes/wanderers/rand_point_plane.tscn" type="PackedScene" id=28]
 [ext_resource path="res://scenes/components/ward_area.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/managers/ward_mgr.gd" type="Script" id=30]
-[ext_resource path="res://scenes/managers/retreat_area_mgr.gd" type="Script" id=31]
+[ext_resource path="res://scenes/managers/navigation_area_mgr.gd" type="Script" id=31]
 [ext_resource path="res://assets/models/floor_matrix/entire_floor/complete_floor_matrix.gltf" type="PackedScene" id=32]
+[ext_resource path="res://assets/models/wall_matrix/re_built_walls/wall_with_window/remodeled_walls_matrix.gltf" type="PackedScene" id=33]
+[ext_resource path="res://assets/models/wall_matrix/re_built_walls/wall_without_window/remodeled_walls _without_window_matrix.gltf" type="PackedScene" id=34]
 
 [sub_resource type="NavigationMesh" id=4]
 vertices = PoolVector3Array( -0.5, 0.5, -11.25, 0.75, 0.5, -11.25, 9.5, 0.5, -11.5, -9.5, 0.5, -21, -9.5, 0.5, -11.5, -0.5, 0.5, -11.25, 9.5, 0.5, -21, 9.5, 0.5, -30.5, 0, 0.5, -30.5, 0, 0.5, -30.5, -9.5, 0.5, -30.5, -9.5, 0.5, -21, -0.5, 0.5, -11.25, 9.5, 0.5, -11.5, 9.5, 0.5, -21, -1.5, 0.5, -9.5, -1, 0.5, -8.25, -0.75, 0.5, -8.75, -0.5, 0.5, -9.75, 1, 0.5, -9.5, -0.75, 0.5, -8.75, 3, 0.5, -8.75, 9.5, 0.5, -9.5, 9.75, 0.5, 0.5, 10.5, 0.5, 0.5, 10.5, 0.5, -0.5, 9.5, 0.5, -0.75, 3.25, 0.5, -5.75, 5.5, 0.5, -0.5, 9.5, 0.5, -4.25, 9.5, 0.5, -5.75, 9.5, 0.5, -4.25, 10.5, 0.5, -4.5, 10.5, 0.5, -5.5, 9.5, 0.5, -5.75, 3, 0.5, -8.75, 3.25, 0.5, -5.75, 9.5, 0.5, -5.75, 9.5, 0.5, -9.5, 0.75, 0.5, -11.25, -0.5, 0.5, -11.25, -0.5, 0.5, -9.75, 1, 0.5, -9.5, 5.5, 0.5, -0.5, 6.5, 0.5, -0.5, 9.5, 0.5, -0.75, 9.5, 0.5, -4.25, 1, 0.5, -9.5, -0.5, 0.5, -9.75, -0.75, 0.5, -8.75, 9.5, 0.5, 1.25, 9.75, 0.5, 0.5, 9.5, 0.5, -0.75, 6.5, 0.5, -0.5, 7.5, 0.5, 0.5, 7.5, 0.5, 0.5, 7.5, 0.5, 1.25, 9.5, 0.5, 1.25, -10.5, 0.5, 0.5, -10.5, 0.5, -0.5, -11.5, 0.5, -0.75, -11.5, 0.5, 0.75, -30.5, 0.5, 0, -30.5, 0.5, 9.5, -21, 0.5, 9.5, -11.5, 0.5, -0.75, -11.5, 0.5, -9.5, -21, 0.5, -9.5, -21, 0.5, 9.5, -11.5, 0.5, 9.5, -11.5, 0.5, 0.75, -21, 0.5, -9.5, -30.5, 0.5, -9.5, -30.5, 0.5, 0, -21, 0.5, 9.5, -11.5, 0.5, 0.75, -11.5, 0.5, -0.75, -9.5, 0.5, -9.5, -9.5, 0.5, -6, -7, 0.5, -8.5, 1.75, 0.5, -1, 2, 0.5, 0.5, 4.5, 0.5, 0.75, -9.5, 0.5, -9.5, -7, 0.5, -8.5, -6, 0.5, -8.5, -1.5, 0.5, -9.5, 1.75, 0.5, -1, 4.5, 0.5, 0.75, 5.5, 0.5, -0.5, 3, 0.5, -5.25, -0.75, 0.5, -5.25, 1, 0.5, -1.75, -0.75, 0.5, -5.25, -1, 0.5, -8.25, -1.5, 0.5, -9.5, -4.5, 0.5, -7, -4.5, 0.5, -6, 5.5, 0.5, -0.5, 3.25, 0.5, -5.75, 3, 0.5, -5.25, -1.5, 0.5, -9.5, -6, 0.5, -8.5, -4.5, 0.5, -7, -1.25, 0.5, -1.5, 1, 0.5, -1.75, -0.75, 0.5, -5.25, -4.5, 0.5, -6, -7.25, 0.5, -3.5, 10.5, 0.5, -5.5, 10.5, 0.5, -4.5, 11.5, 0.5, -4.25, 11.5, 0.5, -5.75, 30.5, 0.5, 0, 30.5, 0.5, -9.5, 21, 0.5, -9.5, 11.5, 0.5, -0.75, 10.5, 0.5, -0.5, 10.5, 0.5, 0.5, 11.5, 0.5, 0.75, 21, 0.5, 9.5, 30.5, 0.5, 9.5, 30.5, 0.5, 0, 21, 0.5, -9.5, 11.5, 0.5, -0.75, 11.5, 0.5, 0.75, 21, 0.5, -9.5, 11.5, 0.5, -9.5, 11.5, 0.5, -5.75, 21, 0.5, -9.5, 11.5, 0.5, -5.75, 11.5, 0.5, -4.25, 11.5, 0.5, 0.75, 11.5, 0.5, 9.5, 21, 0.5, 9.5, 21, 0.5, -9.5, 11.5, 0.5, -4.25, 11.5, 0.5, -0.75, 0, 1, -7.75, 0, 1, -6.25, 2, 1, -6.25, 2, 1, -7.75, -6.75, 2.5, -7.25, -8.25, 2.5, -5.75, -8.25, 2.5, -5.25, -7.25, 2.5, -4.75, -5.75, 2.5, -6.25, -6.25, 2.5, -7.25, -6.75, 0.5, -6.75, -7.75, 0.5, -5.75, -7.75, 0.5, -5.25, -7.25, 0.5, -5.25, -6.25, 0.5, -6.25, -6.25, 0.5, -6.75, -10.5, 0.5, -0.5, -10.5, 0.5, 0.5, -9.5, 0.5, 0.75, -9.5, 0.5, -0.75, -9.5, 0.5, -0.75, -9.5, 0.5, 0.75, -7, 0.5, 2.75, -9.5, 0.5, 5, -8.25, 0.5, 5, -8.25, 0.5, 4, -8, 0.5, -3.5, -9.5, 0.5, -5, -9.5, 0.5, -0.75, -9.5, 0.5, 5, -8.25, 0.5, 4, -7, 0.5, 2.75, -9.5, 0.5, 0.75, -5, 0.5, 2.75, -1.75, 0.5, 1, -1.75, 0.5, -1, -7.25, 0.5, -3.5, -9.5, 0.5, -0.75, -7, 0.5, 2.75, -4, 0.5, 3.75, -1.25, 0.5, 1.5, -1.75, 0.5, 1, -5, 0.5, 2.75, -7.25, 0.5, -3.5, -8, 0.5, -3.5, -9.5, 0.5, -0.75, -1.75, 0.5, -1, -1.25, 0.5, -1.5, -7.25, 0.5, -3.5, -0.75, 2.5, -0.5, -0.5, 2.5, 0.75, 0.75, 2.5, 0.5, 0.5, 2.5, -0.75, -0.5, 0.5, -0.25, -0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, -0.5, 4.25, 0.5, 9.5, 4.5, 0.5, 10.5, 5.5, 0.5, 10.5, 5.75, 0.5, 9.5, 6.5, 0.5, 2.5, 5.5, 0.5, 2.5, 9.5, 0.5, 1.25, 7.5, 0.5, 1.25, 6.5, 0.5, 2.5, 5.75, 0.5, 9.5, 9.5, 0.5, 9.5, 4.5, 0.5, 1.5, 4.5, 0.5, 0.75, 2, 0.5, 0.5, 4.5, 0.5, 1.5, 2, 0.5, 0.5, 1.5, 0.5, 1.25, 1.5, 0.5, 9.5, 4.25, 0.5, 9.5, 5.5, 0.5, 2.5, 5.75, 2.75, 0.75, 5.75, 2.75, 1.25, 6.25, 2.75, 1.25, 6.25, 2.75, 0.75, -0.5, 0.5, 10.5, 0.75, 0.5, 10.5, 0.75, 0.5, 9.75, -0.75, 0.5, 9.5, -3.75, 0.5, 6, -5, 0.5, 7.25, -0.75, 0.5, 9.5, -8.25, 0.5, 6, -8.25, 0.5, 5, -9.5, 0.5, 5, -0.75, 0.5, 9.5, 0.75, 0.5, 9.75, 1.5, 0.5, 9.5, -7, 0.5, 7.25, -8.25, 0.5, 6, -9.5, 0.5, 5, -9.5, 0.5, 9.5, -1.25, 0.5, 1.5, -4, 0.5, 3.75, -3.75, 0.5, 6, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1, 0.5, 1.75, -5, 0.5, 7.25, -7, 0.5, 7.25, -9.5, 0.5, 9.5, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1.5, 0.5, 1.25, 1, 0.5, 1.75, -4.75, 2.5, 5.5, -5.5, 2.5, 3.75, -7.25, 2.5, 4.5, -7.25, 2.5, 5.5, -6.5, 2.5, 6.25, -5.5, 2.5, 6.25, -5.5, 2.5, 3.75, -6.5, 2.5, 3.75, -7.25, 2.5, 4.5, -4.75, 2.5, 5.5, -4.75, 2.5, 4.5, -5.5, 2.5, 3.75, -7, 0.5, 4.75, -6.25, 0.5, 6, -5, 0.5, 5.25, -5.75, 0.5, 4, 5.5, 0.5, 10.5, 4.5, 0.5, 10.5, 4.25, 0.5, 11.5, 5.75, 0.5, 11.5, -9.5, 0.5, 21, -9.5, 0.5, 30.5, 0, 0.5, 30.5, 9.5, 0.5, 21, 1, 0.5, 11.5, -0.75, 0.5, 11.5, 1, 0.5, 11.5, 0.75, 0.5, 10.5, -0.5, 0.5, 10.5, -0.75, 0.5, 11.5, 0, 0.5, 30.5, 9.5, 0.5, 30.5, 9.5, 0.5, 21, 9.5, 0.5, 21, 9.5, 0.5, 11.5, 5.75, 0.5, 11.5, 9.5, 0.5, 21, 5.75, 0.5, 11.5, 4.25, 0.5, 11.5, 9.5, 0.5, 21, 4.25, 0.5, 11.5, 1, 0.5, 11.5, -0.75, 0.5, 11.5, -9.5, 0.5, 11.5, -9.5, 0.5, 21 )
@@ -47,7 +48,7 @@ extents = Vector3( 3, 1, 1 )
 [sub_resource type="Environment" id=1]
 background_mode = 1
 ambient_light_color = Color( 0.223529, 0.223529, 0.223529, 1 )
-ambient_light_energy = 0.92
+ambient_light_energy = 0.2
 fog_color = Color( 0.384314, 0.411765, 0.439216, 1 )
 fog_depth_curve = 1.6245
 fog_height_enabled = true
@@ -69,19 +70,19 @@ size = Vector3( 20.5, 0.02, 20.5 )
 
 [sub_resource type="CubeMesh" id=7]
 material = ExtResource( 7 )
-size = Vector3( 0.1, 5, 10 )
+size = Vector3( 0.02, 5.2, 10 )
 
 [sub_resource type="CubeMesh" id=8]
 material = ExtResource( 7 )
-size = Vector3( 10, 5, 0.25 )
+size = Vector3( 10, 5.2, 0.02 )
 
 [sub_resource type="CubeMesh" id=15]
 material = ExtResource( 7 )
-size = Vector3( 3, 5, 0.25 )
+size = Vector3( 3, 5.2, 0.02 )
 
 [sub_resource type="CubeMesh" id=16]
 material = ExtResource( 7 )
-size = Vector3( 4, 5, 0.25 )
+size = Vector3( 4, 5.2, 0.02 )
 
 [sub_resource type="CubeMesh" id=13]
 material = ExtResource( 7 )
@@ -89,7 +90,7 @@ size = Vector3( 2, 1.4, 0.25 )
 
 [sub_resource type="CubeMesh" id=14]
 material = ExtResource( 7 )
-size = Vector3( 2, 2, 0.25 )
+size = Vector3( 2, 2.2, 0.25 )
 
 [sub_resource type="CubeMesh" id=9]
 material = ExtResource( 7 )
@@ -113,7 +114,7 @@ material = ExtResource( 19 )
 size = Vector3( 30, 20, 0.2 )
 
 [sub_resource type="NavigationMesh" id=17]
-vertices = PoolVector3Array( 15.0738, 0.400001, 22.7702, 12.3238, 0.400001, 18.0202, 6.57381, 0.400001, 19.7702, 11.5738, 0.400001, 33.2702, 16.3238, 0.400001, 30.2702, 15.0738, 0.400001, 22.7702, 0.573811, 0.400001, 21.2702, -2.17619, 0.400001, 21.2702, -2.42619, 0.400001, 34.0202, 0.573811, 0.400001, 21.2702, -2.42619, 0.400001, 34.0202, 2.57381, 0.400001, 34.5202, 11.5738, 0.400001, 33.2702, 15.0738, 0.400001, 22.7702, 6.57381, 0.400001, 19.7702, -7.17619, 0.400001, 21.0202, -11.9262, 0.400001, 18.5202, -14.1762, 0.400001, 25.2702, -14.1762, 0.400001, 25.2702, -16.4262, 0.400001, 32.0202, -9.42619, 0.400001, 32.5202, -7.17619, 0.400001, 21.0202, -14.1762, 0.400001, 25.2702, -9.42619, 0.400001, 32.5202, -2.42619, 0.400001, 34.0202, -2.17619, 0.400001, 21.2702 )
+vertices = PoolVector3Array( 15.0738, 0.400001, 22.7702, 12.3238, 0.400001, 18.0202, 6.5738, 0.400001, 19.7702, 11.5738, 0.400001, 33.2702, 16.3238, 0.400001, 30.2702, 15.0738, 0.400001, 22.7702, 0.573799, 0.400001, 21.2702, -2.1762, 0.400001, 21.2702, -2.4262, 0.400001, 34.0202, 0.573799, 0.400001, 21.2702, -2.4262, 0.400001, 34.0202, 2.5738, 0.400001, 34.5202, 11.5738, 0.400001, 33.2702, 15.0738, 0.400001, 22.7702, 6.5738, 0.400001, 19.7702, -7.1762, 0.400001, 21.0202, -11.9262, 0.400001, 18.5202, -14.1762, 0.400001, 25.2702, -14.1762, 0.400001, 25.2702, -16.4262, 0.400001, 32.0202, -9.4262, 0.400001, 32.5202, -7.1762, 0.400001, 21.0202, -14.1762, 0.400001, 25.2702, -9.4262, 0.400001, 32.5202, -2.4262, 0.400001, 34.0202, -2.1762, 0.400001, 21.2702 )
 polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 8, 7, 6 ), PoolIntArray( 11, 10, 12 ), PoolIntArray( 12, 10, 9 ), PoolIntArray( 12, 9, 14 ), PoolIntArray( 12, 14, 13 ), PoolIntArray( 17, 16, 15 ), PoolIntArray( 20, 19, 18 ), PoolIntArray( 21, 25, 22 ), PoolIntArray( 22, 25, 23 ), PoolIntArray( 23, 25, 24 ) ]
 
 [sub_resource type="NavigationMesh" id=18]
@@ -124,6 +125,9 @@ polygons = [ PoolIntArray( 0, 2, 1 ), PoolIntArray( 3, 8, 4 ), PoolIntArray( 4, 
 vertices = PoolVector3Array( -25.4888, 0.399999, -15.6426, -27.2388, 0.399999, -15.6426, -27.7388, 0.399999, -15.1426, -24.2388, 0.399999, -7.39261, -20.4888, 0.399999, -12.1426, -21.9888, 0.399999, -15.1426, -33.4888, 0.399999, -4.64261, -25.2388, 0.399999, -4.39261, -24.2388, 0.399999, -7.39261, -27.7388, 0.399999, -15.1426, -25.7388, 0.399999, -1.64261, -25.2388, 0.399999, -4.39261, -33.4888, 0.399999, -4.64261, -25.9888, 0.399999, 15.6074, -19.2388, 0.399999, 13.1074, -19.9888, 0.399999, 8.85739, -35.9888, 0.399999, 9.85739, -34.2388, 0.399999, 15.6074, -25.9888, 0.399999, 15.6074, -24.4888, 0.399999, 2.85739, -25.7388, 0.399999, -1.64261, -33.4888, 0.399999, -4.64261, -24.4888, 0.399999, 2.85739, -33.4888, 0.399999, -4.64261, -37.2388, 0.399999, 3.85739, -35.9888, 0.399999, 9.85739, -25.9888, 0.399999, 15.6074, -19.9888, 0.399999, 8.85739 )
 polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 5 ), PoolIntArray( 2, 5, 4 ), PoolIntArray( 2, 4, 3 ), PoolIntArray( 7, 6, 8 ), PoolIntArray( 8, 6, 9 ), PoolIntArray( 12, 11, 10 ), PoolIntArray( 15, 14, 13 ), PoolIntArray( 18, 17, 16 ), PoolIntArray( 20, 19, 21 ), PoolIntArray( 27, 26, 22 ), PoolIntArray( 22, 26, 25 ), PoolIntArray( 22, 25, 24 ), PoolIntArray( 22, 24, 23 ) ]
 
+[sub_resource type="SphereMesh" id=24]
+radius = 0.5
+
 [node name="Level1" type="Spatial"]
 script = ExtResource( 22 )
 
@@ -131,16 +135,18 @@ script = ExtResource( 22 )
 
 [node name="EnemySpawnMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 5 )
-spawn_position_parent = NodePath("../../SpawnPositions")
+north_spawn_positions = [ NodePath("../../SpawnPositions/NorthPosition3D"), NodePath("../../SpawnPositions/NorthPosition3D2") ]
+west_spawn_positions = [ NodePath("../../SpawnPositions/WestPosition3D"), NodePath("../../SpawnPositions/WestPosition3D2") ]
+east_spawn_positions = [ NodePath("../../SpawnPositions/EastPosition3D") ]
+north_destructables = [ NodePath("../../Destructables/NorthWindow"), NodePath("../../Destructables/DoorNorth") ]
+west_destructables = [ NodePath("../../Destructables/DoorWest"), NodePath("../../Destructables/WestWindow") ]
+east_destructables = [ NodePath("../../Destructables/DoorEast") ]
 
 [node name="CharacterMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 1 )
 
-[node name="EnemyWaveMgr" parent="Mgrs" instance=ExtResource( 10 )]
-delay_between_spawns_min = 3.0
-delay_between_spawns_max = 10.0
-initial_delay_seconds = 20.0
-per_wave_increase_amount = 0.2
+[node name="ScheduledEnemyWaveMgr" parent="Mgrs" instance=ExtResource( 10 )]
+alt_schedule_file_csv = "user://enemy_wave_schedule.csv"
 
 [node name="NavigationPointMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 2 )
@@ -149,12 +155,13 @@ NodePath("../../NavigationMeshInstance/Cauldron"): [ NodePath("../../NavigationM
 NodePath("../../NavigationMeshInstance/CrystalBall"): [ NodePath("../../NavigationMeshInstance/CrystalBall/CrystalBallNavPosition3D1"), NodePath("../../NavigationMeshInstance/CrystalBall/CrystalBallNavPosition3D2") ],
 NodePath("../../NavigationMeshInstance/ManaPool"): [ NodePath("../../NavigationMeshInstance/ManaPool/ManaPoolNavPosition3D1"), NodePath("../../NavigationMeshInstance/ManaPool/ManaPoolNavPosition3D2"), NodePath("../../NavigationMeshInstance/ManaPool/ManaPoolNavPosition3D3") ],
 NodePath("../../NavigationMeshInstance/Spellbook"): [ NodePath("../../NavigationMeshInstance/Spellbook/SpellbookNavPosition3D") ],
-NodePath("../../Destructables/Window1"): [ NodePath("../../Destructables/Window1/WindowNavPosition3D") ],
 NodePath("../../Destructables/DoorNorth"): [ NodePath("../../Destructables/DoorNorth/DoorNorthNavPosition3D") ],
 NodePath("../../Destructables/DoorSouth"): [ NodePath("../../Destructables/DoorSouth/DoorSouthNavPosition3D") ],
 NodePath("../../Destructables/DoorWest"): [ NodePath("../../Destructables/DoorWest/DoorWestNavPosition3D") ],
 NodePath("../../Destructables/DoorEast"): [ NodePath("../../Destructables/DoorEast/DoorEastNavPosition3D") ],
-NodePath("../../NavigationMeshInstance/WoodPile"): [ NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D1"), NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D2"), NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D3"), NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D4") ]
+NodePath("../../NavigationMeshInstance/WoodPile"): [ NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D1"), NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D2"), NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D3"), NodePath("../../NavigationMeshInstance/WoodPile/WoodPileNavPosition3D4") ],
+NodePath("../../Destructables/NorthWindow"): [ NodePath("../../Destructables/NorthWindow/WindowNavPosition3D") ],
+NodePath("../../Destructables/WestWindow"): [ NodePath("../../Destructables/WestWindow/WindowNavPosition3D") ]
 }
 
 [node name="WardMgr" type="Node" parent="Mgrs"]
@@ -168,9 +175,15 @@ east_ward_area = NodePath("../../Exterior/East/EastWardArea")
 
 [node name="RetreatAreaMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 31 )
-north_retreat_area = NodePath("../../Exterior/North/NorthRetreatRandomPointPlain")
-west_retreat_area = NodePath("../../Exterior/West/WestRetreatRandomPointPlain")
-east_retreat_area = NodePath("../../Exterior/East/EastRetreatRandomPointPlain")
+north_area = NodePath("../../Exterior/North/NorthRetreatRandomPointPlane")
+west_area = NodePath("../../Exterior/West/WestRetreatRandomPointPlane")
+east_area = NodePath("../../Exterior/East/EastRetreatRandomPointPlane")
+
+[node name="WanderAreaMgr" type="Node" parent="Mgrs"]
+script = ExtResource( 31 )
+north_area = NodePath("../../Exterior/North/NorthWanderRandomPointPlain")
+west_area = NodePath("../../Exterior/West/WestWanderRandomPointPlain")
+east_area = NodePath("../../Exterior/East/EastWanderRandomPointPlain")
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 4 )
@@ -222,7 +235,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, 1
 shape = SubResource( 3 )
 
 [node name="Cauldron" parent="NavigationMeshInstance" instance=ExtResource( 18 )]
-time_to_complete_minutes = 5.0
+time_to_complete_minutes = 12.0
 
 [node name="CauldronNavPosition3D1" type="Position3D" parent="NavigationMeshInstance/Cauldron"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
@@ -307,7 +320,7 @@ __meta__ = {
 
 [node name="SpotLight" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, -7, 6, -8 )
-light_energy = 0.5
+light_energy = 0.2
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -317,7 +330,7 @@ spot_angle = 45.4376
 
 [node name="SpotLight2" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 6, -8 )
-light_energy = 0.5
+light_energy = 0.2
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -327,7 +340,7 @@ spot_range = 8.0
 [node name="SpotLight3" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 7, 6, -8 )
 visible = false
-light_energy = 0.5
+light_energy = 0.2
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -336,7 +349,7 @@ spot_range = 8.0
 
 [node name="SpotLight4" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, -7, 6, 0 )
-light_energy = 0.5
+light_energy = 0.2
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -345,7 +358,7 @@ spot_range = 8.0
 
 [node name="SpotLight5" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 6, 0 )
-light_energy = 0.5
+light_energy = 0.2
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -354,7 +367,7 @@ spot_range = 8.0
 
 [node name="SpotLight6" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 7, 6, 0 )
-light_energy = 0.5
+light_energy = 0.2
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -364,7 +377,7 @@ spot_range = 8.0
 [node name="SpotLight7" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, -7, 6, 8 )
 visible = false
-light_energy = 0.5
+light_energy = 0.2
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -373,7 +386,7 @@ spot_range = 8.0
 
 [node name="SpotLight8" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 6, 8 )
-light_energy = 0.5
+light_energy = 0.2
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -383,7 +396,7 @@ spot_range = 8.0
 [node name="SpotLight9" type="SpotLight" parent="Lights"]
 transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 7, 6, 8 )
 visible = false
-light_energy = 0.5
+light_energy = 0.2
 shadow_enabled = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 shadow_contact = 0.667
@@ -420,18 +433,6 @@ omni_attenuation = 2.92817
 
 [node name="DynamicParent" type="Spatial" parent="."]
 unique_name_in_owner = true
-
-[node name="CameraTestZombie" parent="DynamicParent" instance=ExtResource( 20 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5, 0, -26.9218 )
-visible = false
-collision_mask = 49
-disabled = true
-
-[node name="CameraTestZombie2" parent="DynamicParent" instance=ExtResource( 20 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17, 0, 4.07817 )
-visible = false
-collision_mask = 49
-disabled = true
 
 [node name="CameraFeedHud" parent="." instance=ExtResource( 9 )]
 camera_feed_viewports_parent = NodePath("../CrystalBallCameras")
@@ -495,7 +496,7 @@ mesh = SubResource( 6 )
 [node name="WallPanels" type="Spatial" parent="."]
 
 [node name="WallSection1" type="MeshInstance" parent="WallPanels"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -6 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.4, -6 )
 mesh = SubResource( 7 )
 
 [node name="WallSection2" type="MeshInstance" parent="WallPanels"]
@@ -519,15 +520,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.5, -10 )
 mesh = SubResource( 8 )
 
 [node name="WallSection7" type="MeshInstance" parent="WallPanels"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.5, 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.4, 10 )
 mesh = SubResource( 8 )
 
 [node name="WallSection8" type="MeshInstance" parent="WallPanels"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.4, 10 )
 mesh = SubResource( 15 )
 
 [node name="WallSection9" type="MeshInstance" parent="WallPanels"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.4, 10 )
 mesh = SubResource( 16 )
 
 [node name="WallSection10" type="MeshInstance" parent="WallPanels"]
@@ -537,6 +538,15 @@ mesh = SubResource( 15 )
 [node name="WallSection11" type="MeshInstance" parent="WallPanels"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 2.5, -8 )
 mesh = SubResource( 16 )
+
+[node name="remodeled_walls_matrix" parent="WallPanels" instance=ExtResource( 33 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+
+[node name="remodeled_walls_matrix2" parent="WallPanels" instance=ExtResource( 33 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 0 )
+
+[node name="remodeled_walls _without_window_matrix" parent="WallPanels" instance=ExtResource( 34 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 0, 0 )
 
 [node name="CrystalBallCameras" type="Spatial" parent="."]
 __meta__ = {
@@ -593,36 +603,36 @@ far = 50.0
 
 [node name="Destructables" type="Spatial" parent="."]
 
-[node name="Window1" parent="Destructables" instance=ExtResource( 11 )]
+[node name="NorthWindow" parent="Destructables" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10 )
 
-[node name="WindowTop1" type="MeshInstance" parent="Destructables/Window1"]
+[node name="WindowTop1" type="MeshInstance" parent="Destructables/NorthWindow"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.3, 0 )
 mesh = SubResource( 13 )
 skeleton = NodePath("../../../WallPanels")
 
-[node name="WindowBottom1" type="MeshInstance" parent="Destructables/Window1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.693024, 0 )
+[node name="WindowBottom1" type="MeshInstance" parent="Destructables/NorthWindow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.593, 0 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../../../WallPanels")
 
-[node name="WindowNavPosition3D" type="Position3D" parent="Destructables/Window1"]
+[node name="WindowNavPosition3D" type="Position3D" parent="Destructables/NorthWindow"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
 
-[node name="Window2" parent="Destructables" instance=ExtResource( 11 )]
+[node name="WestWindow" parent="Destructables" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, -5 )
 
-[node name="WindowTop1" type="MeshInstance" parent="Destructables/Window2"]
+[node name="WindowTop1" type="MeshInstance" parent="Destructables/WestWindow"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.3, 0 )
 mesh = SubResource( 13 )
 skeleton = NodePath("../../../WallPanels")
 
-[node name="WindowBottom1" type="MeshInstance" parent="Destructables/Window2"]
+[node name="WindowBottom1" type="MeshInstance" parent="Destructables/WestWindow"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.693024, 0 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../../../WallPanels")
 
-[node name="WindowNavPosition3D" type="Position3D" parent="Destructables/Window2"]
+[node name="WindowNavPosition3D" type="Position3D" parent="Destructables/WestWindow"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
 
 [node name="DoorNorth" parent="Destructables" instance=ExtResource( 12 )]
@@ -638,7 +648,7 @@ skeleton = NodePath("../../../WallPanels")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
 
 [node name="DoorSouth" parent="Destructables" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -10 )
 collision_mask = 1
 
 [node name="DoorTransom3" type="MeshInstance" parent="Destructables/DoorSouth"]
@@ -721,9 +731,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.75 )
 shape = SubResource( 20 )
 
-[node name="NorthRetreatRandomPointPlain" parent="Exterior/North" instance=ExtResource( 28 )]
+[node name="NorthRetreatRandomPointPlane" parent="Exterior/North" instance=ExtResource( 28 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 31 )
 polygon = PoolVector2Array( -10, 0, -10, 2, 10, 2, 10, 0 )
+
+[node name="NorthWanderRandomPointPlain" parent="Exterior/North" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 12 )
+polygon = PoolVector2Array( -9, -4, -9, 0, 9, 0, 9, -4 )
 
 [node name="West" type="Spatial" parent="Exterior"]
 
@@ -746,9 +760,13 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11, 0, 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.75 )
 shape = SubResource( 21 )
 
-[node name="WestRetreatRandomPointPlain" parent="Exterior/West" instance=ExtResource( 28 )]
+[node name="WestRetreatRandomPointPlane" parent="Exterior/West" instance=ExtResource( 28 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 30, 0, 0 )
 polygon = PoolVector2Array( -1, -10, -1, 10, 1, 10, 1, -10 )
+
+[node name="WestWanderRandomPointPlain" parent="Exterior/West" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11, 0, 0 )
+polygon = PoolVector2Array( 1, -9, 1, 9, 5, 9, 5, -9 )
 
 [node name="East" type="Spatial" parent="Exterior"]
 
@@ -777,9 +795,13 @@ transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -11, 0, 0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.75 )
 shape = SubResource( 22 )
 
-[node name="EastRetreatRandomPointPlain" parent="Exterior/East" instance=ExtResource( 28 )]
+[node name="EastRetreatRandomPointPlane" parent="Exterior/East" instance=ExtResource( 28 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -31, 0, 0 )
 polygon = PoolVector2Array( 0, -10, 0, 10, 2, 10, 2, -10 )
+
+[node name="EastWanderRandomPointPlain" parent="Exterior/East" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -12, 0, 0 )
+polygon = PoolVector2Array( -4, -9, -4, 9, 0, 9, 0, -9 )
 
 [node name="MainCameraFlags" type="Spatial" parent="."]
 visible = false
@@ -812,20 +834,20 @@ mesh = SubResource( 12 )
 navmesh = SubResource( 17 )
 navigation_layers = 2
 
-[node name="NorthRandomPointPlain" parent="Wanderers/North/NavigationMeshInstance" instance=ExtResource( 28 )]
+[node name="NorthRandomPointPlane" parent="Wanderers/North/NavigationMeshInstance" instance=ExtResource( 28 )]
 polygon = PoolVector2Array( -12.0384, -17.8356, -6.8352, -20.6736, 0.181191, -20.8313, 6.88224, -19.1758, 12.4796, -17.5202, 15.3965, -22.7234, 16.8156, -30.2128, 11.6912, -33.5239, 0.969551, -35.0218, -10.6193, -32.8144, -16.9262, -32.7355 )
 
 [node name="ZombieWanderer" parent="Wanderers/North" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35249, 0, 23.7725 )
-rand_point_plane = NodePath("../NavigationMeshInstance/NorthRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/NorthRandomPointPlane")
 
 [node name="ZombieWanderer2" parent="Wanderers/North" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9275, 0, 25.9141 )
-rand_point_plane = NodePath("../NavigationMeshInstance/NorthRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/NorthRandomPointPlane")
 
 [node name="ZombieWanderer3" parent="Wanderers/North" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4579, 0, 26.1283 )
-rand_point_plane = NodePath("../NavigationMeshInstance/NorthRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/NorthRandomPointPlane")
 
 [node name="West" type="Spatial" parent="Wanderers"]
 
@@ -833,24 +855,24 @@ rand_point_plane = NodePath("../NavigationMeshInstance/NorthRandomPointPlain")
 navmesh = SubResource( 18 )
 navigation_layers = 2
 
-[node name="WestRandomPointPlain" parent="Wanderers/West/NavigationMeshInstance" instance=ExtResource( 28 )]
+[node name="WestRandomPointPlane" parent="Wanderers/West/NavigationMeshInstance" instance=ExtResource( 28 )]
 polygon = PoolVector2Array( 18.7077, 10.3088, 21.7034, 6.83998, 23.359, 2.18866, 24.8569, -2.62032, 22.2553, -6.56212, 20.5209, -11.0558, 18.3923, -16.3378, 22.8072, -17.2838, 33.2135, -15.9436, 34.7902, 1.32147, 32.1098, 9.28389, 30.5331, 12.2797 )
 
 [node name="ZombieWanderer" parent="Wanderers/West" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.4597, 0, -7.2529 )
-rand_point_plane = NodePath("../NavigationMeshInstance/WestRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/WestRandomPointPlane")
 
 [node name="ZombieWanderer2" parent="Wanderers/West" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0322, 0, 4.09946 )
-rand_point_plane = NodePath("../NavigationMeshInstance/WestRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/WestRandomPointPlane")
 
 [node name="ZombieWanderer3" parent="Wanderers/West" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2275, 0, 7.72591 )
-rand_point_plane = NodePath("../NavigationMeshInstance/WestRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/WestRandomPointPlane")
 
 [node name="ZombieWanderer4" parent="Wanderers/West" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8, 0, 13.9539 )
-rand_point_plane = NodePath("../NavigationMeshInstance/WestRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/WestRandomPointPlane")
 
 [node name="East" type="Spatial" parent="Wanderers"]
 
@@ -858,25 +880,33 @@ rand_point_plane = NodePath("../NavigationMeshInstance/WestRandomPointPlain")
 navmesh = SubResource( 19 )
 navigation_layers = 2
 
-[node name="EastRandomPointPlain" parent="Wanderers/East/NavigationMeshInstance" instance=ExtResource( 28 )]
+[node name="EastRandomPointPlane" parent="Wanderers/East/NavigationMeshInstance" instance=ExtResource( 28 )]
 polygon = PoolVector2Array( -20.1584, 11.9643, -24.179, 6.60347, -25.3616, 2.10983, -23.8637, -3.09334, -19.4489, -9.24254, -18.6605, -13.342, -26.3076, -16.0224, -34.5854, -15.8648, -37.7388, -4.43355, -33.4817, 5.65744, -30.0917, 12.0431, -27.3325, 16.1426, -21.6563, 15.4331 )
 
 [node name="ZombieWanderer" parent="Wanderers/East" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6963, 0, -8.12009 )
-rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlane")
 
 [node name="ZombieWanderer2" parent="Wanderers/East" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5095, 0, 8.43544 )
-rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlane")
 
 [node name="ZombieWanderer3" parent="Wanderers/East" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7254, 0, 13.9539 )
-rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlane")
 
 [node name="ZombieWanderer4" parent="Wanderers/East" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7666, 0, 1.73439 )
-rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlane")
 
 [node name="ZombieWanderer5" parent="Wanderers/East" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2439, 0, -3.38994 )
-rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlain")
+rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlane")
+
+[node name="DebugFromMeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9, 0, -6.3 )
+mesh = SubResource( 24 )
+
+[node name="DebugToMeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1, 0, 7.8 )
+mesh = SubResource( 24 )

@@ -1,0 +1,3 @@
+Time (Seconds),Zombie Spawn,Mode
+3,3,Medium
+30,4,Medium

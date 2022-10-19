@@ -12,7 +12,7 @@ onready var damaged_sound:RandomAudioStreamPlayer3D = $DamagedRandomAudioStreamP
 onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _collision_shape: CollisionShape = $CollisionShape
 onready var _interaction_helper: InteractionHelper = $InteractionHelper
-
+onready var _enemy_agression_change_trigger = $EnemyAgressionChangeArea
 
 var _current_interactor: Character
 
@@ -80,4 +80,6 @@ func _on_InteractionHelper_interaction_interrupted(interactor):
 		_current_interactor = null
 
 
+func _on_HealthBar_value_changed(new_value: float) -> void:
+	_enemy_agression_change_trigger.active = new_value <= 0.0
 

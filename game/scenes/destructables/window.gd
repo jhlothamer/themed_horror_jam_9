@@ -6,12 +6,14 @@ onready var _zombie_animation = $zombie_animations_frank_ilikethepixies
 onready var _animation_player: AnimationPlayer = $zombie_animations_frank_ilikethepixies/AnimationPlayer
 onready var _whole_mesh_instance = $window_broken_matrix
 onready var _zombie_teleport_position: Position3D = $ZombieTeleportPosition3D
+onready var _broken_mesh_instance = $broken_window_matrix
 
 var _window_climber_queue := []
 var _window_climber_active := false
 
 func _on_destroid() -> void:
 	_whole_mesh_instance.visible = false
+	_broken_mesh_instance.visible =true
 
 
 func queue_window_climber(enemy: Enemy) -> void:
@@ -40,4 +42,5 @@ func _perform_window_climb(window_climber: Enemy):
 func _on_HealthBar_progress_made(new_value, max_value):
 	._on_HealthBar_progress_made(new_value, max_value)
 	_whole_mesh_instance.visible = true
+	_broken_mesh_instance.visible = false
 

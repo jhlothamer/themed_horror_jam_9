@@ -94,7 +94,7 @@ size = Vector2( 1, 0.1 )
 
 [node name="EnemyBase" type="KinematicBody"]
 collision_layer = 35
-collision_mask = 177
+collision_mask = 145
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -180,7 +180,15 @@ visible = false
 mesh = SubResource( 26 )
 
 [node name="StateDebugLabel3D" type="Label3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30091, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78473, 0 )
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color( 1, 0, 0, 1 )
+text = "Attack"
+
+[node name="NodeNameDebugLabel3D" type="Label3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03107, 0 )
 pixel_size = 0.05
 billboard = 1
 no_depth_test = true

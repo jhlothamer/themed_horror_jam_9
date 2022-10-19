@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/destructables/destructable_base.gd" type="Script" id=4]
 [ext_resource path="res://addons/godot_helper_pack/core/audio/random_audio_stream_player_3d.gd" type="Script" id=5]
 [ext_resource path="res://scenes/ui/components/interaction_progress_bar_3d.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/destructables/enemy_agression_change_trigger.tscn" type="PackedScene" id=7]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -89,8 +90,11 @@ stream = ExtResource( 3 )
 unit_db = 12.0
 bus = "SoundFx"
 
+[node name="EnemyAgressionChangeArea" parent="." instance=ExtResource( 7 )]
+
 [connection signal="interaction_completed" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_completed"]
 [connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
 [connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
 [connection signal="completed" from="HealthBar" to="." method="_on_HealthBar_completed"]
 [connection signal="progress_made" from="HealthBar" to="." method="_on_HealthBar_progress_made"]
+[connection signal="value_changed" from="HealthBar" to="." method="_on_HealthBar_value_changed"]

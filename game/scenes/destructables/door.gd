@@ -1,3 +1,4 @@
+class_name Door
 extends Destructable
 
 onready var _whole_door: Spatial = $door_matrix
@@ -5,7 +6,8 @@ onready var _broken_door: Spatial = $broken_door_matrix
 onready var _destroyed_door: Spatial = $completely_broken_door_matrix
 
 
-func _on_HealthBar_value_changed(new_value: float):
+func _on_HealthBar_value_changed(new_value: float) -> void:
+	._on_HealthBar_value_changed(new_value)
 	if !_whole_door:
 		return
 	

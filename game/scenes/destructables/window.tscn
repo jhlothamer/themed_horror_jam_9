@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/destructables/destructable_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/broken_window_matrix/window_broken_matrix.gltf" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/sounds/sfx_window_break_hi_jdymusic.mp3" type="AudioStream" id=5]
 [ext_resource path="res://assets/sounds/sfx_window_break_med_jdymusic.mp3" type="AudioStream" id=6]
 [ext_resource path="res://assets/sounds/sfx_window_break_lo_jdymusic.mp3" type="AudioStream" id=7]
+[ext_resource path="res://assets/models/broken_window_matrix/broken_window/broken_window_matrix.gltf" type="PackedScene" id=8]
 
 [sub_resource type="BoxShape" id=12]
 extents = Vector3( 1, 2, 0.2 )
@@ -39,7 +40,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=13]
+[sub_resource type="ShaderMaterial" id=15]
 render_priority = 5
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
@@ -48,8 +49,11 @@ shader_param/progress_value = 1.0
 
 [sub_resource type="QuadMesh" id=11]
 resource_local_to_scene = true
-material = SubResource( 13 )
+material = SubResource( 15 )
 size = Vector2( 1, 0.1 )
+
+[sub_resource type="BoxShape" id=14]
+extents = Vector3( 1.5, 1, 1.5 )
 
 [node name="Window" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
@@ -60,7 +64,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 shape = SubResource( 12 )
 
 [node name="OutlineHelper3D" parent="." index="1"]
-mesh_instances_to_outline = [ NodePath("../window_broken_matrix/window"), NodePath("../window_broken_matrix/glass") ]
+mesh_instances_to_outline = [ NodePath("../window_broken_matrix/window"), NodePath("../window_broken_matrix/glass"), NodePath("../broken_window_matrix/window") ]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="0"]
 stream = ExtResource( 5 )
@@ -81,20 +85,32 @@ bus = "SoundFx"
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.81475, 0 )
 mesh = SubResource( 11 )
 
-[node name="window_broken_matrix" parent="." index="6" instance=ExtResource( 2 )]
+[node name="broken_window_matrix" parent="." index="6" instance=ExtResource( 8 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.653, 0 )
+visible = false
+
+[node name="window001_cell006_cell001_cell" parent="broken_window_matrix" index="1"]
+visible = false
+
+[node name="window_broken_matrix" parent="." index="7" instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.653, 0 )
 
-[node name="zombie_animations_frank_ilikethepixies" parent="." index="7" instance=ExtResource( 3 )]
+[node name="zombie_animations_frank_ilikethepixies" parent="." index="8" instance=ExtResource( 3 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 4.71637 )
 visible = false
 
-[node name="ZombieTeleportPosition3D" type="Position3D" parent="." index="8"]
+[node name="ZombieTeleportPosition3D" type="Position3D" parent="." index="9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89336, 0, -3.57724 )
 
-[node name="CheckWindowClimberQueueTimer" type="Timer" parent="." index="9"]
+[node name="CheckWindowClimberQueueTimer" type="Timer" parent="." index="10"]
 autostart = true
+
+[node name="CollisionShape" type="CollisionShape" parent="EnemyAgressionChangeArea" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.7 )
+shape = SubResource( 14 )
 
 [connection signal="timeout" from="CheckWindowClimberQueueTimer" to="." method="_on_CheckWindowClimberQueueTimer_timeout"]
 
+[editable path="broken_window_matrix"]
 [editable path="window_broken_matrix"]
 [editable path="zombie_animations_frank_ilikethepixies"]

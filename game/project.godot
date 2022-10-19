@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot_helper_pack/core/2d/util/distribution/distribution_editor_plugin.gd"
 }, {
+"base": "Destructable",
+"class": "Door",
+"language": "GDScript",
+"path": "res://scenes/destructables/door.gd"
+}, {
 "base": "State",
 "class": "EnemeyBaseState",
 "language": "GDScript",
@@ -112,7 +117,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "EnemyWaveMgr",
 "language": "GDScript",
-"path": "res://scenes/managers/enemy_wave_mgr.gd"
+"path": "res://scenes/managers/enemy_wave_mgr_base.gd"
 }, {
 "base": "Object",
 "class": "EnumUtil",
@@ -210,6 +215,11 @@ _global_script_classes=[ {
 "path": "res://addons/godot_helper_pack/core/2d/util/distribution/multi_mesh_instance_distribution_area.gd"
 }, {
 "base": "Node",
+"class": "NavigationAreaMgr",
+"language": "GDScript",
+"path": "res://scenes/managers/navigation_area_mgr.gd"
+}, {
+"base": "Node",
 "class": "NavigationPointMgr",
 "language": "GDScript",
 "path": "res://scenes/managers/navigation_point_mgr.gd"
@@ -278,11 +288,6 @@ _global_script_classes=[ {
 "class": "Rect2Util",
 "language": "GDScript",
 "path": "res://addons/godot_helper_pack/core/2d/util/rect2_util.gd"
-}, {
-"base": "Node",
-"class": "RetreatAreaMgr",
-"language": "GDScript",
-"path": "res://scenes/managers/retreat_area_mgr.gd"
 }, {
 "base": "Node",
 "class": "RotateIt",
@@ -383,6 +388,11 @@ _global_script_classes=[ {
 "class": "YieldUtil",
 "language": "GDScript",
 "path": "res://addons/godot_helper_pack/core/util/yield_util.gd"
+}, {
+"base": "Enemy",
+"class": "Zombie",
+"language": "GDScript",
+"path": "res://scenes/enemies/zombie.gd"
 } ]
 _global_script_class_icons={
 "AngleUtil": "",
@@ -402,6 +412,7 @@ _global_script_class_icons={
 "CollisionShapeEx": "",
 "Destructable": "",
 "DistributionEditorPlugin": "",
+"Door": "",
 "EnemeyBaseState": "",
 "Enemy": "",
 "EnemySpawnMgr": "",
@@ -425,6 +436,7 @@ _global_script_class_icons={
 "InteractionProgressBar": "",
 "Mover2D": "",
 "MultiMeshInstanceDistributionArea": "",
+"NavigationAreaMgr": "",
 "NavigationPointMgr": "",
 "NodeUtil": "",
 "OutlineHelper3D": "",
@@ -439,7 +451,6 @@ _global_script_class_icons={
 "RandomDistributionArea": "res://addons/godot_helper_pack/core/2d/util/distribution/random_distribution_area.svg",
 "RandomDistributionAreaLayer": "res://addons/godot_helper_pack/core/2d/util/distribution/random_distribution_area_layer.svg",
 "Rect2Util": "",
-"RetreatAreaMgr": "",
 "RotateIt": "",
 "SceneSoundTrack": "",
 "ShakeIt": "",
@@ -459,7 +470,8 @@ _global_script_class_icons={
 "WardMgr": "",
 "Window": "",
 "Witch": "",
-"YieldUtil": ""
+"YieldUtil": "",
+"Zombie": ""
 }
 
 [application]
