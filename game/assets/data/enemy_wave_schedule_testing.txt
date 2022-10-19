@@ -1,3 +1,5 @@
-Time (Seconds),Zombie Spawn,Mode
-3,3,Medium
-30,4,Medium
+Time(Seconds),ZombieCount,Mode
+3,5,High
+30,5,High
+60,4,High
+90,3,High
