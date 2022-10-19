@@ -36,11 +36,12 @@ func _read_schedule() -> void:
 	if file.file_exists(alt_schedule_file_csv):
 		file_path = alt_schedule_file_csv
 		print("*** using %s schedule file ***" % alt_schedule_file_csv)
-	if file_path == "" and !file.file_exists(schedule_file_csv):
-		printerr("ScheduledEnemyWaveMgr: schedule file does not exist: %s" % schedule_file_csv)
-		return
-	else:
-		file_path = schedule_file_csv
+	if file_path == "":
+		if !file.file_exists(schedule_file_csv):
+			printerr("ScheduledEnemyWaveMgr: schedule file does not exist: %s" % schedule_file_csv)
+			return
+		else:
+			file_path = schedule_file_csv
 	
 	if OK != file.open(file_path,File.READ):
 		printerr("ScheduledEnemyWaveMgr: could not open schedule file: %s" % schedule_file_csv)

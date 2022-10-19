@@ -64,7 +64,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 shape = SubResource( 12 )
 
 [node name="OutlineHelper3D" parent="." index="1"]
-mesh_instances_to_outline = [ NodePath("../window_broken_matrix/window"), NodePath("../window_broken_matrix/glass"), NodePath("../broken_window_matrix/window") ]
+mesh_instances_to_outline = [ NodePath("../window_broken_matrix/window") ]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="0"]
 stream = ExtResource( 5 )
@@ -89,7 +89,7 @@ mesh = SubResource( 11 )
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.653, 0 )
 visible = false
 
-[node name="window001_cell006_cell001_cell" parent="broken_window_matrix" index="1"]
+[node name="window" parent="broken_window_matrix" index="0"]
 visible = false
 
 [node name="window_broken_matrix" parent="." index="7" instance=ExtResource( 2 )]
