@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot_helper_pack/core/2d/util/distribution/distribution_editor_plugin.gd"
 }, {
+"base": "Destructable",
+"class": "Door",
+"language": "GDScript",
+"path": "res://scenes/destructables/door.gd"
+}, {
 "base": "State",
 "class": "EnemeyBaseState",
 "language": "GDScript",
@@ -407,6 +412,7 @@ _global_script_class_icons={
 "CollisionShapeEx": "",
 "Destructable": "",
 "DistributionEditorPlugin": "",
+"Door": "",
 "EnemeyBaseState": "",
 "Enemy": "",
 "EnemySpawnMgr": "",

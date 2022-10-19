@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
@@ -38,7 +38,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=14]
+[sub_resource type="ShaderMaterial" id=12]
 render_priority = 5
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
@@ -47,11 +47,8 @@ shader_param/progress_value = 1.0
 
 [sub_resource type="QuadMesh" id=11]
 resource_local_to_scene = true
-material = SubResource( 14 )
+material = SubResource( 12 )
 size = Vector2( 1, 0.1 )
-
-[sub_resource type="SphereShape" id=13]
-radius = 3.0
 
 [node name="DestructableBase" type="StaticBody"]
 collision_layer = 67
@@ -94,9 +91,6 @@ unit_db = 12.0
 bus = "SoundFx"
 
 [node name="EnemyAgressionChangeArea" parent="." instance=ExtResource( 7 )]
-
-[node name="CollisionShape" type="CollisionShape" parent="EnemyAgressionChangeArea"]
-shape = SubResource( 13 )
 
 [connection signal="interaction_completed" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_completed"]
 [connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]

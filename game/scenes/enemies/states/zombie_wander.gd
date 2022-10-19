@@ -1,6 +1,7 @@
 extends EnemeyBaseState
 
 
+export var debug := false
 
 
 var _path := []
@@ -24,6 +25,8 @@ func _generate_next_wander_path() -> void:
 		return
 	
 	var target_pos = area_mgr.get_position_in_area(enemy.spawn_direction)
+	if target_pos == Vector3.INF:
+		change_state("Retreat")
 	
 	var map_id = host.get_world().get_navigation_map()
 	
@@ -31,6 +34,9 @@ func _generate_next_wander_path() -> void:
 	# when path obtained too soon after startup it can be invalid.  Loop/wait till we have a good path.
 	while _path.size() == 0 or !_equal_nav_points(target_pos, _path.back()):
 		_path = []
+		if debug:
+			print("Zombie:%s: bad path from nav server for %s : path: %s" % [name, enemy.name, _path])
+			print("\t from: %s , to: %s" % [enemy.global_transform.origin, target_pos])
 		yield(get_tree().create_timer(1.0), "timeout")
 		_path = NavigationServer.map_get_path(map_id, enemy.global_transform.origin, target_pos, true)
 	
@@ -48,7 +54,7 @@ func _generate_next_wander_path() -> void:
 	#if path doesn't end with target position - add it
 	if _path.size() > 0 and !target_pos.is_equal_approx(_path.back()):
 		_path.push_back(target_pos)
-
+	
 
 func physics_process(delta):
 	if _path_index >= _path.size():

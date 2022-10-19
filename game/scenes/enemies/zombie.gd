@@ -19,6 +19,7 @@ var _state_animations := {
 	"PostWindowClimb": "FlipThroughWindowStandup",
 	"Retreat": "Walk",
 	"Wander": "Walk",
+	"TestDefense": "Run",
 }
 var _animation_speeds := {
 	"Run": .5,

@@ -65,7 +65,6 @@ func _schedule_next_wave() -> void:
 
 func _on_Timer_timeout():
 	var schedule_item: ScheduleItem = _schedule[_schedule_index]
-	print("ScheduledEnemeyMgr: spawning wave of %d enemeies" % schedule_item.enemy_count)
 	_spawn_wave(schedule_item.enemy_count, schedule_item.mode)
 	_schedule_index += 1
 	_schedule_next_wave()

@@ -29,3 +29,14 @@ func get_position_in_area(direction) -> Vector3:
 		return area.get_random_point()
 	
 	return Vector3.INF
+
+
+func get_position_in_area_from(direction, from: Vector3, min_distance: float = 1.0, attempts: int = 10) -> Vector3:
+	var area: RandPointPlane
+	if _areas.has(direction):
+		area = _areas[direction]
+	
+	if area:
+		return area.get_random_point_from(from, min_distance, attempts)
+	
+	return Vector3.INF

@@ -1,3 +1,4 @@
+class_name Door
 extends Destructable
 
 onready var _whole_door: Spatial = $door_matrix
