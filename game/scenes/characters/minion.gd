@@ -2,6 +2,8 @@ extends Character
 
 
 onready var _animation_player:AnimationPlayer = $goblinanimations_frank_ilikethepixes/AnimationPlayer
+onready var _spell_active_indicator = $SpellActiveIndicator
+
 
 var _state_animations := {
 	"Idle": "Idle",
@@ -38,12 +40,14 @@ func _ready():
 
 
 func _on_spell_activated():
+	_spell_active_indicator.visible = true
 	can_shoot = true
 	if !allowed_interactable_types.has(GameConsts.INTERACTABLE_TYPE_MANA_POOL):
 		allowed_interactable_types.append(GameConsts.INTERACTABLE_TYPE_MANA_POOL)
 
 
 func _on_spell_deactivated():
+	_spell_active_indicator.visible = false
 	can_shoot = false
 	allowed_interactable_types.erase(GameConsts.INTERACTABLE_TYPE_MANA_POOL)
 	var _discard = resources.erase(GameConsts.RESOURCE_MANA)
@@ -66,7 +70,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_Walk_interaction_about_to_start(interactable_object: Node):
-	_interactable_object_name = interactable_object.name
-	if _interactable_object_name.begins_with("Door") or _interactable_object_name.begins_with("Window"):
+	if interactable_object is Destructable:
 		_interactable_object_name = "Destructable"
+	else:
+		_interactable_object_name = interactable_object.name
 
