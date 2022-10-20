@@ -13,10 +13,6 @@ func enter():
 	_generate_next_wander_path()
 
 
-func _equal_nav_points(v1: Vector3, v2: Vector3) -> bool:
-	return is_equal_approx(v1.x, v2.x) and is_equal_approx(v1.z, v2.z)
-
-
 func _generate_next_wander_path() -> void:
 	var area_mgr: NavigationAreaMgr = ServiceMgr.get_service(NavigationAreaMgr, GameConsts.SERVICE_NAME_WANDER_AREA_MGR)
 	if !area_mgr:
@@ -67,7 +63,7 @@ func physics_process(delta):
 	
 	var lin_vel = v.normalized() * enemy.horizontal_speed
 	var frame_move_v = lin_vel * delta
-	if v.length() <= frame_move_v.length():
+	if v.length_squared() <= frame_move_v.length_squared():
 		_path_index += 1
 		if _path_index >= _path.size():
 			_generate_next_wander_path()

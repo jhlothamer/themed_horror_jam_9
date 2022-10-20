@@ -9,7 +9,7 @@ onready var _camera_feed_viewport_texture: ViewportTexture = $MarginContainer/Ca
 onready var _ui_container: Control = $MarginContainer
 onready var _feed_name_label: Label = $MarginContainer/CameraFeedTextureRect/FeedNameLabel
 onready var _feed_change_sound: AudioStreamPlayer = $FeedChangeSound
-onready var _ward_indicator: Control = $MarginContainer/CameraFeedTextureRect/MarginContainer/WardedLabel
+onready var _ward_indicator: Control = $MarginContainer/CameraFeedTextureRect/MarginContainer
 
 
 var _camera_feed_viewports := []

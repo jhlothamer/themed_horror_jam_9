@@ -1,6 +1,10 @@
 extends "res://scenes/enemies/states/enemy_base_state.gd"
 
 export var character_position_refresh_time := 2.0
+export var character_position_change_min := .25
+
+
+onready var _character_position_change_min_sq: float = character_position_change_min * character_position_change_min
 
 
 var _character_mgr: CharacterMgr
@@ -18,16 +22,27 @@ func _ready():
 func _recalc_char_target() -> void:
 	if !_character_mgr:
 		return
+	
 	_target_character = _character_mgr.get_closest_character(enemy.global_transform.origin)
 	if !_target_character:
 		_path = []
 		_path_index = 0
 		return
+	
+	# if the path we already have already ends 'close enough' to target character - don't recalc
+	if _path and _target_pos.distance_squared_to(_target_character.global_transform.origin) <= _character_position_change_min_sq:
+		return
+	
 	_target_pos = _target_character.global_transform.origin
 
 	var map_id = host.get_world().get_navigation_map()
 
 	_path = NavigationServer.map_get_path(map_id, enemy.global_transform.origin, _target_pos, true)
+	# when path obtained too soon after startup it can be invalid.  Loop/wait till we have a good path.
+	while _path.size() == 0 or !_equal_nav_points(_target_pos, _path.back()):
+		_path = []
+		yield(get_tree().create_timer(1.0), "timeout")
+		_path = NavigationServer.map_get_path(map_id, enemy.global_transform.origin, _target_pos, true)
 	_path_index = 0
 	
 	# ensure path is on the same plain as character
@@ -68,7 +83,7 @@ func physics_process(delta):
 	
 	var lin_vel = v.normalized() * enemy.horizontal_speed
 	var frame_move_v = lin_vel * delta
-	if v.length() <= frame_move_v.length():
+	if v.length_squared() <= frame_move_v.length_squared():
 		_path_index += 1
 		if _path_index >= _path.size():
 			_path = []

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://assets/models/cauldron_matrix/cauldron_matrix.gltf" type="PackedScene" id=1]
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sounds/sfx_cauldron_interaction_start_loop_jdymusic.mp3" type="AudioStream" id=6]
 [ext_resource path="res://assets/sounds/sfx_cauldron_interaction_complete_jdymusic.mp3" type="AudioStream" id=7]
 [ext_resource path="res://assets/sounds/sfx_cauldron_interaction_interupt_jdymusic.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/images/healthbar_frame_ilikethepixies.png" type="Texture" id=9]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 1.25
@@ -51,6 +52,16 @@ shader_param/progress_value = 0.0
 resource_local_to_scene = true
 material = SubResource( 34 )
 size = Vector2( 2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=37]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 1
+albedo_texture = ExtResource( 9 )
+
+[sub_resource type="QuadMesh" id=36]
+material = SubResource( 37 )
+size = Vector2( 2.05, 0.3 )
 
 [sub_resource type="SpatialMaterial" id=21]
 flags_unshaded = true
@@ -202,11 +213,15 @@ mouse_over_color = Color( 1, 0.631373, 0, 1 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.50224, 0 )
+visible = false
 mesh = SubResource( 11 )
 value = 0.0
 max_value = 30.0
 progress_color = Color( 1, 0.752941, 0.0117647, 1 )
 speed_regain_on_active_spell = 0.5
+
+[node name="MeshInstance" type="MeshInstance" parent="InteractionProgressBar3d"]
+mesh = SubResource( 36 )
 
 [node name="InteractionHelper" type="Node" parent="."]
 script = ExtResource( 2 )

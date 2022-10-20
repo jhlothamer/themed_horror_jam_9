@@ -12,3 +12,11 @@ static func make_polygon(r: Rect2) -> Array:
 	#top left
 	pts.append(r.position)
 	return pts
+
+
+static func clamp_point(r: Rect2, pt: Vector2) -> Vector2:
+	if !r.has_point(pt):
+		pt.x = clamp(pt.x, r.position.x, r.end.x)
+		pt.y = clamp(pt.y, r.position.y, r.end.y)
+	
+	return pt

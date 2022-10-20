@@ -1,6 +1,9 @@
 class_name WardMgr
 extends Node
 
+signal ward_activated()
+signal ward_deactivated()
+
 export var north_camera: NodePath
 export var west_camera: NodePath
 export var east_camera: NodePath
@@ -33,6 +36,8 @@ func _ready():
 		var ward_area:WardArea = _camera_name_to_ward_area[i]
 		if OK != ward_area.connect("deactivated", self, "_on_ward_area_deactivated", [i]):
 			printerr("WardMgr: Could not connect to deactivated signal for %s" % ward_area.get_path())
+	SignalMgr.register_publisher(self, "ward_activated")
+	SignalMgr.register_publisher(self, "ward_deactivated")
 
 
 func _get_current_camera_feed_name() -> String:
@@ -84,11 +89,13 @@ func place_ward() -> bool:
 	
 	ward_area.active = true
 	_set_camera_feed_ward(curr_camera_name, true)
+	emit_signal("ward_activated")
 	
 	return true
 
 
 func _on_ward_area_deactivated(camera_name: String) -> void:
 	_set_camera_feed_ward(camera_name, false)
+	emit_signal("ward_deactivated")
 
 

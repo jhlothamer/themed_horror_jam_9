@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/components/interaction_progress_bar_3d.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/interactables/wood_pile.gd" type="Script" id=4]
 [ext_resource path="res://assets/models/wood_pile_ilikethepixies/wood_pile_ilikethepixies.gltf" type="PackedScene" id=5]
+[ext_resource path="res://assets/images/healthbar_frame_ilikethepixies.png" type="Texture" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.05942, 0.2, 1.5 )
@@ -44,7 +45,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=36]
 render_priority = 5
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0.584314, 0.584314, 0.584314, 1 )
@@ -53,8 +54,18 @@ shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=6]
 resource_local_to_scene = true
-material = SubResource( 10 )
+material = SubResource( 36 )
 size = Vector2( 2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=35]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 1
+albedo_texture = ExtResource( 6 )
+
+[sub_resource type="QuadMesh" id=37]
+material = SubResource( 35 )
+size = Vector2( 2.05, 0.3 )
 
 [node name="WoodPile" type="StaticBody"]
 collision_layer = 3
@@ -82,10 +93,14 @@ mesh = SubResource( 3 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401977, 0 )
+visible = false
 mesh = SubResource( 6 )
 value = 0.0
 max_value = 30.0
 progress_color = Color( 1, 0.752941, 0.0117647, 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="InteractionProgressBar3d"]
+mesh = SubResource( 37 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 2 )

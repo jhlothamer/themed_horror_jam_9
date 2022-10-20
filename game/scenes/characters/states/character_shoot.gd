@@ -30,6 +30,9 @@ func _ready():
 func _on_enemy_clicked(enemy: CollisionObject) -> void:
 	if !character.is_selected() or _firing:
 		return
+	var bounds_check_pt = Vector2(enemy.global_transform.origin.x, enemy.global_transform.origin.z)
+	if !GameConsts.PLAY_AREA_BOUNDS.has_point(bounds_check_pt):
+		return
 	if !character.can_shoot or !character.has_required_resource_amount(GameConsts.RESOURCE_MANA, Projectile.MANA_USED):
 		if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
 			_deny_interaction_sound.play()
@@ -64,6 +67,8 @@ func physics_process(delta):
 
 
 func _spawn_projectile() -> void:
+	if !is_instance_valid(_target_enemy):
+		return
 	var mm = SCENE_MAGIC_MISSILE.instance()
 	mm.add_collision_exception_with(character)
 	GameUtil.get_dynamic_parent(character).add_child(mm)
