@@ -11,6 +11,7 @@ bg_color = Color( 0.231373, 0.231373, 0.231373, 1 )
 [resource]
 Button/fonts/font = ExtResource( 2 )
 Label/fonts/font = ExtResource( 1 )
+RichTextLabel/fonts/normal_font = ExtResource( 1 )
 Tabs/fonts/font = ExtResource( 2 )
 TextEdit/colors/font_color_readonly = Color( 1, 1, 1, 1 )
 TextEdit/fonts/font = ExtResource( 1 )
