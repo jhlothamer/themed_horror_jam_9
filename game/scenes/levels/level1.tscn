@@ -448,7 +448,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, 0 )
 [node name="Characters" type="Spatial" parent="."]
 
 [node name="Witch" parent="Characters" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2.74181 )
 collision_layer = 1
 collision_mask = 1
 
