@@ -64,6 +64,8 @@ func physics_process(delta):
 
 
 func _spawn_projectile() -> void:
+	if !is_instance_valid(_target_enemy):
+		return
 	var mm = SCENE_MAGIC_MISSILE.instance()
 	mm.add_collision_exception_with(character)
 	GameUtil.get_dynamic_parent(character).add_child(mm)

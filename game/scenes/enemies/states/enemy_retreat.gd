@@ -46,7 +46,7 @@ func physics_process(delta):
 	
 	var lin_vel = v.normalized() * enemy.horizontal_speed
 	var frame_move_v = lin_vel * delta
-	if v.length() <= frame_move_v.length():
+	if v.length_squared() <= frame_move_v.length_squared():
 		_path_index += 1
 		if _path_index >= _path.size():
 			enemy.queue_free()

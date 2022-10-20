@@ -1,10 +1,9 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/characters/states/character_base_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=2]
 [ext_resource path="res://scenes/characters/character_base.gd" type="Script" id=3]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=4]
-[ext_resource path="res://assets/images/temp/temp_char_select_icon.png" type="Texture" id=5]
 [ext_resource path="res://scenes/ui/components/progress_bar_3d.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/characters/states/character_walk.gd" type="Script" id=7]
 [ext_resource path="res://scenes/characters/states/character_interact.gd" type="Script" id=8]
@@ -153,14 +152,6 @@ visible = false
 mesh = SubResource( 15 )
 value = 0.0
 progress_color = Color( 0.603922, 0, 1, 1 )
-
-[node name="SelectedSprite3D" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0 )
-visible = false
-modulate = Color( 0, 1, 1, 1 )
-pixel_size = 0.005
-axis = 1
-texture = ExtResource( 5 )
 
 [node name="DamagedRandomAudioStreamPlayer3D" type="Spatial" parent="."]
 script = ExtResource( 10 )
