@@ -1,7 +1,7 @@
 class_name InputPromptUtil
 extends Object
 
-const PROMPT_REGEX = "%%prompt:(?<input_type>\\w+):(?<action_name>\\w+)%%"
+const PROMPT_REGEX = "%%prompt:(?<input_type>\\w+):(?<index>\\d):(?<action_name>\\w+)%%"
 const KEY_MOUSE_PROMPT_IMAGE_FILE_PATH = "res://assets/images/ui/input_prompts/xelu_free_keyboardcontroller_prompts_pack/Keyboard & Mouse/Light/%s_Key_Light.png"
 const PAD_PROMPT_IMAGE_FILE_PATH = "res://assets/images/ui/input_prompts/xelu_free_keyboardcontroller_prompts_pack/Others/Xbox 360/360_%s.png"
 const SMALL_KEY_MOUSE_PROMPT_IMAGE_FILE_PATH = "res://assets/images/ui/input_prompts/xelu_free_keyboardcontroller_prompts_pack/Keyboard & Mouse/Light/small_%s_Key_Light.png"
@@ -77,10 +77,11 @@ static func replace_input_prompts(s: String, small: bool = false) -> String:
 	
 	for i in regex.search_all(s):
 		var m: RegExMatch = i
-		if m.strings.size() != 3:
+		if m.strings.size() != 4:
 			printerr("InputPromptUtil: did not find proper prompt in string??  skipping.")
 			continue
-		var input_event = _get_action_input(m.strings[1], m.strings[2])
+		var index = int(m.strings[2])
+		var input_event = _get_action_input(m.strings[1], m.strings[3], index)
 		if input_event == null:
 			continue
 		var image_path := get_input_event_image_file_path(input_event, small)
@@ -92,14 +93,19 @@ static func replace_input_prompts(s: String, small: bool = false) -> String:
 	
 	return s
 
-static func _get_action_input(input_type: String, action_name: String) -> InputEvent:
+static func _get_action_input(input_type: String, action_name: String, index: int = 0) -> InputEvent:
+	var counter := 0
 	for a in InputMap.get_action_list(action_name):
 		if a is InputEventKey and input_type == "key":
-			return a
+			if counter == index:
+				return a
 		if a is InputEventJoypadButton and input_type == "pad":
-			return a
+			if counter == index:
+				return a
 		if a is InputEventMouseButton and input_type == "mouse":
-			return a
+			if counter == index:
+				return a
+		counter += 1
 	
 	printerr("InputPromptUtil: did not find event for action %s of type %s" % [action_name, input_type])
 
