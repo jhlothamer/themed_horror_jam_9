@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/shape/collision_shape_ex.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/sounds/sfx_manapool_interaction_complete_jdy.mp3" type="AudioStream" id=7]
 [ext_resource path="res://assets/sounds/sfx_manapool_interaction_interrupt_jdymusic.mp3" type="AudioStream" id=8]
 [ext_resource path="res://assets/models/manapool_ilikethepixies/manapool_ilikethepixies.gltf" type="PackedScene" id=9]
+[ext_resource path="res://assets/images/healthbar_frame_ilikethepixies.png" type="Texture" id=10]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 1.6004
@@ -52,6 +53,16 @@ shader_param/progress_value = 0.0
 resource_local_to_scene = true
 material = SubResource( 11 )
 size = Vector2( 2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 1
+albedo_texture = ExtResource( 10 )
+
+[sub_resource type="QuadMesh" id=13]
+material = SubResource( 12 )
+size = Vector2( 2.05, 0.3 )
 
 [sub_resource type="Shader" id=6]
 code = "/*
@@ -159,6 +170,9 @@ mesh = SubResource( 4 )
 value = 0.0
 max_value = 30.0
 progress_color = Color( 1, 0.752941, 0.0117647, 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="InteractionProgressBar3d"]
+mesh = SubResource( 13 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 1 )

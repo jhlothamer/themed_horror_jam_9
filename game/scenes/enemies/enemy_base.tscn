@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/states/enemy_walk.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/enemies/states/enemy_die.gd" type="Script" id=7]
 [ext_resource path="res://scenes/enemies/states/enemy_base_state.gd" type="Script" id=8]
 [ext_resource path="res://scenes/enemies/states/enemy_retreat.gd" type="Script" id=9]
+[ext_resource path="res://assets/images/healthbar_frame_ilikethepixies.png" type="Texture" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.7
@@ -55,6 +56,16 @@ shader_param/progress_value = 0.5
 resource_local_to_scene = true
 material = SubResource( 27 )
 size = Vector2( 1, 0.1 )
+
+[sub_resource type="SpatialMaterial" id=29]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 1
+albedo_texture = ExtResource( 10 )
+
+[sub_resource type="QuadMesh" id=28]
+material = SubResource( 29 )
+size = Vector2( 1.05, 0.15 )
 
 [node name="EnemyBase" type="KinematicBody"]
 collision_layer = 35
@@ -107,6 +118,9 @@ mouse_over_color = Color( 1, 0.631373, 0, 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53445, 0 )
 visible = false
 mesh = SubResource( 26 )
+
+[node name="MeshInstance" type="MeshInstance" parent="HealthBar"]
+mesh = SubResource( 28 )
 
 [node name="StateDebugLabel3D" type="Label3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78473, 0 )
