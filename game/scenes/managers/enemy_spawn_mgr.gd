@@ -24,7 +24,7 @@ export (Array, NodePath) var west_destructables := []
 export (Array, NodePath) var east_destructables := []
 export var force_east_spawning := false
 
-var _rnd := RandomNumberGenerator.new()
+var _rand := RandomNumberGenerator.new()
 var _spawn_positions_by_direction := {}
 var _available_spawn_directions := []
 var _destructables_by_direction := {}
@@ -35,7 +35,7 @@ func _enter_tree():
 	ServiceMgr.register_service(get_script(), self)
 
 func _ready():
-	_rnd.randomize()
+	_rand.randomize()
 	
 	_add_node_list(_spawn_positions_by_direction, GameConsts.EnemySpawnDirection.NORTH, north_spawn_positions)
 	_add_node_list(_spawn_positions_by_direction, GameConsts.EnemySpawnDirection.SOUTH, south_spawn_positions)
@@ -92,10 +92,10 @@ func spawn_enemy(agression_level: int = -1) -> void:
 	if agression_level < GameConsts.EnemyAgressionLevel.LOW:
 		agression_level = GameConsts.EnemyAgressionLevel.HIGH
 	
-	var index: int = randi() % _available_spawn_directions.size()
+	var index: int = _rand.randi() % _available_spawn_directions.size()
 	var direction = _available_spawn_directions[index]
 	var spawn_positions:Array = _spawn_positions_by_direction[direction]
-	index = randi() % spawn_positions.size()
+	index = _rand.randi() % spawn_positions.size()
 	var spawn_position: Vector3 = spawn_positions[index].global_transform.origin
 	_spawn_enemy(agression_level, direction, spawn_position)
 
@@ -119,10 +119,10 @@ func _spawn_enemy_medium_agression() -> bool:
 	if !valid_targets:
 		return false
 	
-	var index: int = randi() % valid_targets.size()
+	var index: int = _rand.randi() % valid_targets.size()
 	var destructable_data: DestructableData = valid_targets[index]
 	var spawn_positions:Array = _spawn_positions_by_direction[destructable_data.direction]
-	index = randi() % spawn_positions.size()
+	index = _rand.randi() % spawn_positions.size()
 	var spawn_position: Vector3 = spawn_positions[index].global_transform.origin
 	_spawn_enemy(GameConsts.EnemyAgressionLevel.MEDIUM, destructable_data.direction, spawn_position, destructable_data.destructable)
 	

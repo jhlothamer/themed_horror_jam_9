@@ -47,8 +47,8 @@ func _on_no_interactable_clicked(pos: Vector3) -> void:
 	_target_interactable_object = null
 	_interaction_helper = null
 	_calc_target_pos(pos)
-	_create_move_to_indicator(pos)
 	change_state(name)
+	_create_move_to_indicator(_target_pos)
 
 
 func _on_interactable_clicked(helper: InteractionHelper, clicked_object: CollisionObject):
@@ -76,11 +76,17 @@ func _on_interactable_clicked(helper: InteractionHelper, clicked_object: Collisi
 
 func _calc_target_pos(pos: Vector3) -> void:
 	_target_pos = _v_to_char_y(pos)
-	_nav_agent.set_target_location(pos)
+	var temp = Rect2Util.clamp_point(GameConsts.CHARACTER_MOVE_BOUNDS, Vector2(_target_pos.x, _target_pos.z))
+	_target_pos.x = temp.x
+	_target_pos.z = temp.y
+	_nav_agent.set_target_location(_target_pos)
 
 
 func _calc_target_pos_object(clicked_object: CollisionObject) -> void:
 	_target_pos = _v_to_char_y(clicked_object.global_transform.origin)
+	var temp = Rect2Util.clamp_point(GameConsts.CHARACTER_MOVE_BOUNDS, Vector2(_target_pos.x, _target_pos.z))
+	_target_pos.x = temp.x
+	_target_pos.z = temp.y
 	var nav_pt_mgr: NavigationPointMgr = ServiceMgr.get_service(NavigationPointMgr)
 	if nav_pt_mgr:
 		var closest_pt = nav_pt_mgr.get_closest_navigation_point(character, clicked_object)
@@ -122,6 +128,9 @@ func _on_target_reached():
 		return
 	change_state("Idle")
 
+
+func exit() -> void:
+	_destroy_move_to_indicator()
 
 
 func physics_process(_delta: float) -> void:

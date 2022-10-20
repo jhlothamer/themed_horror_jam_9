@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="BoxShape" id=24]
+extents = Vector3( 0.05, 2.5, 4.5 )
+
+[sub_resource type="BoxShape" id=25]
+extents = Vector3( 0.05, 2.5, 1.5 )
+
+[sub_resource type="BoxShape" id=26]
+extents = Vector3( 0.05, 2.5, 2 )
+
+[sub_resource type="BoxShape" id=27]
+extents = Vector3( 0.05, 0.5, 1 )
+
+[node name="WallStaticBody" type="StaticBody"]
+
+[node name="CollisionShape9wide" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.5, 5.5 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape3wide" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.5, -2.5 )
+shape = SubResource( 25 )
+
+[node name="CollisionShape4wide" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.5, -8 )
+shape = SubResource( 26 )
+
+[node name="CollisionShape2wide" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -5 )
+shape = SubResource( 27 )
+
+[node name="CollisionShape2wide2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, 0 )
+shape = SubResource( 27 )
+
+[node name="CollisionShape9wide2" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.75, 2.5, 9.75 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape3wide2" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25, 2.5, 9.75 )
+shape = SubResource( 25 )
+
+[node name="CollisionShape4wide2" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.75, 2.5, 9.75 )
+shape = SubResource( 26 )
+
+[node name="CollisionShape2wide3" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.75, 4.5, 9.75 )
+shape = SubResource( 27 )
+
+[node name="CollisionShape2wide4" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.25, 4.5, 9.75 )
+shape = SubResource( 27 )
+
+[node name="CollisionShape2wide5" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, 0 )
+shape = SubResource( 27 )
+
+[node name="CollisionShape9wide3" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, 5.5 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape9wide4" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.75, 2.5, -5.5 )
+shape = SubResource( 24 )

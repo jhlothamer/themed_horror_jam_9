@@ -38,6 +38,11 @@ func _recalc_char_target() -> void:
 	var map_id = host.get_world().get_navigation_map()
 
 	_path = NavigationServer.map_get_path(map_id, enemy.global_transform.origin, _target_pos, true)
+	# when path obtained too soon after startup it can be invalid.  Loop/wait till we have a good path.
+	while _path.size() == 0 or !_equal_nav_points(_target_pos, _path.back()):
+		_path = []
+		yield(get_tree().create_timer(1.0), "timeout")
+		_path = NavigationServer.map_get_path(map_id, enemy.global_transform.origin, _target_pos, true)
 	_path_index = 0
 	
 	# ensure path is on the same plain as character
