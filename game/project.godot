@@ -490,6 +490,7 @@ Globals="*res://addons/godot_helper_pack/core/globals.gd"
 SignalMgr="*res://addons/godot_helper_pack/core/signal_mgr.gd"
 ServiceMgr="*res://addons/godot_helper_pack/core/service_mgr.gd"
 GlobalBlockingColorChangeMonitor="*res://addons/godot_helper_pack/core/2d/shape/global_blocking_color_monitor.tscn"
+SoundLevelMgr="*res://addons/godot_helper_pack/core/audio/sound_level_mgr.gd"
 
 [display]
 
@@ -648,6 +649,11 @@ place_ward={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+sound_dialog={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -665,6 +671,10 @@ place_ward={
 [logging]
 
 file_logging/enable_file_logging=true
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=204800
 
 [rendering]
 
