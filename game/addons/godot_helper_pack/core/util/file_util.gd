@@ -2,6 +2,11 @@ class_name FileUtil
 extends Object
 
 
+static func exists(file_path: String) -> bool:
+	var file := File.new()
+	return file.file_exists(file_path)
+
+
 static func load_text(file_path: String, default_value: String = "") -> String:
 	var data_file: File = File.new()
 	var error = data_file.open(file_path, File.READ)

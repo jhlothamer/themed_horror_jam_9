@@ -42,7 +42,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=34]
+[sub_resource type="ShaderMaterial" id=38]
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0.584314, 0.584314, 0.584314, 1 )
 shader_param/progress_color = Color( 1, 0.752941, 0.0117647, 1 )
@@ -50,7 +50,7 @@ shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=11]
 resource_local_to_scene = true
-material = SubResource( 34 )
+material = SubResource( 38 )
 size = Vector2( 2, 0.2 )
 
 [sub_resource type="SpatialMaterial" id=37]
@@ -238,19 +238,19 @@ material_override = SubResource( 21 )
 mesh = SubResource( 20 )
 skeleton = NodePath("")
 
-[node name="StartInteractionSound" type="AudioStreamPlayer3D" parent="."]
+[node name="StartInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-unit_db = 6.0
+volume_db = -12.0
 bus = "SoundFx"
 
-[node name="InteruptInteractionSound" type="AudioStreamPlayer3D" parent="."]
+[node name="InteruptInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-unit_db = 12.0
+volume_db = -12.0
 bus = "SoundFx"
 
-[node name="CompleteInteractionSound" type="AudioStreamPlayer3D" parent="."]
+[node name="CompleteInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-unit_db = 12.0
+volume_db = -12.0
 bus = "SoundFx"
 
 [node name="FireMeshInstance" type="MeshInstance" parent="."]

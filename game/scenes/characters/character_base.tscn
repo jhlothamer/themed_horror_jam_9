@@ -49,7 +49,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=16]
+[sub_resource type="ShaderMaterial" id=21]
 shader = SubResource( 11 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 shader_param/progress_color = Color( 0, 1, 0, 1 )
@@ -57,7 +57,7 @@ shader_param/progress_value = 0.5
 
 [sub_resource type="QuadMesh" id=12]
 resource_local_to_scene = true
-material = SubResource( 16 )
+material = SubResource( 21 )
 size = Vector2( 1, 0.1 )
 
 [sub_resource type="SpatialMaterial" id=20]
@@ -98,7 +98,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=19]
+[sub_resource type="ShaderMaterial" id=22]
 render_priority = 5
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
@@ -107,7 +107,7 @@ shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=15]
 resource_local_to_scene = true
-material = SubResource( 19 )
+material = SubResource( 22 )
 size = Vector2( 1, 0.1 )
 
 [node name="CharacterBase" type="KinematicBody"]
@@ -173,14 +173,14 @@ mesh = SubResource( 18 )
 [node name="DamagedRandomAudioStreamPlayer3D" type="Spatial" parent="."]
 script = ExtResource( 10 )
 
-[node name="SelectedSound" type="AudioStreamPlayer3D" parent="."]
+[node name="SelectedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-unit_db = 24.0
+volume_db = -12.0
 bus = "SoundFx"
 
-[node name="DenyInteractionSound" type="AudioStreamPlayer3D" parent="."]
+[node name="DenyInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
-unit_db = 24.0
+volume_db = -12.0
 bus = "SoundFx"
 
 [node name="StateDebugLabel3D" type="Label3D" parent="."]

@@ -43,7 +43,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=11]
+[sub_resource type="ShaderMaterial" id=14]
 shader = SubResource( 2 )
 shader_param/background_color = Color( 0.584314, 0.584314, 0.584314, 1 )
 shader_param/progress_color = Color( 1, 0.752941, 0.0117647, 1 )
@@ -51,7 +51,7 @@ shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=4]
 resource_local_to_scene = true
-material = SubResource( 11 )
+material = SubResource( 14 )
 size = Vector2( 2, 0.2 )
 
 [sub_resource type="SpatialMaterial" id=12]
@@ -166,6 +166,7 @@ script = ExtResource( 2 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24426, 0 )
+visible = false
 mesh = SubResource( 4 )
 value = 0.0
 max_value = 30.0
@@ -191,19 +192,19 @@ interaction_interupt_sound = NodePath("../InteruptInteractionSound")
 interaction_complete_sound = NodePath("../CompleteInteractionSound")
 complete_after_complete_sound_finished = false
 
-[node name="StartInteractionSound" type="AudioStreamPlayer3D" parent="."]
+[node name="StartInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-unit_db = 12.0
+volume_db = -12.0
 bus = "SoundFx"
 
-[node name="InteruptInteractionSound" type="AudioStreamPlayer3D" parent="."]
+[node name="InteruptInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-unit_db = 12.0
+volume_db = -12.0
 bus = "SoundFx"
 
-[node name="CompleteInteractionSound" type="AudioStreamPlayer3D" parent="."]
+[node name="CompleteInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-unit_db = 12.0
+volume_db = -12.0
 bus = "SoundFx"
 
 [node name="manapool_ilikethepixies" parent="." instance=ExtResource( 9 )]

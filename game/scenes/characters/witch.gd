@@ -6,7 +6,7 @@ export var crystal_ball_ward_mana_cost := 50
 
 
 onready var _animation_player: AnimationPlayer = $WitchAnimations_Frank_Ilikethepixies/AnimationPlayer
-onready var _deny_interaction_sound: AudioStreamPlayer3D = $DenyInteractionSound
+onready var _deny_interaction_sound: AudioStreamPlayer = $DenyInteractionSound
 
 
 var _state_animations := {

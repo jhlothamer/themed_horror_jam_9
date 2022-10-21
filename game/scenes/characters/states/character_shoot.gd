@@ -11,7 +11,7 @@ export var delay_before_shooting_again := 1.0
 export var shoot_sound: NodePath
 
 
-onready var _deny_interaction_sound: AudioStreamPlayer3D = get_node_or_null(deny_interaction_sound)
+onready var _deny_interaction_sound: AudioStreamPlayer = get_node_or_null(deny_interaction_sound)
 onready var _fire_from_position: Position3D = get_node(fire_from_position)
 onready var _shoot_sound: AudioStreamPlayer3D = get_node_or_null(shoot_sound)
 

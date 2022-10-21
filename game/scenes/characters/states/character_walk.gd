@@ -5,7 +5,7 @@ signal interaction_about_to_start(interactable_object)
 export var navigation_agent: NodePath
 export var deny_interaction_sound: NodePath
 
-onready var _deny_interaction_sound: AudioStreamPlayer3D = get_node_or_null(deny_interaction_sound)
+onready var _deny_interaction_sound: AudioStreamPlayer = get_node_or_null(deny_interaction_sound)
 
 var _nav_agent:NavigationAgent
 

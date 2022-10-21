@@ -25,7 +25,7 @@ onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _mana_bar: ProgressBar3D = $ManaBar
 onready var _state_machine: StateMachine = $StateMachine
 onready var _collision_shape: CollisionShape = $CollisionShape
-onready var _selected_sound: AudioStreamPlayer3D = $SelectedSound
+onready var _selected_sound: AudioStreamPlayer = $SelectedSound
 onready var _state_debug_label: Label3D = $StateDebugLabel3D
 
 var current_health := 100.0

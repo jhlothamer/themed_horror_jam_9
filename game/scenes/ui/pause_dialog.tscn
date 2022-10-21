@@ -27,7 +27,7 @@ margin_right = 209.0
 margin_bottom = 294.5
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 418.0
+margin_right = 443.0
 margin_bottom = 232.0
 theme = ExtResource( 1 )
 text = "Paused"
@@ -35,21 +35,21 @@ align = 1
 
 [node name="ResumeBtn" type="Button" parent="VBoxContainer"]
 margin_top = 236.0
-margin_right = 418.0
+margin_right = 443.0
 margin_bottom = 351.0
 text = "Resume"
 flat = true
 
 [node name="Settingsbtn" type="Button" parent="VBoxContainer"]
 margin_top = 355.0
-margin_right = 418.0
+margin_right = 443.0
 margin_bottom = 470.0
 text = "Settings"
 flat = true
 
 [node name="MainMenuBtn" parent="VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 474.0
-margin_right = 418.0
+margin_right = 443.0
 margin_bottom = 589.0
 text = "Main Menu"
 align = 1
