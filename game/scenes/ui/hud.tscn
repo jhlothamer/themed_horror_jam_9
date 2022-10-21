@@ -27,6 +27,7 @@ visible = false
 visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="Dialogs"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -400.0
