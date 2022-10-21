@@ -20,9 +20,9 @@ export (int, 1, 10000) var required_resource_amount := 1
 
 
 onready var _parent: CollisionObject = get_parent()
-onready var _interaction_start_sound: AudioStreamPlayer3D = get_node_or_null(interaction_start_sound)
-onready var _interaction_interupt_sound: AudioStreamPlayer3D = get_node_or_null(interaction_interupt_sound)
-onready var _interaction_complete_sound: AudioStreamPlayer3D = get_node_or_null(interaction_complete_sound)
+onready var _interaction_start_sound = get_node_or_null(interaction_start_sound)
+onready var _interaction_interupt_sound = get_node_or_null(interaction_interupt_sound)
+onready var _interaction_complete_sound = get_node_or_null(interaction_complete_sound)
 
 
 var _interaction_progress_bar: InteractionProgressBar

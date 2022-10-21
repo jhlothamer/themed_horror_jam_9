@@ -18,7 +18,16 @@ func _enter_tree():
 	if FileUtil.exists(VOLUME_SETTINGS_FILE_PATH):
 		_volume_settings_from_file = true
 		volume_settings = FileUtil.load_json_data(VOLUME_SETTINGS_FILE_PATH, volume_settings)
+		_output_nodes_that_will_be_updated()
 
+
+func _output_nodes_that_will_be_updated() -> void:
+	pass
+	for scene_path in volume_settings.keys():
+		for local_path in volume_settings[scene_path].keys():
+			var d: Dictionary = volume_settings[scene_path][local_path]
+			if d["original_volume_db"] != d["volume_db"]:
+				print("SoundLevelMgr: %s::%s will be changed from %d to %d" % [scene_path, local_path, d["original_volume_db"], d["volume_db"]])
 
 func _get_scene_file_and_local_path(node: Node) -> Array:
 	var temp = str(node.get_path())
@@ -55,7 +64,7 @@ func _add_or_update_audio_node(scene_file_and_path: Array, node: Node) -> void:
 			volume_db = node.volume_db
 		elif node is AudioStreamPlayer3D:
 			volume_db = node.unit_db
-		d[scene_file_and_path[1]] = {"volume_db": volume_db}
+		d[scene_file_and_path[1]] = {"original_volume_db": volume_db, "volume_db": volume_db}
 	
 
 func _on_node_added(node : Node):
