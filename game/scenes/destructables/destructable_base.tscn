@@ -78,6 +78,7 @@ required_resource_amount = 100
 script = ExtResource( 5 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 6 )]
+visible = false
 mesh = SubResource( 11 )
 value = 100.0
 background_color = Color( 0, 0, 0, 1 )

@@ -66,6 +66,13 @@ func _on_interactable_clicked(helper: InteractionHelper, clicked_object: Collisi
 			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
 				_deny_interaction_sound.play()
 			return
+	
+	if clicked_object and clicked_object.has_method("can_interact"):
+		if !clicked_object.can_interact():
+			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
+				_deny_interaction_sound.play()
+			return
+
 
 	_calc_target_pos_object(clicked_object)
 	_target_interactable_object = clicked_object

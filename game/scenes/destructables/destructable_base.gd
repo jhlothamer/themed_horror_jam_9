@@ -42,6 +42,10 @@ func damage(amount: float) -> void:
 	damaged_sound.play()
 
 
+func can_interact() -> bool:
+	return _health_bar.value < _health_bar.max_value
+
+
 func _update_heath_bar() -> void:
 	_health_bar.visible = _health_bar.value < starting_health
 
