@@ -22,15 +22,11 @@ func _ready():
 func _recalc_char_target() -> void:
 	if !_character_mgr:
 		return
-	
+		
 	_target_character = _character_mgr.get_closest_character(enemy.global_transform.origin)
 	if !_target_character:
 		_path = []
 		_path_index = 0
-		return
-	
-	# if the path we already have already ends 'close enough' to target character - don't recalc
-	if _path and _target_pos.distance_squared_to(_target_character.global_transform.origin) <= _character_position_change_min_sq:
 		return
 	
 	_target_pos = _target_character.global_transform.origin
@@ -44,7 +40,7 @@ func _recalc_char_target() -> void:
 		yield(get_tree().create_timer(1.0), "timeout")
 		_path = NavigationServer.map_get_path(map_id, enemy.global_transform.origin, _target_pos, true)
 	_path_index = 0
-	
+
 	# ensure path is on the same plain as character
 	var y = enemy.global_transform.origin.y
 	for i in _path.size():

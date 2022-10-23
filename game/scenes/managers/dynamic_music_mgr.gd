@@ -56,7 +56,7 @@ func _on_enemy_detection_area_count_changed(enemy_count: int) -> void:
 	if new_audio_level == _current_audio_level:
 		return
 	
-	print("DynamicMusicMgr: switching levels: enemy count: %d, old level: %d, new level: %d" % [enemy_count, _current_audio_level, new_audio_level])
+	#print("DynamicMusicMgr: switching levels: enemy count: %d, old level: %d, new level: %d" % [enemy_count, _current_audio_level, new_audio_level])
 	
 	if _tween.is_active():
 		yield(_tween, "tween_all_completed")
