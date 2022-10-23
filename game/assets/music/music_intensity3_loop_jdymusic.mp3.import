@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/music_intensity3_loop_jdymusic.mp3-a7954bc9e4e1eb86f3264a6a585aa7a2.mp3str"
+
+[deps]
+
+source_file="res://assets/music/music_intensity3_loop_jdymusic.mp3"
+dest_files=[ "res://.import/music_intensity3_loop_jdymusic.mp3-a7954bc9e4e1eb86f3264a6a585aa7a2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/themes/global.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/managers/dynamic_music_mgr.gd" type="Script" id=2]
+[ext_resource path="res://assets/music/music_intensity3_loop_jdymusic.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/music/music_intensity2_loop_jdymusic.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/music/music_intensity1_loop_jdymusic.mp3" type="AudioStream" id=5]
+[ext_resource path="res://tests/audio/dynamic_music_mgr_test.gd" type="Script" id=6]
+[ext_resource path="res://assets/music/music_main_track_loop_jdymusic.mp3" type="AudioStream" id=7]
+[ext_resource path="res://assets/music/music_dark_ambience_loop_jdymusic.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/sfx_atmospheric_noises_loop_jdymusic.mp3" type="AudioStream" id=9]
+
+[node name="DynamicMusicAudioMgrTest" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -189.0
+margin_top = -93.5
+margin_right = 189.0
+margin_bottom = 93.5
+custom_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 378.0
+margin_bottom = 52.0
+custom_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_right = 158.0
+margin_bottom = 52.0
+text = "Enemy Count"
+
+[node name="EnemyCountTxt" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
+margin_left = 178.0
+margin_right = 378.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 200, 0 )
+
+[node name="ChangeEnemyCountBtn" type="Button" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 378.0
+margin_bottom = 187.0
+text = "Change Count"
+
+[node name="DynamicMusicMgr" type="Node" parent="."]
+script = ExtResource( 2 )
+level_1_audio_player = NodePath("Level1IntensityMusic")
+level_2_audio_player = NodePath("Level2IntensityMusic")
+level_3_audio_player = NodePath("Level3IntensityMusic")
+old_audio_change_time = 2.0
+old_audio_change_delay_time = 0.5
+
+[node name="Level1IntensityMusic" type="AudioStreamPlayer" parent="DynamicMusicMgr"]
+stream = ExtResource( 5 )
+volume_db = -12.0
+
+[node name="Level2IntensityMusic" type="AudioStreamPlayer" parent="DynamicMusicMgr"]
+stream = ExtResource( 4 )
+volume_db = -12.0
+
+[node name="Level3IntensityMusic" type="AudioStreamPlayer" parent="DynamicMusicMgr"]
+stream = ExtResource( 3 )
+volume_db = -12.0
+
+[node name="AtmosphericNoises" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 9 )
+volume_db = -12.0
+autoplay = true
+bus = "SoundFx"
+
+[node name="MusicDarkAmbience" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 8 )
+volume_db = -6.0
+autoplay = true
+bus = "Music"
+
+[node name="MusicMainTrack" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 7 )
+volume_db = -6.0
+autoplay = true
+bus = "Music"
+
+[connection signal="pressed" from="VBoxContainer/ChangeEnemyCountBtn" to="." method="_on_ChangeEnemyCountBtn_pressed"]

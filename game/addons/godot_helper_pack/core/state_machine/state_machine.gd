@@ -11,7 +11,7 @@ export var host_node: NodePath
 
 
 var blackboard_data := {}
-
+var previous_state := ""
 
 var _host: Node
 var _required_state_node_methods: Array = [
@@ -81,10 +81,11 @@ func change_state(state_name) -> void:
 	var new_state = get_node(state_name)
 	var old_state_name := ""
 	if !_state_stack.empty():
+		old_state_name = _state_stack[0].name
 		_state_stack[0] = new_state
 	else:
-		old_state_name = _state_stack[0].name
 		_state_stack.push_front(new_state)
+	previous_state = old_state_name
 	_print_dbg("entering state " + new_state.name)
 	new_state.enter()
 	emit_signal("state_changed", old_state_name, state_name)
@@ -97,6 +98,7 @@ func push_state(state_name) -> void:
 		old_state_name = _state_stack[0].name
 	var new_state = get_node(state_name)
 	_state_stack.push_front(new_state)
+	previous_state = old_state_name
 	_print_dbg("entering state " + new_state.name)
 	new_state.enter()
 	emit_signal("state_changed", old_state_name, state_name)
@@ -105,6 +107,7 @@ func push_state(state_name) -> void:
 func pop_state() -> void:
 	assert(!_state_stack.empty())
 	var old_state_name:String = _state_stack[0].name
+	previous_state = old_state_name
 	var state = _state_stack.pop_front()
 	state.exit()
 	var new_state_name := ""

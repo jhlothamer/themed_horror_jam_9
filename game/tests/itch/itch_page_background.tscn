@@ -1,0 +1,120 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://assets/images/dirt_texture_seamless_ilikethepixies/dirt_texture_seamless_1024_ilikethepixies.png" type="Texture" id=1]
+[ext_resource path="res://scenes/wanderers/rand_point_plane.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/models/rocks_ilikethepixies/rock_002_ilikethepixies.gltf" type="PackedScene" id=3]
+[ext_resource path="res://assets/models/rocks_ilikethepixies/rock_003_ilikethepixies.gltf" type="PackedScene" id=4]
+[ext_resource path="res://assets/models/rocks_ilikethepixies/rock_001_ilikethepixies.gltf" type="PackedScene" id=5]
+[ext_resource path="res://assets/models/trees_ilikethepixies/tree_001_ilikethepixies.gltf" type="PackedScene" id=6]
+[ext_resource path="res://assets/models/bushes_matrix/bush2_matrix.gltf" type="PackedScene" id=7]
+[ext_resource path="res://assets/models/trees_ilikethepixies/tree_003_ilikethepixies.gltf" type="PackedScene" id=8]
+[ext_resource path="res://scenes/wanderers/zombie_wanderer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/etc/title_world_environment.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/models/bushes_matrix/bush1_matrix.gltf" type="PackedScene" id=11]
+[ext_resource path="res://assets/models/bushes_matrix/bush3_matrix.gltf" type="PackedScene" id=12]
+[ext_resource path="res://assets/images/white_square_64x64.png" type="Texture" id=13]
+[ext_resource path="res://assets/models/trees_ilikethepixies/tree_002_ilikethepixies.gltf" type="PackedScene" id=14]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+size = Vector3( 100, 1, 50 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 50, 0.5, 25 )
+
+[sub_resource type="NavigationMesh" id=5]
+vertices = PoolVector3Array( -8.1356, 0.399999, -17.4303, -2.1356, 0.399999, -18.6803, -2.6356, 0.399999, -26.4303, -11.8856, 0.399999, -26.4303, -11.3856, 0.399999, -15.1803, -8.1356, 0.399999, -17.4303, -11.8856, 0.399999, -26.4303, -20.1356, 0.399999, -23.1803, -20.3856, 0.399999, -15.4303, -2.6356, 0.399999, -26.4303, -2.1356, 0.399999, -18.6803, 0.864401, 0.399999, -19.1803, 0.864401, 0.399999, -19.1803, 4.6144, 0.399999, -18.1803, 4.8644, 0.399999, -26.4303, -2.6356, 0.399999, -26.4303, 4.8644, 0.399999, -26.4303, 4.6144, 0.399999, -18.1803, 7.8644, 0.399999, -17.6803, 12.6144, 0.399999, -26.4303, 4.8644, 0.399999, -26.4303, 7.8644, 0.399999, -17.6803, 12.6144, 0.399999, -14.1803, 21.1144, 0.399999, -14.1803, 21.1144, 0.399999, -23.6803 )
+polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 3 ), PoolIntArray( 5, 4, 6 ), PoolIntArray( 6, 4, 7 ), PoolIntArray( 7, 4, 8 ), PoolIntArray( 9, 11, 10 ), PoolIntArray( 13, 12, 14 ), PoolIntArray( 14, 12, 15 ), PoolIntArray( 18, 17, 16 ), PoolIntArray( 20, 19, 21 ), PoolIntArray( 21, 19, 22 ), PoolIntArray( 22, 19, 24 ), PoolIntArray( 22, 24, 23 ) ]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78477, 3.4561 )
+current = true
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -24 )
+mesh = SubResource( 3 )
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+shape = SubResource( 4 )
+
+[node name="Props" type="Spatial" parent="."]
+
+[node name="tree_003_ilikethepixies" parent="Props" instance=ExtResource( 8 )]
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -14, 1, -16 )
+
+[node name="tree_001_ilikethepixies" parent="Props" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1, -14 )
+
+[node name="bush1_matrix" parent="Props" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -10 )
+
+[node name="bush2_matrix" parent="Props" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -9 )
+
+[node name="bush3_matrix" parent="Props" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -16 )
+
+[node name="rock_001_ilikethepixies" parent="Props" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -13 )
+
+[node name="rock_003_ilikethepixies" parent="Props" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -16 )
+
+[node name="rock_002_ilikethepixies" parent="Props" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -14 )
+
+[node name="tree_002_ilikethepixies" parent="Props" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -10 )
+
+[node name="tree_002_ilikethepixies2" parent="Props" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -14 )
+
+[node name="Zombies" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.90735e-06 )
+
+[node name="ZombieWanderer" parent="Zombies" instance=ExtResource( 9 )]
+transform = Transform( -0.838395, 0, -0.545063, 0, 1, 0, 0.545063, 0, -0.838395, -16.0885, 1.90735e-06, -22.8537 )
+rand_point_plane = NodePath("../../NavigationMeshInstance/RandomPointPlain")
+
+[node name="ZombieWanderer2" parent="Zombies" instance=ExtResource( 9 )]
+transform = Transform( -0.838395, 0, -0.545063, 0, 1, 0, 0.545063, 0, -0.838395, 0.0110655, 5.72205e-06, -19.754 )
+rand_point_plane = NodePath("../../NavigationMeshInstance/RandomPointPlain")
+
+[node name="ZombieWanderer3" parent="Zombies" instance=ExtResource( 9 )]
+transform = Transform( -0.0545145, 0, 0.998513, 0, 1, 0, -0.998513, 0, -0.0545145, 18.6164, 3.8147e-06, -21.8277 )
+rand_point_plane = NodePath("../../NavigationMeshInstance/RandomPointPlain")
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
+navmesh = SubResource( 5 )
+navigation_layers = 2
+
+[node name="RandomPointPlain" parent="NavigationMeshInstance" instance=ExtResource( 2 )]
+visible = false
+polygon = PoolVector2Array( -11.5473, 14.7958, -7.60847, 17.0967, -0.0157847, 18.8293, 7.98479, 17.1074, 12.4046, 13.9201, 21.5596, 13.7199, 21.8381, 23.7508, 12.0514, 26.9303, -11.7447, 26.7812, -20.8856, 23.2044, -20.709, 15.0458 )
+
+[node name="TitleWorldEnvironment" parent="." instance=ExtResource( 10 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
+modulate = Color( 0.0862745, 0.780392, 0.807843, 0.54902 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -480.0
+margin_top = -540.0
+margin_right = 480.0
+margin_bottom = 540.0
+rect_min_size = Vector2( 960, 1080 )
+texture = ExtResource( 13 )
+stretch_mode = 2
