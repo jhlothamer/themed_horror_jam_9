@@ -1,40 +1,33 @@
 class_name DynamicMusicMgr
 extends Node
 
-export var level_1_enemy_count := 1
-export var level_2_enemy_count := 3
-export var level_3_enemy_count := 5
-export (NodePath) var level_1_audio_player
-export (NodePath) var level_2_audio_player
-export (NodePath) var level_3_audio_player
+export (Array, int) var intensity_level_thresholds := [0]
+export (Array, NodePath) var level_audio_players := []
 export var new_audio_change_time := .5
-export var old_audio_change_time := .5
-export var old_audio_change_delay_time := 1.0
+export var old_audio_change_time := 2.0
+export var old_audio_change_delay_time := .5
 
 
-onready var _level_audio_player := [
-	null, # no audio at level 0
-	get_node(level_1_audio_player),
-	get_node(level_2_audio_player),
-	get_node(level_3_audio_player),
-]
-
+var _level_audio_player := []
 var _tween: Tween
 var _current_audio_level := 0
 var _audio_level_volumes := []
 
+
 func _ready():
+	for audio_player_node_path in level_audio_players:
+		_level_audio_player.append(get_node(audio_player_node_path))
+	intensity_level_thresholds.invert()
+	
 	SignalMgr.register_subscriber(self, "enemy_detection_area_count_changed")
 	_tween = Tween.new()
 	add_child(_tween)
 	var mute_volume_db = _get_mute_volume_db()
 	for audio_player in _level_audio_player:
-		if audio_player:
-			_audio_level_volumes.append(audio_player.volume_db)
+		_audio_level_volumes.append(audio_player.volume_db)
+		if !audio_player.autoplay:
 			audio_player.volume_db = mute_volume_db
 			audio_player.play()
-		else:
-			_audio_level_volumes.append(0)
 
 
 func _get_mute_volume_db() -> float:
@@ -42,13 +35,12 @@ func _get_mute_volume_db() -> float:
 
 
 func _level_from_enemy_count(enemy_count) -> int:
-	if enemy_count >= level_3_enemy_count:
-		return 3
-	if enemy_count >= level_2_enemy_count:
-		return 2
-	if enemy_count >= level_1_enemy_count:
-		return 1
-	return 0
+	var level_counter := intensity_level_thresholds.size() - 1
+	for threshold_level in intensity_level_thresholds:
+		if enemy_count >= threshold_level:
+			return level_counter
+		level_counter -= 1
+	return level_counter
 
 
 func _on_enemy_detection_area_count_changed(enemy_count: int) -> void:

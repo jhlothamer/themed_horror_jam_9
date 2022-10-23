@@ -12,6 +12,4 @@ func _ready():
 		_main_camera_flags.visible = true
 	else:
 		_camera_move_pan.disabled = false
-	
-
 

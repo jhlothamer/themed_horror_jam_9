@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=1]
 [ext_resource path="res://scenes/managers/navigation_point_mgr.gd" type="Script" id=2]
@@ -36,9 +36,8 @@
 [ext_resource path="res://assets/models/wall_matrix/re_built_walls/wall_without_window/remodeled_walls _without_window_matrix.gltf" type="PackedScene" id=34]
 [ext_resource path="res://assets/music/music_main_track_loop_jdymusic.mp3" type="AudioStream" id=35]
 [ext_resource path="res://scenes/managers/dynamic_music_mgr.gd" type="Script" id=36]
-[ext_resource path="res://assets/music/music_intensity1_loop_jdymusic.mp3" type="AudioStream" id=37]
-[ext_resource path="res://assets/music/music_intensity2_loop_jdymusic.mp3" type="AudioStream" id=38]
-[ext_resource path="res://assets/music/music_intensity3_loop_jdymusic.mp3" type="AudioStream" id=39]
+[ext_resource path="res://assets/music/music_intensity1_loop_jdymusic.ogg" type="AudioStream" id=37]
+[ext_resource path="res://assets/music/music_intensity3_loop_jdymusic.ogg" type="AudioStream" id=39]
 [ext_resource path="res://scenes/components/enemy_detection_area.tscn" type="PackedScene" id=40]
 
 [sub_resource type="NavigationMesh" id=4]
@@ -194,16 +193,11 @@ east_area = NodePath("../../Exterior/East/EastWanderRandomPointPlain")
 
 [node name="DynamicMusicMgr" type="Node" parent="Mgrs"]
 script = ExtResource( 36 )
-level_1_audio_player = NodePath("Level1IntensityMusic")
-level_2_audio_player = NodePath("Level2IntensityMusic")
-level_3_audio_player = NodePath("Level3IntensityMusic")
+intensity_level_thresholds = [ 0, 3, 5 ]
+level_audio_players = [ NodePath("../../MusicMainTrack"), NodePath("Level1IntensityMusic"), NodePath("Level3IntensityMusic") ]
 
 [node name="Level1IntensityMusic" type="AudioStreamPlayer" parent="Mgrs/DynamicMusicMgr"]
 stream = ExtResource( 37 )
-volume_db = -12.0
-
-[node name="Level2IntensityMusic" type="AudioStreamPlayer" parent="Mgrs/DynamicMusicMgr"]
-stream = ExtResource( 38 )
 volume_db = -12.0
 
 [node name="Level3IntensityMusic" type="AudioStreamPlayer" parent="Mgrs/DynamicMusicMgr"]
