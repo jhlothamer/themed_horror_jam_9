@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/destructables/door.gd"
 }, {
+"base": "Node",
+"class": "DynamicMusicMgr",
+"language": "GDScript",
+"path": "res://scenes/managers/dynamic_music_mgr.gd"
+}, {
 "base": "State",
 "class": "EnemeyBaseState",
 "language": "GDScript",
@@ -413,6 +418,7 @@ _global_script_class_icons={
 "Destructable": "",
 "DistributionEditorPlugin": "",
 "Door": "",
+"DynamicMusicMgr": "",
 "EnemeyBaseState": "",
 "Enemy": "",
 "EnemySpawnMgr": "",
