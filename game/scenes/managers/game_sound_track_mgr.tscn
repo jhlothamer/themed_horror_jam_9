@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/godot_helper_pack/core/audio/scene_sound_track.gd" type="Script" id=1]
+[ext_resource path="res://scenes/managers/game_sound_track_mgr.gd" type="Script" id=2]
+[ext_resource path="res://assets/music/music_title_screen_loop_jdyoung.ogg" type="AudioStream" id=3]
+
+[node name="GameSoundTrackMgr" type="Node"]
+script = ExtResource( 2 )
+
+[node name="TitleSoundTrack" type="Node" parent="."]
+script = ExtResource( 1 )
+scenes = [ "res://scenes/etc/title.tscn", "res://scenes/etc/how_to_play.tscn", "res://scenes/etc/credits.tscn", "res://scenes/etc/settings.tscn" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TitleSoundTrack"]
+stream = ExtResource( 3 )
+volume_db = -24.0
+bus = "Music"

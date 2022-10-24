@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music_title_screen_loop_jdyoung.ogg-1142d12e1ed770e42ad04d0a4897209c.oggstr"
+
+[deps]
+
+source_file="res://assets/music/music_title_screen_loop_jdyoung.ogg"
+dest_files=[ "res://.import/music_title_screen_loop_jdyoung.ogg-1142d12e1ed770e42ad04d0a4897209c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

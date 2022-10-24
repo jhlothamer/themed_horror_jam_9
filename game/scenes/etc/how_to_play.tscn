@@ -82,3 +82,5 @@ alt_click_sound = NodePath("PlayClickSound")
 stream = ExtResource( 3 )
 volume_db = -12.0
 bus = "SoundFx"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/PlayBtn" to="." method="_on_PlayBtn_pressed"]
