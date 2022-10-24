@@ -1,6 +1,6 @@
 extends StaticBody
 
-
+signal game_won_sequence_began()
 signal game_won()
 
 
@@ -11,6 +11,7 @@ onready var _progress_bar: InteractionProgressBar = $InteractionProgressBar3d
 onready var _fire_shader:ShaderMaterial = $FireMeshInstance.get("material/0")
 onready var _tween: Tween = $Tween
 onready var _bubble_particles:Particles = $BubbleParticles
+onready var _potion_mesh_instance = $cauldron_matrix/Circle
 
 
 func _ready():
@@ -20,6 +21,8 @@ func _ready():
 
 
 func _change_fire_state(on: bool) -> void:
+	if _bubble_particles.emitting == on:
+		return
 	var start = 0.4 if !on else 1.0
 	var end = 0.4 if on else 1.0
 	if _tween.is_active():
@@ -41,3 +44,12 @@ func _on_InteractionHelper_interaction_started(_interactor):
 
 func _on_InteractionHelper_interaction_interrupted(_interactor):
 	_change_fire_state(false)
+
+
+func hide_potion() -> void:
+	_potion_mesh_instance.visible = false
+
+
+
+func _on_InteractionHelper_interaction_completion_began():
+	emit_signal("game_won_sequence_began")

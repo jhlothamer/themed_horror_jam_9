@@ -6,6 +6,7 @@ signal interactable_clicked(helperref ,obj)
 signal interaction_completed(helperref, obj)
 signal interaction_started(interactor)
 signal interaction_interrupted(interactor)
+signal interaction_completion_began()
 
 
 export var outline_helper: NodePath
@@ -17,7 +18,7 @@ export var interaction_complete_sound: NodePath
 export var complete_after_complete_sound_finished := true
 export var required_resource_type := ""
 export (int, 1, 10000) var required_resource_amount := 1
-
+export var delay_completion_seconds := 0.0
 
 onready var _parent: CollisionObject = get_parent()
 onready var _interaction_start_sound = get_node_or_null(interaction_start_sound)
@@ -86,6 +87,11 @@ func stop_interaction(interactor) -> void:
 
 func _on_interaction_completed() -> void:
 	_interaction_in_progress = false
+	
+	emit_signal("interaction_completion_began")
+	
+	if delay_completion_seconds > 0.0:
+		yield(get_tree().create_timer(delay_completion_seconds), "timeout")
 	
 	if _interaction_start_sound and _interaction_start_sound.is_playing():
 		_interaction_start_sound.stop()

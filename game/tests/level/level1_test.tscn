@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/camera/camera3d_move_pan.gd" type="Script" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://scenes/interactables/mana_pool.tscn" type="PackedScene" id=32]
 [ext_resource path="res://assets/models/wall_matrix/re_built_walls/wall_without_window/remodeled_walls _without_window_matrix.gltf" type="PackedScene" id=33]
 [ext_resource path="res://assets/images/cloud.png" type="Texture" id=34]
+[ext_resource path="res://assets/sounds/sfx_cauldron_interaction_complete_jdymusic.mp3" type="AudioStream" id=35]
 
 [sub_resource type="NavigationMesh" id=4]
 vertices = PoolVector3Array( -0.5, 0.5, -11.25, 0.75, 0.5, -11.25, 9.5, 0.5, -11.5, -9.5, 0.5, -21, -9.5, 0.5, -11.5, -0.5, 0.5, -11.25, 9.5, 0.5, -21, 9.5, 0.5, -30.5, 0, 0.5, -30.5, 0, 0.5, -30.5, -9.5, 0.5, -30.5, -9.5, 0.5, -21, -0.5, 0.5, -11.25, 9.5, 0.5, -11.5, 9.5, 0.5, -21, -1.5, 0.5, -9.5, -1, 0.5, -8.25, -0.75, 0.5, -8.75, -0.5, 0.5, -9.75, 1, 0.5, -9.5, -0.75, 0.5, -8.75, 3, 0.5, -8.75, 9.5, 0.5, -9.5, 9.75, 0.5, 0.5, 10.5, 0.5, 0.5, 10.5, 0.5, -0.5, 9.5, 0.5, -0.75, 3.25, 0.5, -5.75, 5.5, 0.5, -0.5, 9.5, 0.5, -4.25, 9.5, 0.5, -5.75, 9.5, 0.5, -4.25, 10.5, 0.5, -4.5, 10.5, 0.5, -5.5, 9.5, 0.5, -5.75, 3, 0.5, -8.75, 3.25, 0.5, -5.75, 9.5, 0.5, -5.75, 9.5, 0.5, -9.5, 0.75, 0.5, -11.25, -0.5, 0.5, -11.25, -0.5, 0.5, -9.75, 1, 0.5, -9.5, 5.5, 0.5, -0.5, 6.5, 0.5, -0.5, 9.5, 0.5, -0.75, 9.5, 0.5, -4.25, 1, 0.5, -9.5, -0.5, 0.5, -9.75, -0.75, 0.5, -8.75, 9.5, 0.5, 1.25, 9.75, 0.5, 0.5, 9.5, 0.5, -0.75, 6.5, 0.5, -0.5, 7.5, 0.5, 0.5, 7.5, 0.5, 0.5, 7.5, 0.5, 1.25, 9.5, 0.5, 1.25, -10.5, 0.5, 0.5, -10.5, 0.5, -0.5, -11.5, 0.5, -0.75, -11.5, 0.5, 0.75, -30.5, 0.5, 0, -30.5, 0.5, 9.5, -21, 0.5, 9.5, -11.5, 0.5, -0.75, -11.5, 0.5, -9.5, -21, 0.5, -9.5, -21, 0.5, 9.5, -11.5, 0.5, 9.5, -11.5, 0.5, 0.75, -21, 0.5, -9.5, -30.5, 0.5, -9.5, -30.5, 0.5, 0, -21, 0.5, 9.5, -11.5, 0.5, 0.75, -11.5, 0.5, -0.75, -9.5, 0.5, -9.5, -9.5, 0.5, -6, -7, 0.5, -8.5, 1.75, 0.5, -1, 2, 0.5, 0.5, 4.5, 0.5, 0.75, -9.5, 0.5, -9.5, -7, 0.5, -8.5, -6, 0.5, -8.5, -1.5, 0.5, -9.5, 1.75, 0.5, -1, 4.5, 0.5, 0.75, 5.5, 0.5, -0.5, 3, 0.5, -5.25, -0.75, 0.5, -5.25, 1, 0.5, -1.75, -0.75, 0.5, -5.25, -1, 0.5, -8.25, -1.5, 0.5, -9.5, -4.5, 0.5, -7, -4.5, 0.5, -6, 5.5, 0.5, -0.5, 3.25, 0.5, -5.75, 3, 0.5, -5.25, -1.5, 0.5, -9.5, -6, 0.5, -8.5, -4.5, 0.5, -7, -1.25, 0.5, -1.5, 1, 0.5, -1.75, -0.75, 0.5, -5.25, -4.5, 0.5, -6, -7.25, 0.5, -3.5, 10.5, 0.5, -5.5, 10.5, 0.5, -4.5, 11.5, 0.5, -4.25, 11.5, 0.5, -5.75, 30.5, 0.5, 0, 30.5, 0.5, -9.5, 21, 0.5, -9.5, 11.5, 0.5, -0.75, 10.5, 0.5, -0.5, 10.5, 0.5, 0.5, 11.5, 0.5, 0.75, 21, 0.5, 9.5, 30.5, 0.5, 9.5, 30.5, 0.5, 0, 21, 0.5, -9.5, 11.5, 0.5, -0.75, 11.5, 0.5, 0.75, 21, 0.5, -9.5, 11.5, 0.5, -9.5, 11.5, 0.5, -5.75, 21, 0.5, -9.5, 11.5, 0.5, -5.75, 11.5, 0.5, -4.25, 11.5, 0.5, 0.75, 11.5, 0.5, 9.5, 21, 0.5, 9.5, 21, 0.5, -9.5, 11.5, 0.5, -4.25, 11.5, 0.5, -0.75, 0, 1, -7.75, 0, 1, -6.25, 2, 1, -6.25, 2, 1, -7.75, -6.75, 2.5, -7.25, -8.25, 2.5, -5.75, -8.25, 2.5, -5.25, -7.25, 2.5, -4.75, -5.75, 2.5, -6.25, -6.25, 2.5, -7.25, -6.75, 0.5, -6.75, -7.75, 0.5, -5.75, -7.75, 0.5, -5.25, -7.25, 0.5, -5.25, -6.25, 0.5, -6.25, -6.25, 0.5, -6.75, -10.5, 0.5, -0.5, -10.5, 0.5, 0.5, -9.5, 0.5, 0.75, -9.5, 0.5, -0.75, -9.5, 0.5, -0.75, -9.5, 0.5, 0.75, -7, 0.5, 2.75, -9.5, 0.5, 5, -8.25, 0.5, 5, -8.25, 0.5, 4, -8, 0.5, -3.5, -9.5, 0.5, -5, -9.5, 0.5, -0.75, -9.5, 0.5, 5, -8.25, 0.5, 4, -7, 0.5, 2.75, -9.5, 0.5, 0.75, -5, 0.5, 2.75, -1.75, 0.5, 1, -1.75, 0.5, -1, -7.25, 0.5, -3.5, -9.5, 0.5, -0.75, -7, 0.5, 2.75, -4, 0.5, 3.75, -1.25, 0.5, 1.5, -1.75, 0.5, 1, -5, 0.5, 2.75, -7.25, 0.5, -3.5, -8, 0.5, -3.5, -9.5, 0.5, -0.75, -1.75, 0.5, -1, -1.25, 0.5, -1.5, -7.25, 0.5, -3.5, -0.75, 2.5, -0.5, -0.5, 2.5, 0.75, 0.75, 2.5, 0.5, 0.5, 2.5, -0.75, -0.5, 0.5, -0.25, -0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, -0.5, 4.25, 0.5, 9.5, 4.5, 0.5, 10.5, 5.5, 0.5, 10.5, 5.75, 0.5, 9.5, 6.5, 0.5, 2.5, 5.5, 0.5, 2.5, 9.5, 0.5, 1.25, 7.5, 0.5, 1.25, 6.5, 0.5, 2.5, 5.75, 0.5, 9.5, 9.5, 0.5, 9.5, 4.5, 0.5, 1.5, 4.5, 0.5, 0.75, 2, 0.5, 0.5, 4.5, 0.5, 1.5, 2, 0.5, 0.5, 1.5, 0.5, 1.25, 1.5, 0.5, 9.5, 4.25, 0.5, 9.5, 5.5, 0.5, 2.5, 5.75, 2.75, 0.75, 5.75, 2.75, 1.25, 6.25, 2.75, 1.25, 6.25, 2.75, 0.75, -0.5, 0.5, 10.5, 0.75, 0.5, 10.5, 0.75, 0.5, 9.75, -0.75, 0.5, 9.5, -3.75, 0.5, 6, -5, 0.5, 7.25, -0.75, 0.5, 9.5, -8.25, 0.5, 6, -8.25, 0.5, 5, -9.5, 0.5, 5, -0.75, 0.5, 9.5, 0.75, 0.5, 9.75, 1.5, 0.5, 9.5, -7, 0.5, 7.25, -8.25, 0.5, 6, -9.5, 0.5, 5, -9.5, 0.5, 9.5, -1.25, 0.5, 1.5, -4, 0.5, 3.75, -3.75, 0.5, 6, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1, 0.5, 1.75, -5, 0.5, 7.25, -7, 0.5, 7.25, -9.5, 0.5, 9.5, -0.75, 0.5, 9.5, 1.5, 0.5, 9.5, 1.5, 0.5, 1.25, 1, 0.5, 1.75, -4.75, 2.5, 5.5, -5.5, 2.5, 3.75, -7.25, 2.5, 4.5, -7.25, 2.5, 5.5, -6.5, 2.5, 6.25, -5.5, 2.5, 6.25, -5.5, 2.5, 3.75, -6.5, 2.5, 3.75, -7.25, 2.5, 4.5, -4.75, 2.5, 5.5, -4.75, 2.5, 4.5, -5.5, 2.5, 3.75, -7, 0.5, 4.75, -6.25, 0.5, 6, -5, 0.5, 5.25, -5.75, 0.5, 4, 5.5, 0.5, 10.5, 4.5, 0.5, 10.5, 4.25, 0.5, 11.5, 5.75, 0.5, 11.5, -9.5, 0.5, 21, -9.5, 0.5, 30.5, 0, 0.5, 30.5, 9.5, 0.5, 21, 1, 0.5, 11.5, -0.75, 0.5, 11.5, 1, 0.5, 11.5, 0.75, 0.5, 10.5, -0.5, 0.5, 10.5, -0.75, 0.5, 11.5, 0, 0.5, 30.5, 9.5, 0.5, 30.5, 9.5, 0.5, 21, 9.5, 0.5, 21, 9.5, 0.5, 11.5, 5.75, 0.5, 11.5, 9.5, 0.5, 21, 5.75, 0.5, 11.5, 4.25, 0.5, 11.5, 9.5, 0.5, 21, 4.25, 0.5, 11.5, 1, 0.5, 11.5, -0.75, 0.5, 11.5, -9.5, 0.5, 11.5, -9.5, 0.5, 21 )
@@ -48,7 +49,7 @@ extents = Vector3( 3, 1, 1 )
 
 [sub_resource type="Curve3D" id=24]
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0.187843, 0, 0.0939223, 0, 0, 0, 0, 0, 0, 0.34438, 0, 0.68876, 0, 0, 0, 0, 0, 0, 0.469609, 0, 1.65929, 0, 0, 0, 0, 0, 0, -0.0626154, 0, 2.47328, 0, 0, 0, 0, 0, 0, -1.40883, 0, 2.94289, 0, 0, 0, 0, 0, 0, -3.09942, 0, 2.5672, 0, 0, 0, 0, 0, 0, -4.16387, 0, 1.84713, 0, 0, 0, 0, 0, 0, -4.88394, 0, 0.313073, 0, 0, 0, 0, 0, 0, -4.79002, 0, -1.22098, 0, 0, 0, 0, 0, 0, -4.57087, 0, -2.53589, 0, 0, 0, 0, 0, 0, -3.53772, 0, -3.81949, 0, 0, 0, 0, 0, 0, -2.50458, 0, -4.35171, 0, 0, 0, 0, 0, 0, -0.406995, 0, -4.97786, 0, 0, 0, 0, 0, 0, 0.845298, 0, -4.88394, 0, 0, 0, 0, 0, 0, 2.75504, 0, -4.13256, 0, 0, 0, 0, 0, 0, 3.75688, 0, -2.78635, 0, 0, 0, 0, 0, 0, 4.06995, 0, -1.40883, 0, 0, 0, 0, 0, 0, 4.19518, 0.5, 0.438302, 0, 0, 0, 0, 0, 0, 4.10126, 0, 2.03497, 0, 0, 0, 0, 0, 0, 3.66295, 0, 3.8821, 0, 0, 0, 0, 0, 0, 2.47328, 0, 5.44747, 0, 0, 0, 0, 0, 0, 1.50275, 0, 6.91891, 0, 0, 0, 0, 0, 0, 0.68876, 0, 8.51558, 0, 0, 0, 0, 0, 0, 0.281766, 0, 9.4235, 0, 0, 0, 0, 0, 0, -0.0626154, 0, 11.7715 ),
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0.187843, 0, 0.0939223, 0, 0, 0, 0, 0, 0, 0.34438, 0, 0.68876, 0, 0, 0, 0, 0, 0, 0.469609, 0, 1.65929, 0, 0, 0, 0, 0, 0, -0.0626154, 0, 2.47328, 0, 0, 0, 0, 0, 0, -1.40883, 0, 2.94289, 0, 0, 0, 0, 0, 0, -3.09942, 0, 2.5672, 0, 0, 0, 0, 0, 0, -4.16387, 0, 1.84713, 0, 0, 0, 0, 0, 0, -4.88394, 0, 0.313073, 0, 0, 0, 0, 0, 0, -4.79002, 0, -1.22098, 0, 0, 0, 0, 0, 0, -4.57087, 0, -2.53589, 0, 0, 0, 0, 0, 0, -3.53772, 0, -3.81949, 0, 0, 0, 0, 0, 0, -2.50458, 0, -4.35171, 0, 0, 0, 0, 0, 0, -0.406995, 0, -4.97786, 0, 0, 0, 0, 0, 0, 0.845298, 0, -4.88394, 0, 0, 0, 0, 0, 0, 2.75504, 0, -4.13256, 0, 0, 0, 0, 0, 0, 3.75688, 0, -2.78635, 0, 0, 0, 0, 0, 0, 4.06995, 0, -1.40883, 0, 0, 0, 0, 0, 0, 4.19518, 0.5, 0.438302, 0, 0, 0, 0, 0, 0, 3.92907, 0, 2.34805, 0, 0, 0, 0, 0, 0, 3.39684, 0, 3.8508, 0, 0, 0, 0, 0, 0, 2.47328, 0, 5.44747, 0, 0, 0, 0, 0, 0, 1.50275, 0, 6.91891, 0, 0, 0, 0, 0, 0, 0.68876, 0, 8.51558, 0, 0, 0, 0, 0, 0, 0.281766, 0, 9.4235, 0, 0, 0, 0, 0, 0, -0.0626154, 0, 11.7715 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 }
 
@@ -270,7 +271,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, 1
 shape = SubResource( 3 )
 
 [node name="Cauldron" parent="NavigationMeshInstance" instance=ExtResource( 20 )]
-time_to_complete_minutes = 12.0
+time_to_complete_minutes = 0.1
 
 [node name="CauldronNavPosition3D1" type="Position3D" parent="NavigationMeshInstance/Cauldron"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
@@ -284,22 +285,73 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
 [node name="CauldronNavPosition3D4" type="Position3D" parent="NavigationMeshInstance/Cauldron"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
 
-[node name="Path" type="Path" parent="NavigationMeshInstance/Cauldron"]
+[node name="GreenVaporParticles" type="Spatial" parent="NavigationMeshInstance/Cauldron"]
+
+[node name="Tween" type="Tween" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles"]
+
+[node name="Path1" type="Path" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 curve = SubResource( 24 )
 
-[node name="PathFollow" type="PathFollow" parent="NavigationMeshInstance/Cauldron/Path"]
+[node name="PathFollow" type="PathFollow" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles/Path1"]
 transform = Transform( -0.0730704, -0.0188936, -0.997147, 0.0253087, 0.999463, -0.0207921, 0.997006, -0.0267558, -0.0725533, 0.187843, 0, 0.0939223 )
 
-[node name="Particles" type="Particles" parent="NavigationMeshInstance/Cauldron/Path/PathFollow"]
+[node name="Particles" type="Particles" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles/Path1/PathFollow"]
+emitting = false
 amount = 50
-preprocess = 1.0
 randomness = 0.74
 local_coords = false
 process_material = SubResource( 27 )
 draw_pass_1 = SubResource( 28 )
 
-[node name="Tween" type="Tween" parent="NavigationMeshInstance/Cauldron/Path"]
+[node name="Path2" type="Path" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.5, 0 )
+curve = SubResource( 24 )
+
+[node name="PathFollow" type="PathFollow" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles/Path2"]
+transform = Transform( -0.0730704, -0.0188936, -0.997147, 0.0253087, 0.999463, -0.0207921, 0.997006, -0.0267558, -0.0725533, 0.187843, 0, 0.0939223 )
+
+[node name="Particles" type="Particles" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles/Path2/PathFollow"]
+emitting = false
+amount = 50
+randomness = 0.74
+local_coords = false
+process_material = SubResource( 27 )
+draw_pass_1 = SubResource( 28 )
+
+[node name="Path3" type="Path" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.5, 0 )
+curve = SubResource( 24 )
+
+[node name="PathFollow" type="PathFollow" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles/Path3"]
+transform = Transform( -0.0730704, -0.0188936, -0.997147, 0.0253087, 0.999463, -0.0207921, 0.997006, -0.0267558, -0.0725533, 0.187843, 0, 0.0939223 )
+
+[node name="Particles" type="Particles" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles/Path3/PathFollow"]
+emitting = false
+amount = 50
+randomness = 0.74
+local_coords = false
+process_material = SubResource( 27 )
+draw_pass_1 = SubResource( 28 )
+
+[node name="Path4" type="Path" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.5, 0 )
+curve = SubResource( 24 )
+
+[node name="PathFollow" type="PathFollow" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles/Path4"]
+transform = Transform( -0.0730704, -0.0188936, -0.997147, 0.0253087, 0.999463, -0.0207921, 0.997006, -0.0267558, -0.0725533, 0.187843, 0, 0.0939223 )
+
+[node name="Particles" type="Particles" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles/Path4/PathFollow"]
+emitting = false
+amount = 50
+randomness = 0.74
+local_coords = false
+process_material = SubResource( 27 )
+draw_pass_1 = SubResource( 28 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles"]
+stream = ExtResource( 35 )
+volume_db = -12.0
 
 [node name="ManaPool" parent="NavigationMeshInstance" instance=ExtResource( 32 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 5 )
@@ -954,3 +1006,7 @@ rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlane")
 [node name="ZombieWanderer5" parent="Wanderers/East" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2439, 0, -3.38994 )
 rand_point_plane = NodePath("../NavigationMeshInstance/EastRandomPointPlane")
+
+[connection signal="game_won_sequence_began" from="NavigationMeshInstance/Cauldron" to="." method="_on_Cauldron_game_won_sequence_began"]
+
+[editable path="Hud"]
