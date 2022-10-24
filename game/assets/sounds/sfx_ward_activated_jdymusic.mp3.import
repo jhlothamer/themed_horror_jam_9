@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_ward_activated_jdymusic.mp3-56abe4962f038898de9977625f41269a.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx_ward_activated_jdymusic.mp3"
+dest_files=[ "res://.import/sfx_ward_activated_jdymusic.mp3-56abe4962f038898de9977625f41269a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

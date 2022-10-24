@@ -4,7 +4,7 @@ const VOLUME_SETTINGS_FILE_PATH = "user://volume_settings.json"
 
 
 var volume_settings := {}
-
+var ignore_audio_node_additions := false
 
 var _audio_nodes_by_scene_path := {}
 var _audio_nodes_to_scene_path := {}
@@ -68,6 +68,8 @@ func _add_or_update_audio_node(scene_file_and_path: Array, node: Node) -> void:
 	
 
 func _on_node_added(node : Node):
+	if ignore_audio_node_additions:
+		return
 	if node is AudioStreamPlayer or node is AudioStreamPlayer2D or node is AudioStreamPlayer3D:
 		var scene_file_and_local_path := _get_scene_file_and_local_path(node)
 		_add_or_update_audio_node(scene_file_and_local_path, node)
@@ -115,3 +117,21 @@ func save_volume_settings() -> void:
 	FileUtil.save_json_data(VOLUME_SETTINGS_FILE_PATH, volume_settings, "\t")
 
 
+func can_play_audio_node(scene_file: String, local_path: String) -> bool:
+	var scene_file_and_path = [scene_file, local_path]
+	var key = "%s::%s" % scene_file_and_path
+	return _audio_nodes_by_scene_path.has(key) and _audio_nodes_by_scene_path[key]
+
+
+func get_duplicate_audio_node(scene_file: String, local_path: String):
+	var scene_file_and_path = [scene_file, local_path]
+	var key = "%s::%s" % scene_file_and_path
+	if !_audio_nodes_by_scene_path.has(key):
+		return null
+	var audio_nodes: Array = _audio_nodes_by_scene_path[key]
+	if !audio_nodes:
+		return null
+	var audio_node:Node = _audio_nodes_by_scene_path[key][0]
+	var dup = audio_node.duplicate()
+	dup.stop()
+	return dup

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=1]
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/models/crystal_ball_matrix/crystal_ball_matrix.gltf" type="PackedScene" id=6]
 [ext_resource path="res://assets/models/crystal_ball_matrix/desk/desk_crystal_ball_matrix.gltf" type="PackedScene" id=7]
 [ext_resource path="res://assets/models/runes_matrix/crystal_ball_runes/runes spinning.material" type="Material" id=8]
+[ext_resource path="res://assets/sounds/sfx_ward_activated_jdymusic.mp3" type="AudioStream" id=9]
+[ext_resource path="res://assets/sounds/sfx_ward_deactivated_jdymusic.mp3" type="AudioStream" id=10]
 
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 1.76718, 1, 0.930293 )
@@ -95,6 +97,16 @@ mesh = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ActiveIndicator"]
 anims/CircleAction001 = SubResource( 4 )
+
+[node name="WardActivatedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -12.0
+bus = "SoundFx"
+
+[node name="WardDeactivatedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -12.0
+bus = "SoundFx"
 
 [connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
 [connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
