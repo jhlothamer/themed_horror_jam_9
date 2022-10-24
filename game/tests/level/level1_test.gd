@@ -1,21 +1,20 @@
 extends "res://scenes/levels/level1.gd"
 
 
-onready var _tween:Tween = $NavigationMeshInstance/Cauldron/GreenVaporParticles/Tween
-onready var _path_follows := [
-	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path1/PathFollow,
-	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path2/PathFollow,
-	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path3/PathFollow,
-	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path4/PathFollow,
-]
-onready var _particles := [
-	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path1/PathFollow/Particles,
-	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path2/PathFollow/Particles,
-	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path3/PathFollow/Particles,
-	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path4/PathFollow/Particles,
-]
-onready var _sound = $NavigationMeshInstance/Cauldron/GreenVaporParticles/AudioStreamPlayer
-onready var _cauldron = $NavigationMeshInstance/Cauldron
+#onready var _tween:Tween = $NavigationMeshInstance/Cauldron/GreenVaporParticles/Tween
+#onready var _path_follows := [
+#	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path1/PathFollow,
+#	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path2/PathFollow,
+#	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path3/PathFollow,
+#	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path4/PathFollow,
+#]
+#onready var _particles := [
+#	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path1/PathFollow/Particles,
+#	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path2/PathFollow/Particles,
+#	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path3/PathFollow/Particles,
+#	$NavigationMeshInstance/Cauldron/GreenVaporParticles/Path4/PathFollow/Particles,
+#]
+#onready var _cauldron = $NavigationMeshInstance/Cauldron
 
 func _ready():
 	pass

@@ -99,6 +99,11 @@ anims/CircleAction004 = SubResource( 5 )
 [node name="spellbook_pedesta_ilikethepixies" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.1, 0 )
 
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.03844, -0.420849 )
+light_color = Color( 0.65098, 0, 1, 1 )
+omni_range = 3.0
+
 [connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
 [connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
 

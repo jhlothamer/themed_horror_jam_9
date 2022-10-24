@@ -56,7 +56,7 @@ _data = {
 [sub_resource type="Curve" id=25]
 _data = [ Vector2( 0, 0.362245 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=26]
+[sub_resource type="CurveTexture" id=30]
 curve = SubResource( 25 )
 
 [sub_resource type="ParticlesMaterial" id=27]
@@ -68,9 +68,9 @@ radial_accel = 0.1
 angle = 360.0
 angle_random = 0.67
 scale = 2.0
-scale_curve = SubResource( 26 )
+scale_curve = SubResource( 30 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=31]
 flags_unshaded = true
 flags_do_not_receive_shadows = true
 params_blend_mode = 1
@@ -82,7 +82,7 @@ albedo_color = Color( 0, 0.709804, 0.027451, 1 )
 albedo_texture = ExtResource( 34 )
 
 [sub_resource type="QuadMesh" id=28]
-material = SubResource( 6 )
+material = SubResource( 31 )
 
 [sub_resource type="Environment" id=1]
 background_mode = 1

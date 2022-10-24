@@ -53,3 +53,4 @@ func hide_potion() -> void:
 
 func _on_InteractionHelper_interaction_completion_began():
 	emit_signal("game_won_sequence_began")
+	_bubble_particles.emitting = false
