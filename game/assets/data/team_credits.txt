@@ -1,0 +1,44 @@
+[table=3][cell]Designer/Producer[/cell]
+[cell]Frank[/cell]
+[cell][url=https://frankekova.wixsite.com/frankkova]https://frankekova.wixsite.com/frankkova[/url][/cell]
+
+[cell][/cell]
+[cell][/cell]
+[cell][/cell]
+
+
+[cell]Developer[/cell]
+[cell]Jason Lothamer[/cell]
+[cell][url=https://jlothamer.itch.io/]https://jlothamer.itch.io/[/url][/cell]
+[cell][/cell]
+[cell][/cell]
+[cell][url=https://www.youtube.com/c/JasonLothamer]https://www.youtube.com/c/JasonLothamer[/url][/cell]
+
+[cell][/cell]
+[cell][/cell]
+[cell][/cell]
+
+[cell]Lead Artist[/cell]
+[cell]Lindsey "Kit" Kitsis ilikethepixies[/cell]
+[cell][url=https://ilikethepixies.itch.io/]https://ilikethepixies.itch.io/[/url][/cell]
+
+[cell][/cell]
+[cell][/cell]
+[cell][/cell]
+
+[cell]Composer/Sound Designer[/cell]
+[cell]John David Young[/cell]
+[cell][url=https://linktr.ee/johndavidyoung/]https://linktr.ee/johndavidyoung/[/url][/cell]
+[cell][/cell]
+[cell][/cell]
+[cell][url=https://jdymusic.itch.io/]https://jdymusic.itch.io/[/url][/cell]
+
+[cell][/cell]
+[cell][/cell]
+[cell][/cell]
+
+[cell]Artist[/cell]
+[cell]MATRIX[/cell]
+[cell][url=https://www.instagram.com/cosmos336699/]https://www.instagram.com/cosmos336699/[/url][/cell]
+
+[/table]

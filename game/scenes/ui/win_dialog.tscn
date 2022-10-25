@@ -30,7 +30,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 564.0
+margin_right = 619.0
 margin_bottom = 232.0
 theme = ExtResource( 2 )
 text = "You Won!"
@@ -38,7 +38,7 @@ align = 1
 
 [node name="RetryBtn" parent="VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 236.0
-margin_right = 564.0
+margin_right = 619.0
 margin_bottom = 351.0
 text = "Play Again"
 align = 1
@@ -46,7 +46,7 @@ scene_to_load = "res://scenes/levels/level1.tscn"
 
 [node name="MainMenuBtn" parent="VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 355.0
-margin_right = 564.0
+margin_right = 619.0
 margin_bottom = 470.0
 text = "Main Menu"
 align = 1
@@ -54,4 +54,5 @@ scene_to_load = "res://scenes/etc/title.tscn"
 
 [node name="WinSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -9.0
 bus = "SoundFx"

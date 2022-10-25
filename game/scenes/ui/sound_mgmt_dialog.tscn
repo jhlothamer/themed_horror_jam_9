@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/ui/dialog_background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ui/sound_mgmt_dialog.gd" type="Script" id=2]
 [ext_resource path="res://assets/themes/title_labels.tres" type="Theme" id=3]
 [ext_resource path="res://assets/themes/global.tres" type="Theme" id=4]
 [ext_resource path="res://assets/fonts/Jellee-Roman.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/images/ui/settings_right_small.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
@@ -56,7 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/title_button_font = SubResource( 2 )
 custom_fonts/font = SubResource( 1 )
-columns = 2
+columns = 3
 hide_root = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -96,6 +97,14 @@ margin_bottom = 115.0
 text = "OK"
 flat = true
 
+[node name="PlayBtnTextureRect" type="TextureRect" parent="."]
+margin_left = -239.0
+margin_top = 125.0
+margin_right = -199.0
+margin_bottom = 165.0
+texture = ExtResource( 6 )
+
+[connection signal="button_pressed" from="MarginContainer/VBoxContainer/Control/Tree" to="." method="_on_Tree_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CancelBtn" to="." method="_on_CancelBtn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SaveBtn" to="." method="_on_SaveBtn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/OKBtn" to="." method="_on_OKBtn_pressed"]

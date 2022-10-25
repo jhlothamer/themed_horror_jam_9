@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/themes/title_labels.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/components/transition_button/transition_button.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ui/dialog_background.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/ui/game_over_dialog.gd" type="Script" id=4]
 [ext_resource path="res://assets/themes/global.tres" type="Theme" id=5]
+[ext_resource path="res://assets/sounds/sfx_witch_death_jdymusic.mp3" type="AudioStream" id=6]
 
 [node name="GameOverDialog" type="Control"]
 anchor_right = 1.0
@@ -25,7 +26,7 @@ margin_right = 333.5
 margin_bottom = 235.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 667.0
+margin_right = 727.0
 margin_bottom = 232.0
 theme = ExtResource( 1 )
 text = "Game Over"
@@ -33,7 +34,7 @@ align = 1
 
 [node name="RetryBtn" parent="VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 236.0
-margin_right = 667.0
+margin_right = 727.0
 margin_bottom = 351.0
 text = "Retry"
 align = 1
@@ -41,8 +42,12 @@ scene_to_load = "res://scenes/levels/level1.tscn"
 
 [node name="MainMenuBtn" parent="VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 355.0
-margin_right = 667.0
+margin_right = 727.0
 margin_bottom = 470.0
 text = "Main Menu"
 align = 1
 scene_to_load = "res://scenes/etc/title.tscn"
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.0

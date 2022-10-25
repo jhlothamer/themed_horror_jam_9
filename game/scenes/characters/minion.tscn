@@ -129,6 +129,7 @@ tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 0.70176, 0.70176, 0.70
 
 [node name="Minion" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
+death_sound_node_path = NodePath("DeathSound")
 allowed_interactable_types = [ "destructable", "wood_pile" ]
 
 [node name="Shoot" parent="StateMachine" index="4"]
@@ -144,25 +145,33 @@ mesh = SubResource( 19 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05348, 0 )
 mesh = SubResource( 27 )
 
-[node name="DeathSound" type="AudioStreamPlayer3D" parent="." index="7"]
-stream = ExtResource( 4 )
-unit_db = 12.0
-bus = "SoundFx"
-
 [node name="Damaged1" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="0"]
 stream = ExtResource( 2 )
-unit_db = 12.0
+attenuation_model = 3
+unit_db = -7.0
+unit_size = 10.0
+max_db = 6.0
 bus = "SoundFx"
 
 [node name="Damaged2" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="1"]
 stream = ExtResource( 3 )
-unit_db = 12.0
+attenuation_model = 3
+unit_db = -7.0
+unit_size = 10.0
+max_db = 6.0
 bus = "SoundFx"
 
-[node name="character_selection_matrix" parent="." index="12"]
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="." index="7"]
+stream = ExtResource( 4 )
+attenuation_model = 3
+unit_db = -7.0
+max_db = 6.0
+bus = "SoundFx"
+
+[node name="character_selection_matrix" parent="." index="11"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
-[node name="SelectionMarkerRemoteTransform" parent="." index="13"]
+[node name="SelectionMarkerRemoteTransform" parent="." index="12"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
 [node name="FireFromPosition3D" type="Position3D" parent="." index="14"]
@@ -174,7 +183,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0
 [node name="goblin_ilikethepixies" parent="goblinanimations_frank_ilikethepixes/Armature/Skeleton" index="0"]
 layers = 3
 
-[node name="SpellActiveIndicator" type="Spatial" parent="." index="17"]
+[node name="SpellActiveIndicator" type="Spatial" parent="." index="16"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 visible = false
 

@@ -68,17 +68,17 @@ mesh_instances_to_outline = [ NodePath("../door_matrix/DoorWaySize005"), NodePat
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="0"]
 stream = ExtResource( 5 )
-unit_db = 12.0
+unit_db = 18.0
 bus = "SoundFx"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="1"]
 stream = ExtResource( 6 )
-unit_db = 12.0
+unit_db = 17.0
 bus = "SoundFx"
 
 [node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="2"]
 stream = ExtResource( 4 )
-unit_db = 12.0
+unit_db = 16.0
 bus = "SoundFx"
 
 [node name="HealthBar" parent="." index="4"]

@@ -88,7 +88,7 @@ speed_regain_on_active_spell = 1.0
 
 [node name="RapairingSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 3 )
-unit_db = 12.0
+unit_db = 21.0
 bus = "SoundFx"
 
 [node name="EnemyAgressionChangeArea" parent="." instance=ExtResource( 7 )]
