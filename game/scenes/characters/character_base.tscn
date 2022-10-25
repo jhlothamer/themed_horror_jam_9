@@ -175,12 +175,12 @@ script = ExtResource( 10 )
 
 [node name="SelectedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -12.0
+volume_db = -13.0
 bus = "SoundFx"
 
 [node name="DenyInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
-volume_db = -12.0
+volume_db = -15.0
 bus = "SoundFx"
 
 [node name="StateDebugLabel3D" type="Label3D" parent="."]
@@ -200,7 +200,7 @@ remote_path = NodePath("../character_selection_matrix")
 
 [node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 15 )
-unit_db = 24.0
+unit_db = 20.0
 bus = "SoundFx"
 
 [connection signal="state_changed" from="StateMachine" to="." method="_on_StateMachine_state_changed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://scenes/managers/character_mgr.gd" type="Script" id=1]
 [ext_resource path="res://scenes/managers/navigation_point_mgr.gd" type="Script" id=2]
@@ -40,7 +40,6 @@
 [ext_resource path="res://assets/music/music_intensity2_loop_jdymusic.ogg" type="AudioStream" id=38]
 [ext_resource path="res://assets/music/music_intensity3_loop_jdymusic.ogg" type="AudioStream" id=39]
 [ext_resource path="res://scenes/components/enemy_detection_area.tscn" type="PackedScene" id=40]
-[ext_resource path="res://assets/sounds/sfx_cauldron_interaction_complete_jdymusic.mp3" type="AudioStream" id=41]
 [ext_resource path="res://assets/images/cloud.png" type="Texture" id=42]
 
 [sub_resource type="NavigationMesh" id=4]
@@ -238,15 +237,15 @@ level_audio_players = [ NodePath("../../MusicMainTrack"), NodePath("Level1Intens
 
 [node name="Level1IntensityMusic" type="AudioStreamPlayer" parent="Mgrs/DynamicMusicMgr"]
 stream = ExtResource( 37 )
-volume_db = -12.0
+volume_db = -16.0
 
 [node name="Level2IntensityMusic" type="AudioStreamPlayer" parent="Mgrs/DynamicMusicMgr"]
 stream = ExtResource( 38 )
-volume_db = -12.0
+volume_db = -16.0
 
 [node name="Level3IntensityMusic" type="AudioStreamPlayer" parent="Mgrs/DynamicMusicMgr"]
 stream = ExtResource( 39 )
-volume_db = -12.0
+volume_db = -16.0
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 4 )
@@ -375,10 +374,6 @@ randomness = 0.74
 local_coords = false
 process_material = SubResource( 29 )
 draw_pass_1 = SubResource( 30 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NavigationMeshInstance/Cauldron/GreenVaporParticles"]
-stream = ExtResource( 41 )
-volume_db = -12.0
 
 [node name="ManaPool" parent="NavigationMeshInstance" instance=ExtResource( 15 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -6, 0, 6 )
@@ -553,21 +548,21 @@ camera_feed_viewports_parent = NodePath("../CrystalBallCameras")
 [node name="AtmosphericNoises" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 4 )
-volume_db = -20.0
+volume_db = -9.0
 autoplay = true
 bus = "SoundFx"
 
 [node name="MusicDarkAmbience" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 20 )
-volume_db = -12.0
+volume_db = -15.0
 autoplay = true
 bus = "Music"
 
 [node name="MusicMainTrack" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 35 )
-volume_db = -12.0
+volume_db = -13.0
 autoplay = true
 bus = "Music"
 

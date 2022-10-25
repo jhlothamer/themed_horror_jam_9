@@ -4918,17 +4918,17 @@ script = ExtResource( 2 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="DeathSounds" index="0"]
 stream = ExtResource( 3 )
-unit_db = 24.0
+unit_db = 22.0
 bus = "SoundFx"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="DeathSounds" index="1"]
 stream = ExtResource( 4 )
-unit_db = 24.0
+unit_db = 22.0
 bus = "SoundFx"
 
 [node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="DeathSounds" index="2"]
 stream = ExtResource( 5 )
-unit_db = 24.0
+unit_db = 22.0
 bus = "SoundFx"
 
 [node name="DamageSounds" type="Spatial" parent="." index="7"]
@@ -4936,17 +4936,17 @@ script = ExtResource( 2 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="DamageSounds" index="0"]
 stream = ExtResource( 6 )
-unit_db = 24.0
+unit_db = 22.0
 bus = "SoundFx"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="DamageSounds" index="1"]
 stream = ExtResource( 9 )
-unit_db = 24.0
+unit_db = 22.0
 bus = "SoundFx"
 
 [node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="DamageSounds" index="2"]
 stream = ExtResource( 8 )
-unit_db = 24.0
+unit_db = 22.0
 bus = "SoundFx"
 
 [node name="AttackSounds" type="Spatial" parent="." index="8"]
@@ -4954,12 +4954,12 @@ script = ExtResource( 2 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="AttackSounds" index="0"]
 stream = ExtResource( 12 )
-unit_db = 24.0
+unit_db = 23.0
 bus = "SoundFx"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="AttackSounds" index="1"]
 stream = ExtResource( 10 )
-unit_db = 24.0
+unit_db = 23.0
 bus = "SoundFx"
 
 [node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="AttackSounds" index="2"]

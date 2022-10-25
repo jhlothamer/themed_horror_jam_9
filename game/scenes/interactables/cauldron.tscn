@@ -222,12 +222,12 @@ bus = "SoundFx"
 
 [node name="InteruptInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -12.0
+volume_db = -15.0
 bus = "SoundFx"
 
 [node name="CompleteInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -12.0
+volume_db = -16.0
 bus = "SoundFx"
 
 [node name="FireMeshInstance" type="MeshInstance" parent="."]

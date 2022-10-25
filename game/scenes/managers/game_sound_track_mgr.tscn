@@ -13,5 +13,5 @@ scenes = [ "res://scenes/etc/title.tscn", "res://scenes/etc/how_to_play.tscn", "
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TitleSoundTrack"]
 stream = ExtResource( 3 )
-volume_db = -24.0
+volume_db = -15.0
 bus = "Music"

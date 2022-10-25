@@ -77,7 +77,7 @@ interaction_interupt_sound = NodePath("../InterruptSound")
 
 [node name="InterruptSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -6.0
+volume_db = -17.0
 bus = "SoundFx"
 
 [node name="StartLoopSound" type="AudioStreamPlayer" parent="."]
