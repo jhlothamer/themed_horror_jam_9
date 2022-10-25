@@ -60,15 +60,15 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=22]
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0.588235, 0.588235, 0.588235, 1 )
 shader_param/progress_color = Color( 0.239216, 0.239216, 0.239216, 1 )
-shader_param/progress_value = 0.0
+shader_param/progress_value = 1.0
 
 [sub_resource type="QuadMesh" id=21]
 resource_local_to_scene = true
-material = SubResource( 10 )
+material = SubResource( 22 )
 size = Vector2( 1, 0.1 )
 
 [node name="TestInteractable" type="KinematicBody"]
@@ -89,13 +89,13 @@ mesh = SubResource( 20 )
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 1 )
-mesh_instance_to_outline = NodePath("../MeshInstance")
 select_on_click = false
 button_index = 2
 mouse_over_color = Color( 1, 0.72549, 0.2, 1 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19535, -0.00598884 )
+visible = false
 mesh = SubResource( 21 )
 max_value = 10.0
 background_color = Color( 0.588235, 0.588235, 0.588235, 1 )
