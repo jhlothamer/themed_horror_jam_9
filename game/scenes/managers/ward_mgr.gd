@@ -10,6 +10,7 @@ export var east_camera: NodePath
 export var north_ward_area: NodePath
 export var west_ward_area: NodePath
 export var east_ward_area: NodePath
+export var allow_multiple_wards := false
 
 
 onready var _north_camera: Camera = get_node(north_camera)
@@ -77,7 +78,7 @@ func _set_camera_feed_ward(camera_name: String, warded: bool) -> void:
 
 
 func place_ward() -> bool:
-	if _are_any_ward_areas_active():
+	if !allow_multiple_wards and _are_any_ward_areas_active():
 		return false
 	
 	var curr_camera_name = _get_current_camera_feed_name()
