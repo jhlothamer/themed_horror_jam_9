@@ -9,8 +9,8 @@ Zombies come in waves and are either low, medium or high aggression. Low aggress
 
 Not all characters can interact with all stations. (A station is an interact-able thing - like the cauldron, mana pool, doors and windows, wood pile, crystal ball and spellbook.) By default the goblin minions can collect wood from the wood pile in order to affect repairs to doors and windows. They can also tend the potion brewing in the cauldron. The witch can interact with the cauldron, mana pool, crystal ball and spellbook. When the spellbook is activated, this gives the minions the ability to collect mana from the mana pool and increases the rate they stir the cauldron and repair windows and doors. When a character has enough mana, they can shoot zombies with a magic missile. The crystal ball can only ever be used by the witch. This is used to see outside the cabin as well as cast a ward in one of the view directions that will cause up to 5 zombies to retreat.
 
-<br>
-##Team
+## Team
+
 |Role |Name |Links |
 |-----------------------|-----------------------------------|-------------------------------------------------------------------------------------|
 |Designer/Producer |Frank |[https://frankekova.wixsite.com/frankkova](https://frankekova.wixsite.com/frankkova) |
