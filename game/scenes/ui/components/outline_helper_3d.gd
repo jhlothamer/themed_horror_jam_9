@@ -1,7 +1,6 @@
 class_name OutlineHelper3D
 extends Node
 
-#const OUTLINE_SHADER_MATERIAL = preload("res://assets/materials_shaders/fresnel_outline_mat.tres")
 const OUTLINE_SHADER_MATERIAL = preload("res://assets/materials_shaders/outline_mat.tres")
 const CONSTANT_OUTLINE_MIN_WIDTH = .3
 const OUTLINE_ON_WIDTH = 1.0
@@ -77,9 +76,12 @@ func _ready():
 			return
 		_selected_indicator.visible = false
 	
-	_parent.connect("mouse_entered", self, "_on_parent_mouse_enter")
-	_parent.connect("mouse_exited", self, "_on_parent_mouse_exit")
-	_parent.connect("input_event", self, "_on_parent_input_event")
+	if OK != _parent.connect("mouse_entered", self, "_on_parent_mouse_enter"):
+		printerr("OutlineHelper3D: could not connect to mouse_entered")
+	if OK != _parent.connect("mouse_exited", self, "_on_parent_mouse_exit"):
+		printerr("OutlineHelper3D: could not connect to mouse_exited")
+	if OK != _parent.connect("input_event", self, "_on_parent_input_event"):
+		printerr("OutlineHelper3D: could not connect to input_event")
 	SignalMgr.register_publisher(self, "selected")
 	SignalMgr.register_subscriber(self, "selected")
 	if !keep_selected_on_no_selectable_clicked:
@@ -94,7 +96,7 @@ func _on_parent_mouse_exit():
 	_hide_outline()
 
 
-func _on_parent_input_event(camera, event, position, normal, shape_idx):
+func _on_parent_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == button_index:
 		if select_on_click:
 			if !selected:

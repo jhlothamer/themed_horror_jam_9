@@ -1,9 +1,11 @@
 class_name Destructable
 extends StaticBody
 
+
 export var starting_health := 100
 export var death_sound_node_path: NodePath
 export var disable_collision_on_destroy := true
+
 
 onready var death_sound:AudioStreamPlayer3D = get_node_or_null(death_sound_node_path)
 onready var damaged_sound:RandomAudioStreamPlayer3D = $DamagedRandomAudioStreamPlayer3D

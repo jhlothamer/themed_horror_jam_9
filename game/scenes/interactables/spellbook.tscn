@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/interactables/spellbook.gd" type="Script" id=1]
-[ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/components/outline_helper_3d.gd" type="Script" id=2]
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=3]
 [ext_resource path="res://assets/sounds/sfx_book_interaction_interrupt_jdymusic.mp3" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/sfx_book_interaction_start_loop_jdymusic.mp3" type="AudioStream" id=5]

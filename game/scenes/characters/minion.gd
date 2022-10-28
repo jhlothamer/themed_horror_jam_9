@@ -15,7 +15,6 @@ var _looping_animations := [
 	"Idle",
 	"Walking",
 	"Cauldron",
-	"Crystal Ball",
 	"Manapool",
 	"Spellbook",
 	"Repair",
@@ -27,7 +26,6 @@ var _interactable_object_name := ""
 var _interact_state_animations_for_object := {
 	"Cauldron": "Cauldron",
 	"ManaPool": "Manapool",
-	"CrystalBall": "Idle", #"Crystal Ball",
 	"Spellbook": "Spellbook",
 	"Destructable": "Repair",
 	"WoodPile": "Gather Wood",

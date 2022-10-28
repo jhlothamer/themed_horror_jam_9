@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/models/cauldron_matrix/cauldron_matrix.gltf" type="PackedScene" id=1]
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=2]
-[ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=3]
+[ext_resource path="res://scenes/ui/components/outline_helper_3d.gd" type="Script" id=3]
 [ext_resource path="res://scenes/ui/components/interaction_progress_bar_3d.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/interactables/cauldron.gd" type="Script" id=5]
 [ext_resource path="res://assets/sounds/sfx_cauldron_interaction_start_loop_jdymusic.mp3" type="AudioStream" id=6]

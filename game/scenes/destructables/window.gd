@@ -8,8 +8,10 @@ onready var _whole_mesh_instance = $window_broken_matrix
 onready var _zombie_teleport_position: Position3D = $ZombieTeleportPosition3D
 onready var _broken_mesh_instance = $broken_window_matrix
 
+
 var _window_climber_queue := []
 var _window_climber_active := false
+
 
 func _on_destroid() -> void:
 	_whole_mesh_instance.visible = false

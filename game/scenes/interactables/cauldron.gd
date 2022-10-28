@@ -7,6 +7,7 @@ signal game_won()
 export var time_to_complete_minutes := 20.0
 export var fire_change_time_seconds := 1.0
 
+
 onready var _progress_bar: InteractionProgressBar = $InteractionProgressBar3d
 onready var _fire_shader:ShaderMaterial = $FireMeshInstance.get("material/0")
 onready var _tween: Tween = $Tween

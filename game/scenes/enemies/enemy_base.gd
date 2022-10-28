@@ -4,7 +4,6 @@ extends KinematicBody
 signal enemy_clicked(enemy)
 
 
-
 export var horizontal_speed = 2.0
 export var disabled := false
 export var damage_amount := 5
@@ -12,6 +11,7 @@ export var damage_interval := 2.0
 export var starting_health := 30
 export var debug_state := false
 export var debug_node_name := false
+
 
 onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _state_machine: StateMachine = $StateMachine

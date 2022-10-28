@@ -2,9 +2,12 @@ extends Node
 
 const VOLUME_SETTINGS_FILE_PATH = "user://volume_settings.json"
 
-
+# volume settings of audio nodes stored by mapping their scene files to their paths in that scene and then to the volume data
 var volume_settings := {}
+# this is used to disable tracking of audio nodes being added to the scene tree
+#  Used by dialog when adding audio nodes to enable the playback of sounds to test volume settings
 var ignore_audio_node_additions := false
+
 
 var _audio_nodes_by_scene_path := {}
 var _audio_nodes_to_scene_path := {}
@@ -22,23 +25,25 @@ func _enter_tree():
 
 
 func _output_nodes_that_will_be_updated() -> void:
-	pass
 	for scene_path in volume_settings.keys():
 		for local_path in volume_settings[scene_path].keys():
 			var d: Dictionary = volume_settings[scene_path][local_path]
 			if d["original_volume_db"] != d["volume_db"]:
 				print("SoundLevelMgr: %s::%s will be changed from %d to %d" % [scene_path, local_path, d["original_volume_db"], d["volume_db"]])
 
+
 func _get_scene_file_and_local_path(node: Node) -> Array:
 	var temp = str(node.get_path())
-	var local_path = str(NodePath(temp.replace(str(node.owner.get_path()), "")))
+	var local_path = temp.replace(str(node.owner.get_path()), "")
 	return [node.owner.filename, local_path]
 
 
 func _add_or_update_audio_node(scene_file_and_path: Array, node: Node) -> void:
 	if !volume_settings.has(scene_file_and_path[0]):
 		volume_settings[scene_file_and_path[0]] = {}
+
 	var d:Dictionary = volume_settings[scene_file_and_path[0]]
+	# apply volume setting if we have a setting for the audio node
 	if d.has(scene_file_and_path[1]):
 		var volume_db: float = d[scene_file_and_path[1]]["volume_db"]
 		if node is AudioStreamPlayer:
@@ -57,6 +62,7 @@ func _add_or_update_audio_node(scene_file_and_path: Array, node: Node) -> void:
 				print("\t new volume: %d" % volume_db)
 			node.unit_db = volume_db
 	else:
+		# did not have volume setting - so save volume from node to settings
 		var volume_db: float
 		if node is AudioStreamPlayer:
 			volume_db = node.volume_db
@@ -70,10 +76,11 @@ func _add_or_update_audio_node(scene_file_and_path: Array, node: Node) -> void:
 func _on_node_added(node : Node):
 	if ignore_audio_node_additions:
 		return
+	
 	if node is AudioStreamPlayer or node is AudioStreamPlayer2D or node is AudioStreamPlayer3D:
 		var scene_file_and_local_path := _get_scene_file_and_local_path(node)
 		_add_or_update_audio_node(scene_file_and_local_path, node)
-		var key = "%s::%s" % scene_file_and_local_path
+		var key = make_scene_file_and_local_path_key(scene_file_and_local_path)
 		if !_audio_nodes_by_scene_path.has(key):
 			_audio_nodes_by_scene_path[key] = []
 		_audio_nodes_by_scene_path[key].append(node)
@@ -88,19 +95,21 @@ func _on_audio_node_tree_exited(audio_node: Node) -> void:
 		_audio_nodes_by_scene_path[key].erase(audio_node)
 
 
+func make_scene_file_and_local_path_key(scene_file_and_local_path: Array) -> String:
+	return "%s::%s" % scene_file_and_local_path
+
+
 func update_volume_levels(scene_file: String, local_path: String, volume_db: float) -> void:
-	var scene_file_and_path = [scene_file, local_path]
-	
-	if !volume_settings.has(scene_file_and_path[0]):
-		volume_settings[scene_file_and_path[0]] = {}
-	var d:Dictionary = volume_settings[scene_file_and_path[0]]
-	if !d.has(scene_file_and_path[1]):
-		d[scene_file_and_path[1]] = {"volume_db": volume_db}
+	if !volume_settings.has(scene_file):
+		volume_settings[scene_file] = {}
+	var d:Dictionary = volume_settings[scene_file]
+	if !d.has(local_path):
+		d[local_path] = {"volume_db": volume_db}
 	else:
-		d[scene_file_and_path[1]]["volume_db"] = volume_db
+		d[local_path]["volume_db"] = volume_db
 	
 	
-	var key = "%s::%s" % scene_file_and_path
+	var key = make_scene_file_and_local_path_key([scene_file, local_path])
 	if !_audio_nodes_by_scene_path.has(key):
 		return
 	
@@ -118,14 +127,12 @@ func save_volume_settings() -> void:
 
 
 func can_play_audio_node(scene_file: String, local_path: String) -> bool:
-	var scene_file_and_path = [scene_file, local_path]
-	var key = "%s::%s" % scene_file_and_path
+	var key = make_scene_file_and_local_path_key([scene_file, local_path])
 	return _audio_nodes_by_scene_path.has(key) and _audio_nodes_by_scene_path[key]
 
 
 func get_duplicate_audio_node(scene_file: String, local_path: String):
-	var scene_file_and_path = [scene_file, local_path]
-	var key = "%s::%s" % scene_file_and_path
+	var key = make_scene_file_and_local_path_key([scene_file, local_path])
 	if !_audio_nodes_by_scene_path.has(key):
 		return null
 	var audio_nodes: Array = _audio_nodes_by_scene_path[key]

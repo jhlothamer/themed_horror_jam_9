@@ -1,14 +1,17 @@
 extends CharacterBaseState
 
+
 signal interaction_about_to_start(interactable_object)
+
 
 export var navigation_agent: NodePath
 export var deny_interaction_sound: NodePath
 
+
 onready var _deny_interaction_sound: AudioStreamPlayer = get_node_or_null(deny_interaction_sound)
 
-var _nav_agent:NavigationAgent
 
+var _nav_agent:NavigationAgent
 var _target_pos: Vector3
 var _target_interactable_object: CollisionObject
 var _interaction_helper: InteractionHelper
