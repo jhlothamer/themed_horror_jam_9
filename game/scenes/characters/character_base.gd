@@ -15,7 +15,7 @@ export var invulnerable := false
 export var debug_movement := false
 export var can_shoot := false
 export var max_mana := 100.0
-
+export var health_regen_rate := 1.0
 
 onready var death_sound:AudioStreamPlayer3D = get_node_or_null(death_sound_node_path)
 onready var damaged_sound:RandomAudioStreamPlayer3D = $DamagedRandomAudioStreamPlayer3D
@@ -106,4 +106,9 @@ func decrease_resource_amount(resource_name: String, resource_amount: int) -> vo
 	if resource_name == GameConsts.RESOURCE_MANA:
 		_update_mana_bar()
 
+
+func _physics_process(delta):
+	if _health_bar.value >= _health_bar.max_value:
+		return
+	_health_bar.value = min(_health_bar.max_value, _health_bar.value + delta * health_regen_rate)
 
