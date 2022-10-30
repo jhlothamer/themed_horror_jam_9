@@ -159,6 +159,10 @@ func physics_process(_delta: float) -> void:
 	
 	var linear_velocity = direction * character.horizontal_speed
 	var _discard = character.move_and_slide(linear_velocity, Vector3.UP)
+	for i in character.get_slide_count():
+		var kc := character.get_slide_collision(i)
+		if kc.collider is Character:
+			character.add_collision_exception_with(kc.collider)
 	
 
 
