@@ -4,9 +4,6 @@ const VOLUME_SETTINGS_FILE_PATH = "user://volume_settings.json"
 
 # volume settings of audio nodes stored by mapping their scene files to their paths in that scene and then to the volume data
 var volume_settings := {}
-# this is used to disable tracking of audio nodes being added to the scene tree
-#  Used by dialog when adding audio nodes to enable the playback of sounds to test volume settings
-var ignore_audio_node_additions := false
 
 
 var _audio_nodes_by_scene_path := {}
@@ -74,7 +71,7 @@ func _add_or_update_audio_node(scene_file_and_path: Array, node: Node) -> void:
 	
 
 func _on_node_added(node : Node):
-	if ignore_audio_node_additions:
+	if !node.owner:
 		return
 	
 	if node is AudioStreamPlayer or node is AudioStreamPlayer2D or node is AudioStreamPlayer3D:

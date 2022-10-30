@@ -17,8 +17,10 @@ func exit() -> void:
 		_interaction_helper.stop_interaction(character)
 
 
-func _on_interaction_completed(helper: InteractionHelper, _clicked_object: CollisionObject):
+func _on_interaction_completed(helper: InteractionHelper, _clicked_object: CollisionObject, interactor):
 	if helper != _interaction_helper:
+		return
+	if interactor and interactor != character:
 		return
 	_interaction_helper = null
 	change_state("Idle")

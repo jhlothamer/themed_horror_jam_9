@@ -63,7 +63,7 @@ script = ExtResource( 2 )
 outline_helper = NodePath("../OutlineHelper3D")
 interactable_type = "crystal_ball"
 interaction_start_sound = NodePath("../StartInteractionSound")
-interaction_interupt_sound = NodePath("../InteruptInteractionSound")
+interaction_progress_type = 3
 
 [node name="OutlineHelper3D" type="Node" parent="."]
 script = ExtResource( 1 )

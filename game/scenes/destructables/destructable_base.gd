@@ -70,7 +70,7 @@ func _on_HealthBar_progress_made(_new_value, _max_value):
 	set_collision_mask_bit(GameConsts.PhysLayerBitIndex.DEFAULT, true)
 
 
-func _on_InteractionHelper_interaction_completed(_helperref, _obj):
+func _on_InteractionHelper_interaction_completed(_helperref, _obj, _interactor):
 	if _current_interactor and _interaction_helper.required_resource_type != "":
 		_current_interactor.decrease_resource_amount(_interaction_helper.required_resource_type, _interaction_helper.required_resource_amount)
 		_current_interactor = null

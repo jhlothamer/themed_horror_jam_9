@@ -73,7 +73,7 @@ script = ExtResource( 3 )
 outline_helper = NodePath("../OutlineHelper3D")
 interactable_type = "spellbook"
 interaction_start_sound = NodePath("../StartLoopSound")
-interaction_interupt_sound = NodePath("../InterruptSound")
+interaction_progress_type = 3
 
 [node name="InterruptSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

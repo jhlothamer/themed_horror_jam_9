@@ -211,7 +211,7 @@ script = ExtResource( 2 )
 outline_helper = NodePath("../OutlineHelper3D")
 interaction_progress_bar = NodePath("../InteractionProgressBar3d")
 interaction_start_sound = NodePath("../StartInteractionSound")
-interaction_interupt_sound = NodePath("../InteruptInteractionSound")
+interaction_interrupt_sound = NodePath("../InterruptInteractionSound")
 interaction_complete_sound = NodePath("../CompleteInteractionSound")
 delay_completion_seconds = 1.0
 
@@ -220,7 +220,7 @@ stream = ExtResource( 6 )
 volume_db = -20.0
 bus = "SoundFx"
 
-[node name="InteruptInteractionSound" type="AudioStreamPlayer" parent="."]
+[node name="InterruptInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -15.0
 bus = "SoundFx"

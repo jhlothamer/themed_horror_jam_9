@@ -115,11 +115,8 @@ outline_helper = NodePath("../OutlineHelper3D")
 interaction_progress_bar = NodePath("../InteractionProgressBar3d")
 interactable_type = "wood_pile"
 complete_after_complete_sound_finished = false
+interaction_progress_type = 1
 
 [node name="wood_pile_ilikethepixies" parent="." instance=ExtResource( 5 )]
-
-[connection signal="interaction_completed" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_completed"]
-[connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
-[connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
 
 [editable path="wood_pile_ilikethepixies"]

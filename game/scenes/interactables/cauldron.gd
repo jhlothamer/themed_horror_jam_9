@@ -35,7 +35,7 @@ func _change_fire_state(on: bool) -> void:
 	_bubble_particles.emitting = on
 
 
-func _on_InteractionHelper_interaction_completed(_helperref, _obj):
+func _on_InteractionHelper_interaction_completed(_helperref, _obj, _interactor):
 	emit_signal("game_won")
 
 
