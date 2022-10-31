@@ -1,3 +1,4 @@
+class_name HUD
 extends CanvasLayer
 
 
@@ -5,9 +6,22 @@ signal no_selectable_clicked()
 signal no_interactable_clicked(position)
 
 
+export var message_show_time := 10.0
+export var message_fade_out_time := 1.0
+
+
+onready var _message_container: Control = $MarginContainer/MessagesContainer
+onready var _message_label: Label = $MarginContainer/MessagesContainer/MessageLabel
+
+
+func _enter_tree():
+	ServiceMgr.register_service(get_script(), self)
+
+
 func _ready():
 	SignalMgr.register_publisher(self, "no_selectable_clicked")
 	SignalMgr.register_publisher(self, "no_interactable_clicked")
+	_message_label.visible = false
 
 
 func _input(event):
@@ -42,4 +56,22 @@ func _test_world_mouse_click_collision(mouse_position, collision_mask: int, igno
 			return Vector3.INF
 		
 	return result["position"]
+
+
+func add_message(msg: String) -> void:
+	var label = _message_label.duplicate()
+	label.text = msg
+	label.modulate = Color.transparent
+	label.visible = true
+	_message_container.add_child(label)
+	var tween := get_tree().create_tween()
+	var _discard = tween.tween_property(label, "modulate:a", 1.0, message_fade_out_time)
+	tween.play()
+	yield(tween, "finished")
+	yield(get_tree().create_timer(message_show_time), "timeout")
+	tween = get_tree().create_tween()
+	_discard = tween.tween_property(label, "modulate:a", 0.0, message_fade_out_time)
+	tween.play()
+	yield(tween, "finished")
+	label.queue_free()
 

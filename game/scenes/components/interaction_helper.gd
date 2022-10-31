@@ -27,7 +27,8 @@ export var required_resource_type := ""
 export (int, 1, 10000) var required_resource_amount := 1
 export var delay_completion_seconds := 0.0
 export (InteractionProgressType) var interaction_progress_type: int
-
+export var allowed_type_deny_message := ""
+export var required_resource_deny_message := ""
 
 onready var _parent: CollisionObject = get_parent()
 onready var _interaction_start_sound = get_node_or_null(interaction_start_sound)

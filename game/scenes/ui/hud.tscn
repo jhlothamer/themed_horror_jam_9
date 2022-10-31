@@ -108,3 +108,26 @@ script = ExtResource( 5 )
 monitor_type = 3
 
 [node name="SoundMgmtDlg" parent="Dialogs" instance=ExtResource( 7 )]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 6 )
+custom_constants/margin_top = 700
+
+[node name="MessagesContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_top = 700.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+
+[node name="MessageLabel" type="Label" parent="MarginContainer/MessagesContainer"]
+visible = false
+margin_right = 1920.0
+margin_bottom = 52.0
+custom_colors/font_color = Color( 0.886275, 0, 0.458824, 1 )
+custom_colors/font_outline_modulate = Color( 0.886275, 0, 0.458824, 0.65098 )
+text = "Minion needs wood to affect repairs."
+align = 1

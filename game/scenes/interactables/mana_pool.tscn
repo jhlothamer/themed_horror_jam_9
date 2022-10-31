@@ -191,6 +191,7 @@ interaction_start_sound = NodePath("../StartInteractionSound")
 interaction_complete_sound = NodePath("../CompleteInteractionSound")
 complete_after_complete_sound_finished = false
 interaction_progress_type = 1
+allowed_type_deny_message = "Witch must read from spellbook to allow minions to get mana"
 
 [node name="StartInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

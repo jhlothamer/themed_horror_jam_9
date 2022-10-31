@@ -58,24 +58,32 @@ func _on_interactable_clicked(helper: InteractionHelper, clicked_object: Collisi
 	if !character.is_selected():
 		return
 
+
 	if helper.interactable_type != "":
 		if !character.allowed_interactable_types.has(helper.interactable_type):
 			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
 				_deny_interaction_sound.play()
+			if helper.allowed_type_deny_message != "":
+				_add_hud_message(helper.allowed_type_deny_message)
+			return
+
+	if clicked_object and clicked_object.has_method("can_interact"):
+		if !clicked_object.can_interact(character):
+			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
+				_deny_interaction_sound.play()
+			if clicked_object.has_method("get_deny_message"):
+				var deny_message: String = clicked_object.get_deny_message(character)
+				if deny_message != "":
+					_add_hud_message(deny_message)
 			return
 
 	if helper.required_resource_type != "":
 		if !character.has_required_resource_amount(helper.required_resource_type, helper.required_resource_amount):
 			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
 				_deny_interaction_sound.play()
+			if helper.required_resource_deny_message != "":
+				_add_hud_message(helper.required_resource_deny_message)
 			return
-	
-	if clicked_object and clicked_object.has_method("can_interact"):
-		if !clicked_object.can_interact():
-			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
-				_deny_interaction_sound.play()
-			return
-
 
 	_calc_target_pos_object(clicked_object)
 	_target_interactable_object = clicked_object

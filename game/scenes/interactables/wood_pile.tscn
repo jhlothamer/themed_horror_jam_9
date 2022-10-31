@@ -116,6 +116,7 @@ interaction_progress_bar = NodePath("../InteractionProgressBar3d")
 interactable_type = "wood_pile"
 complete_after_complete_sound_finished = false
 interaction_progress_type = 1
+allowed_type_deny_message = "Only minions can gather wood and make repairs"
 
 [node name="wood_pile_ilikethepixies" parent="." instance=ExtResource( 5 )]
 

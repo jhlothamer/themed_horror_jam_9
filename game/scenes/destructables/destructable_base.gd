@@ -44,8 +44,14 @@ func damage(amount: float) -> void:
 	damaged_sound.play()
 
 
-func can_interact() -> bool:
+func can_interact(_interactor) -> bool:
 	return _health_bar.value < _health_bar.max_value
+
+
+func get_deny_message(_interactor) -> String:
+	if _health_bar.value == _health_bar.max_value:
+		return "No repair currently needed"
+	return ""
 
 
 func _update_heath_bar() -> void:

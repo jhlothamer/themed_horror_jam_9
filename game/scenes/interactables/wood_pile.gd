@@ -13,3 +13,14 @@ func _ready():
 
 func complete_interaction(interactor) -> void:
 	interactor.set_resource_amount(GameConsts.RESOURCE_WOOD, resource_given)
+
+
+func can_interact(interactor:Character) -> bool:
+	return !interactor.has_required_resource_amount(GameConsts.RESOURCE_WOOD, resource_given)
+
+
+func get_deny_message(interactor:Character) -> String:
+	if interactor.has_required_resource_amount(GameConsts.RESOURCE_WOOD, resource_given):
+		return "Minion already has wood resource"
+	return ""
+

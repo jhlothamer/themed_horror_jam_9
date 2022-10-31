@@ -111,4 +111,5 @@ func _physics_process(delta):
 	if _health_bar.value >= _health_bar.max_value:
 		return
 	_health_bar.value = min(_health_bar.max_value, _health_bar.value + delta * health_regen_rate)
-
+	if _health_bar.value >= _health_bar.max_value:
+		_health_bar.visible = false
