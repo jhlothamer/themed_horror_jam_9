@@ -3,6 +3,7 @@ extends Character
 
 onready var _animation_player:AnimationPlayer = $goblinanimations_frank_ilikethepixes/AnimationPlayer
 onready var _spell_active_indicator = $SpellActiveIndicator
+onready var _wood_icon = $WoodIcon
 
 
 var _state_animations := {
@@ -72,4 +73,14 @@ func _on_Walk_interaction_about_to_start(interactable_object: Node):
 		_interactable_object_name = "Destructable"
 	else:
 		_interactable_object_name = interactable_object.name
+
+
+func set_resource_amount(resource_name: String, resource_amount: int) -> void:
+	.set_resource_amount(resource_name, resource_amount)
+	_wood_icon.visible = has_required_resource_amount(GameConsts.RESOURCE_WOOD, 100)
+
+func decrease_resource_amount(resource_name: String, resource_amount: int) -> void:
+	.decrease_resource_amount(resource_name, resource_amount)
+	_wood_icon.visible = has_required_resource_amount(GameConsts.RESOURCE_WOOD, 100)
+
 
