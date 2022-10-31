@@ -29,15 +29,19 @@ func _input(event):
 		return
 	var em := event as InputEventMouseButton
 	if em.button_index == BUTTON_LEFT:
-		if Vector3.INF == _test_world_mouse_click_collision(em.position, GameConsts.PhysLayerMask.SELECTABLE, 0):
+		if Vector3.INF == _test_world_mouse_click_collision(em.position, GameConsts.PhysLayerMask.SELECTABLE, 0, false):
 			emit_signal("no_selectable_clicked")
 	elif em.button_index == BUTTON_RIGHT:
-		var position = _test_world_mouse_click_collision(em.position, GameConsts.PhysLayerMask.DEFAULT | GameConsts.PhysLayerMask.INTERACTABLE, GameConsts.PhysLayerMask.INTERACTABLE | GameConsts.PhysLayerMask.SELECTABLE)
-		if position != Vector3.INF:
-			emit_signal("no_interactable_clicked", position)
+		# check if there's an area at position first
+		var position = _test_world_mouse_click_collision(em.position, GameConsts.PhysLayerMask.DEFAULT | GameConsts.PhysLayerMask.INTERACTABLE, GameConsts.PhysLayerMask.INTERACTABLE | GameConsts.PhysLayerMask.SELECTABLE, false)
+		if position == Vector3.INF:
+			# no area - now check for bodies
+			position = _test_world_mouse_click_collision(em.position, GameConsts.PhysLayerMask.DEFAULT | GameConsts.PhysLayerMask.INTERACTABLE, GameConsts.PhysLayerMask.INTERACTABLE | GameConsts.PhysLayerMask.SELECTABLE)
+			if position != Vector3.INF:
+				emit_signal("no_interactable_clicked", position)
 
 
-func _test_world_mouse_click_collision(mouse_position, collision_mask: int, ignore_mask: int) -> Vector3:
+func _test_world_mouse_click_collision(mouse_position, collision_mask: int, ignore_mask: int, include_bodies: bool = true) -> Vector3:
 	var camera = get_viewport().get_camera()
 	if !camera is Camera:
 		return Vector3.ZERO
@@ -45,7 +49,7 @@ func _test_world_mouse_click_collision(mouse_position, collision_mask: int, igno
 	var to = camera.project_position(mouse_position, camera.far * 2.0)
 	var space_state = camera.get_world().direct_space_state
 	
-	var result = space_state.intersect_ray(from, to, [], collision_mask)
+	var result = space_state.intersect_ray(from, to, [], collision_mask, include_bodies, true)
 	
 	if !result:
 		return Vector3.INF

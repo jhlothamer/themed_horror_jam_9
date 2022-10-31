@@ -32,6 +32,7 @@ void fragment()
 }"
 
 [sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
 render_priority = 5
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0.584314, 0.584314, 0.584314, 1 )
@@ -39,11 +40,11 @@ shader_param/progress_color = Color( 0.270588, 0.270588, 0.270588, 1 )
 shader_param/progress_value = 0.5
 
 [sub_resource type="QuadMesh" id=11]
-resource_local_to_scene = true
 material = SubResource( 12 )
 size = Vector2( 1, 0.1 )
 
 [node name="InteractionProgressBar3d" instance=ExtResource( 1 )]
+visible = false
 mesh = SubResource( 11 )
 script = ExtResource( 2 )
 background_color = Color( 0.584314, 0.584314, 0.584314, 1 )

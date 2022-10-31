@@ -100,7 +100,7 @@ func _single_start_interaction(interactor) -> void:
 
 
 func _multiple_start_interaction(interactor: Spatial) -> void:
-	var interactor_progress_bar = _interaction_progress_bar.duplicate()
+	var interactor_progress_bar = _interaction_progress_bar.duplicate(DUPLICATE_GROUPS | DUPLICATE_SCRIPTS | DUPLICATE_USE_INSTANCING)
 	_parent.add_child(interactor_progress_bar)
 	if OK != interactor_progress_bar.connect("completed", self, "_on_interactor_interaction_complete", [interactor]):
 		printerr("InteractionHelper: count connect to progress bar completed signal for %s" % interactor_progress_bar.get_path())

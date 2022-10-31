@@ -28,8 +28,11 @@ export var mouse_over_color := Color.aquamarine
 export var outline_mesh_instance: NodePath
 export var constant_outline := false
 export var keep_selected_on_no_selectable_clicked := false
+export var mouse_input_area: NodePath
+
 
 onready var _parent:CollisionObject = get_parent()
+onready var _mouse_input_area: Area = get_node_or_null(mouse_input_area)
 
 
 var selected := false
@@ -40,8 +43,6 @@ var _selected_indicator: Spatial
 var _outline_mesh_instance: MeshInstance
 
 func _ready():
-	if !_parent:
-		return
 	if !outline_mesh_instance.is_empty():
 		_outline_mesh_instance = get_node_or_null(outline_mesh_instance)
 		if _outline_mesh_instance:
@@ -75,28 +76,42 @@ func _ready():
 			printerr("bad selected_indicator node path")
 			return
 		_selected_indicator.visible = false
+
+	if _mouse_input_area:
+		_connect_to_mouse_events(_mouse_input_area)
+	else:
+		if mouse_input_area:
+			printerr("OutlineHelper3D: mouse input area set but not an Area or invalid path - using parent")
+		if !_parent:
+			printerr("OutlineHelper3D: parent is not a CollisionObject")
+		else:
+			_connect_to_mouse_events(_parent)
 	
-	if OK != _parent.connect("mouse_entered", self, "_on_parent_mouse_enter"):
-		printerr("OutlineHelper3D: could not connect to mouse_entered")
-	if OK != _parent.connect("mouse_exited", self, "_on_parent_mouse_exit"):
-		printerr("OutlineHelper3D: could not connect to mouse_exited")
-	if OK != _parent.connect("input_event", self, "_on_parent_input_event"):
-		printerr("OutlineHelper3D: could not connect to input_event")
 	SignalMgr.register_publisher(self, "selected")
 	SignalMgr.register_subscriber(self, "selected")
 	if !keep_selected_on_no_selectable_clicked:
 		SignalMgr.register_subscriber(self, "no_selectable_clicked")
 
 
-func _on_parent_mouse_enter():
+func _connect_to_mouse_events(target) -> void:
+	if OK != target.connect("mouse_entered", self, "_on_mouse_enter"):
+		printerr("OutlineHelper3D: could not connect to mouse_entered")
+	if OK != target.connect("mouse_exited", self, "_on_mouse_exit"):
+		printerr("OutlineHelper3D: could not connect to mouse_exited")
+	if OK != target.connect("input_event", self, "_on_input_event"):
+		printerr("OutlineHelper3D: could not connect to input_event")
+	
+
+
+func _on_mouse_enter():
 	_show_outline()
 
 
-func _on_parent_mouse_exit():
+func _on_mouse_exit():
 	_hide_outline()
 
 
-func _on_parent_input_event(_camera, event, _position, _normal, _shape_idx):
+func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == button_index:
 		if select_on_click:
 			if !selected:

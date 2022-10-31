@@ -129,5 +129,5 @@ margin_right = 1920.0
 margin_bottom = 52.0
 custom_colors/font_color = Color( 0.886275, 0, 0.458824, 1 )
 custom_colors/font_outline_modulate = Color( 0.886275, 0, 0.458824, 0.65098 )
-text = "Minion needs wood to affect repairs."
+text = "Minion needs wood to effect repairs."
 align = 1

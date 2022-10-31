@@ -55,4 +55,3 @@ func _on_spell_activated():
 func _on_spell_deactivated():
 	_spell_active = false
 
-

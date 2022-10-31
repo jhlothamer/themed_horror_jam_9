@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/characters/states/character_base_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=2]
@@ -19,6 +19,9 @@
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.7
 height = 1.5
+
+[sub_resource type="BoxShape" id=23]
+extents = Vector3( 1, 1.6, 1 )
 
 [sub_resource type="Shader" id=11]
 code = "shader_type spatial;
@@ -119,6 +122,12 @@ script = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5, 0 )
 shape = SubResource( 1 )
 
+[node name="MouseArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="MouseArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
+shape = SubResource( 23 )
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
 
@@ -151,6 +160,7 @@ neighbor_dist = 5.0
 script = ExtResource( 4 )
 selected_indicator = NodePath("../character_selection_matrix")
 keep_selected_on_no_selectable_clicked = true
+mouse_input_area = NodePath("../MouseArea")
 
 [node name="HealthBar" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53445, 0 )
