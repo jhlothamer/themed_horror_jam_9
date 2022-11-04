@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scenes/characters/states/character_base_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://assets/sounds/sfx_confirm_accept_jdymusic.mp3" type="AudioStream" id=13]
 [ext_resource path="res://scenes/characters/states/character_shoot.gd" type="Script" id=14]
 [ext_resource path="res://assets/sounds/sfx_magic_missile_jdymusic.mp3" type="AudioStream" id=15]
+[ext_resource path="res://scenes/characters/states/character_melee.gd" type="Script" id=16]
+[ext_resource path="res://scenes/characters/states/character_walk_to.gd" type="Script" id=18]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.7
@@ -52,7 +54,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=21]
+[sub_resource type="ShaderMaterial" id=24]
 shader = SubResource( 11 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 shader_param/progress_color = Color( 0, 1, 0, 1 )
@@ -60,7 +62,7 @@ shader_param/progress_value = 0.5
 
 [sub_resource type="QuadMesh" id=12]
 resource_local_to_scene = true
-material = SubResource( 21 )
+material = SubResource( 24 )
 size = Vector2( 1, 0.1 )
 
 [sub_resource type="SpatialMaterial" id=20]
@@ -101,7 +103,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=22]
+[sub_resource type="ShaderMaterial" id=25]
 render_priority = 5
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
@@ -110,7 +112,7 @@ shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=15]
 resource_local_to_scene = true
-material = SubResource( 22 )
+material = SubResource( 25 )
 size = Vector2( 1, 0.1 )
 
 [node name="CharacterBase" type="KinematicBody"]
@@ -137,11 +139,10 @@ is_starting_state = true
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
-navigation_agent = NodePath("../../NavigationAgent")
-deny_interaction_sound = NodePath("../../DenyInteractionSound")
 
 [node name="Interact" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
+deny_interaction_sound = NodePath("../../DenyInteractionSound")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
@@ -150,6 +151,13 @@ script = ExtResource( 9 )
 script = ExtResource( 14 )
 deny_interaction_sound = NodePath("../../DenyInteractionSound")
 shoot_sound = NodePath("../../ShootSound")
+
+[node name="Melee" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
+
+[node name="WalkTo" type="Node" parent="StateMachine"]
+script = ExtResource( 18 )
+navigation_agent = NodePath("../../NavigationAgent")
 
 [node name="NavigationAgent" type="NavigationAgent" parent="."]
 target_desired_distance = 0.1

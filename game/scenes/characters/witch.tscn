@@ -97,14 +97,14 @@ crystal_ball_ward_mana_cost = 50
 [node name="Shoot" parent="StateMachine" index="4"]
 fire_from_position = NodePath("../../Position3D")
 
-[node name="OutlineHelper3D" parent="." index="3"]
+[node name="OutlineHelper3D" parent="." index="4"]
 mesh_instances_to_outline = [ NodePath("../WitchAnimations_Frank_Ilikethepixies/Armature/Skeleton/witch") ]
 
-[node name="HealthBar" parent="." index="4"]
+[node name="HealthBar" parent="." index="5"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29247, 0 )
 mesh = SubResource( 12 )
 
-[node name="ManaBar" parent="." index="5"]
+[node name="ManaBar" parent="." index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.78781, 0 )
 mesh = SubResource( 25 )
 
@@ -147,13 +147,12 @@ light_energy = 0.5
 spot_range = 3.0
 spot_angle = 33.4782
 
-[node name="character_selection_matrix" parent="." index="14"]
+[node name="character_selection_matrix" parent="." index="15"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.32902, 0 )
 
-[node name="SelectionMarkerRemoteTransform" parent="." index="15"]
+[node name="SelectionMarkerRemoteTransform" parent="." index="16"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.32902, 0 )
 
-[connection signal="interaction_about_to_start" from="StateMachine/Walk" to="." method="_on_Walk_interaction_about_to_start"]
 [connection signal="animation_finished" from="WitchAnimations_Frank_Ilikethepixies/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="WitchAnimations_Frank_Ilikethepixies"]

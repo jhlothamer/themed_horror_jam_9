@@ -1,31 +1,11 @@
 extends CharacterBaseState
 
 
-signal interaction_about_to_start(interactable_object)
-
-
-export var navigation_agent: NodePath
-export var deny_interaction_sound: NodePath
-
-
-onready var _deny_interaction_sound: AudioStreamPlayer = get_node_or_null(deny_interaction_sound)
-
-
-var _nav_agent:NavigationAgent
-var _target_pos: Vector3
-var _target_interactable_object: CollisionObject
-var _interaction_helper: InteractionHelper
 var _move_to_indicator: Spatial
 
 
 func _ready():
-	_nav_agent = get_node(navigation_agent)
 	SignalMgr.register_subscriber(self, "no_interactable_clicked")
-	SignalMgr.register_subscriber(self, "interactable_clicked")
-	if OK != _nav_agent.connect("navigation_finished", self, "_on_navigation_finished"):
-		printerr("CharacterBase:Walk - cannot connect to NavigationAgent.navigation_finished")
-	if OK != _nav_agent.connect("target_reached", self, "_on_target_reached"):
-		printerr("CharacterBase:Walk - cannot connect to NavigationAgent.target_reached")
 
 
 func _create_move_to_indicator(pos: Vector3) -> void:
@@ -47,131 +27,20 @@ func _destroy_move_to_indicator() -> void:
 func _on_no_interactable_clicked(pos: Vector3) -> void:
 	if !host.is_selected():
 		return
-	_target_interactable_object = null
-	_interaction_helper = null
-	_calc_target_pos(pos)
+	set_blackboard_data(CharacterBaseState.BBDATA_TARGET_POSITION, pos)
+#	_calc_target_pos(pos)
 	change_state(name)
-	_create_move_to_indicator(_target_pos)
+	_create_move_to_indicator(_v_to_char_y(pos))
 
 
-func _on_interactable_clicked(helper: InteractionHelper, clicked_object: CollisionObject):
-	if !character.is_selected():
-		return
+func enter() -> void:
+	push_state("WalkTo")
 
 
-	if helper.interactable_type != "":
-		if !character.allowed_interactable_types.has(helper.interactable_type):
-			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
-				_deny_interaction_sound.play()
-			if helper.allowed_type_deny_message != "":
-				_add_hud_message(helper.allowed_type_deny_message)
-			return
-
-	if clicked_object and clicked_object.has_method("can_interact"):
-		if !clicked_object.can_interact(character):
-			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
-				_deny_interaction_sound.play()
-			if clicked_object.has_method("get_deny_message"):
-				var deny_message: String = clicked_object.get_deny_message(character)
-				if deny_message != "":
-					_add_hud_message(deny_message)
-			return
-
-	if helper.required_resource_type != "":
-		if !character.has_required_resource_amount(helper.required_resource_type, helper.required_resource_amount):
-			if _deny_interaction_sound and !_deny_interaction_sound.is_playing():
-				_deny_interaction_sound.play()
-			if helper.required_resource_deny_message != "":
-				_add_hud_message(helper.required_resource_deny_message)
-			return
-
-	_calc_target_pos_object(clicked_object)
-	_target_interactable_object = clicked_object
-	_interaction_helper = helper
-	_destroy_move_to_indicator()
-	change_state(name)
-
-
-func _calc_target_pos(pos: Vector3) -> void:
-	_target_pos = _v_to_char_y(pos)
-	var temp = Rect2Util.clamp_point(GameConsts.CHARACTER_MOVE_BOUNDS, Vector2(_target_pos.x, _target_pos.z))
-	_target_pos.x = temp.x
-	_target_pos.z = temp.y
-	_nav_agent.set_target_location(_target_pos)
-
-
-func _calc_target_pos_object(clicked_object: CollisionObject) -> void:
-	_target_pos = _v_to_char_y(clicked_object.global_transform.origin)
-	var temp = Rect2Util.clamp_point(GameConsts.CHARACTER_MOVE_BOUNDS, Vector2(_target_pos.x, _target_pos.z))
-	_target_pos.x = temp.x
-	_target_pos.z = temp.y
-	var nav_pt_mgr: NavigationPointMgr = ServiceMgr.get_service(NavigationPointMgr)
-	if nav_pt_mgr:
-		var closest_pt = nav_pt_mgr.get_closest_navigation_point(character, clicked_object)
-		if closest_pt != Vector3.INF:
-			_target_pos = _v_to_char_y(closest_pt)
-	_nav_agent.set_target_location(_target_pos)
-
-
-func _v_to_char_y(v: Vector3) -> Vector3:
-	return Vector3(v.x, host.global_transform.origin.y, v.z)
-
-
-func _on_navigation_finished():
-	if !is_current_state():
-		return
-	if character.debug_movement:
-		print("%s: navigation finished" % character.name)
-	_destroy_move_to_indicator()
-	if _interaction_helper:
-		var lookat_v = _target_interactable_object.global_transform.origin
-		lookat_v.y = character.global_transform.origin.y
-		character.look_at(lookat_v, Vector3.UP)
-		set_blackboard_data(CharacterBaseState.BBDATA_TARGET_INTERACTION_HELPER, _interaction_helper)
-		emit_signal("interaction_about_to_start", _target_interactable_object)
-		change_state("Interact")
-		_interaction_helper = null
-		_target_interactable_object = null
-		return
-	change_state("Idle")
-
-
-func _on_target_reached():
-	if !is_current_state():
-		return
-	_destroy_move_to_indicator()
-	if _interaction_helper:
-		change_state("Interact")
-		_interaction_helper = null
-		return
+func reenter(_from_state: String) -> void:
 	change_state("Idle")
 
 
 func exit() -> void:
 	_destroy_move_to_indicator()
-
-
-func physics_process(_delta: float) -> void:
-	var next_location := _v_to_char_y(_nav_agent.get_next_location())
-	if next_location == character.global_transform.origin or !is_current_state():
-		if character.debug_movement:
-			if next_location == character.global_transform.origin:
-				print("%s: not moving - next location is character's position" % character.name)
-			if !is_current_state():
-				print("%s: not moving - %s state no longer current" % [character.name, name])
-
-		return
-	
-	var direction:Vector3 = character.global_transform.origin.direction_to(next_location)
-	character.look_at(next_location, Vector3.UP)
-	
-	var linear_velocity = direction * character.horizontal_speed
-	var _discard = character.move_and_slide(linear_velocity, Vector3.UP)
-	for i in character.get_slide_count():
-		var kc := character.get_slide_collision(i)
-		if kc.collider is Character:
-			character.add_collision_exception_with(kc.collider)
-	
-
-
 

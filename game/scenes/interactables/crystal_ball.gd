@@ -36,3 +36,7 @@ func _on_ward_deactivated():
 	_active_indicator.visible = false
 	_active_indicator_anim_player.stop()
 	_ward_deactivated_sound.play()
+	var hud: HUD = ServiceMgr.get_service(HUD)
+	if !hud:
+		return
+	hud.add_message("Ward has been used up!")

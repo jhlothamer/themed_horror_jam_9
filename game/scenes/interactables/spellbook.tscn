@@ -73,6 +73,7 @@ script = ExtResource( 3 )
 outline_helper = NodePath("../OutlineHelper3D")
 interactable_type = "spellbook"
 interaction_start_sound = NodePath("../StartLoopSound")
+interaction_interrupt_sound = NodePath("../InterruptSound")
 interaction_progress_type = 3
 allowed_type_deny_message = "Only witch can read from spellbook"
 

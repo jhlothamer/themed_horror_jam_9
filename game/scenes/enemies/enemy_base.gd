@@ -52,17 +52,19 @@ func _on_OutlineHelper3D_clicked(_clicked_object):
 
 
 func collide(projectile: Projectile) -> void:
+	damage(projectile.damage)
 
+
+func damage(damage: float) -> void:
 	if current_health <= 0:
 		return
 	
-	current_health = int(max(0, current_health - projectile.damage))
+	current_health = int(max(0, current_health - damage))
 	_update_heath_bar()
 	if current_health <= 0:
 		_state_machine.change_state("Die")
 		return
 	_on_damage()
-
 
 func is_dead() -> bool:
 	return current_health <= 0

@@ -81,14 +81,17 @@ func change_state(state_name) -> void:
 	var new_state = get_node(state_name)
 	var old_state_name := ""
 	if !_state_stack.empty():
-		old_state_name = _state_stack[0].name
-		_state_stack[0] = new_state
-	else:
-		_state_stack.push_front(new_state)
+		old_state_name = _state_stack[_state_stack.size() - 1].name
+		var curr_state = _state_stack.pop_front()
+		while curr_state:
+			curr_state.exit()
+			curr_state = _state_stack.pop_front()
+	_state_stack.push_front(new_state)
 	previous_state = old_state_name
 	_print_dbg("entering state " + new_state.name)
 	new_state.enter()
-	emit_signal("state_changed", old_state_name, state_name)
+	if is_current_state(state_name):
+		emit_signal("state_changed", old_state_name, state_name)
 
 
 func push_state(state_name) -> void:
@@ -113,10 +116,10 @@ func pop_state() -> void:
 	var new_state_name := ""
 	if !_state_stack.empty():
 		_state_stack[0].reenter(state.name)
-		old_state_name = _state_stack[0].name
+		new_state_name = _state_stack[0].name
+		emit_signal("state_changed", old_state_name, new_state_name)
 	else:
 		_print_dbg("StateMachine: no states after pop: %s" % get_path())
-	emit_signal("state_changed", old_state_name, new_state_name)
 
 
 func _physics_process(delta) -> void:

@@ -63,6 +63,7 @@ script = ExtResource( 2 )
 outline_helper = NodePath("../OutlineHelper3D")
 interactable_type = "crystal_ball"
 interaction_start_sound = NodePath("../StartInteractionSound")
+interaction_interrupt_sound = NodePath("../InteruptInteractionSound")
 interaction_progress_type = 3
 allowed_type_deny_message = "Only witch can use crystal ball"
 

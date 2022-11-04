@@ -4906,10 +4906,10 @@ script = ExtResource( 14 )
 [node name="TestDefense" type="Node" parent="StateMachine" index="8"]
 script = ExtResource( 17 )
 
-[node name="OutlineHelper3D" parent="." index="3"]
+[node name="OutlineHelper3D" parent="." index="4"]
 mesh_instances_to_outline = [ NodePath("../Armature/Skeleton/guy") ]
 
-[node name="HealthBar" parent="." index="4"]
+[node name="HealthBar" parent="." index="5"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.68215, 0 )
 mesh = SubResource( 28 )
 
