@@ -10,6 +10,9 @@ onready var _ward_activated_sound: AudioStreamPlayer = $WardActivatedSound
 onready var _ward_deactivated_sound: AudioStreamPlayer = $WardDeactivatedSound
 
 
+var _instructions_shown := false
+
+
 func _ready():
 	_active_indicator.visible = false
 	_active_indicator_anim_player.stop()
@@ -20,6 +23,12 @@ func _ready():
 
 func _on_InteractionHelper_interaction_started(_interactor):
 	emit_signal("crystal_ball_status_changed", true)
+	if _instructions_shown:
+		return
+	_instructions_shown = true
+	var hud: HUD = ServiceMgr.get_service(HUD)
+	hud.add_message(InputPromptUtil.replace_input_prompts("Switch crystal ball view with [%%prompt:key:0:previous_camera%%] [%%prompt:key:0:next_camera%%] or [%%prompt:key:1:previous_camera%%] [%%prompt:key:1:next_camera%%]", InputPromptUtil.PromptImageSize.MEDIUM ))
+	hud.add_message(InputPromptUtil.replace_input_prompts("Cast ward with [ %%prompt:key:0:place_ward%% ] to ward off 5 zombies in that direction.", InputPromptUtil.PromptImageSize.MEDIUM))
 
 
 func _on_InteractionHelper_interaction_interrupted(_interactor):

@@ -11,7 +11,7 @@ export var message_fade_out_time := 1.0
 
 
 onready var _message_container: Control = $MarginContainer/MessagesContainer
-onready var _message_label: Label = $MarginContainer/MessagesContainer/MessageLabel
+onready var _message_label: RichTextLabel = $MarginContainer/MessagesContainer/RichTextLabel
 
 
 func _enter_tree():
@@ -64,7 +64,7 @@ func _test_world_mouse_click_collision(mouse_position, collision_mask: int, igno
 
 func add_message(msg: String) -> void:
 	var label = _message_label.duplicate()
-	label.text = msg
+	label.bbcode_text = "[center]%s[/center]" % msg
 	label.modulate = Color.transparent
 	label.visible = true
 	_message_container.add_child(label)

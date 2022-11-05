@@ -172,6 +172,8 @@ func _multiple_stop_interaction(interactor) -> void:
 
 
 func _none_stop_interaction(interactor) -> void:
+	_interactor_counter -= 1
+
 	if _interaction_start_sound and _interaction_start_sound.is_playing():
 		_interaction_start_sound.stop()
 	

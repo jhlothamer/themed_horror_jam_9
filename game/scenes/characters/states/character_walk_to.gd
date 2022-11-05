@@ -49,7 +49,7 @@ func _on_navigation_finished():
 
 func enter() -> void:
 	_target_enemy = get_blackboard_data(CharacterBaseState.BBDATA_TARGET_ENEMY)
-	if _target_enemy:
+	if _target_enemy != null:
 		_calc_target_pos_object(_target_enemy)
 		return
 	_target_pos = get_blackboard_data(CharacterBaseState.BBDATA_TARGET_POSITION)
@@ -60,8 +60,6 @@ func enter() -> void:
 
 
 func exit():
-	if is_instance_valid(_target_enemy):
-		_target_enemy.disconnect("tree_exited", self, "_on_target_enemy_tree_exited")
 	_target_enemy = null
 
 

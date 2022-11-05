@@ -16,12 +16,12 @@ class ScheduleItem:
 export (String, FILE, "*.txt") var schedule_file_csv: String = "res://assets/data/enemy_wave_schedule.txt"
 export var alt_schedule_file_csv: String ="user://enemy_wave_schedule.csv"
 
+
 onready var _timer: Timer = $Timer
 
 
 var _schedule := []
 var _schedule_index := 0
-var _previous_wave_time := 0.0
 
 
 func _ready():
@@ -60,8 +60,7 @@ func _schedule_next_wave() -> void:
 		return
 	
 	var schedule_item: ScheduleItem = _schedule[_schedule_index]
-	_timer.start(schedule_item.time_seconds - _previous_wave_time)
-	_previous_wave_time = schedule_item.time_seconds
+	_timer.start(schedule_item.time_seconds)
 
 
 func _on_Timer_timeout():
