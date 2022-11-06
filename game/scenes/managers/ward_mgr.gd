@@ -13,11 +13,12 @@ export var east_ward_area: NodePath
 export var allow_multiple_wards := false
 
 
+var disabled := false
+
+
 onready var _north_camera: Camera = get_node(north_camera)
 onready var _west_camera: Camera = get_node(west_camera)
 onready var _east_camera: Camera = get_node(east_camera)
-
-
 onready var _camera_name_to_ward_area := {
 	get_node(north_camera).name: get_node(north_ward_area),
 	get_node(west_camera).name: get_node(west_ward_area),
@@ -78,6 +79,8 @@ func _set_camera_feed_ward(camera_name: String, warded: bool) -> void:
 
 
 func place_ward() -> bool:
+	if disabled:
+		return false
 	if !allow_multiple_wards and _are_any_ward_areas_active():
 		return false
 	

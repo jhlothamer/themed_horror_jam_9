@@ -64,7 +64,12 @@ func _input(event: InputEvent) -> void:
 	if !ward_mgr:
 		printerr("Witch: can't get WardMgr service!!")
 		return
-
+	
+	if ward_mgr.disabled:
+		if !_deny_interaction_sound.is_playing():
+			_deny_interaction_sound.play()
+		return
+	
 	if !ward_mgr.place_ward():
 		if !_deny_interaction_sound.is_playing():
 			_deny_interaction_sound.play()

@@ -14,6 +14,7 @@ signal interaction_completed(helperref, obj, interactor)
 signal interaction_started(interactor)
 signal interaction_interrupted(interactor)
 signal interaction_completion_began()
+signal interaction_started_more_info(helperref, obj, interactor)
 
 
 export var outline_helper: NodePath
@@ -62,6 +63,7 @@ func _ready():
 	
 	SignalMgr.register_publisher(self, "interactable_clicked")
 	SignalMgr.register_publisher(self, "interaction_completed")
+	SignalMgr.register_publisher(self, "interaction_started_more_info")
 
 
 func _on_clicked(_clicked_object) -> void:
@@ -97,6 +99,7 @@ func _single_start_interaction(interactor) -> void:
 	if _interactor_counter == 1 and _interaction_start_sound and !_interaction_start_sound.is_playing():
 		_interaction_start_sound.play()
 	emit_signal("interaction_started", interactor)
+	emit_signal("interaction_started_more_info", self, _parent, interactor)
 
 
 func _multiple_start_interaction(interactor: Spatial) -> void:

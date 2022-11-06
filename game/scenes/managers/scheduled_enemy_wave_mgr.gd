@@ -15,7 +15,7 @@ class ScheduleItem:
 
 export (String, FILE, "*.txt") var schedule_file_csv: String = "res://assets/data/enemy_wave_schedule.txt"
 export var alt_schedule_file_csv: String ="user://enemy_wave_schedule.csv"
-
+export var wait_for_tutorial_completed := true
 
 onready var _timer: Timer = $Timer
 
@@ -26,6 +26,9 @@ var _schedule_index := 0
 
 func _ready():
 	_read_schedule()
+	if wait_for_tutorial_completed:
+		SignalMgr.register_subscriber(self, "tutorial_completed")
+		return
 	_schedule_next_wave()
 
 
@@ -70,5 +73,6 @@ func _on_Timer_timeout():
 	_schedule_next_wave()
 
 
-
+func _on_tutorial_completed():
+	_schedule_next_wave()
 

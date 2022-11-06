@@ -8,7 +8,7 @@ signal spell_deactivated()
 onready var _spellbook_active_indicator = $SpellbookRunes
 
 
-var _instructions_shown := false
+var _instructions_shown := true
 
 
 func _ready():

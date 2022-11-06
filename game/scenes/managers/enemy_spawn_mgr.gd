@@ -34,6 +34,7 @@ var _destructable_data := []
 func _enter_tree():
 	ServiceMgr.register_service(get_script(), self)
 
+
 func _ready():
 	_rand.randomize()
 	

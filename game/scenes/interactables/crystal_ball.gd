@@ -10,7 +10,7 @@ onready var _ward_activated_sound: AudioStreamPlayer = $WardActivatedSound
 onready var _ward_deactivated_sound: AudioStreamPlayer = $WardDeactivatedSound
 
 
-var _instructions_shown := false
+var _instructions_shown := true
 
 
 func _ready():

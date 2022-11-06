@@ -1,6 +1,8 @@
 class_name HUD
 extends CanvasLayer
 
+const SKIP_TUTORIAL_LABEL_TEXT = "Press %%prompt:key:0:skip_tutorial%% to skip tutorial"
+
 
 signal no_selectable_clicked()
 signal no_interactable_clicked(position)
@@ -12,7 +14,8 @@ export var message_fade_out_time := 1.0
 
 onready var _message_container: Control = $MarginContainer/MessagesContainer
 onready var _message_label: RichTextLabel = $MarginContainer/MessagesContainer/RichTextLabel
-
+onready var _skip_tutoral_container: MarginContainer = $SkipTutorialMarginContainer
+onready var _skip_tutoral_label: RichTextLabel = $SkipTutorialMarginContainer/SkipTutorialLabel
 
 func _enter_tree():
 	ServiceMgr.register_service(get_script(), self)
@@ -21,12 +24,18 @@ func _enter_tree():
 func _ready():
 	SignalMgr.register_publisher(self, "no_selectable_clicked")
 	SignalMgr.register_publisher(self, "no_interactable_clicked")
+	SignalMgr.register_subscriber(self, "tutorial_started")
+	SignalMgr.register_subscriber(self, "tutorial_completed")
+	
 	_message_label.visible = false
+	_skip_tutoral_label.bbcode_text = InputPromptUtil.replace_input_prompts(SKIP_TUTORIAL_LABEL_TEXT, InputPromptUtil.PromptImageSize.MEDIUM)
+	_skip_tutoral_container.visible = false
 
 
 func _input(event):
-	if event.is_echo() or !event is InputEventMouseButton or !event.is_pressed():
+	if event.is_echo() or !event.is_pressed() or !event is InputEventMouseButton:
 		return
+	
 	var em := event as InputEventMouseButton
 	if em.button_index == BUTTON_LEFT:
 		if Vector3.INF == _test_world_mouse_click_collision(em.position, GameConsts.PhysLayerMask.SELECTABLE, 0, false):
@@ -62,7 +71,7 @@ func _test_world_mouse_click_collision(mouse_position, collision_mask: int, igno
 	return result["position"]
 
 
-func add_message(msg: String) -> void:
+func add_message(msg: String, sticky: bool = false) -> void:
 	var label = _message_label.duplicate()
 	label.bbcode_text = "[center]%s[/center]" % msg
 	label.modulate = Color.transparent
@@ -72,6 +81,8 @@ func add_message(msg: String) -> void:
 	var _discard = tween.tween_property(label, "modulate:a", 1.0, message_fade_out_time)
 	tween.play()
 	yield(tween, "finished")
+	if sticky:
+		return
 	yield(get_tree().create_timer(message_show_time), "timeout")
 	tween = get_tree().create_tween()
 	_discard = tween.tween_property(label, "modulate:a", 0.0, message_fade_out_time)
@@ -79,3 +90,27 @@ func add_message(msg: String) -> void:
 	yield(tween, "finished")
 	label.queue_free()
 
+
+func remove_message(msg: String) -> void:
+	var message_label: RichTextLabel
+	var bbcode_text = "[center]%s[/center]" % msg
+	for i in _message_container.get_children():
+		var label: RichTextLabel = i
+		if label.bbcode_text == bbcode_text:
+			message_label = label
+			break
+	if !message_label:
+		return
+	var tween = get_tree().create_tween()
+	var _discard = tween.tween_property(message_label, "modulate:a", 0.0, message_fade_out_time)
+	tween.play()
+	yield(tween, "finished")
+	message_label.queue_free()
+
+
+func _on_tutorial_started():
+	_skip_tutoral_container.visible = true
+
+
+func _on_tutorial_completed():
+	_skip_tutoral_container.visible = false

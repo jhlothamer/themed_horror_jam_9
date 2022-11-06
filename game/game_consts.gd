@@ -56,3 +56,5 @@ const SERVICE_NAME_WANDER_AREA_MGR = "WanderAreaMgr"
 
 const PLAY_AREA_BOUNDS = Rect2(Vector2.ONE*-10, Vector2.ONE*10*2)
 const CHARACTER_MOVE_BOUNDS = Rect2(Vector2.ONE*-9.5, Vector2.ONE*9.5*2)
+
+const INCLUDE_TUTORIAL = "include_tutorial"
