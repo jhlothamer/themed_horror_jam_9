@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=1]
-[ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/components/outline_helper_3d.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/sfx_base_repairs_interaction_start_loop_jdymusic.mp3" type="AudioStream" id=3]
 [ext_resource path="res://scenes/destructables/destructable_base.gd" type="Script" id=4]
 [ext_resource path="res://addons/godot_helper_pack/core/audio/random_audio_stream_player_3d.gd" type="Script" id=5]
@@ -73,12 +73,13 @@ interaction_start_sound = NodePath("../RapairingSound")
 complete_after_complete_sound_finished = false
 required_resource_type = "wood"
 required_resource_amount = 100
+allowed_type_deny_message = "Only minions can make repairs"
+required_resource_deny_message = "Gather wood from wood pile to make repairs"
 
 [node name="DamagedRandomAudioStreamPlayer3D" type="Spatial" parent="."]
 script = ExtResource( 5 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 6 )]
-visible = false
 mesh = SubResource( 11 )
 value = 100.0
 background_color = Color( 0, 0, 0, 1 )

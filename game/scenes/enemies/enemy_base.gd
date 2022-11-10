@@ -4,7 +4,6 @@ extends KinematicBody
 signal enemy_clicked(enemy)
 
 
-
 export var horizontal_speed = 2.0
 export var disabled := false
 export var damage_amount := 5
@@ -12,6 +11,7 @@ export var damage_interval := 2.0
 export var starting_health := 30
 export var debug_state := false
 export var debug_node_name := false
+
 
 onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _state_machine: StateMachine = $StateMachine
@@ -52,17 +52,19 @@ func _on_OutlineHelper3D_clicked(_clicked_object):
 
 
 func collide(projectile: Projectile) -> void:
+	damage(projectile.damage)
 
+
+func damage(damage: float) -> void:
 	if current_health <= 0:
 		return
 	
-	current_health = int(max(0, current_health - projectile.damage))
+	current_health = int(max(0, current_health - damage))
 	_update_heath_bar()
 	if current_health <= 0:
 		_state_machine.change_state("Die")
 		return
 	_on_damage()
-
 
 func is_dead() -> bool:
 	return current_health <= 0

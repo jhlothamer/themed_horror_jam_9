@@ -2,7 +2,7 @@ extends VBoxContainer
 
 signal help_message_changed(message)
 
-const HELP_MESSAGE = "Use %%prompt:pad:previous_settings_tab%% or %%prompt:pad:next_settings_tab%% to switch tabs"
+const HELP_MESSAGE = "Use %%prompt:pad:0:previous_settings_tab%% or %%prompt:pad:0:next_settings_tab%% to switch tabs"
 
 onready var _tabs:Tabs = $TabContainer/Tabs
 onready var _tab_panels = $TabPanelContainer.get_children()
@@ -119,7 +119,7 @@ func _on_joy_connection_changed(device: int, connected: bool) -> void:
 	if !connected:
 		emit_signal("help_message_changed", "")
 		return
-	emit_signal("help_message_changed", InputPromptUtil.replace_input_prompts(HELP_MESSAGE, true))
+	emit_signal("help_message_changed", InputPromptUtil.replace_input_prompts(HELP_MESSAGE, InputPromptUtil.PromptImageSize.MEDIUM))
 
 func re_init() -> void:
 	_tabs.current_tab = 0

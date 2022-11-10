@@ -20,7 +20,6 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("sound_dialog") and !visible:
-		SoundLevelMgr.ignore_audio_node_additions = true
 		visible = true
 		pause_mode = Node.PAUSE_MODE_PROCESS
 		get_tree().paused = true
@@ -61,7 +60,6 @@ func _on_CancelBtn_pressed():
 	get_tree().paused = false
 	pause_mode = Node.PAUSE_MODE_STOP
 	_cleanup_duplicate_audio_nodes()
-	SoundLevelMgr.ignore_audio_node_additions = false
 
 
 func _on_OKBtn_pressed():

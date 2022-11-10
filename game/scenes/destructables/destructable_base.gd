@@ -1,9 +1,11 @@
 class_name Destructable
 extends StaticBody
 
+
 export var starting_health := 100
 export var death_sound_node_path: NodePath
 export var disable_collision_on_destroy := true
+
 
 onready var death_sound:AudioStreamPlayer3D = get_node_or_null(death_sound_node_path)
 onready var damaged_sound:RandomAudioStreamPlayer3D = $DamagedRandomAudioStreamPlayer3D
@@ -42,8 +44,14 @@ func damage(amount: float) -> void:
 	damaged_sound.play()
 
 
-func can_interact() -> bool:
+func can_interact(_interactor) -> bool:
 	return _health_bar.value < _health_bar.max_value
+
+
+func get_deny_message(_interactor) -> String:
+	if _health_bar.value == _health_bar.max_value:
+		return "No repair currently needed"
+	return ""
 
 
 func _update_heath_bar() -> void:
@@ -68,7 +76,7 @@ func _on_HealthBar_progress_made(_new_value, _max_value):
 	set_collision_mask_bit(GameConsts.PhysLayerBitIndex.DEFAULT, true)
 
 
-func _on_InteractionHelper_interaction_completed(_helperref, _obj):
+func _on_InteractionHelper_interaction_completed(_helperref, _obj, _interactor):
 	if _current_interactor and _interaction_helper.required_resource_type != "":
 		_current_interactor.decrease_resource_amount(_interaction_helper.required_resource_type, _interaction_helper.required_resource_amount)
 		_current_interactor = null

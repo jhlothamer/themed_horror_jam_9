@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/characters/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sounds/sfx_goblin_damage_taken1_jdymusic.mp3" type="AudioStream" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/characters/minion.gd" type="Script" id=5]
 [ext_resource path="res://assets/models/goblin_animations_frank_ilikethepixies/goblinanimations_frank_ilikethepixes.gltf" type="PackedScene" id=6]
 [ext_resource path="res://assets/models/runes_matrix/spell_book_runes/Material_003.material" type="Material" id=7]
+[ext_resource path="res://assets/images/Object_18.png" type="Texture" id=8]
 
 [sub_resource type="Shader" id=11]
 code = "shader_type spatial;
@@ -37,7 +38,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=32]
+[sub_resource type="ShaderMaterial" id=36]
 shader = SubResource( 11 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 shader_param/progress_color = Color( 0, 1, 0, 1 )
@@ -45,7 +46,7 @@ shader_param/progress_value = 0.5
 
 [sub_resource type="QuadMesh" id=19]
 resource_local_to_scene = true
-material = SubResource( 32 )
+material = SubResource( 36 )
 size = Vector2( 1, 0.1 )
 
 [sub_resource type="Shader" id=9]
@@ -76,7 +77,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=33]
+[sub_resource type="ShaderMaterial" id=37]
 render_priority = 5
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
@@ -85,7 +86,7 @@ shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=27]
 resource_local_to_scene = true
-material = SubResource( 33 )
+material = SubResource( 37 )
 size = Vector2( 1, 0.1 )
 
 [sub_resource type="SpatialMaterial" id=31]
@@ -127,23 +128,45 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 0.70176, 0.70176, 0.70176, 0.0666667, 1, 0, 0, 0, 0, 0.0649527, 0, 0.997888, 0.70176, 0.70176, 0.70176, 0.133333, 1, 0, 0, 0, 0, 0.236078, 0, 0.971734, 0.70176, 0.70176, 0.70176, 0.2, 1, 0, 0, 0, 0, 0.400129, 0, 0.916459, 0.70176, 0.70176, 0.70176, 0.266667, 1, 0, 0, 0, 0, 0.552188, 0, 0.83372, 0.70176, 0.70176, 0.70176, 0.333333, 1, 0, 0, 0, 0, 0.687699, 0, 0.725995, 0.70176, 0.70176, 0.70176, 0.4, 1, 0, 0, 0, 0, 0.802602, 0, 0.596515, 0.70176, 0.70176, 0.70176, 0.466667, 1, 0, 0, 0, 0, 0.893453, 0, 0.449158, 0.70176, 0.70176, 0.70176, 0.533333, 1, 0, 0, 0, 0, 0.957528, 0, 0.28834, 0.70176, 0.70176, 0.70176, 0.6, 1, 0, 0, 0, 0, 0.992908, 0, 0.118882, 0.70176, 0.70176, 0.70176, 0.666667, 1, 0, 0, 0, 0, -0.998533, 0, 0.0541391, 0.70176, 0.70176, 0.70176, 0.733333, 1, 0, 0, 0, 0, -0.974234, 0, 0.225538, 0.70176, 0.70176, 0.70176, 0.8, 1, 0, 0, 0, 0, -0.92074, 0, 0.390177, 0.70176, 0.70176, 0.70176, 0.866667, 1, 0, 0, 0, 0, -0.839652, 0, 0.543124, 0.70176, 0.70176, 0.70176, 0.933333, 1, 0, 0, 0, 0, -0.733403, 0, 0.679795, 0.70176, 0.70176, 0.70176, 1, 1, 0, 0, 0, 0, -0.605174, 0, 0.796093, 0.70176, 0.70176, 0.70176, 1.06667, 1, 0, 0, 0, 0, -0.45881, 0, 0.888535, 0.70176, 0.70176, 0.70176, 1.13333, 1, 0, 0, 0, 0, -0.298696, 0, 0.954348, 0.70176, 0.70176, 0.70176, 1.2, 1, 0, 0, 0, 0, -0.129631, 0, 0.991562, 0.70176, 0.70176, 0.70176, 1.25, 1, 0, 0, 0, 0, 8.74228e-08, 0, 1, 0.70176, 0.70176, 0.70176 )
 
+[sub_resource type="SpatialMaterial" id=34]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+params_billboard_mode = 1
+albedo_texture = ExtResource( 8 )
+
+[sub_resource type="QuadMesh" id=35]
+material = SubResource( 34 )
+size = Vector2( 0.8, 0.4 )
+
 [node name="Minion" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
 death_sound_node_path = NodePath("DeathSound")
 allowed_interactable_types = [ "destructable", "wood_pile" ]
+can_melee = true
 
 [node name="Shoot" parent="StateMachine" index="4"]
 fire_from_position = NodePath("../../FireFromPosition3D")
 
-[node name="OutlineHelper3D" parent="." index="3"]
+[node name="Melee" parent="StateMachine" index="5"]
+delay_before_shooting_again = 1.7
+
+[node name="OutlineHelper3D" parent="." index="4"]
 mesh_instances_to_outline = [ NodePath("../goblinanimations_frank_ilikethepixes/Armature/Skeleton/goblin_ilikethepixies") ]
 
-[node name="HealthBar" parent="." index="4"]
+[node name="HealthBar" parent="." index="5"]
 mesh = SubResource( 19 )
 
-[node name="ManaBar" parent="." index="5"]
+[node name="ManaBar" parent="." index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05348, 0 )
 mesh = SubResource( 27 )
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="." index="7"]
+stream = ExtResource( 4 )
+attenuation_model = 3
+unit_db = -7.0
+max_db = 6.0
+bus = "SoundFx"
 
 [node name="Damaged1" type="AudioStreamPlayer3D" parent="DamagedRandomAudioStreamPlayer3D" index="0"]
 stream = ExtResource( 2 )
@@ -161,17 +184,10 @@ unit_size = 10.0
 max_db = 6.0
 bus = "SoundFx"
 
-[node name="DeathSound" type="AudioStreamPlayer3D" parent="." index="7"]
-stream = ExtResource( 4 )
-attenuation_model = 3
-unit_db = -7.0
-max_db = 6.0
-bus = "SoundFx"
-
-[node name="character_selection_matrix" parent="." index="11"]
+[node name="character_selection_matrix" parent="." index="12"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
-[node name="SelectionMarkerRemoteTransform" parent="." index="12"]
+[node name="SelectionMarkerRemoteTransform" parent="." index="13"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18109, 0 )
 
 [node name="FireFromPosition3D" type="Position3D" parent="." index="14"]
@@ -197,7 +213,11 @@ skeleton = NodePath("../..")
 autoplay = "CircleAction"
 anims/CircleAction = SubResource( 30 )
 
-[connection signal="interaction_about_to_start" from="StateMachine/Walk" to="." method="_on_Walk_interaction_about_to_start"]
+[node name="WoodIcon" type="MeshInstance" parent="." index="18"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.044432, 1.97398, 0 )
+visible = false
+mesh = SubResource( 35 )
+
 [connection signal="animation_finished" from="goblinanimations_frank_ilikethepixes/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="goblinanimations_frank_ilikethepixes"]

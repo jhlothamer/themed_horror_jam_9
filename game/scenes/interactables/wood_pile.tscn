@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/components/interaction_helper.gd" type="Script" id=1]
-[ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/components/outline_helper_3d.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/components/interaction_progress_bar_3d.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/interactables/wood_pile.gd" type="Script" id=4]
 [ext_resource path="res://assets/models/wood_pile_ilikethepixies/wood_pile_ilikethepixies.gltf" type="PackedScene" id=5]
@@ -93,7 +93,6 @@ mesh = SubResource( 3 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401977, 0 )
-visible = false
 mesh = SubResource( 6 )
 value = 0.0
 max_value = 30.0
@@ -115,11 +114,9 @@ outline_helper = NodePath("../OutlineHelper3D")
 interaction_progress_bar = NodePath("../InteractionProgressBar3d")
 interactable_type = "wood_pile"
 complete_after_complete_sound_finished = false
+interaction_progress_type = 1
+allowed_type_deny_message = "Only minions can gather wood and make repairs"
 
 [node name="wood_pile_ilikethepixies" parent="." instance=ExtResource( 5 )]
-
-[connection signal="interaction_completed" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_completed"]
-[connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
-[connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
 
 [editable path="wood_pile_ilikethepixies"]

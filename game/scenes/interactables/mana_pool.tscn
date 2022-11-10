@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/components/outline_helper_3d.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/3d/shape/collision_shape_ex.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/components/interaction_progress_bar_3d.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/interactables/mana_pool.gd" type="Script" id=4]
@@ -17,7 +17,7 @@ radius = 1.6004
 [sub_resource type="Shader" id=2]
 code = "shader_type spatial;
 
-render_mode unshaded, shadows_disabled;
+render_mode unshaded, shadows_disabled, depth_test_disable;
 
 //uniform vec4 border_color : hint_color = vec4(.0, .0, .0, 1.);
 uniform vec4 background_color : hint_color = vec4(.0, .0, .0, 1.);
@@ -165,8 +165,7 @@ shape = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="InteractionProgressBar3d" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24426, 0 )
-visible = false
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.87595, 0 )
 mesh = SubResource( 4 )
 value = 0.0
 max_value = 30.0
@@ -188,16 +187,18 @@ outline_helper = NodePath("../OutlineHelper3D")
 interaction_progress_bar = NodePath("../InteractionProgressBar3d")
 interactable_type = "mana"
 interaction_start_sound = NodePath("../StartInteractionSound")
-interaction_interupt_sound = NodePath("../InteruptInteractionSound")
+interaction_interrupt_sound = NodePath("../InterruptInteractionSound")
 interaction_complete_sound = NodePath("../CompleteInteractionSound")
 complete_after_complete_sound_finished = false
+interaction_progress_type = 1
+allowed_type_deny_message = "Witch must read from spellbook to allow minions to get mana"
 
 [node name="StartInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -12.0
 bus = "SoundFx"
 
-[node name="InteruptInteractionSound" type="AudioStreamPlayer" parent="."]
+[node name="InterruptInteractionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -13.0
 bus = "SoundFx"
@@ -213,9 +214,5 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3551, 0 )
 mesh = SubResource( 10 )
-
-[connection signal="interaction_completed" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_completed"]
-[connection signal="interaction_interrupted" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_interrupted"]
-[connection signal="interaction_started" from="InteractionHelper" to="." method="_on_InteractionHelper_interaction_started"]
 
 [editable path="manapool_ilikethepixies"]

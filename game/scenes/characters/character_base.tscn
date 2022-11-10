@@ -1,9 +1,9 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scenes/characters/states/character_base_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot_helper_pack/core/state_machine/state_machine.gd" type="Script" id=2]
 [ext_resource path="res://scenes/characters/character_base.gd" type="Script" id=3]
-[ext_resource path="res://addons/godot_helper_pack/core/3d/outline_helper_3d.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ui/components/outline_helper_3d.gd" type="Script" id=4]
 [ext_resource path="res://assets/images/healthbar_frame_ilikethepixies.png" type="Texture" id=5]
 [ext_resource path="res://scenes/ui/components/progress_bar_3d.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/characters/states/character_walk.gd" type="Script" id=7]
@@ -15,10 +15,15 @@
 [ext_resource path="res://assets/sounds/sfx_confirm_accept_jdymusic.mp3" type="AudioStream" id=13]
 [ext_resource path="res://scenes/characters/states/character_shoot.gd" type="Script" id=14]
 [ext_resource path="res://assets/sounds/sfx_magic_missile_jdymusic.mp3" type="AudioStream" id=15]
+[ext_resource path="res://scenes/characters/states/character_melee.gd" type="Script" id=16]
+[ext_resource path="res://scenes/characters/states/character_walk_to.gd" type="Script" id=18]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.7
 height = 1.5
+
+[sub_resource type="BoxShape" id=23]
+extents = Vector3( 1, 1.6, 1 )
 
 [sub_resource type="Shader" id=11]
 code = "shader_type spatial;
@@ -49,7 +54,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=21]
+[sub_resource type="ShaderMaterial" id=24]
 shader = SubResource( 11 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 shader_param/progress_color = Color( 0, 1, 0, 1 )
@@ -57,7 +62,7 @@ shader_param/progress_value = 0.5
 
 [sub_resource type="QuadMesh" id=12]
 resource_local_to_scene = true
-material = SubResource( 21 )
+material = SubResource( 24 )
 size = Vector2( 1, 0.1 )
 
 [sub_resource type="SpatialMaterial" id=20]
@@ -98,7 +103,7 @@ void fragment()
 
 }"
 
-[sub_resource type="ShaderMaterial" id=22]
+[sub_resource type="ShaderMaterial" id=25]
 render_priority = 5
 shader = SubResource( 9 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
@@ -107,17 +112,23 @@ shader_param/progress_value = 0.0
 
 [sub_resource type="QuadMesh" id=15]
 resource_local_to_scene = true
-material = SubResource( 22 )
+material = SubResource( 25 )
 size = Vector2( 1, 0.1 )
 
 [node name="CharacterBase" type="KinematicBody"]
 collision_layer = 17
-collision_mask = 49
+collision_mask = 33
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5, 0 )
 shape = SubResource( 1 )
+
+[node name="MouseArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="MouseArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
+shape = SubResource( 23 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -128,11 +139,10 @@ is_starting_state = true
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
-navigation_agent = NodePath("../../NavigationAgent")
-deny_interaction_sound = NodePath("../../DenyInteractionSound")
 
 [node name="Interact" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
+deny_interaction_sound = NodePath("../../DenyInteractionSound")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
@@ -141,6 +151,13 @@ script = ExtResource( 9 )
 script = ExtResource( 14 )
 deny_interaction_sound = NodePath("../../DenyInteractionSound")
 shoot_sound = NodePath("../../ShootSound")
+
+[node name="Melee" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
+
+[node name="WalkTo" type="Node" parent="StateMachine"]
+script = ExtResource( 18 )
+navigation_agent = NodePath("../../NavigationAgent")
 
 [node name="NavigationAgent" type="NavigationAgent" parent="."]
 target_desired_distance = 0.1
@@ -151,6 +168,7 @@ neighbor_dist = 5.0
 script = ExtResource( 4 )
 selected_indicator = NodePath("../character_selection_matrix")
 keep_selected_on_no_selectable_clicked = true
+mouse_input_area = NodePath("../MouseArea")
 
 [node name="HealthBar" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53445, 0 )

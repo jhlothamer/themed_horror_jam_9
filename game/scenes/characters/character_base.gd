@@ -14,8 +14,9 @@ export var starting_resources := {}
 export var invulnerable := false
 export var debug_movement := false
 export var can_shoot := false
+export var can_melee := false
 export var max_mana := 100.0
-
+export var health_regen_rate := 1.0
 
 onready var death_sound:AudioStreamPlayer3D = get_node_or_null(death_sound_node_path)
 onready var damaged_sound:RandomAudioStreamPlayer3D = $DamagedRandomAudioStreamPlayer3D
@@ -24,6 +25,7 @@ onready var _outline_helper: OutlineHelper3D = $OutlineHelper3D
 onready var _health_bar: ProgressBar3D = $HealthBar
 onready var _mana_bar: ProgressBar3D = $ManaBar
 onready var _state_machine: StateMachine = $StateMachine
+onready var _interact_state = $StateMachine/Interact
 onready var _collision_shape: CollisionShape = $CollisionShape
 onready var _selected_sound: AudioStreamPlayer = $SelectedSound
 onready var _state_debug_label: Label3D = $StateDebugLabel3D
@@ -84,6 +86,8 @@ func _on_OutlineHelper3D_selected(_helperref):
 
 
 func _on_StateMachine_state_changed(_old_state, new_state):
+	if new_state == "":
+		printerr("CharacterBase: State machine's new state is ''??  old state was '%s'" % _old_state)
 	_state_debug_label.text = new_state
 
 
@@ -107,3 +111,16 @@ func decrease_resource_amount(resource_name: String, resource_amount: int) -> vo
 		_update_mana_bar()
 
 
+func _physics_process(delta):
+	if _health_bar.value >= _health_bar.max_value:
+		return
+	_health_bar.value = min(_health_bar.max_value, _health_bar.value + delta * health_regen_rate)
+	if _health_bar.value >= _health_bar.max_value:
+		_health_bar.visible = false
+
+
+func _add_hud_message(msg: String) -> void:
+	var hud:HUD = ServiceMgr.get_service(HUD)
+	if !hud:
+		return
+	hud.add_message(msg)
