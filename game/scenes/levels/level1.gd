@@ -27,21 +27,6 @@ func _ready():
 		_main_camera_flags.visible = true
 	else:
 		_camera_move_pan.disabled = false
-#	_beginning_game_messages()
-#
-#
-#func _beginning_game_messages() -> void:
-#	var hud: HUD = ServiceMgr.get_service(HUD)
-#	yield(get_tree().create_timer(2.0),"timeout")
-#	hud.add_message("Left click witch or minion to select them.")
-#	yield(get_tree().create_timer(4.0),"timeout")
-#	hud.add_message("Right click to command witch or minion to move or use/repair something.")
-#	yield(get_tree().create_timer(4.0),"timeout")
-#	hud.add_message("Better get someone on that cauldron!  The zombies can't be vanquished till it's finished!")
-#	yield(get_tree().create_timer(10.0),"timeout")
-#	hud.add_message("Don't forget to have minions stock up on wood so they're ready to make repairs.")
-#	yield(get_tree().create_timer(10.0),"timeout")
-#	hud.add_message("Have witch get mana from mana pool.  Then she can cast magic missiles.")
 
 
 func _on_Cauldron_game_won_sequence_began():
