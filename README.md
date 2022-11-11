@@ -3,6 +3,7 @@
 <p align="center">
 <img src="images/witching_hour_screenshot.jpg" />
 </p>
+
 This game was created for the [Themed Horror Game Jam #9](https://itch.io/jam/themed-horror-game-jam-9). For the jam we had a choice between themes and chose the Witching Hour theme. We also implemented two bonus challenges: witchcraft and familiar.
 
 The game can be downloaded from itch.io at [https://jlothamer.itch.io/witching-hour](https://jlothamer.itch.io/witching-hour).
